@@ -5,7 +5,9 @@
   "scripts": {
     "start": "nx serve",
     "build": "nx build",
-    "test": "nx test"
+    "test": "nx test",
+    "format:write": "prettier \"src/**/*.{ts,html,scss,css,less}\" --write",
+     "format:check": "prettier \"src/**/*.{ts,html,scss,css,less}\" --check"
   },
   "private": true,
   "dependencies": {
