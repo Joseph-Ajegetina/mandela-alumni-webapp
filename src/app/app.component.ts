@@ -3,7 +3,7 @@ import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
 @Component({
-	imports: [RouterModule, TuiRoot, TuiButton],
+	imports: [RouterModule, TuiRoot],
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.less',

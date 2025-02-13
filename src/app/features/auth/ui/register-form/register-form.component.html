@@ -1,0 +1,64 @@
+<div class="form-container">
+	<form
+		tuiAppearance="floating"
+		tuiCardLarge
+		tuiForm="l"
+		[formGroup]="form"
+		[style.max-width.rem]="32"
+		(ngSubmit)="registerUser()"
+	>
+		<header tuiHeader>
+			<h2 tuiTitle>
+				Registration form
+				<span tuiSubtitle>Fill in your personal details</span>
+			</h2>
+		</header>
+		<div class="grid">
+			<div class="stack">
+				<tui-textfield>
+					<label tuiLabel>First Name </label>
+					<input formControlName="firstName" tuiTextfield type="text" />
+				</tui-textfield>
+				<tui-error formControlName="firstName" [error]="[] | tuiFieldError | async" />
+			</div>
+			<div class="stack">
+				<tui-textfield>
+					<label tuiLabel>Last Name </label>
+					<input formControlName="lastName" tuiTextfield type="text" />
+				</tui-textfield>
+				<tui-error formControlName="lastName" [error]="[] | tuiFieldError | async" />
+			</div>
+		</div>
+		<tui-textfield>
+			<label tuiLabel>Email</label>
+			<input formControlName="email" tuiTextfield type="email" />
+		</tui-textfield>
+		<tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
+
+		<div class="grid">
+			<div class="stack">
+				<tui-textfield tuiDropdownMobile="Select country">
+					<label tuiLabel>Phone number</label>
+					<input
+						tuiInputPhoneInternational
+						[countries]="(countries | tuiSortCountries | async) || []"
+						[countrySearch]="true"
+						[(countryIsoCode)]="countryIsoCode"
+						formControlName="phone"
+					/>
+				</tui-textfield>
+			</div>
+			<div class="stack">
+				<tui-select formControlName="role">
+					Role
+					<input tuiTextfieldLegacy />
+				</tui-select>
+			</div>
+		</div>
+
+		<footer>
+			<button appearance="secondary" tuiButton type="button">Cancel</button>
+			<button tuiButton type="submit">Register</button>
+		</footer>
+	</form>
+</div>
