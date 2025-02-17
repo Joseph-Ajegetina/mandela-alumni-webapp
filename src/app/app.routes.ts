@@ -1,9 +1,13 @@
 import { Route } from '@angular/router';
 import { RegisterComponent } from './features/auth/feature/register/register.component';
 import { LoginComponent } from './features/auth/feature/login/login.component';
-import { LayoutComponent } from './shared/ui/layout/layout.component';
 
 export const appRoutes: Route[] = [
+	{
+		path: '',
+		pathMatch: 'full',
+		redirectTo: 'dashboard',
+	},
 	{
 		path: 'login',
 		component: LoginComponent,
@@ -14,12 +18,15 @@ export const appRoutes: Route[] = [
 	},
 
 	{
-		path: 'dashboard',
-		component: LayoutComponent,
-	},
-
-	{
-		path: '**',
-		redirectTo: '/register',
+		path: '',
+		loadComponent: () =>
+			import('../app/shared/ui/layout/layout.component').then((m) => m.LayoutComponent),
+		children: [
+			{
+				path: 'dashboard',
+				loadComponent: () =>
+					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+			},
+		],
 	},
 ];

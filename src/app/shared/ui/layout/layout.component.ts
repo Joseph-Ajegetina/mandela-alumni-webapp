@@ -24,7 +24,7 @@ import {
 import { tuiAsPortal, TuiItem, TuiPortals } from '@taiga-ui/cdk';
 import { ICON } from '../icon';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive } from '@angular/router';
+import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
 import { MenuItem } from '../../interfaces/menu-item';
 
 @Component({
@@ -32,8 +32,7 @@ import { MenuItem } from '../../interfaces/menu-item';
 	imports: [
 		CommonModule,
 		FormsModule,
-		RouterLink,
-		RouterLinkActive,
+		RouterModule,
 		TuiNavigation,
 		TuiButton,
 		TuiDataList,
