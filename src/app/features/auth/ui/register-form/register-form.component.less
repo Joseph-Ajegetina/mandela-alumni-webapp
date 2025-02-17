@@ -1,0 +1,28 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.form-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+}
+
+.grid {
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: inherit;
+}
+
+.stack {
+	display: flex;
+	gap: inherit;
+	flex-direction: column;
+}
+
+@media @tui-tablet {
+	.form-container {
+		height: inherit;
+		display: inherit;
+		margin: 20px auto;
+	}
+}
