@@ -25,6 +25,7 @@ import { tuiAsPortal, TuiItem, TuiPortals } from '@taiga-ui/cdk';
 import { ICON } from '../icon';
 import { FormsModule } from '@angular/forms';
 import { RouterLink, RouterLinkActive } from '@angular/router';
+import { MenuItem } from '../../interfaces/menu-item';
 
 @Component({
 	selector: 'app-layout',
@@ -62,22 +63,17 @@ export class LayoutComponent extends TuiPortals {
 	protected switch = false;
 	protected readonly routes: any = {};
 
-	protected readonly drawer = {
-		Components: [
-			{ name: 'Button', icon: ICON },
-			{ name: 'Input', icon: ICON },
-			{ name: 'Tooltip', icon: ICON },
-		],
-		Essentials: [
-			{ name: 'Getting started', icon: ICON },
-			{ name: 'Showcase', icon: ICON },
-			{ name: 'Typography', icon: ICON },
-		],
-	};
+	protected readonly menuItems = signal<MenuItem[]>([
+		{
+			icon: '@tui.home',
+			label: 'Dashboard',
+			route: 'dashboard',
+		},
+	]);
 
 	protected breadcrumbs = ['Home', 'Angular', 'repositories', 'taiga ui'];
 
-	protected handleExpandedToggle(): void {
+	protected handleToggle(): void {
 		this.expanded.update((value) => !value);
 	}
 }
