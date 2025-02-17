@@ -1,5 +1,14 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
 
+:host {
+	--tui-theme-color: var(--tui-background-base);
+}
+
+.drawer {
+	background: var(--tui-background-base);
+	color: var(--tui-text-primary);
+}
+
 @media @tui-mobile {
 	.t-navigation {
 		display: none;

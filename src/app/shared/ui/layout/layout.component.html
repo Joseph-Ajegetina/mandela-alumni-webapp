@@ -1,13 +1,6 @@
 <div class="custom-portal"><ng-container #viewContainer /></div>
-<header tuiNavigationHeader>
-	<button
-		class="t-menu"
-		title="Menu"
-		tuiIconButton
-		tuiNavigationDrawer
-		type="button"
-		[(open)]="open"
-	>
+<header tuiNavigationHeader tuiTheme="isDarkMode() ? 'dark' : 'light'">
+	<button title="Menu" tuiIconButton tuiNavigationDrawer type="button" [(open)]="open">
 		<tui-data-list>
 			<button
 				*ngFor="let menuItem of menuItems()"
@@ -18,20 +11,20 @@
 			>
 				{{ menuItem.label }}
 			</button>
-			<label>
-				<input size="s" tuiSwitch type="checkbox" [(ngModel)]="switch" />
-				Dark mode
-			</label>
 		</tui-data-list>
 	</button>
 	<span tuiNavigationLogo>
 		<img src="assets/alumracle-logo.png" alt="Alumracle logo" />
 	</span>
 	<hr />
+	<p>
+		<button tuiButton type="button" (click)="darkMode.set(!darkMode())">Toggle</button>
+		<button tuiButton type="button" (click)="darkMode.reset()">Reset</button>
+	</p>
 	<tui-avatar src="AI" />
 </header>
 <div [style.display]="'flex'">
-	<aside [tuiNavigationAside]="expanded()" class="t-navigation">
+	<aside [tuiNavigationAside]="expanded()" tuiTheme="isDarkMode() ? 'dark' : 'light'">
 		<button
 			*ngFor="let menuItem of menuItems()"
 			automation-id="hint"
