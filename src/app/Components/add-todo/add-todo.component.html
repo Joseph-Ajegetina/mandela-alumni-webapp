@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="add-todo.component.less">
+</head>
+<body>
+<!-- add-todo.component.html -->
+<div class="todo-container">
+    <div class="todo-form-wrapper">
+      <h2 class="title">Add a Todo</h2>
+      <form #f="ngForm" class="todo-form">
+        <div class="form-group">
+          <label for="todo" class="form-label">Enter your List</label>
+          <input
+            type="text"
+            id="todo"
+            name="todo"
+            [(ngModel)]="todoText"
+            #todo="ngModel"
+            placeholder="Enter todo..."
+            required
+            class="form-input"
+          />
+        </div>
+  
+        <button 
+          tuiButton
+          appearance="accent"
+          size="m"
+          type="button"
+          (click)="addTodo()"
+          class="submit-button"
+        >
+          Add Todo
+        </button>
+  
+        <div class="alert">
+          @if (todo.invalid && todo.touched) {
+            @if(todo.hasError('required')){
+              <p class="error-message">{{ constant.REQUIRED }}</p>
+            }
+            @if(todo.hasError('maxlength')){
+              <p class="error-message">{{ constant.MAX_LENGTH }}</p>
+            }
+            @if(todo.hasError('minlength')){
+              <p class="error-message">{{ constant.MIN_LENGTH(constant.minLength) }}</p>
+            }
+            @if(todo.hasError('maxlength')){
+              <p class="error-message">{{ constant.MIN_LENGTH(constant.maxLength) }}</p>
+            }
+          }
+        </div>
+      </form>
+    </div>
+  </div>
+</body>
+</html>

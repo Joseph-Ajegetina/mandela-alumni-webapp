@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="todo-list.component.less">
+</head>
+<body>
+    <div class="todo-container">
+        <div class="todo-list-wrapper">
+          <h2 class="title">Todo List</h2>
+          
+          <div class="list-container">
+            @if (todos.length > 0) {
+              <ul class="todo-list">
+                @for (todo of todos; track todo) {
+                  <li class="todo-item">
+                    <span class="todo-text">{{ todo }}</span>
+                  </li>
+                }
+              </ul>
+            } @else {
+              <div class="empty-state">
+                <p>No todos yet. Add your first todo!</p>
+              </div>
+            }
+          </div>
+      
+          <div class="action-container">
+            <a routerLink="/add-todo" class="add-button">
+              <span class="button-icon">+</span>
+              Add More Todos
+            </a>
+          </div>
+        </div>
+        <router-outlet></router-outlet>
+      </div>
+</body>
+</html>
