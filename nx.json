@@ -35,7 +35,6 @@
 		"@nx/jest:jest": {
 			"cache": true,
 			"inputs": ["default", "^production", "{workspaceRoot}/jest.preset.js"],
-<<<<<<< HEAD
 			"options": {
 				"passWithNoTests": true
 			},
@@ -49,12 +48,6 @@
 		"e2e-ci--**/*": {
 			"dependsOn": ["^build"]
 		}
-=======
-			"options": { "passWithNoTests": true },
-			"configurations": { "ci": { "ci": true, "codeCoverage": true } }
-		},
-		"e2e-ci--**/*": { "dependsOn": ["^build"] }
->>>>>>> 32f79eeee374c17a2e5790452db271983ea5da19
 	},
 	"plugins": [
 		{
@@ -66,16 +59,7 @@
 				"ciTargetName": "e2e-ci"
 			}
 		},
-<<<<<<< HEAD
-		{
-			"plugin": "@nx/eslint/plugin",
-			"options": {
-				"targetName": "lint"
-			}
-		}
-=======
 		{ "plugin": "@nx/eslint/plugin", "options": { "targetName": "lint" } }
->>>>>>> 32f79eeee374c17a2e5790452db271983ea5da19
 	],
 	"generators": {
 		"@nx/angular:application": {
@@ -84,16 +68,8 @@
 			"style": "less",
 			"unitTestRunner": "jest"
 		},
-<<<<<<< HEAD
-		"@nx/angular:component": {
-			"style": "css"
-		}
-	},
-	"defaultProject": "mandela-alumni-webapp"
-=======
 		"@nx/angular:component": { "style": "less" }
 	},
 	"defaultProject": "mandela-alumni-webapp",
 	"nxCloudId": "67ae9557bf4cb33dc8f9d08b"
->>>>>>> 32f79eeee374c17a2e5790452db271983ea5da19
 }

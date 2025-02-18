@@ -8,6 +8,12 @@ import { LoginComponent } from './features/auth/feature/login/login.component';
 
 
 export const appRoutes: Route[] = [
+    {
+        path: '',
+        redirectTo: 'todo-list',
+        pathMatch: 'full'
+    },
+    
 	{
 		path: 'login',
 		component: LoginComponent,
@@ -17,10 +23,7 @@ export const appRoutes: Route[] = [
 		component: RegisterComponent,
 	},
 
-	{
-		path: '**',
-		redirectTo: '/login',
-	},
+
 
     {
         path: 'add-todo',

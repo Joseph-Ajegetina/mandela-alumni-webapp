@@ -1,7 +1,6 @@
-import { Component, Input, input, output } from '@angular/core';
+import { Component, Input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
-import { RegisterData } from '../../models/register-data';
 import { TuiAppearance, TuiButton, TuiError, TuiTextfield, TuiTitle } from '@taiga-ui/core';
 import {
 	TuiFieldErrorPipe,
@@ -21,25 +20,24 @@ import type { TuiCountryIsoCode } from '@taiga-ui/i18n';
 @Component({
 	selector: 'app-register-form',
 	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		TuiInputPhoneModule,
-		TuiSelectModule,
-		TuiAppearance,
-		TuiCardLarge,
-		TuiForm,
-		TuiTitle,
-		TuiButton,
-		TuiError,
-		TuiFieldErrorPipe,
-		TuiHeader,
-		TuiTooltip,
-		TuiButton,
-		TuiDropdownMobile,
-		TuiInputPhoneInternational,
-		TuiSortCountriesPipe,
-		TuiTextfield,
-	],
+    CommonModule,
+    ReactiveFormsModule,
+    TuiInputPhoneModule,
+    TuiSelectModule,
+    TuiAppearance,
+    TuiCardLarge,
+    TuiForm,
+    TuiTitle,
+    TuiButton,
+    TuiError,
+    TuiFieldErrorPipe,
+    TuiHeader,
+    TuiButton,
+    TuiDropdownMobile,
+    TuiInputPhoneInternational,
+    TuiSortCountriesPipe,
+    TuiTextfield
+],
 	templateUrl: './register-form.component.html',
 	styleUrl: './register-form.component.less',
 	providers: [
@@ -50,12 +48,12 @@ import type { TuiCountryIsoCode } from '@taiga-ui/i18n';
 })
 export class RegisterFormComponent {
 	@Input() form!: FormGroup;
-	onRegisterUser = output<void>();
+	registerUserEvent = output<void>();
 
 	protected readonly countries = getCountries();
 	protected countryIsoCode: TuiCountryIsoCode = 'GH';
 
 	registerUser() {
-		this.onRegisterUser.emit();
+		this.registerUserEvent.emit();
 	}
 }
