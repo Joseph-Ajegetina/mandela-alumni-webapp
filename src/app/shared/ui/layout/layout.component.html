@@ -1,6 +1,14 @@
 <div class="custom-portal"><ng-container #viewContainer /></div>
-<header tuiNavigationHeader tuiTheme="isDarkMode() ? 'dark' : 'light'">
-	<button title="Menu" tuiIconButton tuiNavigationDrawer type="button" [(open)]="open">
+<header tuiNavigationHeader tuiTheme="isDarkMode() ? 'dark' : 'light'" class="nav-header">
+	<button
+		title="Menu"
+		tuiIconButton
+		iconStart="@tui.menu"
+		tuiNavigationDrawer
+		type="button"
+		[(open)]="openDrawer"
+		class="t-menu"
+	>
 		<tui-data-list>
 			<button
 				*ngFor="let menuItem of menuItems()"
@@ -18,13 +26,23 @@
 	</span>
 	<hr />
 	<p>
-		<button tuiButton type="button" (click)="darkMode.set(!darkMode())">Toggle</button>
-		<button tuiButton type="button" (click)="darkMode.reset()">Reset</button>
+		<!-- <button
+			appearance="secondary"
+			tuiButton
+			tuiIconButton
+			[iconStart]="darkMode() ? '@tui.sun' : '@tui.moon'"
+			type="button"
+			(click)="darkMode.set(!darkMode())"
+		></button> -->
 	</p>
 	<tui-avatar src="AI" />
 </header>
 <div [style.display]="'flex'">
-	<aside [tuiNavigationAside]="expanded()" tuiTheme="isDarkMode() ? 'dark' : 'light'">
+	<aside
+		[tuiNavigationAside]="true"
+		tuiTheme="isDarkMode() ? 'dark' : 'light'"
+		class="t-navigation"
+	>
 		<button
 			*ngFor="let menuItem of menuItems()"
 			automation-id="hint"
@@ -35,17 +53,6 @@
 		>
 			<span>{{ menuItem.label }}</span>
 		</button>
-
-		<footer>
-			<button
-				tuiAsideItem
-				type="button"
-				[iconStart]="expanded() ? '@tui.chevron-left' : '@tui.chevron-right'"
-				(click)="handleToggle()"
-			>
-				{{ expanded() ? 'Collapse' : 'Expand' }}
-			</button>
-		</footer>
 	</aside>
 	<main class="content-container">
 		<router-outlet></router-outlet>
