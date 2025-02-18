@@ -1,1 +1,54 @@
-<p>login works!</p>
+<div class="login-container">
+    <img src="assets/mandelawashington-fellowship-logo.jpg" alt="">
+    <!-- left section -->
+        <div class="login-box">
+            <form 
+                [formGroup]="loginForm" (ngSubmit)="onSubmit()"  
+                tuiAppearance="floating"
+                tuiCardLarge
+                tuiForm="m"
+                [style.max-width.rem]="32">
+                <h1 tuiTitle="m">Login to your account</h1>
+                <div tuiSubtitle class="tuiSubtitle">Enter your credentials below to log into your account</div>
+
+                <!-- email field -->
+                <tui-input formControlName="email">
+                    Email
+                    <input
+                        tuiTextfieldLegacy
+                        type="email"
+                    />
+                </tui-input>
+                
+        
+                <!-- password field -->
+                <tui-input formControlName="password" tuitextfield >
+                    Password
+                    <input 
+                    tuiTextfieldLegacy
+                        type="password"
+                    />
+                </tui-input>
+                
+                
+                
+                <!-- submit button -->
+                <button
+                    class="login-button"
+                    tuiButton
+                    type="submit"
+                    [loading]="loading$ | async">
+                   Login
+                </button>
+                <a class="signup-link" tuiLink [routerLink]="routes.signUp">
+                    Don’t have an account? Sign up
+                </a>
+            </form>
+        </div>
+
+        <!-- right section -->
+        <div class="login-image">
+            <img src="assets/loginImage.jpg" alt="Login Image" />
+        </div>
+    
+</div>

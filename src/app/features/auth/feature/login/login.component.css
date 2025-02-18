@@ -1,0 +1,87 @@
+/* Main container */
+
+
+
+.login-container {
+    display: flex;
+    height: 100vh;
+    background: #E9EEF1;
+    color: #254568;
+}
+
+/* Left side: Login form section */
+.login-box {
+    flex: 1;
+    width: 50%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Centers vertically */
+    align-items: center; /* Centers horizontally */
+    padding: 40px;
+    background: transparent;
+
+    tui-input{
+        margin-bottom: 30px; /* Adds spacing between fields */
+        display: block; /* Ensures they stack properly */
+        width: 100%; /* Sets width of input fields to 100% of its container */
+        max-width: 470px; /* Sets the preferred maximum width */
+        margin-left: auto; /* Centers the input field */
+        margin-right: auto; /* Centers the input field */
+    }
+
+
+    .login-button {
+        width: 100%; /* Sets width of button to 100% of its container */
+        max-width: 470px; /* Sets the preferred maximum width */
+        margin-left: auto; /* Centers the button */
+        margin-right: auto; /* Centers the button */
+        display: block;
+        margin-top: 16px; 
+        color: white;
+        background-color: #254568;
+    }
+    a.signup-link{
+        color: #26ABE1;
+        text-decoration: none;
+        margin-top: 16px;
+    }
+}
+div.tuiSubtitle {
+    margin-bottom: 16px;
+}
+
+/* Form styling */
+.login-box form {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background: transparent;
+    text-align: center;
+}
+
+/* Logo */
+.logo {
+    width: 50px;
+    margin-bottom: 20px;
+}
+
+/* Right side: Image section */
+.login-image {
+    flex: 1;
+    width: 50%; /* Ensures it takes 50% of screen */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #eef1f6;
+    height: 100vh;
+}
+
+/* Image Styling: Increase Width */
+.login-image img {
+    width: 40vw; /* Takes 40% of viewport width */
+    max-width: 600px; /* Prevents it from being too large */
+    height: auto; /* Keeps aspect ratio */
+    object-fit: contain;
+}

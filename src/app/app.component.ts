@@ -1,4 +1,4 @@
-import { TuiAlertService, TuiButton, TuiRoot } from '@taiga-ui/core';
+import { TuiAlertService, TuiRoot } from '@taiga-ui/core';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
 
