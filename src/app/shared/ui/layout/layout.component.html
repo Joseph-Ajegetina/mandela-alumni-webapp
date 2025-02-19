@@ -1,0 +1,36 @@
+<div class="custom-portal">
+	<ng-container #viewContainer />
+</div>
+<header tuiNavigationHeader tuiTheme="isDarkMode() ? 'dark' : 'light'" class="nav-header">
+	<button
+		tuiNavigationDrawer
+		tuiIconButton
+		title="Menu"
+		type="button"
+		[(open)]="open"
+		class="menu-button"
+	>
+		<app-site-navigation></app-site-navigation>
+	</button>
+	<span tuiNavigationLogo>
+		<img src="assets/alumracle-logo.png" alt="Alumracle logo" />
+	</span>
+	<hr />
+	<!-- <p>
+		<button
+			appearance="secondary"
+			tuiButton
+			tuiIconButton
+			[iconStart]="darkMode() ? '@tui.sun' : '@tui.moon'"
+			type="button"
+			(click)="darkMode.set(!darkMode())"
+		></button>
+	</p> -->
+	<tui-avatar src="AI" />
+</header>
+<div class="content-container">
+	<app-site-navigation class="navigation"></app-site-navigation>
+	<main class="main-container">
+		<router-outlet></router-outlet>
+	</main>
+</div>

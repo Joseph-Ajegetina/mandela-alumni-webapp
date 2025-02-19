@@ -4,6 +4,11 @@ import { LoginComponent } from './features/auth/feature/login/login.component';
 
 export const appRoutes: Route[] = [
 	{
+		path: '',
+		pathMatch: 'full',
+		redirectTo: 'dashboard',
+	},
+	{
 		path: 'login',
 		component: LoginComponent,
 	},
@@ -13,7 +18,15 @@ export const appRoutes: Route[] = [
 	},
 
 	{
-		path: '**',
-		redirectTo: '/login',
+		path: '',
+		loadComponent: () =>
+			import('../app/shared/ui/layout/layout.component').then((m) => m.LayoutComponent),
+		children: [
+			{
+				path: 'dashboard',
+				loadComponent: () =>
+					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+			},
+		],
 	},
 ];

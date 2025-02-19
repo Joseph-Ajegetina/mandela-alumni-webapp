@@ -1,6 +1,7 @@
-import { TuiAlertService, TuiButton, TuiRoot } from '@taiga-ui/core';
+import { TUI_DARK_MODE, TUI_DARK_MODE_KEY, TuiRoot } from '@taiga-ui/core';
 import { Component, inject } from '@angular/core';
 import { RouterModule } from '@angular/router';
+import { WA_LOCAL_STORAGE, WA_WINDOW } from '@ng-web-apis/common';
 
 @Component({
 	imports: [RouterModule, TuiRoot],
@@ -11,9 +12,9 @@ import { RouterModule } from '@angular/router';
 export class AppComponent {
 	title = 'mandela-alumni-webapp';
 
-	private readonly alerts = inject(TuiAlertService);
+	protected key = inject(TUI_DARK_MODE_KEY);
+	protected storage = inject(WA_LOCAL_STORAGE);
+	protected media = inject(WA_WINDOW).matchMedia('(prefers-color-scheme: light)');
 
-	protected showNotification(): void {
-		this.alerts.open('Basic <strong>HTML</strong>', { label: 'With a heading!' }).subscribe();
-	}
+	protected darkMode = inject(TUI_DARK_MODE);
 }

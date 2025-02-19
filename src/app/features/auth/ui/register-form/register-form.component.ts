@@ -7,7 +7,6 @@ import {
 	TuiFieldErrorPipe,
 	tuiInputPhoneInternationalOptionsProvider,
 	TuiSortCountriesPipe,
-	TuiTooltip,
 } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
 import { TuiInputPhoneModule } from '@taiga-ui/legacy';
@@ -33,7 +32,6 @@ import type { TuiCountryIsoCode } from '@taiga-ui/i18n';
 		TuiError,
 		TuiFieldErrorPipe,
 		TuiHeader,
-		TuiTooltip,
 		TuiButton,
 		TuiDropdownMobile,
 		TuiInputPhoneInternational,
