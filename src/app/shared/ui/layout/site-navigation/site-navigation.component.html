@@ -1,0 +1,14 @@
+<nav class="sidenav">
+	<section class="sidenav-content">
+		<a
+			*ngFor="let menuItem of menuItems()"
+			href="#"
+			[iconStart]="menuItem.icon"
+			[routerLink]="menuItem.route"
+			tuiLink
+			class="nav-link"
+		>
+			{{ menuItem.label }}
+		</a>
+	</section>
+</nav>

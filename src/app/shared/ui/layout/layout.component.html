@@ -1,60 +1,36 @@
-<div class="custom-portal"><ng-container #viewContainer /></div>
+<div class="custom-portal">
+	<ng-container #viewContainer />
+</div>
 <header tuiNavigationHeader tuiTheme="isDarkMode() ? 'dark' : 'light'" class="nav-header">
 	<button
-		title="Menu"
-		tuiIconButton
-		iconStart="@tui.menu"
 		tuiNavigationDrawer
+		tuiIconButton
+		title="Menu"
 		type="button"
-		[(open)]="openDrawer"
-		class="t-menu"
+		[(open)]="open"
+		class="menu-button"
 	>
-		<tui-data-list>
-			<button
-				*ngFor="let menuItem of menuItems()"
-				[iconStart]="menuItem.icon"
-				[routerLink]="menuItem.route"
-				type="button"
-				tuiOption
-			>
-				{{ menuItem.label }}
-			</button>
-		</tui-data-list>
+		<app-site-navigation></app-site-navigation>
 	</button>
 	<span tuiNavigationLogo>
 		<img src="assets/alumracle-logo.png" alt="Alumracle logo" />
 	</span>
 	<hr />
-	<p>
-		<!-- <button
+	<!-- <p>
+		<button
 			appearance="secondary"
 			tuiButton
 			tuiIconButton
 			[iconStart]="darkMode() ? '@tui.sun' : '@tui.moon'"
 			type="button"
 			(click)="darkMode.set(!darkMode())"
-		></button> -->
-	</p>
+		></button>
+	</p> -->
 	<tui-avatar src="AI" />
 </header>
-<div [style.display]="'flex'">
-	<aside
-		[tuiNavigationAside]="true"
-		tuiTheme="isDarkMode() ? 'dark' : 'light'"
-		class="t-navigation"
-	>
-		<button
-			*ngFor="let menuItem of menuItems()"
-			automation-id="hint"
-			[iconStart]="menuItem.icon"
-			[routerLink]="menuItem.route"
-			tuiAsideItem
-			type="button"
-		>
-			<span>{{ menuItem.label }}</span>
-		</button>
-	</aside>
-	<main class="content-container">
+<div class="content-container">
+	<app-site-navigation class="navigation"></app-site-navigation>
+	<main class="main-container">
 		<router-outlet></router-outlet>
 	</main>
 </div>

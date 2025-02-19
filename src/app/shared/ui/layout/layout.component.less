@@ -4,9 +4,23 @@
 	--tui-theme-color: var(--tui-background-base);
 }
 
-.drawer {
-	background: var(--tui-background-base);
-	color: var(--tui-text-primary);
+app-site-navigation.navigation {
+	position: fixed;
+	top: 4rem;
+	bottom: 0;
+	inline-size: 13.25rem;
+}
+
+header::before {
+	display: none;
+}
+
+.content-container {
+	padding-top: 1rem;
+}
+
+.main-container {
+	margin-left: 13.25rem;
 }
 
 .nav-header {
@@ -16,22 +30,18 @@
 	border-block-end: 1px solid var(--tui-border-normal);
 }
 
-.t-navigation {
-	position: fixed;
-	top: 4rem;
-	bottom: 0;
-	inline-size: 16.25rem;
-	border-right: 1px solid var(--tui-border-normal);
-}
-
 @media @tui-mobile {
-	.t-navigation {
+	.navigation {
 		display: none;
+	}
+
+	.main-container {
+		margin-left: 0;
 	}
 }
 
 @media @tui-tablet-min {
-	.t-menu {
+	.menu-button {
 		width: 200px;
 		display: none;
 	}

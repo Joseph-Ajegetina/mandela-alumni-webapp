@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiNavigation } from '@taiga-ui/layout';
-import { WA_LOCAL_STORAGE } from '@ng-web-apis/common';
+import { SiteNavigationComponent } from './site-navigation/site-navigation.component';
 import {
 	TuiButton,
 	TuiDataList,
@@ -12,6 +12,7 @@ import {
 	TuiAppearance,
 	TuiLink,
 	TUI_DARK_MODE,
+	tuiSlideInLeft,
 } from '@taiga-ui/core';
 import {
 	TuiAvatar,
@@ -19,6 +20,7 @@ import {
 	TuiBreadcrumbs,
 	TuiChevron,
 	TuiDataListDropdownManager,
+	TuiDrawer,
 	TuiFade,
 	TuiSwitch,
 	TuiTabs,
@@ -36,38 +38,21 @@ import { MenuItem } from '../../interfaces/menu-item';
 		RouterModule,
 		TuiNavigation,
 		TuiButton,
-		TuiDataList,
-		TuiDataListDropdownManager,
-		TuiOptGroup,
-		TuiSwitch,
-		TuiChevron,
-		TuiFade,
-		TuiBadge,
 		TuiAvatar,
-		TuiDropdown,
-		TuiBreadcrumbs,
-		TuiTextfield,
-		TuiItem,
-		TuiAppearance,
-		TuiLink,
-		TuiTabs,
+		SiteNavigationComponent,
 	],
 	templateUrl: './layout.component.html',
 	styleUrl: './layout.component.less',
 	changeDetection: ChangeDetectionStrategy.OnPush,
-	providers: [TuiDropdownService, tuiAsPortal(TuiDropdownService)],
+	providers: [],
 })
 export class LayoutComponent extends TuiPortals {
 	protected darkMode = inject(TUI_DARK_MODE);
+	protected open = signal(false);
 
 	isDarkMode = computed(() => (this.darkMode() ? 'dark' : 'light'));
-	protected openDrawer = false;
 
-	protected readonly menuItems = signal<MenuItem[]>([
-		{
-			icon: '@tui.layout',
-			label: 'Dashboard',
-			route: 'dashboard',
-		},
-	]);
+	protected handleToggle(): void {
+		this.open.update((e) => !e);
+	}
 }
