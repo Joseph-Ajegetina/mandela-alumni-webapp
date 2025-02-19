@@ -1,18 +1,22 @@
 <div class="login-container">
-    <img src="assets/mandelawashington-fellowship-logo.jpg" alt="">
+    <img class="logo"  src="mandelawashington-fellowship-logo-removebg-preview.png" alt="">
+    
     <!-- left section -->
         <div class="login-box">
             <form 
-                [formGroup]="loginForm" (ngSubmit)="onSubmit()"  
+                [formGroup]="loginForm" 
+                (ngSubmit)="onSubmit()"  
                 tuiAppearance="floating"
                 tuiCardLarge
                 tuiForm="m"
                 [style.max-width.rem]="32">
-                <h1 tuiTitle="m">Login to your account</h1>
+                <h1 tuiTitle="m" class="title">Login to your account</h1>
                 <div tuiSubtitle class="tuiSubtitle">Enter your credentials below to log into your account</div>
 
                 <!-- email field -->
-                <tui-input formControlName="email">
+                <tui-input 
+                    formControlName="email"
+                    [tuiTextfieldCleaner]="true">
                     Email
                     <input
                         tuiTextfieldLegacy
@@ -22,13 +26,17 @@
                 
         
                 <!-- password field -->
-                <tui-input formControlName="password" tuitextfield >
-                    Password
-                    <input 
-                    tuiTextfieldLegacy
+                <tui-textfield class="password">
+                    <label tuiLabel for="passwordInput">Password</label>
+                    <input
+                        id="passwordInput"
+                        placeholder="Password"
+                        tuiTextfield
                         type="password"
+                        [(ngModel)]="value"
                     />
-                </tui-input>
+                    <tui-icon tuiPassword />
+                </tui-textfield>
                 
                 
                 
@@ -48,7 +56,7 @@
 
         <!-- right section -->
         <div class="login-image">
-            <img src="assets/loginImage.jpg" alt="Login Image" />
+            <img src="connection.jpg" alt="Login Image" />
         </div>
     
 </div>

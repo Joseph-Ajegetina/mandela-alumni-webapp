@@ -1,9 +1,9 @@
-import {ChangeDetectionStrategy, Component, inject, NgModule } from '@angular/core';
+import {ChangeDetectionStrategy, Component, inject, NgModule, ChangeDetectorRef } from '@angular/core';
 import { CommonModule, AsyncPipe } from '@angular/common';
 import {FormControl, FormGroup, ReactiveFormsModule, FormsModule} from '@angular/forms';
 import {TuiInputModule, } from '@taiga-ui/legacy';
 import { TuiAlertService, TuiButton, TuiLink, TuiIcon, TuiTextfield } from '@taiga-ui/core';
-import {TuiButtonLoading} from '@taiga-ui/kit';
+import {TuiButtonLoading, TuiPassword} from '@taiga-ui/kit';
 import {TUI_FALSE_HANDLER} from '@taiga-ui/cdk';
 import {map, startWith, Subject, switchMap, timer} from 'rxjs';
 import {RouterLink} from '@angular/router';
@@ -11,11 +11,8 @@ import { TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 
 
 
-
-
 @Component({
 	standalone: true,
-	exportAs: "Example1",
 	imports: [
 		CommonModule, 
 		ReactiveFormsModule, 
@@ -28,6 +25,7 @@ import { TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 		TuiLink,
 		TuiTextfieldControllerModule,
 		TuiIcon,
+		TuiPassword,
 		TuiTextfield
 	],
 	templateUrl: './login.component.html',
@@ -39,7 +37,6 @@ export class LoginComponent {
         email: new FormControl(''),
 		password: new FormControl(''),
     });
-	value = ''; // Initialize the value property
 
 
 	protected readonly trigger$ = new Subject<void>();
@@ -47,6 +44,8 @@ export class LoginComponent {
         switchMap(() => timer(2000).pipe(map(TUI_FALSE_HANDLER), startWith('Loading'))),
     );
 	private readonly alerts = inject(TuiAlertService); // Injecting Taiga UI alert service
+	protected value = '';
+
 
 
 	onSubmit() {
@@ -57,7 +56,7 @@ export class LoginComponent {
 		  // Simulate a delay for login process
 		  setTimeout(() => {
 			this.alerts.open(`Logged in as ${email}`).subscribe();
-		  }, 2000);
+		}, 2000);
 		} else {
 		  this.alerts.open('Please fill in all fields!', {label: 'Error'}).subscribe();
 		}
