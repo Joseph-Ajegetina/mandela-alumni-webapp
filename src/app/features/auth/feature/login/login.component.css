@@ -1,0 +1,53 @@
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	height: 100vh;
+	background-color: #f3f4f6;
+	position: relative;
+}
+
+.main-card {
+	width: 900px;
+	min-height: 400px;
+	padding-right: 0;
+}
+
+.stack {
+	display: flex;
+	gap: inherit;
+	flex-direction: column;
+}
+
+.highlight-color {
+	color: #26abe4;
+}
+
+.btn-login {
+	background: #26abe4;
+	color: white;
+	width: 100%;
+}
+
+.bg-image {
+	background-image: url('/images/login-image.png');
+	background-size: cover;
+	background-position: center;
+	background-repeat: no-repeat;
+}
+
+.left-card {
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.logo {
+	width: 90px;
+	height: 90px;
+}
+
+.logo-wrapper {
+	position: absolute;
+	top: 0;
+	left: 0;
+}

@@ -1,1 +1,37 @@
-<p>login works!</p>
+<div class="container">
+	<div class="logo-wrapper">
+		<img class="logo" src="/images/alumracle-logo.png" alt="logo" />
+	</div>
+	<div tuiGroup [collapsed]="true" [rounded]="false" class="main-card">
+		<div tuiCardLarge tuiAppearance="floating" class="left-card">
+			<form (ngSubmit)="login()" tuiAppearance="flat" tuiCardLarge tuiForm="l" [formGroup]="form">
+				<header tuiHeader>
+					<h2 tuiTitle>
+						<span class="highlight-color">Welcome back!</span>
+						<span tuiSubtitle>Enter your credentials to login into your account</span>
+					</h2>
+				</header>
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Email</label>
+						<input formControlName="email" placeholder="john@wick.com" tuiTextfield type="email" />
+					</tui-textfield>
+					<tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
+				</div>
+
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Password</label>
+						<input formControlName="password" tuiTextfield type="password" />
+						<tui-icon tuiPassword />
+					</tui-textfield>
+					<tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
+				</div>
+				<footer>
+					<button class="btn-login" tuiButton type="submit">Login</button>
+				</footer>
+			</form>
+		</div>
+		<div class="bg-image" tuiBlock></div>
+	</div>
+</div>
