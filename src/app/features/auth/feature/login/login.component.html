@@ -2,7 +2,7 @@
 	<div class="logo-wrapper">
 		<img class="logo" src="/images/alumracle-logo.png" alt="logo" />
 	</div>
-	<div tuiGroup [collapsed]="true" [rounded]="false" class="main-card">
+	<div tuiGroup [collapsed]="true" [rounded]="true" class="main-card">
 		<div tuiCardLarge tuiAppearance="floating" class="left-card">
 			<form (ngSubmit)="login()" tuiAppearance="flat" tuiCardLarge tuiForm="l" [formGroup]="form">
 				<header tuiHeader>
@@ -28,10 +28,19 @@
 					<tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
 				</div>
 				<footer>
-					<button class="btn-login" tuiButton type="submit">Login</button>
+					<button
+						class="btn-login"
+						[loading]="loading()"
+						[disabled]="form.invalid"
+						iconEnd="@tui.log-in"
+						tuiButton
+						type="submit"
+					>
+						Login
+					</button>
 				</footer>
 			</form>
 		</div>
-		<div class="bg-image" tuiBlock></div>
+		<div class="right-card" tuiBlock></div>
 	</div>
 </div>

@@ -1,6 +1,7 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {
+	TuiAlertService,
 	TuiAppearance,
 	TuiButton,
 	TuiError,
@@ -18,10 +19,13 @@ import {
 	TuiPassword,
 	tuiValidationErrorsProvider,
 	TuiBlock,
+	TuiButtonLoading,
 } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../data-access/auth.service';
+import { Router } from '@angular/router';
+import { IError } from '../../models/error';
 @Component({
 	selector: 'app-login',
 	imports: [
@@ -40,9 +44,10 @@ import { AuthService } from '../../data-access/auth.service';
 		TuiPassword,
 		TuiGroup,
 		TuiBlock,
+		TuiButtonLoading,
 	],
 	templateUrl: './login.component.html',
-	styleUrl: './login.component.css',
+	styleUrl: './login.component.less',
 	providers: [
 		tuiValidationErrorsProvider({
 			required: 'Email is required',
@@ -51,6 +56,11 @@ import { AuthService } from '../../data-access/auth.service';
 })
 export class LoginComponent {
 	authService = inject(AuthService);
+	router = inject(Router);
+	private readonly alerts = inject(TuiAlertService);
+
+	loading = signal(false);
+
 	protected readonly form = new FormGroup({
 		password: new FormControl(''),
 		email: new FormControl('', [Validators.email, Validators.required]),
@@ -62,7 +72,21 @@ export class LoginComponent {
 		}
 
 		const loginDTO = this.getLoginDTO();
-		console.log('DTO ', loginDTO);
+		if (!loginDTO.email || !loginDTO.password) {
+			return;
+		}
+
+		this.loading.set(true);
+
+		this.authService.login(loginDTO.email, loginDTO.password).subscribe({
+			next: (result) => {
+				this.router.navigateByUrl('/dashboard');
+			},
+			error: (response) => {
+				console.error(response.error);
+				this.handleError(response.error);
+			},
+		});
 	}
 
 	getLoginDTO() {
@@ -70,5 +94,10 @@ export class LoginComponent {
 		const password = this.form.controls['password'].value;
 
 		return { email, password };
+	}
+
+	handleError(error: IError) {
+		this.loading.set(false);
+		this.alerts.open(error.message, { label: error.error, appearance: 'negative' }).subscribe();
 	}
 }

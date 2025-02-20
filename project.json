@@ -1,111 +1,110 @@
 {
-  "name": "mandela-alumni-webapp",
-  "$schema": "node_modules/nx/schemas/project-schema.json",
-  "includedScripts": [],
-  "projectType": "application",
-  "prefix": "app",
-  "sourceRoot": "./src",
-  "tags": [],
-  "targets": {
-    "build": {
-      "executor": "@angular-devkit/build-angular:application",
-      "outputs": [
-        "{options.outputPath}"
-      ],
-      "options": {
-        "outputPath": "dist/mandela-alumni-webapp",
-        "index": "./src/index.html",
-        "browser": "./src/main.ts",
-        "polyfills": [
-          "zone.js"
-        ],
-        "tsConfig": "tsconfig.app.json",
-        "inlineStyleLanguage": "less",
-        "assets": [
-          {
-            "glob": "**/*",
-            "input": "public"
-          },
-          {
-            "glob": "**/*",
-            "input": "node_modules/@taiga-ui/icons/src",
-            "output": "assets/taiga-ui/icons"
-          }
-        ],
-        "styles": [
-          "node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
-          "node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
-          "./src/styles.less"
-        ],
-        "scripts": []
-      },
-      "configurations": {
-        "production": {
-          "budgets": [
-            {
-              "type": "initial",
-              "maximumWarning": "2mb",
-              "maximumError": "5mb"
-            },
-            {
-              "type": "anyComponentStyle",
-              "maximumWarning": "4kb",
-              "maximumError": "8kb"
-            }
-          ],
-          "outputHashing": "all"
-        },
-        "development": {
-          "optimization": false,
-          "extractLicenses": false,
-          "sourceMap": true
-        }
-      },
-      "defaultConfiguration": "production"
-    },
-    "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
-      "configurations": {
-        "production": {
-          "buildTarget": "mandela-alumni-webapp:build:production"
-        },
-        "development": {
-          "buildTarget": "mandela-alumni-webapp:build:development"
-        }
-      },
-      "defaultConfiguration": "development"
-    },
-    "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
-      "options": {
-        "buildTarget": "mandela-alumni-webapp:build"
-      }
-    },
-    "lint": {
-      "executor": "@nx/eslint:lint",
-      "options": {
-        "lintFilePatterns": [
-          "./src"
-        ]
-      }
-    },
-    "test": {
-      "executor": "@nx/jest:jest",
-      "outputs": [
-        "{workspaceRoot}/coverage/{projectName}"
-      ],
-      "options": {
-        "jestConfig": "jest.config.ts"
-      }
-    },
-    "serve-static": {
-      "executor": "@nx/web:file-server",
-      "options": {
-        "buildTarget": "mandela-alumni-webapp:build",
-        "port": 4200,
-        "staticFilePath": "dist/mandela-alumni-webapp/browser",
-        "spa": true
-      }
-    }
-  }
+	"name": "mandela-alumni-webapp",
+	"$schema": "node_modules/nx/schemas/project-schema.json",
+	"includedScripts": [],
+	"projectType": "application",
+	"prefix": "app",
+	"sourceRoot": "./src",
+	"tags": [],
+	"targets": {
+		"build": {
+			"executor": "@angular-devkit/build-angular:application",
+			"outputs": ["{options.outputPath}"],
+			"options": {
+				"outputPath": "dist/mandela-alumni-webapp",
+				"index": "./src/index.html",
+				"browser": "./src/main.ts",
+				"polyfills": ["zone.js"],
+				"tsConfig": "tsconfig.app.json",
+				"inlineStyleLanguage": "less",
+				"assets": [
+					{
+						"glob": "**/*",
+						"input": "public"
+					},
+					{
+						"glob": "**/*",
+						"input": "node_modules/@taiga-ui/icons/src",
+						"output": "assets/taiga-ui/icons"
+					}
+				],
+				"styles": [
+					"node_modules/@taiga-ui/core/styles/taiga-ui-theme.less",
+					"node_modules/@taiga-ui/core/styles/taiga-ui-fonts.less",
+					"./src/styles.less"
+				],
+				"scripts": []
+			},
+			"configurations": {
+				"production": {
+					"fileReplacements": [
+						{
+							"replace": "src/environments/environment.ts",
+							"with": "src/environments/environment.prod.ts"
+						}
+					],
+					"budgets": [
+						{
+							"type": "initial",
+							"maximumWarning": "2mb",
+							"maximumError": "5mb"
+						},
+						{
+							"type": "anyComponentStyle",
+							"maximumWarning": "4kb",
+							"maximumError": "8kb"
+						}
+					],
+					"outputHashing": "all"
+				},
+				"development": {
+					"optimization": false,
+					"extractLicenses": false,
+					"sourceMap": true
+				}
+			},
+			"defaultConfiguration": "production"
+		},
+		"serve": {
+			"executor": "@angular-devkit/build-angular:dev-server",
+			"configurations": {
+				"production": {
+					"buildTarget": "mandela-alumni-webapp:build:production"
+				},
+				"development": {
+					"buildTarget": "mandela-alumni-webapp:build:development",
+					"proxyConfig": "proxy.conf.json"
+				}
+			},
+			"defaultConfiguration": "development"
+		},
+		"extract-i18n": {
+			"executor": "@angular-devkit/build-angular:extract-i18n",
+			"options": {
+				"buildTarget": "mandela-alumni-webapp:build"
+			}
+		},
+		"lint": {
+			"executor": "@nx/eslint:lint",
+			"options": {
+				"lintFilePatterns": ["./src"]
+			}
+		},
+		"test": {
+			"executor": "@nx/jest:jest",
+			"outputs": ["{workspaceRoot}/coverage/{projectName}"],
+			"options": {
+				"jestConfig": "jest.config.ts"
+			}
+		},
+		"serve-static": {
+			"executor": "@nx/web:file-server",
+			"options": {
+				"buildTarget": "mandela-alumni-webapp:build",
+				"port": 4200,
+				"staticFilePath": "dist/mandela-alumni-webapp/browser",
+				"spa": true
+			}
+		}
+	}
 }
