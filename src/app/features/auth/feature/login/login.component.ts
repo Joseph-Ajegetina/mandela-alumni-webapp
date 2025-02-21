@@ -98,6 +98,11 @@ export class LoginComponent {
 
 	handleError(error: IError) {
 		this.loading.set(false);
-		this.alerts.open(error.message, { label: error.error, appearance: 'negative' }).subscribe();
+		this.alerts
+			.open(error.message || 'Something went wrong', {
+				label: error.error || 'Error',
+				appearance: 'negative',
+			})
+			.subscribe();
 	}
 }

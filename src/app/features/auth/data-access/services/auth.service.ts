@@ -5,15 +5,16 @@ import { BehaviorSubject, map, Observable } from 'rxjs';
 import { IUser } from '../../../../shared/interfaces/user';
 import { IAuthInfo } from '../../models/auth.model';
 import { environment } from 'src/environments/environment.prod';
+import { AuthState } from '../state/auth.state';
 
 @Injectable({
 	providedIn: 'root',
 })
 export class AuthService {
 	private _loginUrl = `${environment.domain}/auth/login`;
-	private stateItem = new BehaviorSubject<IAuthInfo | null>(null);
-	stateItem$ = this.stateItem.asObservable();
-	// private _loginUrl = 'api/login';
+	private _refreshUrl = `${environment.domain}/auth/refresh`;
+	private authState = inject(AuthState);
+
 	http: HttpClient = inject(HttpClient);
 
 	constructor() {}
@@ -23,7 +24,7 @@ export class AuthService {
 			map((response) => {
 				const returnUser: IAuthInfo = <IAuthInfo>(<any>response);
 				localStorage.setItem('user', JSON.stringify(returnUser));
-				this.stateItem.next(returnUser);
+				this.authState.setState(returnUser);
 				return returnUser;
 			}),
 		);
@@ -33,39 +34,19 @@ export class AuthService {
 		return this.http.post<IUser>('/api/register', data);
 	}
 
-	logout(): void {
-		this.removeState();
-		localStorage.removeItem('user');
-	}
+	refreshToken(): Observable<boolean> {
+		return this.http.post(this._refreshUrl, { token: this.authState.getRefreshToken() }).pipe(
+			map((response) => {
+				if (!response) {
+					throw new Error('Oh oh');
+				}
 
-	setState(user: IAuthInfo): void {
-		this.stateItem.next(user);
-	}
+				const retUser: IAuthInfo = <IAuthInfo>(<any>response);
+				localStorage.setItem('user', JSON.stringify(retUser));
+				this.authState.setState(retUser);
 
-	removeState(): void {
-		this.stateItem.next(null);
+				return true;
+			}),
+		);
 	}
 }
-
-const checkAuth = (auth: IAuthInfo): boolean => {
-	return true;
-};
-
-export const authFactory = (authService: AuthService) => {
-	// initialize auth state
-
-	//check item validity
-	const storageItem = localStorage.getItem('user');
-	if (!storageItem) {
-		authService.removeState();
-		return;
-	}
-	const _localUser = <IAuthInfo>JSON.parse(storageItem);
-
-	if (checkAuth(_localUser)) {
-		authService.setState(_localUser);
-	} else {
-		authService.removeState();
-		localStorage.removeItem('user');
-	}
-};

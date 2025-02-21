@@ -1,18 +1,11 @@
 import { inject, Injectable } from '@angular/core';
-import {
-	ActivatedRouteSnapshot,
-	MaybeAsync,
-	RedirectCommand,
-	Resolve,
-	Router,
-	RouterStateSnapshot,
-} from '@angular/router';
-import { AuthService } from './services/auth.service';
+import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { map, Observable } from 'rxjs';
+import { AuthState } from './state/auth.state';
 
 @Injectable({ providedIn: 'root' })
 export class LoginResolve implements Resolve<boolean> {
-	authState = inject(AuthService);
+	authState = inject(AuthState);
 	router = inject(Router);
 
 	constructor() {}

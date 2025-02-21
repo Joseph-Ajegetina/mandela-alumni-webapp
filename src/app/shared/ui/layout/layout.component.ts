@@ -16,6 +16,7 @@ import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
 import { MenuItem } from '../../interfaces/menu-item';
 import { AuthService } from 'src/app/features/auth/data-access/services/auth.service';
+import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
 
 @Component({
 	selector: 'app-layout',
@@ -40,7 +41,7 @@ import { AuthService } from 'src/app/features/auth/data-access/services/auth.ser
 })
 export class LayoutComponent extends TuiPortals {
 	protected darkMode = inject(TUI_DARK_MODE);
-	protected authService = inject(AuthService);
+	protected authState = inject(AuthState);
 	protected router = inject(Router);
 
 	protected open = signal(false);
@@ -52,7 +53,7 @@ export class LayoutComponent extends TuiPortals {
 	}
 
 	logout(): void {
-		this.authService.logout();
+		this.authState.logout();
 		this.router.navigate(['/login']);
 	}
 }
