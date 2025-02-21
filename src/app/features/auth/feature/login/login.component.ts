@@ -23,7 +23,7 @@ import {
 } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../data-access/auth.service';
+import { AuthService } from '../../data-access/services/auth.service';
 import { Router } from '@angular/router';
 import { IError } from '../../models/error';
 @Component({

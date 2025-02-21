@@ -8,10 +8,10 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { AuthService } from '../../data-access/auth.service';
+import { AuthService } from '../../data-access/services/auth.service';
 import { RegisterData } from '../../models/register-data';
 import { Roles } from '../../models/roles';
-import { User } from '../../models/user';
+import { IUser } from '../../../../shared/interfaces/user';
 
 @Component({
 	selector: 'app-register',
@@ -30,7 +30,7 @@ export class RegisterComponent {
 
 	registerUser() {
 		const registrationDTO: RegisterData = this.getRegistrationDTO();
-		this.authService.registerUser(registrationDTO).subscribe((user: User) => {
+		this.authService.registerUser(registrationDTO).subscribe((user: IUser) => {
 			console.log('user created');
 		});
 	}
