@@ -11,13 +11,15 @@ import {
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
 import { AuthService } from 'src/app/features/auth/data-access/services/auth.service';
+import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate, CanActivateChild {
-	authState = inject(AuthService);
+	authState = inject(AuthState);
 	_router = inject(Router);
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
+		this.authState.redirectUrl = state.url;
 		return this.secure(route);
 	}
 
@@ -25,6 +27,7 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 		childRoute: ActivatedRouteSnapshot,
 		state: RouterStateSnapshot,
 	): Observable<boolean> {
+		this.authState.redirectUrl = state.url;
 		return this.secure(childRoute);
 	}
 

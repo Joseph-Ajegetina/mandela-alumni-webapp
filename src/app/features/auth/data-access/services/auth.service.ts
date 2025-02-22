@@ -3,7 +3,7 @@ import { Injectable, inject } from '@angular/core';
 import { RegisterData } from '../../models/register-data';
 import { BehaviorSubject, map, Observable } from 'rxjs';
 import { IUser } from '../../../../shared/interfaces/user';
-import { IAuthInfo } from '../../models/auth.model';
+import { IAuthInfo, NewAuthInfo } from '../../models/auth.model';
 import { environment } from 'src/environments/environment.prod';
 import { AuthState } from '../state/auth.state';
 
@@ -22,10 +22,8 @@ export class AuthService {
 	login(email: string, password: string): Observable<any> {
 		return this.http.post<IUser>(this._loginUrl, { email, password }).pipe(
 			map((response) => {
-				const returnUser: IAuthInfo = <IAuthInfo>(<any>response);
-				localStorage.setItem('user', JSON.stringify(returnUser));
-				this.authState.setState(returnUser);
-				return returnUser;
+				const returnUser: IAuthInfo = NewAuthInfo(<any>response);
+				return this.authState.saveSession(returnUser);
 			}),
 		);
 	}
@@ -41,9 +39,8 @@ export class AuthService {
 					throw new Error('Oh oh');
 				}
 
-				const retUser: IAuthInfo = <IAuthInfo>(<any>response);
-				localStorage.setItem('user', JSON.stringify(retUser));
-				this.authState.setState(retUser);
+				const retUser: IAuthInfo = NewAuthInfo(<any>response);
+				this.authState.updateSession(retUser);
 
 				return true;
 			}),

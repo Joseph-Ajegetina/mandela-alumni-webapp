@@ -14,8 +14,6 @@ import { TuiAvatar, TuiAvatarLabeled } from '@taiga-ui/kit';
 import { TuiPortals } from '@taiga-ui/cdk';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { MenuItem } from '../../interfaces/menu-item';
-import { AuthService } from 'src/app/features/auth/data-access/services/auth.service';
 import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
 
 @Component({
@@ -53,7 +51,6 @@ export class LayoutComponent extends TuiPortals {
 	}
 
 	logout(): void {
-		this.authState.logout();
-		this.router.navigate(['/login']);
+		this.authState.logout(true);
 	}
 }

@@ -15,7 +15,7 @@ export class LoginResolve implements Resolve<boolean> {
 			map((user) => {
 				if (user) {
 					console.log(user);
-					this.router.navigate(['/dashboard']);
+					this.router.navigate([this.authState.redirectUrl || '/dashboard']);
 					return false;
 				}
 				return true;

@@ -26,6 +26,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../data-access/services/auth.service';
 import { Router } from '@angular/router';
 import { IError } from '../../models/error';
+import { AuthState } from '../../data-access/state/auth.state';
 @Component({
 	selector: 'app-login',
 	imports: [
@@ -56,6 +57,8 @@ import { IError } from '../../models/error';
 })
 export class LoginComponent {
 	authService = inject(AuthService);
+	authState = inject(AuthState);
+
 	router = inject(Router);
 	private readonly alerts = inject(TuiAlertService);
 
@@ -80,7 +83,7 @@ export class LoginComponent {
 
 		this.authService.login(loginDTO.email, loginDTO.password).subscribe({
 			next: (result) => {
-				this.router.navigateByUrl('/dashboard');
+				this.router.navigateByUrl(this.authState.redirectUrl || '/dashboard');
 			},
 			error: (response) => {
 				console.error(response.error);

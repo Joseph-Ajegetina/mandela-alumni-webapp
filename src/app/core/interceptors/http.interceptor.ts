@@ -54,7 +54,7 @@ export class AppInterceptor implements HttpInterceptor {
 					return throwError(() => new Error('Token refresh failed'));
 				}),
 				catchError((error) => {
-					this.authState.logout();
+					this.authState.logout(true);
 					return throwError(() => error);
 				}),
 				finalize(() => {
