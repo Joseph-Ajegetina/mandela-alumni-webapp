@@ -18,7 +18,6 @@ export const appConfig: ApplicationConfig = {
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(appRoutes),
 		provideAppInitializer(() => {
-			console.log('app initializer is running oooo');
 			inject(AuthState);
 			return Promise.resolve();
 		}),

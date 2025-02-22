@@ -34,7 +34,6 @@ export class AuthGuard implements CanActivate, CanActivateChild {
 	private secure(route: ActivatedRouteSnapshot | Route): Observable<boolean> {
 		return this.authState.stateItem$.pipe(
 			map((user) => {
-				console.log('user in secure guard', user);
 				if (!user) {
 					this._router.navigateByUrl('login');
 					return false;
