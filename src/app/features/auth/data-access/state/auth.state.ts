@@ -6,8 +6,18 @@ import { Router } from '@angular/router';
 @Injectable({ providedIn: 'root' })
 export class AuthState {
 	router = inject(Router);
+
+	// create an internal subject and an observable to keep track
 	private stateItem = new BehaviorSubject<IAuthInfo | null>(null);
 	stateItem$ = this.stateItem.asObservable();
+
+	get getRedirectUrl(): string {
+		return localStorage.getItem('redirectUrl') || '';
+	}
+
+	set redirectUrl(value: string) {
+		localStorage.setItem('redirectUrl', value);
+	}
 
 	constructor() {
 		const _localUser = this._getUser();
@@ -33,14 +43,14 @@ export class AuthState {
 		}
 	}
 
-	getToken(): string | null {
+	getToken() {
 		const _auth = this.stateItem.getValue();
-		return this.checkAuth(_auth) ? _auth && _auth.accessToken : '';
+		return _auth && this.checkAuth(_auth) ? _auth.accessToken : '';
 	}
 
-	getRefreshToken(): string | null {
+	getRefreshToken() {
 		const _auth = this.stateItem.getValue();
-		return this.checkAuth(_auth) ? _auth && _auth.accessToken : '';
+		return _auth && this.checkAuth(_auth) ? _auth.refreshToken : '';
 	}
 
 	setState(user: IAuthInfo): void {
@@ -51,12 +61,18 @@ export class AuthState {
 		this.stateItem.next(null);
 	}
 
-	checkAuth = (user: IAuthInfo | null): boolean => {
+	updateState(item: Partial<IAuthInfo>) {
+		const newItem = { ...this.stateItem.getValue(), ...item };
+		this.stateItem.next(newItem);
+		return this.stateItem$;
+	  }
+
+	checkAuth = (user: IAuthInfo) => {
 		if (!user || !user.accessToken) {
 			return false;
 		}
 
-		if (Date.now() > user.expiresIn) {
+		if (Date.now() > (user?.expiresAt ?? 0)) {
 			return false;
 		}
 
@@ -108,11 +124,5 @@ export class AuthState {
 		}
 	}
 
-	get getRedirectUrl(): string {
-		return localStorage.getItem('redirectUrl') || '';
-	}
 
-	set redirectUrl(value: string) {
-		localStorage.setItem('redirectUrl', value);
-	}
 }

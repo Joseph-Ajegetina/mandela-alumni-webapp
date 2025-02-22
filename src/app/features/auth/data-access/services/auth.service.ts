@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { RegisterData } from '../../models/register-data';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 import { IUser } from '../../../../shared/interfaces/user';
 import { IAuthInfo, NewAuthInfo } from '../../models/auth.model';
 import { environment } from 'src/environments/environment.prod';

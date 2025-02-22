@@ -1,16 +1,16 @@
 import { IUser } from '../../../shared/interfaces/user';
 export interface IAuthInfo {
-	user: IUser;
-	accessToken: string;
-	refreshToken: string;
-	expiresIn: number;
+	user?: IUser;
+	accessToken?: string;
+	refreshToken?: string;
+	expiresAt?: number;
 }
 
 export const NewAuthInfo = (data: any): IAuthInfo => {
 	return {
 		user: data.user,
-		accessToken: data.accessToken,
+		accessToken: data.access_token,
 		refreshToken: data.refreshToken,
-		expiresIn: Date.now() + data.expiresIn * 1000,
+		expiresAt: Date.now() + data.expiresIn * 1000,
 	};
 };

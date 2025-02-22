@@ -7,15 +7,11 @@ import {
 	TuiError,
 	TuiGroup,
 	TuiIcon,
-	TuiNotification,
 	TuiTextfield,
 	TuiTitle,
 } from '@taiga-ui/core';
 import {
 	TuiFieldErrorPipe,
-	TuiSegmented,
-	TuiSwitch,
-	TuiTooltip,
 	TuiPassword,
 	tuiValidationErrorsProvider,
 	TuiBlock,
@@ -83,6 +79,7 @@ export class LoginComponent {
 
 		this.authService.login(loginDTO.email, loginDTO.password).subscribe({
 			next: (result) => {
+				this.loading.set(false);
 				this.router.navigateByUrl(this.authState.redirectUrl || '/dashboard');
 			},
 			error: (response) => {
