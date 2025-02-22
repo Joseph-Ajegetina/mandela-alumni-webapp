@@ -5,30 +5,16 @@ import { SiteNavigationComponent } from './site-navigation/site-navigation.compo
 import {
 	TuiButton,
 	TuiDataList,
-	TuiOptGroup,
-	TuiDropdownService,
 	TuiDropdown,
-	TuiTextfield,
-	TuiAppearance,
-	TuiLink,
 	TUI_DARK_MODE,
-	tuiSlideInLeft,
+	TuiFallbackSrcPipe,
+	TuiIcon,
 } from '@taiga-ui/core';
-import {
-	TuiAvatar,
-	TuiBadge,
-	TuiBreadcrumbs,
-	TuiChevron,
-	TuiDataListDropdownManager,
-	TuiDrawer,
-	TuiFade,
-	TuiSwitch,
-	TuiTabs,
-} from '@taiga-ui/kit';
-import { tuiAsPortal, TuiItem, TuiPortals } from '@taiga-ui/cdk';
+import { TuiAvatar, TuiAvatarLabeled } from '@taiga-ui/kit';
+import { TuiPortals } from '@taiga-ui/cdk';
 import { FormsModule } from '@angular/forms';
-import { RouterLink, RouterLinkActive, RouterModule } from '@angular/router';
-import { MenuItem } from '../../interfaces/menu-item';
+import { Router, RouterModule } from '@angular/router';
+import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
 
 @Component({
 	selector: 'app-layout',
@@ -39,6 +25,11 @@ import { MenuItem } from '../../interfaces/menu-item';
 		TuiNavigation,
 		TuiButton,
 		TuiAvatar,
+		TuiAvatarLabeled,
+		TuiFallbackSrcPipe,
+		TuiDropdown,
+		TuiDataList,
+		TuiIcon,
 		SiteNavigationComponent,
 	],
 	templateUrl: './layout.component.html',
@@ -48,11 +39,18 @@ import { MenuItem } from '../../interfaces/menu-item';
 })
 export class LayoutComponent extends TuiPortals {
 	protected darkMode = inject(TUI_DARK_MODE);
+	protected authState = inject(AuthState);
+	protected router = inject(Router);
+
 	protected open = signal(false);
 
 	isDarkMode = computed(() => (this.darkMode() ? 'dark' : 'light'));
 
 	protected handleToggle(): void {
 		this.open.update((e) => !e);
+	}
+
+	logout(): void {
+		this.authState.logout(true);
 	}
 }

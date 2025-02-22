@@ -1,6 +1,8 @@
 import { Route } from '@angular/router';
 import { RegisterComponent } from './features/auth/feature/register/register.component';
 import { LoginComponent } from './features/auth/feature/login/login.component';
+import { LoginResolve } from './features/auth/data-access/login.resolve';
+import { AuthGuard } from './core/guards/auth.guard';
 
 export const appRoutes: Route[] = [
 	{
@@ -11,6 +13,9 @@ export const appRoutes: Route[] = [
 	{
 		path: 'login',
 		component: LoginComponent,
+		resolve: {
+			ready: LoginResolve,
+		},
 	},
 	{
 		path: 'register',
@@ -28,5 +33,6 @@ export const appRoutes: Route[] = [
 					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
 			},
 		],
+		canActivateChild: [AuthGuard],
 	},
 ];
