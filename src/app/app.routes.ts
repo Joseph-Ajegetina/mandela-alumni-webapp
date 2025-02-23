@@ -35,4 +35,10 @@ export const appRoutes: Route[] = [
 		],
 		canActivateChild: [AuthGuard],
 	},
+
+	{
+		path: '**',
+		loadComponent: () =>
+			import('./shared/ui/not-found/not-found.component').then((m) => m.NotFoundComponent),
+	},
 ];
