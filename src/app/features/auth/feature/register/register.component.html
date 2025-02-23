@@ -20,13 +20,13 @@
                     <p>resources, networking opportunities, and events.</p>
                 </div>
             </div>
-
+            <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
             <div class="form-class">
                 <div class="col1">
-                    <form [formGroup]="registerForm">
+                    
                         <label tuiLabel>
                             First Name
-                            <tui-input formControlName="firstName">
+                            <tui-input formControlName="firstname">
                                 <input
                                     tuiTextfieldLegacy
                                     placeholder="xxxxxx@gmail.com"
@@ -37,14 +37,14 @@
                             </tui-input>
                         </label>
                         <div class="alert">
-                            @if(registerForm.get('firstName')?.invalid && registerForm.get('firstName')?.touched){
-                                @if(registerForm.get('firstName')?.hasError('required')){
+                            @if(registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched){
+                                @if(registerForm.get('firstname')?.hasError('required')){
                                   <p>{{ constant.REQUIRED }}</p>
                                 }
-                                @if (registerForm.get('firstName')?.hasError('minlength')) {
+                                @if (registerForm.get('firstname')?.hasError('minlength')) {
                                     <p>{{ constant.MIN_LENGTH(constant.minLength) }}</p>
                                 }
-                                @if (registerForm.get('firstName')?.hasError('maxlength')) {
+                                @if (registerForm.get('firstname')?.hasError('maxlength')) {
                                     <p>{{ constant.MAX_LENGTH(constant.maxLength) }}</p>
                                 }
                                 }      
@@ -114,7 +114,10 @@
                                 }  
                                 </div> 
                         <button
+
                         size="l"
+                        [loading]="loading$ | async"
+                        (click)="onSubmit(); trigger$.next()"
                         class="login-btn"
                         appearance="primary"
                         tuiButton
@@ -122,15 +125,15 @@
                     >
                         Login
                     </button>
-                    </form>
+               
                     <div class="no-accnt"> <p >Don’t have an account? Sign up</p></div>
                 </div>
 
                 <div class="col2">
-                    <form [formGroup]="registerForm">
+                 
                         <label tuiLabel>
                             Last Name
-                            <tui-input formControlName="lastName">
+                            <tui-input formControlName="lastname">
                                 <input
                                     tuiTextfieldLegacy
                                     placeholder="xxxxxx@gmail.com"
@@ -140,14 +143,14 @@
                            
                         </label>
                         <div class="alert">
-                            @if(registerForm.get('lastName')?.invalid && registerForm.get('lastName')?.touched){
-                                @if(registerForm.get('lastName')?.hasError('required')){
+                            @if(registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched){
+                                @if(registerForm.get('lastname')?.hasError('required')){
                                   <p>{{ constant.REQUIRED }}</p>
                                 }
-                                @if (registerForm.get('firstNamlastNamee')?.hasError('minlength')) {
+                                @if (registerForm.get('lastname')?.hasError('minlength')) {
                                     <p>{{ constant.MIN_LENGTH(constant.minLength) }}</p>
                                 }
-                                @if (registerForm.get('lastName')?.hasError('maxlength')) {
+                                @if (registerForm.get('lastname')?.hasError('maxlength')) {
                                     <p>{{ constant.MAX_LENGTH(constant.maxLength) }}</p>
                                 }
                                 }      
@@ -201,7 +204,7 @@
                 </div>
                         <label tuiLabel>
                             Confirm Password
-                            <tui-input formControlName="password2">
+                            <tui-input formControlName="confirmpassword">
                                 <input
                                     tuiTextfieldLegacy
                                     placeholder=""
@@ -211,11 +214,11 @@
                            
                         </label>
                         <div class="alert">
-                            @if(registerForm.get('password2')?.invalid && registerForm.get('password2')?.touched){
+                            @if(registerForm.get('confirmpassword')?.invalid && registerForm.get('confirmpassword')?.touched){
                                 @if(registerForm.get('password2')?.hasError('required')){
                                   <p>{{ constant.REQUIRED }}</p>
                                 }
-                                @if (registerForm.get('password2')?.hasError('minlength')) {
+                                @if (registerForm.get('confirmpassword')?.hasError('minlength')) {
                                     <p>{{ constant.MIN_PASSWORD_LENGTH(constant.minPasswordLength) }}</p>
                                 }
                         
@@ -234,10 +237,12 @@
                 />
                         Sign-in with Google
                     </button>
+            
                    
-                    </form>     
+                  
         </div>
-            </div>
+            </div>     
+        </form>
 
         </div>
 
