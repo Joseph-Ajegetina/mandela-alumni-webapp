@@ -1,64 +1,270 @@
-<div class="form-container">
-	<form
-		tuiAppearance="floating"
-		tuiCardLarge
-		tuiForm="l"
-		[formGroup]="form"
-		[style.max-width.rem]="32"
-		(ngSubmit)="registerUser()"
-	>
-		<header tuiHeader>
-			<h2 tuiTitle>
-				Registration form
-				<span tuiSubtitle>Fill in your personal details</span>
-			</h2>
-		</header>
-		<div class="grid">
-			<div class="stack">
-				<tui-textfield>
-					<label tuiLabel>First Name </label>
-					<input formControlName="firstName" tuiTextfield type="text" />
-				</tui-textfield>
-				<tui-error formControlName="firstName" [error]="[] | tuiFieldError | async" />
+<div class="container">
+	<div class="logo-wrapper">
+		<img class="logo" src="/images/alumracle-logo.png" alt="logo" />
+	</div>
+	<div class="form-container">
+		<form
+			tuiAppearance="flat"
+			tuiCardLarge
+			tuiForm="l"
+			[formGroup]="form"
+			(ngSubmit)="registerUser()"
+		>
+			<header tuiHeader>
+				<h2 tuiTitle>
+					Registration form
+					<span tuiSubtitle>Fill in your personal details</span>
+				</h2>
+			</header>
+			<div class="grid">
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>First Name </label>
+						<input formControlName="firstName" tuiTextfield type="text" />
+					</tui-textfield>
+					<tui-error formControlName="firstName" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Last Name </label>
+						<input formControlName="lastName" tuiTextfield type="text" />
+					</tui-textfield>
+					<tui-error formControlName="lastName" [error]="[] | tuiFieldError | async" />
+				</div>
 			</div>
-			<div class="stack">
-				<tui-textfield>
-					<label tuiLabel>Last Name </label>
-					<input formControlName="lastName" tuiTextfield type="text" />
-				</tui-textfield>
-				<tui-error formControlName="lastName" [error]="[] | tuiFieldError | async" />
+			<div class="grid">
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Email</label>
+						<input formControlName="email" tuiTextfield type="email" />
+					</tui-textfield>
+					<tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-textfield tuiDropdownMobile="Select country">
+						<label tuiLabel>Phone number</label>
+						<input
+							tuiInputPhoneInternational
+							[countries]="(countries | tuiSortCountries | async) || []"
+							[countrySearch]="true"
+							[(countryIsoCode)]="countryIsoCode"
+							formControlName="phone"
+						/>
+					</tui-textfield>
+				</div>
 			</div>
-		</div>
-		<tui-textfield>
-			<label tuiLabel>Email</label>
-			<input formControlName="email" tuiTextfield type="email" />
-		</tui-textfield>
-		<tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
 
-		<div class="grid">
-			<div class="stack">
-				<tui-textfield tuiDropdownMobile="Select country">
-					<label tuiLabel>Phone number</label>
-					<input
-						tuiInputPhoneInternational
-						[countries]="(countries | tuiSortCountries | async) || []"
-						[countrySearch]="true"
-						[(countryIsoCode)]="countryIsoCode"
-						formControlName="phone"
-					/>
-				</tui-textfield>
+			<div class="grid">
+				<div class="stack">
+					<label tuiLabel>Date of birth</label>
+					<tui-input-date formControlName="dob">
+						Input date
+						<input placeholder="Placeholder" tuiTextfieldLegacy />
+					</tui-input-date>
+					<tui-error formControlName="dob" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-select formControlName="role">
+						Role
+						<input tuiTextfieldLegacy />
+					</tui-select>
+				</div>
 			</div>
-			<div class="stack">
-				<tui-select formControlName="role">
-					Role
-					<input tuiTextfieldLegacy />
-				</tui-select>
-			</div>
-		</div>
 
-		<footer>
-			<button appearance="secondary" tuiButton type="button">Cancel</button>
-			<button tuiButton type="submit">Register</button>
-		</footer>
-	</form>
+			<div class="grid">
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Password</label>
+						<input formControlName="password" tuiTextfield type="password" />
+						<tui-icon tuiPassword />
+					</tui-textfield>
+					<tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Password</label>
+						<input formControlName="confirmpassword" tuiTextfield type="password" />
+						<tui-icon tuiPassword />
+					</tui-textfield>
+					<tui-error formControlName="confirmpassword" [error]="[] | tuiFieldError | async" />
+				</div>
+			</div>
+
+			<footer>
+				<button appearance="secondary" tuiButton type="button">Cancel</button>
+				<button tuiButton type="submit">Register</button>
+			</footer>
+		</form>
+	</div>
+
+	<div class="image-container">
+		<img src="/images/alumracle/blue.jpg" alt="Alumni Group" />
+	</div>
 </div>
+
+<!-- <div class="container">
+	<div class="register-col">
+		<div class="logo">
+			<img src="images/mandelawashington-fellowship.png" alt="Alumracle logo" />
+		</div>
+
+		<div class="text-container">
+			<h2>Create an Alumracle Account</h2>
+			<div class="paragraph">
+				<p>Create your account to access exclusive alumni</p>
+				<p>resources, networking opportunities, and events.</p>
+			</div>
+		</div>
+		<form [formGroup]="form" (ngSubmit)="onRegister()">
+			<div class="form-class">
+				<div class="col1">
+					<label tuiLabel>
+						First Name
+						<tui-input formControlName="firstname">
+							<input tuiTextfieldLegacy placeholder="xxxxxx@gmail.com" type="text" required />
+						</tui-input>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('firstname')?.invalid && registerForm.get('firstname')?.touched){
+						@if(registerForm.get('firstname')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} @if (registerForm.get('firstname')?.hasError('minlength')) {
+						<p>{{ constant.MIN_LENGTH(constant.minLength) }}</p>
+						} @if (registerForm.get('firstname')?.hasError('maxlength')) {
+						<p>{{ constant.MAX_LENGTH(constant.maxLength) }}</p>
+						} }
+					</div>
+
+					<label tuiLabel>
+						Email
+						<tui-input formControlName="email">
+							<input tuiTextfieldLegacy placeholder="xxxxxx@gmail.com" type="email" />
+						</tui-input>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('email')?.invalid && registerForm.get('email')?.touched){
+						@if(registerForm.get('email')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} @if (registerForm.get('email')?.hasError('pattern')){
+						<p>{{ constant.EMAIL_INVALID }}</p>
+						} }
+					</div>
+
+					<label tuiLabel>
+						Date of Birth
+						<tui-input formControlName="dob">
+							<input tuiTextfieldLegacy placeholder="xxxxxx@gmail.com" type="text" />
+						</tui-input>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('dob')?.invalid && registerForm.get('dob')?.touched){
+						@if(registerForm.get('dob')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} }
+					</div>
+
+					<label tuiLabel>
+						Password
+						<tui-input formControlName="password">
+							<input tuiTextfieldLegacy placeholder="" type="password" />
+						</tui-input>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('password')?.invalid && registerForm.get('password')?.touched){
+						@if(registerForm.get('password')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} @if (registerForm.get('password')?.hasError('minlength')) {
+						<p>{{ constant.MIN_PASSWORD_LENGTH(constant.minPasswordLength) }}</p>
+						} }
+					</div>
+					<button
+						size="l"
+						[loading]="loading$ | async"
+						(click)="onSubmit(); trigger$.next()"
+						class="login-btn"
+						appearance="primary"
+						tuiButton
+						type="submit"
+					>
+						Login
+					</button>
+
+					<div class="no-accnt"><p>Don’t have an account? Sign up</p></div>
+				</div>
+
+				<div class="col2">
+					<label tuiLabel>
+						Last Name
+						<tui-input formControlName="lastname">
+							<input tuiTextfieldLegacy placeholder="xxxxxx@gmail.com" type="text" />
+						</tui-input>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('lastname')?.invalid && registerForm.get('lastname')?.touched){
+						@if(registerForm.get('lastname')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} @if (registerForm.get('lastname')?.hasError('minlength')) {
+						<p>{{ constant.MIN_LENGTH(constant.minLength) }}</p>
+						} @if (registerForm.get('lastname')?.hasError('maxlength')) {
+						<p>{{ constant.MAX_LENGTH(constant.maxLength) }}</p>
+						} }
+					</div>
+
+					<label tuiLabel>
+						Phone Number
+						<tui-input formControlName="phone">
+							<input tuiTextfieldLegacy placeholder="xxxxxx@gmail.com" type="text" />
+						</tui-input>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('phone')?.invalid && registerForm.get('phone')?.touched){
+						@if(registerForm.get('phone')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} }
+					</div>
+					<label tuiLabel>
+						Role
+						<tui-select
+							tuiTextfieldSize="l"
+							class="tui-space_vertical-4"
+							formControlName="role"
+							[tuiTextfieldLabelOutside]="true"
+						>
+							<input placeholder="Choose your hero" tuiTextfieldLegacy />
+							<tui-data-list-wrapper *tuiDataList [items]="items" />
+						</tui-select>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('role')?.invalid && registerForm.get('role')?.touched){
+						@if(registerForm.get('role')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} }
+					</div>
+					<label tuiLabel>
+						Confirm Password
+						<tui-input formControlName="confirmpassword">
+							<input tuiTextfieldLegacy placeholder="" type="password" />
+						</tui-input>
+					</label>
+					<div class="alert">
+						@if(registerForm.get('confirmpassword')?.invalid &&
+						registerForm.get('confirmpassword')?.touched){
+						@if(registerForm.get('password2')?.hasError('required')){
+						<p>{{ constant.REQUIRED }}</p>
+						} @if (registerForm.get('confirmpassword')?.hasError('minlength')) {
+						<p>{{ constant.MIN_PASSWORD_LENGTH(constant.minPasswordLength) }}</p>
+						} }
+					</div>
+					<button size="l" appearance="outlined" tuiButton type="submit" class="sign-in">
+						<tui-avatar size="xs" src="images/Google.png" />
+						Sign-in with Google
+					</button>
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<div class="image-col">
+		<img src="images/Frame 11.png" class="home" alt="Image can't load" />
+	</div>
+</div> -->

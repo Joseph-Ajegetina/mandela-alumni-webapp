@@ -2,10 +2,20 @@ import { Component, Input, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { RegisterData } from '../../models/register-data';
-import { TuiAppearance, TuiButton, TuiError, TuiTextfield, TuiTitle } from '@taiga-ui/core';
 import {
+	TuiAppearance,
+	TuiButton,
+	TuiError,
+	TuiGroup,
+	TuiIcon,
+	TuiTextfield,
+	TuiTitle,
+} from '@taiga-ui/core';
+import {
+	TuiAvatar,
 	TuiFieldErrorPipe,
 	tuiInputPhoneInternationalOptionsProvider,
+	TuiPassword,
 	TuiSortCountriesPipe,
 } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
@@ -37,6 +47,10 @@ import type { TuiCountryIsoCode } from '@taiga-ui/i18n';
 		TuiInputPhoneInternational,
 		TuiSortCountriesPipe,
 		TuiTextfield,
+		TuiAvatar,
+		TuiGroup,
+		TuiIcon,
+		TuiPassword,
 	],
 	templateUrl: './register-form.component.html',
 	styleUrl: './register-form.component.less',
