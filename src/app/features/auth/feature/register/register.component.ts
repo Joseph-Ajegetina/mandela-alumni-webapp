@@ -38,7 +38,6 @@ export class RegisterComponent {
 		this.accountService.register(payload).subscribe({
 			next: (result) => {
 				this.loading.set(false);
-				console.log('server result after new ', result);
 				this.router.navigateByUrl('/login');
 			},
 			error: (error) => {
