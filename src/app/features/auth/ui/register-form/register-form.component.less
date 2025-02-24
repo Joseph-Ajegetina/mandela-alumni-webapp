@@ -4,16 +4,13 @@
 	display: flex;
 	height: 100vh;
 	justify-content: space-between;
+	@media @tui-tablet {
+		flex-direction: column;
+		justify-content: flex-start;
+	}
 	// background: #f8f9fa;
 }
 
-.image-container {
-	width: 50%;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	background: #ffffff;
-}
 
 .form-container {
 	width: 50%;
@@ -26,6 +23,12 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: inherit;
+
+
+	@media @tui-tablet {
+		grid-template-columns: 1fr;
+	}
+
 }
 
 .logo-wrapper {
@@ -51,10 +54,19 @@
 }
 
 .image-container {
+	width: 50%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+
 	background-image: url(/images/alumracle/blue.jpg);
 	background-size: cover;
 	background-position: center;
 	background-repeat: no-repeat;
+
+	@media @tui-tablet {
+		display: none;
+	}
 }
 
 footer {
