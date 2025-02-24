@@ -3,6 +3,7 @@ import { RegisterComponent } from './features/auth/feature/register/register.com
 import { LoginComponent } from './features/auth/feature/login/login.component';
 import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ModalComponent } from './modal/modal.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -34,5 +35,10 @@ export const appRoutes: Route[] = [
 			},
 		],
 		canActivateChild: [AuthGuard],
+	},
+	
+	{
+		path: 'modal',
+		component: ModalComponent
 	},
 ];

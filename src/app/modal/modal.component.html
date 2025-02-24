@@ -1,0 +1,91 @@
+<button
+    tuiButton
+    type="button"
+    (click)="openDrawer = true"
+>
+    Login
+</button>
+
+<tui-drawer 
+    *ngIf="openDrawer" 
+    direction="left" 
+    class="login-drawer" 
+    [overlay]="true">
+
+    <form 
+    tuiAppearance="floating"
+    tuiCardLarge
+    tuiForm="m"
+    [formGroup]="loginForm"
+    (ngSubmit)="onSubmit()"
+    [style.max-width.rem]="36"
+    >
+        <header tuiHeader>
+            <h2 tuiTitle>
+                Login Form
+                <span tuiSubtitle> Tell us about yourself</span>
+            </h2>
+        </header>
+        <tui-notification appearance="warning">
+            <h3 tuiTitle>
+                Authenticity required
+                <span tuiSubtitle> Please be honest and use your real data</span>
+            </h3>
+        </tui-notification>
+        <tui-textfield>
+            <label for="name" tuiLabel>Name</label>
+            <input 
+                formControlName="userName" 
+                placeholder="Kwaku Anase"
+                tuiTextfield
+            >
+            <tui-error 
+                formControlName="userName" 
+                [error]="[] | tuiFieldError | async"
+            />
+        </tui-textfield>
+        <tui-textfield>
+            <label for="email" tuiLabel>Email</label>
+            <input 
+                formControlName="email" 
+                placeholder="kwakuAnase123@gmail.com"
+                tuiTextfield
+            >
+            <tui-error 
+                formControlName="email" 
+                [error]="[] | tuiFieldError | async"
+            />
+        </tui-textfield>
+        <tui-textfield>
+            <label for="password" tuiLabel>Input password</label>
+            <input 
+                formControlName="password" 
+                tuiTextfield
+                type="password"
+            >
+            <tui-error 
+                formControlName="password" 
+                [error]="[] | tuiFieldError | async"
+            />
+        </tui-textfield>
+        <div>
+            <button
+                appearance="secondary"
+                tuiButton
+                tuiForm="m"
+                type="button"
+                (click)="openDrawer= false"
+            >
+                Cancel
+            </button>
+            <button
+                appearance="primary"
+                tuiForm="m"
+                tuiButton
+                type="submit"
+            >
+                Submit
+            </button>
+        </div>
+    </form>
+</tui-drawer>

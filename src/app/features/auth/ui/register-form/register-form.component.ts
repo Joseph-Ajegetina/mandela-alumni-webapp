@@ -16,28 +16,30 @@ import { getCountries } from 'libphonenumber-js';
 import { TuiInputPhoneInternational } from '@taiga-ui/experimental';
 import { TuiDropdownMobile } from '@taiga-ui/addon-mobile';
 import type { TuiCountryIsoCode } from '@taiga-ui/i18n';
+import { ModalComponent } from "../../../../modal/modal.component";
 
 @Component({
 	selector: 'app-register-form',
 	imports: [
-		CommonModule,
-		ReactiveFormsModule,
-		TuiInputPhoneModule,
-		TuiSelectModule,
-		TuiAppearance,
-		TuiCardLarge,
-		TuiForm,
-		TuiTitle,
-		TuiButton,
-		TuiError,
-		TuiFieldErrorPipe,
-		TuiHeader,
-		TuiButton,
-		TuiDropdownMobile,
-		TuiInputPhoneInternational,
-		TuiSortCountriesPipe,
-		TuiTextfield,
-	],
+    CommonModule,
+    ReactiveFormsModule,
+    TuiInputPhoneModule,
+    TuiSelectModule,
+    TuiAppearance,
+    TuiCardLarge,
+    TuiForm,
+    TuiTitle,
+    TuiButton,
+    TuiError,
+    TuiFieldErrorPipe,
+    TuiHeader,
+    TuiButton,
+    TuiDropdownMobile,
+    TuiInputPhoneInternational,
+    TuiSortCountriesPipe,
+    TuiTextfield,
+    ModalComponent
+],
 	templateUrl: './register-form.component.html',
 	styleUrl: './register-form.component.less',
 	providers: [
