@@ -11,9 +11,12 @@
 			(ngSubmit)="registerUser()"
 		>
 			<header tuiHeader>
-				<h2 tuiTitle>
-					Registration form
-					<span tuiSubtitle>Fill in your personal details</span>
+				<h2 tuiTitle class="blue">
+					Create an Alumracle Account
+					<span tuiSubtitle
+						>Create your account to access exclusive alumni resources, networking opportunities, and
+						events.</span
+					>
 				</h2>
 			</header>
 			<div class="grid">
@@ -56,9 +59,8 @@
 
 			<div class="grid">
 				<div class="stack">
-					<label tuiLabel>Date of birth</label>
 					<tui-input-date formControlName="dob">
-						Input date
+						Date of birth
 						<input placeholder="Placeholder" tuiTextfieldLegacy />
 					</tui-input-date>
 					<tui-error formControlName="dob" [error]="[] | tuiFieldError | async" />
@@ -83,22 +85,34 @@
 				<div class="stack">
 					<tui-textfield>
 						<label tuiLabel>Password</label>
-						<input formControlName="confirmpassword" tuiTextfield type="password" />
+						<input formControlName="confirmPassword" tuiTextfield type="password" />
 						<tui-icon tuiPassword />
 					</tui-textfield>
-					<tui-error formControlName="confirmpassword" [error]="[] | tuiFieldError | async" />
+					<tui-error formControlName="confirmPassword" [error]="[] | tuiFieldError | async" />
+					<tui-error
+						*ngIf="form.hasError('mismatch') && (form.touched || form.dirty)"
+						[error]="'Passwords do not match'"
+					/>
 				</div>
 			</div>
 
 			<footer>
-				<button appearance="secondary" tuiButton type="button">Cancel</button>
-				<button tuiButton type="submit">Register</button>
+				<button
+					[loading]="loading"
+					[disabled]="form.invalid"
+					iconEnd="@tui.user-round-plus"
+					tuiButton
+					type="submit"
+				>
+					Create
+				</button>
+				<span>Already have an account ? <a [routerLink]="'/login'">Log in</a></span>
 			</footer>
 		</form>
 	</div>
 
 	<div class="image-container">
-		<img src="/images/alumracle/blue.jpg" alt="Alumni Group" />
+		<!-- <img src="/images/alumracle/blue.jpg" alt="Alumni Group" /> -->
 	</div>
 </div>
 

@@ -1,11 +1,12 @@
-import { Component, inject } from '@angular/core';
+import { Component, inject, signal } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
-import { Constant } from 'src/app/shared/constant/contant';
-import { IRegisterMessage } from 'src/app/features/auth/models/register';
-import { ServiceService } from 'src/app/shared/services/service.service';
 import { RegisterFormComponent } from '../../ui/register-form/register-form.component';
-import { passwordMatchValidator } from '../../utils/password.validator';
+import { TuiDay } from '@taiga-ui/cdk';
+import { passwordMatchValidator } from '../../utils/match-password.directive';
+import { IError } from '../../models/error';
+import { TuiAlertService } from '@taiga-ui/core';
+import { AccountService } from '../../data-access/account.service';
 
 @Component({
 	selector: 'app-register',
@@ -14,51 +15,36 @@ import { passwordMatchValidator } from '../../utils/password.validator';
 	styleUrl: './register.component.less',
 })
 export class RegisterComponent {
-	errorMessage = '';
-	successMessage: string | null = null;
-	memberReistration = inject(ServiceService);
+	accountService = inject(AccountService);
 	private router = inject(Router);
 	form!: FormGroup;
-
-	protected items = ['Alumni', 'Member'];
+	loading = signal(false);
+	private readonly alerts = inject(TuiAlertService);
 
 	constructor() {
 		this.setupForm();
 	}
 
 	submit(): void {
-		this.successMessage = null;
-		this.errorMessage = '';
-
+		console.log(this.form);
 		if (this.form.invalid) {
-			this.errorMessage = 'Please fill in all fields';
 			return;
 		}
+		this.loading.set(true);
 
-		// Check if passwords match
-		const password = this.form.get('password')?.value;
-		const confirmPassword = this.form.get('confirmpassword')?.value;
+		const payload = this.getRegistrationDTO();
+		console.log(payload);
 
-		if (password !== confirmPassword) {
-			this.errorMessage = 'Passwords do not match';
-			window.alert(this.errorMessage);
-			return;
-		}
-
-		// this.memberReistration.registerUser(this.form.value).subscribe({
-		//   next: (res: IRegisterMessage) => {
-		//     this.successMessage = res.message || 'Registration successful!';
-		//     window.alert(this.successMessage);
-
-		//     console.log('Registration successful:', res);
-		//     this.router.navigate(['/login']);
-		//   },
-		//   error: (err) => {
-
-		//     this.errorMessage = err.error?.message || 'Registration failed. Please try again.';
-		//     console.error('Registration failed:', err);
-		//   }
-		// });
+		this.accountService.register(payload).subscribe({
+			next: (result) => {
+				this.loading.set(false);
+				console.log('server result after new ', result);
+				this.router.navigateByUrl('/login');
+			},
+			error: (error) => {
+				this.handleError(error);
+			},
+		});
 	}
 
 	fb = inject(FormBuilder);
@@ -72,19 +58,34 @@ export class RegisterComponent {
 		const dob = this.form.controls['dob'].value;
 		const password = this.form.controls['password'].value;
 
-		return { firstName, lastName, email, phone, role };
+		return { firstName, lastName, email, phone, role, dob, password };
 	}
 
 	private setupForm() {
-		this.form = this.fb.group({
-			firstName: ['', Validators.required],
-			lastName: ['', Validators.required],
-			phone: ['', [Validators.required, Validators.minLength(8)]],
-			email: ['', [Validators.email, Validators.required]],
-			role: ['member'],
-			dob: ['', Validators.required],
-			password: ['', Validators.required, Validators.minLength(2)],
-			confirmPassword: ['', Validators.required, Validators.minLength(2), passwordMatchValidator],
-		});
+		this.form = new FormGroup(
+			{
+				firstName: new FormControl('', Validators.required),
+				lastName: new FormControl('', Validators.required),
+				phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
+				email: new FormControl('', [Validators.email, Validators.required]),
+				role: new FormControl({ value: 'member', disabled: true }),
+				dob: new FormControl(new TuiDay(2017, 2, 15), Validators.required),
+				password: new FormControl('', [Validators.required, Validators.minLength(2)]),
+				confirmPassword: new FormControl('', [Validators.required, Validators.minLength(2)]),
+			},
+			{
+				validators: passwordMatchValidator,
+			},
+		);
+	}
+
+	handleError(error: IError) {
+		this.loading.set(false);
+		this.alerts
+			.open(error.message || 'Something went wrong', {
+				label: error.error || 'Error',
+				appearance: 'negative',
+			})
+			.subscribe();
 	}
 }
