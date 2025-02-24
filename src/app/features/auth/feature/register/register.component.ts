@@ -1,39 +1,52 @@
-import { Component, inject, input } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { Component, inject, signal } from '@angular/core';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { RegisterFormComponent } from '../../ui/register-form/register-form.component';
-import {
-	FormBuilder,
-	FormControl,
-	FormGroup,
-	ReactiveFormsModule,
-	Validators,
-} from '@angular/forms';
-import { AuthService } from '../../data-access/services/auth.service';
-import { RegisterData } from '../../models/register-data';
-import { Roles } from '../../models/roles';
-import { IUser } from '../../../../shared/interfaces/user';
+import { TuiDay } from '@taiga-ui/cdk';
+import { passwordMatchValidator } from '../../utils/match-password.directive';
+import { IError } from '../../models/error';
+import { TuiAlertService } from '@taiga-ui/core';
+import { AccountService } from '../../data-access/account.service';
 
 @Component({
 	selector: 'app-register',
-	imports: [CommonModule, RegisterFormComponent],
+	imports: [RegisterFormComponent],
 	templateUrl: './register.component.html',
-	styleUrl: './register.component.css',
+	styleUrl: './register.component.less',
 })
 export class RegisterComponent {
-	authService = inject(AuthService);
-	fb = inject(FormBuilder);
+	accountService = inject(AccountService);
+	private router = inject(Router);
 	form!: FormGroup;
+	loading = signal(false);
+	private readonly alerts = inject(TuiAlertService);
 
 	constructor() {
 		this.setupForm();
 	}
 
-	registerUser() {
-		const registrationDTO: RegisterData = this.getRegistrationDTO();
-		this.authService.registerUser(registrationDTO).subscribe((user: IUser) => {
-			console.log('user created');
+	submit(): void {
+		console.log(this.form);
+		if (this.form.invalid) {
+			return;
+		}
+		this.loading.set(true);
+
+		const payload = this.getRegistrationDTO();
+		console.log(payload);
+
+		this.accountService.register(payload).subscribe({
+			next: (result) => {
+				this.loading.set(false);
+				this.router.navigateByUrl('/login');
+			},
+			error: (error) => {
+				this.handleError(error);
+			},
 		});
 	}
+
+	fb = inject(FormBuilder);
 
 	getRegistrationDTO() {
 		const firstName = this.form.controls['firstName'].value;
@@ -41,17 +54,37 @@ export class RegisterComponent {
 		const email = this.form.controls['email'].value;
 		const phone = this.form.controls['phone'].value;
 		const role = this.form.controls['role'].value;
+		const dob = this.form.controls['dob'].value;
+		const password = this.form.controls['password'].value;
 
-		return { firstName, lastName, email, phone, role };
+		return { firstName, lastName, email, phone, role, dob, password };
 	}
 
 	private setupForm() {
-		this.form = this.fb.group({
-			firstName: ['', Validators.required],
-			lastName: ['', Validators.required],
-			phone: ['', [Validators.required, Validators.minLength(8)]],
-			email: ['', [Validators.email, Validators.required]],
-			role: ['member'],
-		});
+		this.form = new FormGroup(
+			{
+				firstName: new FormControl('', Validators.required),
+				lastName: new FormControl('', Validators.required),
+				phone: new FormControl('', [Validators.required, Validators.minLength(8)]),
+				email: new FormControl('', [Validators.email, Validators.required]),
+				role: new FormControl({ value: 'member', disabled: true }),
+				dob: new FormControl(new TuiDay(2017, 2, 15), Validators.required),
+				password: new FormControl('', [Validators.required, Validators.minLength(2)]),
+				confirmPassword: new FormControl('', [Validators.required, Validators.minLength(2)]),
+			},
+			{
+				validators: passwordMatchValidator,
+			},
+		);
+	}
+
+	handleError(error: IError) {
+		this.loading.set(false);
+		this.alerts
+			.open(error.message || 'Something went wrong', {
+				label: error.error || 'Error',
+				appearance: 'negative',
+			})
+			.subscribe();
 	}
 }
