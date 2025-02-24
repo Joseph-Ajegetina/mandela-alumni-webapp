@@ -13,7 +13,7 @@
 		<app-site-navigation></app-site-navigation>
 	</button>
 	<span tuiNavigationLogo>
-		<img src="assets/alumracle-logo.png" alt="Alumracle logo" />
+		<img src="/images/alumracle-logo.png" width="50px" height="50px" alt="Alumracle logo" />
 	</span>
 	<hr />
 	<!-- <p>
@@ -26,7 +26,19 @@
 			(click)="darkMode.set(!darkMode())"
 		></button>
 	</p> -->
-	<tui-avatar src="AI" />
+
+	<tui-avatar-labeled label="Grigori">
+		<tui-avatar
+			[src]="
+				'https://avatars.githubusercontent.com/u/10106368' | tuiFallbackSrc : '@tui.user' | async
+			"
+		/>
+	</tui-avatar-labeled>
+
+	<a tuiOption (click)="logout()">
+		logout
+		<tui-icon icon="@tui.log-out" />
+	</a>
 </header>
 <div class="content-container">
 	<app-site-navigation class="navigation"></app-site-navigation>
