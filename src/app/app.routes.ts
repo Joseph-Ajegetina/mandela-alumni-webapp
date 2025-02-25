@@ -3,6 +3,7 @@ import { RegisterComponent } from './features/auth/feature/register/register.com
 import { LoginComponent } from './features/auth/feature/login/login.component';
 import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
+import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -18,9 +19,14 @@ export const appRoutes: Route[] = [
 		},
 	},
 	{
+		path: 'approval-page',
+		component: ApprovalPageComponent,
+	},
+	{
 		path: 'register',
 		component: RegisterComponent,
 	},
+
 
 	{
 		path: '',
