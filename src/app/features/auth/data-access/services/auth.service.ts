@@ -1,6 +1,5 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
-import { RegisterData } from '../../models/register-data';
 import { map, Observable } from 'rxjs';
 import { IUser } from '../../../../shared/interfaces/user';
 import { IAuthInfo, NewAuthInfo } from '../../models/auth.model';
@@ -26,10 +25,6 @@ export class AuthService {
 				return this.authState.saveSession(returnUser);
 			}),
 		);
-	}
-
-	registerUser(data: RegisterData): Observable<IUser> {
-		return this.http.post<IUser>('/api/register', data);
 	}
 
 	refreshToken(): Observable<boolean> {

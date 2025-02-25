@@ -15,6 +15,7 @@ import { AuthState } from './features/auth/data-access/state/auth.state';
 export const appConfig: ApplicationConfig = {
 	providers: [
 		provideAnimations(),
+		provideHttpClient(),
 		provideZoneChangeDetection({ eventCoalescing: true }),
 		provideRouter(appRoutes),
 		provideAppInitializer(() => {
