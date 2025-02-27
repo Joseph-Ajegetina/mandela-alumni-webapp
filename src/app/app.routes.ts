@@ -4,6 +4,7 @@ import { LoginComponent } from './features/auth/feature/login/login.component';
 import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ModalComponent } from './modal/modal.component';
+import { EventsComponent } from './features/events/event.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -37,6 +38,11 @@ export const appRoutes: Route[] = [
 		canActivateChild: [AuthGuard],
 	},
 	
+	{
+		path: 'events',
+		component: EventsComponent
+	},
+
 	{
 		path: 'modal',
 		component: ModalComponent
