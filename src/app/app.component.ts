@@ -2,9 +2,10 @@ import { TUI_DARK_MODE, TUI_DARK_MODE_KEY, TuiRoot } from '@taiga-ui/core';
 import { Component, inject, OnInit } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { WA_LOCAL_STORAGE, WA_WINDOW } from '@ng-web-apis/common';
+import { QuicklinksComponent } from './features/quicklinks/quicklinks.component';
 
 @Component({
-	imports: [RouterModule, TuiRoot],
+	imports: [RouterModule, TuiRoot,QuicklinksComponent],
 	selector: 'app-root',
 	templateUrl: './app.component.html',
 	styleUrl: './app.component.less',
