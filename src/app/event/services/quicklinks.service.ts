@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { quickLinkModel } from '../shared/data.model';
-import { quickLinksData } from '../quicklinkData';
+import { eventModel } from '../shared/event.model';
+import { quickLinksData } from '../quicklinksData';
 
 @Injectable({
   providedIn: 'root'
 })
 export class QuickLinkService {
-  
+
   // constructor(){}
-  
-  getUserData():quickLinkModel[]{
+
+  getUserData():eventModel[]{
     return quickLinksData;
   }
 }

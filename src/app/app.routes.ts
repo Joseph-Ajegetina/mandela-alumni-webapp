@@ -4,7 +4,7 @@ import { LoginComponent } from './features/auth/feature/login/login.component';
 import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ModalComponent } from './modal/modal.component';
-import { EventsComponent } from './features/events/event.component';
+import { EventComponent } from './event/event.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -39,12 +39,12 @@ export const appRoutes: Route[] = [
 	},
 	
 	{
-		path: 'events',
-		component: EventsComponent
+		path: 'modal',
+		component: ModalComponent
 	},
 
 	{
-		path: 'modal',
-		component: ModalComponent
+		path: 'events',
+		component: EventComponent
 	},
 ];
