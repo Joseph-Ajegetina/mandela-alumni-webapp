@@ -42,7 +42,7 @@ import { AuthState } from '../../data-access/state/auth.state';
 		TuiGroup,
 		TuiBlock,
 		TuiButtonLoading,
-		RouterLink
+		RouterLink,
 	],
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.less',

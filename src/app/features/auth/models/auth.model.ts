@@ -11,6 +11,6 @@ export const NewAuthInfo = (data: any): IAuthInfo => {
 		user: data.user,
 		accessToken: data.access_token,
 		refreshToken: data.refreshToken,
-		expiresAt: Date.now() + data.expiresIn * 1000,
+		expiresAt: Date.now() + 3600 * 1000,
 	};
 };

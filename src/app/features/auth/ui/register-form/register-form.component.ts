@@ -14,6 +14,7 @@ import {
 	TuiButtonLoading,
 	TuiFieldErrorPipe,
 	tuiInputPhoneInternationalOptionsProvider,
+	TuiPassword,
 	TuiSortCountriesPipe,
 	tuiValidationErrorsProvider,
 } from '@taiga-ui/kit';
@@ -52,6 +53,7 @@ import { RouterLink } from '@angular/router';
 		TuiLink,
 		RouterLink,
 		TuiButtonLoading,
+		TuiPassword,
 	],
 	templateUrl: './register-form.component.html',
 	styleUrl: './register-form.component.less',
