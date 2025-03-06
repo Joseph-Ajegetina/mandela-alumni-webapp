@@ -6,7 +6,7 @@ import { TuiDay } from '@taiga-ui/cdk';
 import { passwordMatchValidator } from '../../utils/match-password.directive';
 import { IError } from '../../models/error';
 import { TuiAlertService } from '@taiga-ui/core';
-import { AccountService } from '../../data-access/account.service';
+import { AccountService } from '../../data-access/services/account.service';
 
 @Component({
 	selector: 'app-register',
