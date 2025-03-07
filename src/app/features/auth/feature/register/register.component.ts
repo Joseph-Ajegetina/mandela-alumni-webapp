@@ -38,7 +38,7 @@ export class RegisterComponent {
 		this.accountService.register(payload).subscribe({
 			next: (result) => {
 				this.loading.set(false);
-				this.router.navigateByUrl('/login');
+				this.router.navigateByUrl('/pending');
 			},
 			error: (error) => {
 				this.handleError(error);
