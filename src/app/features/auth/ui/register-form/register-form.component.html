@@ -1,64 +1,115 @@
-<div class="form-container">
-	<form
-		tuiAppearance="floating"
-		tuiCardLarge
-		tuiForm="l"
-		[formGroup]="form"
-		[style.max-width.rem]="32"
-		(ngSubmit)="registerUser()"
-	>
-		<header tuiHeader>
-			<h2 tuiTitle>
-				Registration form
-				<span tuiSubtitle>Fill in your personal details</span>
-			</h2>
-		</header>
-		<div class="grid">
-			<div class="stack">
-				<tui-textfield>
-					<label tuiLabel>First Name </label>
-					<input formControlName="firstName" tuiTextfield type="text" />
-				</tui-textfield>
-				<tui-error formControlName="firstName" [error]="[] | tuiFieldError | async" />
+<div class="container">
+	<div class="logo-wrapper">
+		<img class="logo" src="/images/alumracle-logo.png" alt="logo" />
+	</div>
+	<div class="form-container">
+		<form
+			tuiAppearance="flat"
+			tuiCardLarge
+			tuiForm="l"
+			[formGroup]="form"
+			(ngSubmit)="registerUser()"
+		>
+			<header tuiHeader>
+				<h2 tuiTitle class="blue">
+					Create an Alumracle Account
+					<span tuiSubtitle
+						>Create your account to access exclusive alumni resources, networking opportunities, and
+						events.</span
+					>
+				</h2>
+			</header>
+			<div class="grid">
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>First Name </label>
+						<input formControlName="firstName" tuiTextfield type="text" />
+					</tui-textfield>
+					<tui-error formControlName="firstName" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Last Name </label>
+						<input formControlName="lastName" tuiTextfield type="text" />
+					</tui-textfield>
+					<tui-error formControlName="lastName" [error]="[] | tuiFieldError | async" />
+				</div>
 			</div>
-			<div class="stack">
-				<tui-textfield>
-					<label tuiLabel>Last Name </label>
-					<input formControlName="lastName" tuiTextfield type="text" />
-				</tui-textfield>
-				<tui-error formControlName="lastName" [error]="[] | tuiFieldError | async" />
+			<div class="grid">
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Email</label>
+						<input formControlName="email" tuiTextfield type="email" />
+					</tui-textfield>
+					<tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-textfield tuiDropdownMobile="Select country">
+						<label tuiLabel>Phone number</label>
+						<input
+							tuiInputPhoneInternational
+							[countries]="(countries | tuiSortCountries | async) || []"
+							[countrySearch]="true"
+							[(countryIsoCode)]="countryIsoCode"
+							formControlName="phone"
+						/>
+					</tui-textfield>
+				</div>
 			</div>
-		</div>
-		<tui-textfield>
-			<label tuiLabel>Email</label>
-			<input formControlName="email" tuiTextfield type="email" />
-		</tui-textfield>
-		<tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
 
-		<div class="grid">
-			<div class="stack">
-				<tui-textfield tuiDropdownMobile="Select country">
-					<label tuiLabel>Phone number</label>
-					<input
-						tuiInputPhoneInternational
-						[countries]="(countries | tuiSortCountries | async) || []"
-						[countrySearch]="true"
-						[(countryIsoCode)]="countryIsoCode"
-						formControlName="phone"
+			<div class="grid">
+				<div class="stack">
+					<tui-input-date formControlName="dob">
+						Date of birth
+						<input placeholder="Placeholder" tuiTextfieldLegacy />
+					</tui-input-date>
+					<tui-error formControlName="dob" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-select formControlName="role">
+						Role
+						<input tuiTextfieldLegacy />
+					</tui-select>
+				</div>
+			</div>
+
+			<div class="grid">
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Password</label>
+						<input formControlName="password" tuiTextfield type="password" />
+						<tui-icon tuiPassword />
+					</tui-textfield>
+					<tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
+				</div>
+				<div class="stack">
+					<tui-textfield>
+						<label tuiLabel>Password</label>
+						<input formControlName="confirmPassword" tuiTextfield type="password" />
+						<tui-icon tuiPassword />
+					</tui-textfield>
+					<tui-error formControlName="confirmPassword" [error]="[] | tuiFieldError | async" />
+					<tui-error
+						*ngIf="form.hasError('mismatch') && (form.touched || form.dirty)"
+						[error]="'Passwords do not match'"
 					/>
-				</tui-textfield>
+				</div>
 			</div>
-			<div class="stack">
-				<tui-select formControlName="role">
-					Role
-					<input tuiTextfieldLegacy />
-				</tui-select>
-			</div>
-		</div>
 
-		<footer>
-			<button appearance="secondary" tuiButton type="button">Cancel</button>
-			<button tuiButton type="submit">Register</button>
-		</footer>
-	</form>
+			<footer>
+				<button
+					[loading]="loading"
+					[disabled]="form.invalid"
+					iconEnd="@tui.user-round-plus"
+					tuiButton
+					type="submit"
+				>
+					Create
+				</button>
+				<span>Already have an account ? <a [routerLink]="'/login'">Log in</a></span>
+			</footer>
+		</form>
+	</div>
+
+	<div class="image-container"></div>
 </div>

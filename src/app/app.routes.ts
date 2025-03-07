@@ -9,7 +9,7 @@ export const appRoutes: Route[] = [
 	{
 		path: '',
 		pathMatch: 'full',
-		redirectTo: 'register',
+		redirectTo: 'login',
 	},
 	{
 		path: 'login',

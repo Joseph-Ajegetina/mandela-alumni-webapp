@@ -9,6 +9,7 @@ import {
 	TUI_DARK_MODE,
 	TuiFallbackSrcPipe,
 	TuiIcon,
+	TuiAutoColorPipe,
 } from '@taiga-ui/core';
 import { TuiAvatar, TuiAvatarLabeled } from '@taiga-ui/kit';
 import { TuiPortals } from '@taiga-ui/cdk';
@@ -30,6 +31,7 @@ import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
 		TuiDropdown,
 		TuiDataList,
 		TuiIcon,
+		TuiAutoColorPipe,
 		SiteNavigationComponent,
 	],
 	templateUrl: './layout.component.html',
@@ -44,7 +46,7 @@ export class LayoutComponent extends TuiPortals {
 
 	protected open = signal(false);
 
-	isDarkMode = computed(() => (this.darkMode() ? 'dark' : 'light'));
+	theme = computed(() => (this.darkMode() ? 'dark' : 'light'));
 
 	protected handleToggle(): void {
 		this.open.update((e) => !e);

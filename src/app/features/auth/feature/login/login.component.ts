@@ -20,7 +20,7 @@ import {
 import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../data-access/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IError } from '../../models/error';
 import { AuthState } from '../../data-access/state/auth.state';
 @Component({
@@ -42,6 +42,7 @@ import { AuthState } from '../../data-access/state/auth.state';
 		TuiGroup,
 		TuiBlock,
 		TuiButtonLoading,
+		RouterLink,
 	],
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.less',

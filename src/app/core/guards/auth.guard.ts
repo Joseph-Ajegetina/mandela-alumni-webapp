@@ -3,14 +3,11 @@ import {
 	ActivatedRouteSnapshot,
 	CanActivate,
 	CanActivateChild,
-	GuardResult,
-	MaybeAsync,
 	Route,
 	Router,
 	RouterStateSnapshot,
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { AuthService } from 'src/app/features/auth/data-access/services/auth.service';
 import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
 
 @Injectable({ providedIn: 'root' })
