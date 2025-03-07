@@ -1,14 +1,38 @@
-<nav class="sidenav">
-	<section class="sidenav-content">
-		<a
-			*ngFor="let menuItem of menuItems()"
-			href="#"
-			[iconStart]="menuItem.icon"
-			[routerLink]="menuItem.route"
-			tuiLink
-			class="nav-link"
+<aside [tuiNavigationAside]="true" [attr.tuiTheme]="theme()">
+	<header>
+		<button iconStart="@tui.home" tuiAsideItem type="button" [routerLink]="routes.home">
+			<span tuiFade>Home</span>
+		</button>
+	</header>
+	<button
+		iconStart="@tui.square-library"
+		tuiAsideItem
+		type="button"
+		[routerLink]="routes.directory"
+	>
+		Directory
+	</button>
+	<a iconStart="@tui.users" tuiAsideItem> Groups </a>
+
+	<footer>
+		<tui-aside-group [(open)]="open">
+			<button iconStart="@tui.settings" tuiAsideItem tuiChevron type="button">
+				Settings
+				<ng-template>
+					<button tuiAsideItem type="button" (click)="open = false">Account</button>
+					<button tuiAsideItem type="button" (click)="open = false">Notifications</button>
+					<button tuiAsideItem type="button" (click)="open = false">Privacy</button>
+				</ng-template>
+			</button>
+		</tui-aside-group>
+		<button
+			iconStart="@tui.log-out"
+			tuiAsideItem
+			type="button"
+			(click)="logout()"
+			loading="logingOut"
 		>
-			{{ menuItem.label }}
-		</a>
-	</section>
-</nav>
+			Log out
+		</button>
+	</footer>
+</aside>
