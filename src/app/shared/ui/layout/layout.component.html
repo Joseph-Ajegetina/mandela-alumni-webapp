@@ -1,7 +1,7 @@
 <div class="custom-portal">
 	<ng-container #viewContainer />
 </div>
-<header tuiNavigationHeader tuiTheme="isDarkMode() ? 'dark' : 'light'" class="nav-header">
+<header tuiNavigationHeader tuiTheme="theme()" class="nav-header">
 	<button
 		tuiNavigationDrawer
 		tuiIconButton
@@ -26,22 +26,14 @@
 			(click)="darkMode.set(!darkMode())"
 		></button>
 	</p> -->
-
-	<tui-avatar-labeled label="Grigori">
-		<tui-avatar
-			[src]="
-				'https://avatars.githubusercontent.com/u/10106368' | tuiFallbackSrc : '@tui.user' | async
-			"
-		/>
-	</tui-avatar-labeled>
-
-	<a tuiOption (click)="logout()">
-		logout
-		<tui-icon icon="@tui.log-out" />
-	</a>
+	<tui-avatar src="AI" class="text" [style.background]="'AI' | tuiAutoColor" />
 </header>
 <div class="content-container">
-	<app-site-navigation class="navigation"></app-site-navigation>
+	<app-site-navigation
+		[theme]="theme()"
+		(onLogout)="logout()"
+		class="navigation"
+	></app-site-navigation>
 	<main class="main-container">
 		<router-outlet></router-outlet>
 	</main>
