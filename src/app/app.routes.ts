@@ -19,7 +19,7 @@ export const appRoutes: Route[] = [
 		},
 	},
 	{
-		path: 'approval-page',
+		path: 'pending',
 		component: ApprovalPageComponent,
 	},
 	{
