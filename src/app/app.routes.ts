@@ -40,19 +40,19 @@ export const appRoutes: Route[] = [
 		  }
 		]
 	},
-	// {
-	// 	path: '',
-	// 	loadComponent: () =>
-	// 		import('../app/shared/ui/layout/layout.component').then((m) => m.LayoutComponent),
-	// 	children: [
-	// 		{
-	// 			path: 'dashboard',
-	// 			loadComponent: () =>
-	// 				import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
-	// 		},
-	// 	],
-	// 	canActivateChild: [AuthGuard],
-	// },
+	{
+		path: '',
+		loadComponent: () =>
+			import('../app/shared/ui/layout/layout.component').then((m) => m.LayoutComponent),
+		children: [
+			{
+				path: 'dashboard',
+				loadComponent: () =>
+					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+			},
+		],
+		canActivateChild: [AuthGuard],
+	},
 
 	{
 		path: '**',
