@@ -26,7 +26,11 @@ export class SiteNavigationComponent {
 	onLogout = output();
 	protected open = false;
 	logingOut = false;
-	protected readonly routes: any = { home: 'dashboard', directory: 'directory' };
+	protected readonly routes: any = {
+		home: 'dashboard',
+		directory: 'directory',
+		approval: 'approvals',
+	};
 
 	logout() {
 		this.logingOut = true;

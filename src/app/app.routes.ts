@@ -27,7 +27,6 @@ export const appRoutes: Route[] = [
 		component: RegisterComponent,
 	},
 
-
 	{
 		path: '',
 		loadComponent: () =>
