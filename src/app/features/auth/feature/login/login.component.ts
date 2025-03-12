@@ -20,7 +20,7 @@ import {
 import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../data-access/services/auth.service';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { IError } from '../../models/error';
 import { AuthState } from '../../data-access/state/auth.state';
 @Component({
@@ -42,6 +42,7 @@ import { AuthState } from '../../data-access/state/auth.state';
 		TuiGroup,
 		TuiBlock,
 		TuiButtonLoading,
+		RouterLink,
 	],
 	templateUrl: './login.component.html',
 	styleUrl: './login.component.less',
@@ -80,7 +81,13 @@ export class LoginComponent {
 		this.authService.login(loginDTO.email, loginDTO.password).subscribe({
 			next: (result) => {
 				this.loading.set(false);
-				this.router.navigateByUrl(this.authState.redirectUrl || '/dashboard');
+				const user = this.authState.getUser();
+				console.log(user);
+				if (user?.approvedAt) {
+					this.router.navigateByUrl(this.authState.redirectUrl || '/dashboard');
+				} else {
+					this.router.navigateByUrl('/pending');
+				}
 			},
 			error: (response) => {
 				console.error(response.error);

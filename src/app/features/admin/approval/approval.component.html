@@ -1,0 +1,102 @@
+<div tuiHeader="h2">
+	<h2>Approvals</h2>
+</div>
+
+<div tuiCell>
+	<search tuiSearch>
+		<form [formGroup]="form">
+			<fieldset tuiTextfieldSize="s">
+				<tui-textfield iconStart="@tui.search">
+					<input placeholder="Search" tuiTextfield formControlName="search" />
+				</tui-textfield>
+			</fieldset>
+		</form>
+	</search>
+
+	<hr />
+	<button appearance="flat-grayscale" iconStart="@tui.upload" tuiIconButton type="button">
+		Favorite
+	</button>
+	<button appearance="flat-grayscale" iconStart="@tui.refresh-cw" tuiIconButton type="button">
+		Favorite
+	</button>
+	<button appearance="flat-grayscale" iconStart="@tui.chevrons-up-down" tuiIconButton type="button">
+		Favorite
+	</button>
+</div>
+
+<table tuiTable [size]="'l'">
+	<thead>
+		<tr>
+			<th tuiTh>
+				<div [tuiCell]="'l'">
+					<input
+						tuiCheckbox
+						type="checkbox"
+						[ngModel]="checked"
+						[size]="'m'"
+						(ngModelChange)="onCheck($event)"
+					/>
+					<span tuiTitle>Name</span>
+				</div>
+			</th>
+			<th tuiTh>Email</th>
+			<th tuiTh>Category</th>
+			<th tuiTh>Phone</th>
+			<th tuiTh>Id</th>
+			<th tuiTh>Date</th>
+			<th tuiTh>Actions</th>
+		</tr>
+	</thead>
+	<tbody tuiTbody>
+		<tr *ngFor="let item of tableData">
+			<td tuiTd>
+				<div [tuiCell]="'l'">
+					<input tuiCheckbox type="checkbox" [size]="'m'" [(ngModel)]="item.selected" />
+					<span tuiTitle>{{ item.name }}</span>
+				</div>
+			</td>
+			<td tuiTd>
+				<div [tuiCell]="'l'">
+					<span tuiTitle>{{ item.email }}</span>
+				</div>
+			</td>
+			<td tuiTd>
+				<div [tuiCell]="'l'">
+					<tui-badge> {{ item.category }} </tui-badge>
+				</div>
+			</td>
+			<td tuiTd>
+				<span tuiTitle>{{ item.phone }}</span>
+			</td>
+			<td tuiTd>
+				<span tuiTitle>{{ item.id }}</span>
+			</td>
+			<td tuiTd>
+				<span tuiTitle>{{ item.date }}</span>
+			</td>
+			<td tuiTd>
+				<span tuiStatus>
+					<button
+						appearance="flat-grayscale"
+						iconStart="@tui.ban"
+						size="xs"
+						tuiIconButton
+						type="button"
+					>
+						Deny
+					</button>
+					<button
+						appearance="flat-grayscale"
+						iconStart="@tui.circle-check-big"
+						size="xs"
+						tuiIconButton
+						type="button"
+					>
+						approve
+					</button>
+				</span>
+			</td>
+		</tr>
+	</tbody>
+</table>

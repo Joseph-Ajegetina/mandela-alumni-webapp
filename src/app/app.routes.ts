@@ -9,6 +9,12 @@ import { ApprovalPageComponent } from './features/approval-page/approval-page/ap
 export const appRoutes: Route[] = [
 
 	{
+		path: '',
+		pathMatch: 'full',
+		redirectTo: 'login',
+	},
+
+	{
 		path: 'login',
 		component: LoginComponent,
 		resolve: {
@@ -16,13 +22,16 @@ export const appRoutes: Route[] = [
 		},
 	},
 	{
-		path: 'approval-page',
+		path: 'pending',
 		component: ApprovalPageComponent,
 	},
 	{
 		path: 'register',
 		component: RegisterComponent,
 	},
+
+
+
 	{
 		path: '',
 		loadComponent: () =>
@@ -32,6 +41,11 @@ export const appRoutes: Route[] = [
 				path: 'dashboard',
 				loadComponent: () =>
 					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+			},
+			{
+				path: 'approvals',
+				loadComponent: () =>
+					import('./features/admin/approval/approval.component').then((m) => m.ApprovalComponent),
 			},
 		],
 		canActivateChild: [AuthGuard],

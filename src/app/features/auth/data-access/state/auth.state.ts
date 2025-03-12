@@ -65,7 +65,7 @@ export class AuthState {
 		const newItem = { ...this.stateItem.getValue(), ...item };
 		this.stateItem.next(newItem);
 		return this.stateItem$;
-	  }
+	}
 
 	checkAuth = (user: IAuthInfo) => {
 		if (!user || !user.accessToken) {
@@ -124,5 +124,8 @@ export class AuthState {
 		}
 	}
 
-
+	getUser() {
+		const auth = this._getUser();
+		return auth?.user;
+	}
 }

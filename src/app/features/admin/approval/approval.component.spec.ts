@@ -1,17 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ApprovalComponent } from '../../approval.component';
 
-import { ApprovalPageComponent } from './approval-page.component';
-
-describe('ApprovalPageComponent', () => {
-	let component: ApprovalPageComponent;
-	let fixture: ComponentFixture<ApprovalPageComponent>;
+describe('ApprovalComponent', () => {
+	let component: ApprovalComponent;
+	let fixture: ComponentFixture<ApprovalComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [ApprovalPageComponent],
+			imports: [ApprovalComponent],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(ApprovalPageComponent);
+		fixture = TestBed.createComponent(ApprovalComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});
