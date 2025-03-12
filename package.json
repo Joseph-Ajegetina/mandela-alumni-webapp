@@ -55,7 +55,7 @@
     "@types/node": "18.16.9",
     "@typescript-eslint/utils": "^8.19.0",
     "angular-eslint": "^19.0.2",
-    "cypress": "^13.13.0",
+    "cypress": "^13.17.0",
     "eslint": "^9.8.0",
     "eslint-config-prettier": "^9.0.0",
     "eslint-plugin-cypress": "^3.5.0",
