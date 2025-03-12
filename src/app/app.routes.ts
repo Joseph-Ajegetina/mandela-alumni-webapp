@@ -27,7 +27,6 @@ export const appRoutes: Route[] = [
 		component: RegisterComponent,
 	},
 
-
 	{
 		path: '',
 		loadComponent: () =>
@@ -37,6 +36,11 @@ export const appRoutes: Route[] = [
 				path: 'dashboard',
 				loadComponent: () =>
 					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+			},
+			{
+				path: 'approvals',
+				loadComponent: () =>
+					import('./features/admin/approval/approval.component').then((m) => m.ApprovalComponent),
 			},
 		],
 		canActivateChild: [AuthGuard],
