@@ -4,9 +4,7 @@ import { LoginComponent } from './features/auth/feature/login/login.component';
 import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
-// import { LayoutComponent } from './shared/ui/layout/layout.component';
-// import { UserLayoutComponent } from './shared/ui/user-layout/user-layout.component';
-// import { UserDashboardComponent } from './features/user-dashboard/user-dashboard.component';
+
 
 export const appRoutes: Route[] = [
 
@@ -25,21 +23,6 @@ export const appRoutes: Route[] = [
 		path: 'register',
 		component: RegisterComponent,
 	},
-
-	// {
-	// 	path: '',
-	// 	component: UserLayoutComponent,
-	// 	children: [
-	// 	  {
-	// 		path: '',  // This is the change - empty path
-	// 		component: UserDashboardComponent
-	// 	  },
-	// 	  {
-	// 		path: 'user-dashboard',  // Keep this for explicit navigation
-	// 		component: UserDashboardComponent
-	// 	  }
-	// 	]
-	// },
 	{
 		path: '',
 		loadComponent: () =>
