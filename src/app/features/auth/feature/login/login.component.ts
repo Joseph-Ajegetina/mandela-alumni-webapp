@@ -81,7 +81,13 @@ export class LoginComponent {
 		this.authService.login(loginDTO.email, loginDTO.password).subscribe({
 			next: (result) => {
 				this.loading.set(false);
-				this.router.navigateByUrl(this.authState.redirectUrl || '/dashboard');
+				const user = this.authState.getUser();
+				console.log(user);
+				if (user?.approvedAt) {
+					this.router.navigateByUrl(this.authState.redirectUrl || '/dashboard');
+				} else {
+					this.router.navigateByUrl('/pending');
+				}
 			},
 			error: (response) => {
 				console.error(response.error);

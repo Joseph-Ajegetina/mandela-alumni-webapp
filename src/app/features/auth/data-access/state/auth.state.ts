@@ -123,4 +123,9 @@ export class AuthState {
 			this.removeState();
 		}
 	}
+
+	getUser() {
+		const auth = this._getUser();
+		return auth?.user;
+	}
 }
