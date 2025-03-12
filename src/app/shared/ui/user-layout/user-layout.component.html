@@ -1,0 +1,116 @@
+<!-- <div class="container">
+	<div class="custom-portal"><ng-container #viewContainer /></div>   
+<header
+    class="head"
+>
+<div class="welcome">
+    <h3>MyPortal</h3>
+    <div class="wrapper">
+        <p>Welcome Ama </p>
+        <span><img src="images/hand.png" alt=""></span>
+    </div>
+</div>
+    
+    <div class="notify">
+        <search tuiSearch class="search">
+            <form [formGroup]="form">
+                <fieldset tuiTextfieldSize="s">
+                <tui-textfield iconStart="@tui.search">
+                    <input
+                        formControlName="search"
+                        placeholder="Search"
+                        tuiTextfield
+                    />
+                </tui-textfield>
+            </fieldset>
+        </form>
+        </search>
+        <button
+        size="l"
+        appearance=""
+        iconStart="@tui.bell"
+        tuiIconButton
+        type="button"
+    >
+        </button>
+            <tui-avatar
+            size="l"
+            [src]="'https://avatars.githubusercontent.com/u/11832552' | tuiFallbackSrc: '@tui.user' | async" />
+
+    </div>
+</header>
+    <div class="aside">
+        
+
+        <span >
+            <img src="/images/alumracle-logo-name.png" alt="Alumracle logo" />
+        </span>
+
+        <nav>
+            <ul>
+                <li  class="home items" routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+                    <a>
+                        <i class="fa fa-home fa-lg"  aria-hidden="true"></i>
+                        <p>Home</p>
+                    </a>
+                </li>
+                
+                <li class="events items" routerLink="/events" routerLinkActive="active">
+                    <a>
+                        <i class="fa fa-calendar  fa-lg" aria-hidden="true"></i>
+                        <p>Events & Opportunities</p>
+                    </a>
+                </li>
+        
+                <li class="members items" routerLink="/members" routerLinkActive="active">
+                    <a>
+                        <i class="fa fa-strikethrough  fa-lg" aria-hidden="true"></i>
+                        <p>Payment & Contribution</p>
+                    </a>
+                </li>
+        
+                <li class="settings items" routerLink="/settings" routerLinkActive="active">
+                    <a>
+                        <i class="fa fa-clone  fa-lg" aria-hidden="true"></i>
+                        <p>Resources & News</p>
+                    </a>
+                </li>
+        
+                <li class="logout items" routerLink="/message" routerLinkActive="active">
+                    <a>
+                        <i class="fa fa-envelope-o  fa-lg" aria-hidden="true"></i>
+                        <p>Messages</p>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        
+        <footer>
+            <nav>
+                <ul>
+                    <li>
+                        <a routerLink="">
+                            <i class="fa fa-cog  fa-lg" aria-hidden="true"></i>
+                            <p>Settings</p>
+                        </a>
+                    </li> 
+                    <li class="logout">
+                        <a routerLink="/login">
+                            <i class="fa fa-sign-out  fa-lg" aria-hidden="true"></i>
+                            <p>Logout</p>
+                        </a>
+                    </li> 
+                </ul>
+            </nav>
+        </footer>
+        
+    </div>
+
+    <main >
+       
+        <router-outlet></router-outlet>
+    </main>
+       
+
+
+</div>  -->

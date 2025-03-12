@@ -5,12 +5,15 @@ import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
 
+
 export const appRoutes: Route[] = [
+
 	{
 		path: '',
 		pathMatch: 'full',
 		redirectTo: 'login',
 	},
+
 	{
 		path: 'login',
 		component: LoginComponent,
@@ -26,6 +29,8 @@ export const appRoutes: Route[] = [
 		path: 'register',
 		component: RegisterComponent,
 	},
+
+
 
 	{
 		path: '',
