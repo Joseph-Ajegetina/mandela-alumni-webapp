@@ -4,6 +4,7 @@ import { LoginComponent } from './features/auth/feature/login/login.component';
 import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
+import { UserEventPageComponent } from './features/user/user-event-page/user-event-page.component';
 
 
 export const appRoutes: Route[] = [
@@ -46,6 +47,11 @@ export const appRoutes: Route[] = [
 				path: 'approvals',
 				loadComponent: () =>
 					import('./features/admin/approval/approval.component').then((m) => m.ApprovalComponent),
+			},
+			{
+				path: 'userevent',
+				loadComponent: () =>
+					import('./features/user/user-event-page/user-event-page.component').then((m) => m.UserEventPageComponent),
 			},
 		],
 		canActivateChild: [AuthGuard],

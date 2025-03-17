@@ -30,6 +30,7 @@ export class SiteNavigationComponent {
 		home: 'dashboard',
 		directory: 'directory',
 		approval: 'approvals',
+		userevent: 'userevent',
 	};
 
 	logout() {

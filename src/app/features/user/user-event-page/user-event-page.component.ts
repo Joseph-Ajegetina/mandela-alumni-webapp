@@ -1,0 +1,153 @@
+import { AsyncPipe, NgFor } from '@angular/common';
+import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TuiAmountPipe } from '@taiga-ui/addon-commerce';
+import { TuiDropdownMobile } from '@taiga-ui/addon-mobile';
+import { TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
+import { TuiAvatar } from '@taiga-ui/kit';
+import { TuiSearch } from '@taiga-ui/layout';
+import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
+import { SliderComponent } from "../../../shared/ui/slider/slider.component";
+import { Card, Slide } from 'src/app/shared/interfaces/menu-item';
+import { CardsComponent } from "../../../shared/ui/cards/cards.component";
+
+interface User {
+  readonly url: string;
+  readonly name: string;
+  readonly balance: number;
+}
+
+@Component({
+  selector: 'app-user-event-page',
+  imports: [
+    TuiIcon,
+    AsyncPipe,
+    FormsModule,
+    ReactiveFormsModule,
+    TuiSearch,
+    TuiAmountPipe,
+    TuiAvatar,
+    TuiDropdown,
+    TuiDropdownMobile,
+    TuiSelectModule,
+    TuiTextfield,
+    TuiTextfieldControllerModule,
+    SliderComponent,
+    TuiIcon,
+    CardsComponent,
+    NgFor,
+],
+  templateUrl: './user-event-page.component.html',
+  styleUrls: ['./user-event-page.component.less'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
+})
+
+export class UserEventPageComponent {
+  protected readonly form = new FormGroup({
+    search: new FormControl(),
+  });
+
+  protected selected: readonly User[] = [];
+  protected user: User | null = null;
+
+  protected readonly users: readonly User[] = [
+    { name: 'Alex Inkin', balance: 1_323_525, url: 'https://taiga-ui.dev/assets/images/avatar.jpg' },
+    { name: 'Roman Sedov', balance: 523_242, url: 'RS' },
+    { name: 'Vladimir Potekhin', balance: 645_465, url: 'VP' },
+    { name: 'Nikita Barsukov', balance: 468_468, url: 'NB' },
+    { name: 'Maxim Ivanov', balance: 498_654, url: 'MI' },
+  ];
+
+  protected readonly stringify = ({ name }: User): string => name;
+  slide: Slide = {
+    images: [
+      'images/alumracle/slider1.jpg',
+      'images/alumracle/slider2.jpg',
+      'images/alumracle/slider3.jpg'
+    ],
+    overlayText: {
+      event_type: 'Virtual',
+      title: 'Career Growth Webinar',
+      description: 'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
+      date: 'April 04, 2025',
+      time: '10:00 AM - 12:00 PM',
+      buttons: [
+        { icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
+        { text: 'View Details', link: '/event-details', style: 'details-btn' }
+      ]
+    }
+  };
+  
+
+  cards: Card[] = [
+    {
+      image: 
+        'images/alumracle/slider1.jpg',
+  
+      overlayText: {
+        event_type: 'Virtual',
+        title: 'Career Growth Webinar',
+        description: 'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
+        date: 'April 04, 2025',
+        time: '10:00 AM',
+      
+        buttons: [
+          { icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
+          { text: 'View Details', link: '/event-details', style: 'details-btn' }
+        ]
+      }
+    },
+
+    {
+      image: 
+        'images/alumracle/slider2.jpg',
+  
+      overlayText: {
+        event_type: 'Virtual',
+        title: 'Career Growth Webinar',
+        description: 'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
+        date: 'April 04, 2025',
+        time: '10:00 AM',
+      
+        buttons: [
+          { icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
+          { text: 'View Details', link: '/event-details', style: 'details-btn' }
+        ]
+      }
+    },
+    
+    {
+      image: 
+        'images/alumracle/slider3.jpg',
+  
+      overlayText: {
+        event_type: 'Virtual',
+        title: 'Career Growth Webinar',
+        description: 'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
+        date: 'April 04, 2025',
+        time: '10:00 AM',
+      
+        buttons: [
+          { icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
+          { text: 'View Details', link: '/event-details', style: 'details-btn' }
+        ]
+      }
+    },
+  
+  ]
+
+  isAtTop = true; // Initially at the top
+
+  @HostListener('window:scroll', [])
+  onScroll(): void {
+    this.isAtTop = window.scrollY < 100; // Detect scroll position
+  }
+
+  toggleScroll(): void {
+    if (this.isAtTop) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: 'smooth' });
+    } else {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+  }
+}
