@@ -11,3 +11,8 @@ export interface IUser {
 	createdAt: string;
 	updatedAt: string;
 }
+
+export interface PendingUser extends IUser{
+	selected: boolean
+	category?: string
+}
