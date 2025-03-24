@@ -1,0 +1,92 @@
+
+:root {
+    --dark-blue: #254568; 
+    --light-blue: #26ABE4;   
+    --text-color: #191C30;
+
+}
+
+.container {
+    display: flex; 
+    width: 100vw; 
+    height: 100vh; 
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.image {
+    flex: 1; 
+    max-width: 100%; 
+    height: 100%; 
+    object-fit: cover; 
+}
+
+//styling for right section for events details
+.details {
+    position: relative;
+    flex: 1;
+    height: 100%; 
+    margin-left: 42px;
+
+    .text{
+        padding-top: 80px;
+    }
+
+    .event-title {
+        font-size: 2rem; 
+        color: var(--dark-blue); 
+        margin-top: 20px; 
+        margin-bottom: 30px;
+    }
+    h2{
+        color: var(--dark-blue); 
+
+    }
+    p{
+        color: var(--text-color); 
+        margin-top: 20px; 
+        width: 90%;
+        max-width: 700px;
+    }
+}
+
+.event-information {
+    display: grid;
+    grid-template-columns: 1fr 1fr; 
+    grid-template-rows: auto auto; 
+    gap: 20px; 
+    margin-top: 20px; 
+}
+
+.event-information span[tuiTitle] {
+    display: flex; 
+    flex-direction: column; 
+    align-items: flex-start; 
+    font-weight: bold; 
+    color: var(--dark-blue);
+}
+
+.event-information span[tuiSubtitle] {
+    font-weight: normal; 
+    color: var(--text-color); 
+
+}
+
+//------------------------------------------------------------
+
+//button styles
+button[tuiButton] {
+    position: absolute; top: 20px; right: 20px;
+    background-color: #53D788;
+    color: #fff; 
+    padding: 16px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 1rem; 
+    cursor: pointer; 
+    height: 50px;    
+    transition: background-color 0.3s ease; 
+}
+
+button[tuiButton]:hover {
+    background-color: #399362; 
+}
