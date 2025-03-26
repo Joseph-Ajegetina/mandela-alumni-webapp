@@ -14,18 +14,43 @@
 }
 
 .image {
+    position: relative;
     flex: 1; 
     max-width: 100%; 
     height: 100%; 
     object-fit: cover; 
 }
 
+.back-button {
+    position: absolute; 
+    top: 20px; 
+    left: 20px; 
+    background-color: transparent; 
+    color: #fff; 
+    padding: 10px 15px; 
+    border: none; 
+    border-radius: 5px; 
+    font-size: 1rem; 
+    cursor: pointer; 
+    z-index: 10; 
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); 
+    transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+    background-color: var(--dark-blue);
+}
+
 //styling for right section for events details
 .details {
     position: relative;
+    overflow-y: auto; /* Enable vertical scrolling */
     flex: 1;
     height: 100%; 
+    padding: 20px;
     margin-left: 42px;
+    box-sizing: border-box; /* Include padding in height calculation */
+
 
     .text{
         padding-top: 80px;
@@ -74,7 +99,7 @@
 //------------------------------------------------------------
 
 //button styles
-button[tuiButton] {
+.register-button {
     position: absolute; top: 20px; right: 20px;
     background-color: #53D788;
     color: #fff; 
@@ -87,6 +112,6 @@ button[tuiButton] {
     transition: background-color 0.3s ease; 
 }
 
-button[tuiButton]:hover {
+.register-button:hover {
     background-color: #399362; 
 }
