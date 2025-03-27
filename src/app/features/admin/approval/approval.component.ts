@@ -11,7 +11,6 @@ import {
 	TuiTitle,
 } from '@taiga-ui/core';
 import { TuiTable } from '@taiga-ui/addon-table';
-import data from './models/data';
 import { TuiBadge, TuiCheckbox, TuiPulse, TuiStatus, TuiTile } from '@taiga-ui/kit';
 import { ApprovalService } from './data-access/approval.service';
 import { IUser, PendingUser } from 'src/app/shared/interfaces/user';
@@ -42,7 +41,6 @@ export class ApprovalComponent implements OnInit {
 	approvalService = inject(ApprovalService);
 	protected size = 'l';
 	private readonly alerts = inject(TuiAlertService);
-	tableData = data;
 	pending: PendingUser[] = [];
 	search = '';
 	form = new FormGroup({
@@ -66,6 +64,10 @@ export class ApprovalComponent implements OnInit {
 	}
 
 	protected get checked(): boolean | null {
+		if (!this.pending.length) {
+			return false;
+		}
+
 		const every = this.pending.every(({ selected }) => selected);
 		const some = this.pending.some(({ selected }) => selected);
 
@@ -88,12 +90,12 @@ export class ApprovalComponent implements OnInit {
 	}
 
 	getPendingUsers(users: PendingUser[]) {
-		return users.filter((user) => !user.approvedAt);
+		return users.filter((user) => !user.approvedAt && !user.disapprovedAt);
 	}
 
 	deny(pendingUser: PendingUser) {
 		this.denying.set(true);
-		this.approvalService.update(pendingUser.id, { approvedAt: new Date() }).subscribe((res) => {
+		this.approvalService.update(pendingUser.id, { disapprovedAt: new Date() }).subscribe((res) => {
 			this.pending = this.getPendingUsers(this.pending);
 			this.showMessage(`${this.selected()?.firstname} dissaproved`);
 			this.closeTooltip();

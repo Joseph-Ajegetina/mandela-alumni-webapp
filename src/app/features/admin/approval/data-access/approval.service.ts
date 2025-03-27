@@ -13,10 +13,10 @@ export class ApprovalService {
 	constructor() {}
 
 	getApprovals(): Observable<any> {
-		return this.http.get(`${this.url}/user`)
+		return this.http.get(`${this.url}/user`);
 	}
 
 	update(id: number, payload: any): Observable<any> {
-		return this.http.patch(`${this.url}/user/${id}`, payload)
+		return this.http.patch(`${this.url}/user/${id}`, payload);
 	}
 }

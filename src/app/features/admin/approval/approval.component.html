@@ -2,6 +2,9 @@
 	<h2>Approvals</h2>
 </div>
 
+@if (loading()){
+<tui-loader [inheritColor]="true"></tui-loader>
+} @else{
 <div tuiCell>
 	<search tuiSearch>
 		<form [formGroup]="form">
@@ -49,119 +52,125 @@
 		</tr>
 	</thead>
 	<tbody tuiTbody>
-		@if (loading()){
-		<tui-loader [inheritColor]="true"></tui-loader>
-		} @else{
+		<ng-container *ngIf="pending.length === 0">
+			<tr>
+				<td tuiTd colspan="7">
+					<div [tuiCell]="'l'">
+						<span tuiTitle>No pending approvals</span>
+					</div>
+				</td>
+			</tr>
+		</ng-container>
 
-		<tr *ngFor="let item of pending">
-			<td tuiTd>
-				<div [tuiCell]="'l'">
-					<input tuiCheckbox type="checkbox" [size]="'m'" [(ngModel)]="item.selected" />
-					<span tuiTitle>{{ item.firstname }} {{ item.lastname }}</span>
-				</div>
-			</td>
-			<td tuiTd>
-				<div [tuiCell]="'l'">
-					<span tuiTitle>{{ item.email }}</span>
-				</div>
-			</td>
-			<td tuiTd>
-				<div [tuiCell]="'l'">
-					<tui-badge> {{ 'manual' }} </tui-badge>
-				</div>
-			</td>
-			<td tuiTd>
-				<span tuiTitle>{{ item.phone }}</span>
-			</td>
-			<td tuiTd>
-				<span tuiTitle>{{ item.id }}</span>
-			</td>
-			<td tuiTd>
-				<span tuiTitle>{{ item.createdAt | date : 'medium' }}</span>
-			</td>
-			<td tuiTd>
-				<span tuiStatus>
-					@if(denying() && selected()?.id == item.id){
-					<tui-loader></tui-loader>
-					}@else {
-					<button
-						appearance="flat-grayscale"
-						iconStart="@tui.ban"
-						size="xs"
-						tuiButton
-						type="button"
-						[tuiHint]="denyTpl"
-						tuiHintDirection="left"
-						[tuiHintManual]="showDenyTooltip() && selected()?.id === item.id"
-						(click)="openDenyTooltip(item)"
-					>
-						<ng-template #denyTpl>
-							<button
-								appearance="icon"
-								iconStart="@tui.x"
-								size="xs"
-								tuiIconButton
-								type="button"
-								(click)="closeTooltip()"
-							>
-								Close
-							</button>
-							<h3 tuiTitle>
-								Disapprove member
-								<div tuiSubtitle>Are you sure you want to disapprove this member</div>
-							</h3>
-							<footer>
+		<ng-container *ngIf="pending.length > 0">
+			<tr *ngFor="let item of pending">
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<input tuiCheckbox type="checkbox" [size]="'m'" [(ngModel)]="item.selected" />
+						<span tuiTitle>{{ item.firstname }} {{ item.lastname }}</span>
+					</div>
+				</td>
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<span tuiTitle>{{ item.email }}</span>
+					</div>
+				</td>
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<tui-badge> {{ 'manual' }} </tui-badge>
+					</div>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ item.phone }}</span>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ item.id }}</span>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ item.createdAt | date : 'medium' }}</span>
+				</td>
+				<td tuiTd>
+					<span tuiStatus>
+						@if(denying() && selected()?.id == item.id){
+						<tui-loader></tui-loader>
+						}@else {
+						<button
+							appearance="flat-grayscale"
+							iconStart="@tui.ban"
+							size="xs"
+							tuiButton
+							type="button"
+							[tuiHint]="denyTpl"
+							tuiHintDirection="left"
+							tuiHintAppearance="dark"
+							[tuiHintManual]="showDenyTooltip() && selected()?.id === item.id"
+							(click)="openDenyTooltip(item)"
+						>
+							<ng-template #denyTpl>
 								<button
-									appearance="secondary-grayscale"
-									tuiButton
+									appearance="icon"
+									iconStart="@tui.x"
+									size="xs"
+									tuiIconButton
 									type="button"
 									(click)="closeTooltip()"
 								>
 									Close
 								</button>
-								<button tuiButton type="button" (click)="deny(item)">Disapprove</button>
-							</footer>
-						</ng-template>
-					</button>
-					} @if(approving() && selected()?.id == item.id){
-					<tui-loader></tui-loader>
-					}@else {
-					<button
-						appearance="flat-grayscale"
-						iconStart="@tui.circle-check-big"
-						size="xs"
-						tuiButton
-						[tuiHint]="approveTpl"
-						tuiHintAppearance="dark"
-						tuiHintDirection="left"
-						[tuiHintManual]="showApproveTooltip() && selected()?.id == item.id"
-						type="button"
-						(click)="openApproveTooltip(item)"
-					>
-						<ng-template #approveTpl appearance="floating">
-							<h3 tuiTitle>
-								Approve member
-								<div tuiSubtitle>Are you sure you want to approve this member</div>
-							</h3>
-							<footer>
-								<button
-									appearance="negative"
-									tuiButton
-									type="button"
-									(click)="showApproveTooltip.set(false)"
-								>
-									Close
-								</button>
-								<button appearance="positive" tuiButton type="button" (click)="approve(item)">
-									approve
-								</button>
-							</footer>
-						</ng-template>
-					</button>
-					}
-				</span>
-			</td>
-		</tr>
-		}
+								<h3 tuiTitle>
+									Disapprove member
+									<div tuiSubtitle>Are you sure you want to disapprove this member</div>
+								</h3>
+								<footer>
+									<button appearance="positive" tuiButton type="button" (click)="closeTooltip()">
+										Close
+									</button>
+									<button appearance="negative" tuiButton type="button" (click)="deny(item)">
+										Disapprove
+									</button>
+								</footer>
+							</ng-template>
+						</button>
+						} @if(approving() && selected()?.id == item.id){
+						<tui-loader></tui-loader>
+						}@else {
+						<button
+							appearance="flat-grayscale"
+							iconStart="@tui.circle-check-big"
+							size="xs"
+							tuiButton
+							[tuiHint]="approveTpl"
+							tuiHintAppearance="dark"
+							tuiHintDirection="left"
+							[tuiHintManual]="showApproveTooltip() && selected()?.id == item.id"
+							type="button"
+							(click)="openApproveTooltip(item)"
+						>
+							<ng-template #approveTpl appearance="floating">
+								<h3 tuiTitle>
+									Approve member
+									<div tuiSubtitle>Are you sure you want to approve this member</div>
+								</h3>
+								<footer>
+									<button
+										appearance="negative"
+										tuiButton
+										type="button"
+										(click)="showApproveTooltip.set(false)"
+									>
+										Close
+									</button>
+									<button appearance="positive" tuiButton type="button" (click)="approve(item)">
+										approve
+									</button>
+								</footer>
+							</ng-template>
+						</button>
+						}
+					</span>
+				</td>
+			</tr>
+		</ng-container>
 	</tbody>
 </table>
+}
