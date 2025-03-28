@@ -1,12 +1,12 @@
+import {UserPaymentService} from '../services/user-payment.service'
 import { TestBed } from '@angular/core/testing';
-import { EventService } from './event-page.service';
 
-describe('EventService', () => {
-  let service: EventService;
+describe('UserPaymentService', () => {
+  let service: UserPaymentService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(EventService);
+    service = TestBed.inject(UserPaymentService);
   });
 
   it('should be created', () => {

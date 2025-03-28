@@ -1,0 +1,220 @@
+.portal{
+    position: relative;
+    display: flex;
+    box-sizing: border-box;
+    background-color: rgb(226, 247, 253);
+    height:100vh;
+    overflow: hidden;
+}
+
+.search-input {
+    width: 200px;
+    height: 30px;
+    font-size: 13px;
+    padding: 8px 12px 8px 30px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    outline: none;
+    transition: border-color 0.3s ease-in-out;
+    background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="gray"><path fill-rule="evenodd" d="M8.5 2a6.5 6.5 0 0 1 4.9 10.7l3.7 3.7a1 1 0 0 1-1.4 1.4l-3.7-3.7A6.5 6.5 0 1 1 8.5 2zm0 2a4.5 4.5 0 1 0 0 9 4.5 4.5 0 0 0 0-9z" clip-rule="evenodd"/></svg>') no-repeat;
+    background-color: white;
+    background-size: 16px;
+    background-position: 10px center;
+}
+
+.search-input:focus {
+    border-color: #007bff;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.bell-icon{
+    border:none;
+    border-radius: 7px;
+    padding:6px;
+    background-color: white;
+    cursor: pointer;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+.my-portal-image{
+    width:30px;
+    height:30px;
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+    cursor: pointer;
+}
+.side-bar{
+    background-color: white;
+    width:25vw;
+    height:100vh;
+    font-size: xx-large;
+    text-align: center;
+    align-content: center;
+}
+
+.header{
+    box-sizing: border-box;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 30px 0px 30px;
+}
+
+.h-left{
+    height: 60px;
+    line-height: 2px;
+}
+
+.h3-portal{
+    font-size: 1.1rem;
+}
+
+.h-right{
+    display: flex;
+    width: 280px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.portal-content{
+    display: block;
+    width:75vw;
+}
+.txt-contribution{
+    font-size: 1.1rem;
+    font-weight:600;
+    padding-left: 30px;
+}
+.pc-below{
+    position:relative;
+    display: flex;
+    justify-content: space-between;
+    box-sizing: border-box;
+    height:80vh;
+    padding-left: 30px;
+    margin-top: 30px;
+}
+
+.txt-payment-contribution{
+    border: 1px solid beige;
+    width:200px;
+    font-size: large;
+}
+
+.pcb-left{
+    box-sizing: border-box;
+    width: 53vw;
+}
+
+.payment-status{
+    display:flex;
+    justify-content: space-between;
+}
+
+.payment-sum{
+    display:flex;
+    align-items: center;
+    border-radius: 6px;
+    width: 170px;
+    height:85px;
+    background-color: #a6c6da;
+    margin-bottom: 30px;
+    justify-content: center;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.1);
+}
+
+.ps-p{
+    line-height: 5px;
+    margin-left:10px;
+    text-align: center;
+}
+
+.ps-p p:nth-child(1){
+    font-size: 0.8rem;
+}
+
+.ps-p p:nth-child(2) {
+    font-weight: 900;
+    font-size:1.2rem;
+}
+
+table{
+    background-color:azure;
+    width: 100%;
+    height: 60vh;
+    text-align: center;
+    font-size: 0.7rem;
+    padding:20px;
+}
+th{
+    height:40px;
+}
+.payment{
+    position: relative;
+    border-radius: 20px;
+    background-color: gray;
+    width:fit-content;
+    color:white;
+    display: inline-flex;
+    font-weight: 500;
+    font-size: 0.7rem;
+    padding: 2px 10px;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.pcb-right{
+    position: relative;
+    width:200px;
+    height:25vh;
+    margin-right:30px;
+    color: white;
+    font-size: 0.8rem;
+}
+.dues-route{
+    width:200px;
+    color:white;
+    background-color: rgb(35, 73, 162);
+    border-radius: 10px;
+    border:none;
+    align-items: center;
+    display:flex;
+    height:50px;
+    padding: 0px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.donation-route{
+    width:200px;
+    color:white;
+    background-color: rgb(14, 46, 119);
+    border-radius: 10px;
+    border:none;
+    align-items: center;
+    display:flex;
+    height:50px;
+    padding: 0px 15px;
+    margin-bottom: 10px;
+    cursor: pointer;
+}
+.registration-route{
+    width:200px;
+    color:white;
+    background-color: #a6c6da;
+    border-radius: 10px;
+    border:none;
+    align-items: center;
+    display:flex;
+    height:50px;
+    padding: 0px 10px;
+    cursor: pointer;
+}
+.pch-img{
+    width:30px;
+    height: 25px;
+    margin-right:10px;
+}
+.action-btn{
+    background-color: azure;
+    border:none;
+    cursor: pointer;
+    margin-right:5px;
+}
