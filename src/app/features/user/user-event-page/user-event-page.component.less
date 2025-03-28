@@ -29,10 +29,15 @@
   }
 
 }
+
 .srch{
-  width: 25%;
-  @media @tui-mobile{
+  width: 30%;
+  @media @tui-mobile-interval{
     width: 100%;
+ 
+  }
+  @media @tui-tablet-interval{
+    width: 20%;
   }
 }
 .filter{
@@ -40,20 +45,20 @@
   gap: 3em;
   align-items: center;
   justify-content: space-between;
-  @media @tui-mobile{
+  @media @tui-mobile-interval{
     display: flex;
     gap: 10px;
+    width: 100%;
     justify-content: space-between;
-    
       }
       @media @tui-tablet{
-        gap: 10px;
-        
+        gap: 1em;
           }
 
 }
 .all {
   width: 100%; 
+  
   max-width: 100%; 
   min-width: 250px; 
   tui-select {
@@ -76,6 +81,7 @@
 
        @media @tui-tablet{
         min-width: 205px; 
+      
            }
 }
 
@@ -98,8 +104,6 @@
       @media @tui-tablet{
         display: flex;
         gap: 5px;
-     
-      
           }
 
 
@@ -119,7 +123,6 @@ position: fixed;
     @media @tui-tablet {
       display: none;
       }
-
   }
   
   .icon:hover {
@@ -133,6 +136,7 @@ position: fixed;
     gap: 20px;
     justify-content: space-between;
     padding: 20px;
+
   }
   
   .footer app-cards {
