@@ -1,0 +1,138 @@
+<!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+<div class="container">
+    <div class="header">
+        <h3>Create an Event</h3>
+    </div>
+    <div class="main-content">
+        <div class="upload-section"   (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+            
+            <label tuiInputFiles>
+                <input tuiInputFiles [formControl]="control"  (change)="onFileSelect($event)"  />
+                <ng-template let-dragged>
+                    <div *ngIf="dragged; else base" class="content">
+                        <tui-avatar appearance="secondary" src="@tui.droplet" />
+                        <div>Drop it here
+                            <br /><br />
+                        </div>
+                    </div>
+                    <ng-template #base>
+                        <div class="content">
+                            <tui-avatar appearance="secondary" src="@tui.file-image" size="l"/>
+                            <div>
+                                Drag and drop file here or
+                                <a tuiLink>click to upload</a>
+                            </div>
+                        </div>
+                    </ng-template>
+                </ng-template>
+            </label>
+
+            <tui-files class="tui-space_top-4 file-name" *ngIf="file">
+                <tui-file [file]="file" [leftContent]="content">
+                  
+                </tui-file>
+            </tui-files>
+
+            <ng-template #content>
+                <tui-icon icon="@tui.clock" />
+            </ng-template>
+        </div>
+        <div class="form-section">
+            <form class="wrapper" [formGroup]="eventpage">
+                <label tuiLabel>
+                    <p>Event Name</p>
+                    <tui-textfield>
+                        <input
+                        tuiTextfieldAppearance="neutral"
+                            formControlName="event"
+                            
+                            tuiTextfield
+                            placeholder="Enter the event name/heading"
+                        />
+                    </tui-textfield>
+                </label>
+                <div class="dates">
+                    <label tuiLabel>
+                        <p>Event Start</p>
+                        <tui-input-date
+                        tuiTextfieldAppearance="neutral"
+                         [max]="max" [min]="min" 
+                         class="startdate"
+                         [(ngModel)]="from">
+                        </tui-input-date>
+                    </label>
+                    <label tuiLabel>
+                        <p>Event End</p>
+                        <tui-input-date
+                        tuiTextfieldAppearance="neutral"
+                            [items]="items"
+                            [min]="from || min"
+                            [(ngModel)]="to"
+                            class="startdate"
+                        >
+                        </tui-input-date>
+                    </label>
+                </div>
+
+                <label tuiLabel>
+                    <p>Description</p>
+                    <tui-textarea formControlName="description"  tuiTextfieldAppearance="neutral" [tuiTextfieldLabelOutside]="true">
+                        Enter the description
+                    </tui-textarea>
+                </label>
+
+                <label tuiLabel>
+                    <p>Event Mode</p>
+                    <tui-select
+                        tuiTextfieldSize="l"
+                       
+                        class="tui-space_vertical-4"
+                        [formControl]="selectfield"
+                        [tuiTextfieldLabelOutside]="true"
+                   
+                    >
+                    Select the mode
+                        <input placeholder="Select the mode" tuiTextfieldLegacy />
+                        <tui-data-list-wrapper *tuiDataList [items]="items1">
+                        </tui-data-list-wrapper>
+                    </tui-select>
+                </label>
+
+                <label tuiLabel>
+                    <p>Location</p>
+                    <tui-textfield>
+                        <input
+                        tuiTextfieldAppearance="neutral"
+                            formControlName="location"
+                            tuiTextfield
+                            placeholder="Set the location"
+                        />
+                    </tui-textfield>
+                </label>
+
+                <div class="buuton-group">
+                    <button 
+                    appearance="outline" 
+                    [loading]="loadings$ | async"
+                    (click)="triggers$.next()"
+                    class="cancle"
+                    type="button"
+                    tuiButton type="button">
+                       Cancle
+                    </button>
+
+                    <button
+                        iconStart="@tui.pencil-line"
+                        tuiButton
+                        class="create"
+                        type="button"
+                        [loading]="loading$ | async"
+                        (click)="trigger$.next()"
+                    >
+                       Create
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
