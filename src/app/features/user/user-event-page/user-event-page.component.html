@@ -7,7 +7,7 @@
             <div class="srch">
                 <search tuiSearch>
                     <form [formGroup]="form">
-                        <fieldset tuiTextfieldSize="m">
+                        <fieldset tuiTextfieldSize="l">
                             <tui-textfield iconStart="@tui.search">
                                 <input 
                                     placeholder="Search" 
@@ -22,33 +22,18 @@
 
             <div class="filter">
                 <div class="all">
-                    <tui-select
-                    size="s"
-                    class="tui-space_vertical-4"
-                    [tuiDropdownMobile]="'Select user'"
-                    [tuiTextfieldLabelOutside]="true"
-                    [valueContent]="template"
-                    [(ngModel)]="user"
-                >
-                    Select user
-                    <tui-data-list-wrapper
-                        *tuiDataList
-                        [itemContent]="template"
-                        [items]="users"
-                    />
-                </tui-select>
-
-                <ng-template #template let-user>
-                    <span tuiCell>
-                        <tui-avatar [src]="user.url" />
-                        <span tuiTitle>
-                            {{ user.name }}
-                            <span tuiSubtitle>
-                                {{ user.balance | tuiAmount: '$' : 'left' | async }}
-                            </span>
-                        </span>
-                    </span>
-                </ng-template>
+                    <tui-select [formControl]="testValue">
+                        Event Type
+                        <input
+                      
+                            placeholder="Choose your hero"
+                            tuiTextfieldLegacy
+                        />
+                        <tui-data-list-wrapper
+                            *tuiDataList
+                            [items]="items"
+                        />
+                    </tui-select>
                 </div>
                 <div class="icons">
                     <tui-icon

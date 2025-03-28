@@ -22,13 +22,12 @@
   @media @tui-mobile{
     display: flex;
     flex-direction: column;
-    gap: 5px;
+    gap: 1em;
+    width: 100%;
+    padding: 0;
+    margin: 0;
   }
-  @media @tui-tablet{
-    display: flex;
-justify-content: space-between;
-;
-      }
+
 }
 .srch{
   width: 25%;
@@ -40,37 +39,73 @@ justify-content: space-between;
   display: flex;
   gap: 3em;
   align-items: center;
-  width: 30%; 
+  justify-content: space-between;
   @media @tui-mobile{
-    width: 100%;
-
-    margin-right: 170px;
+    display: flex;
+    gap: 10px;
+    justify-content: space-between;
+    
       }
-  @media @tui-tablet{
-        width: 70%;
- 
-     margin-left: 80px;
-          } 
+      @media @tui-tablet{
+        gap: 10px;
+        
+          }
+
 }
-.all{
-  width: 40%;
-  @media @tui-tablet{
+.all {
+  width: 100%; 
+  max-width: 100%; 
+  min-width: 250px; 
+  tui-select {
     width: 100%;
-      } 
+    display: block; 
+    .tui-select__wrapper {
+      width: 100% !important; 
+   
+    }
+    input {
+      width: 100% !important;
+      min-width: 300px;
+      max-width: 100%;
+
+    }
+  }
+  @media @tui-mobile{
+    min-width: 205px; 
+       }
+
+       @media @tui-tablet{
+        min-width: 205px; 
+           }
 }
 
+@media @tui-tablet {
+  .all {
+    width: 100%;
+    max-width: 500px;
+  }
+}
 .icons{
   display: flex;
   gap: 1.5em;
   align-items: center;
   @media @tui-mobile{
-    width: 100%;
-    margin: 0;
+    display: flex;
+    gap: 5px;
+ 
+  
       }
+      @media @tui-tablet{
+        display: flex;
+        gap: 5px;
+     
+      
+          }
+
 
 }
 .icon {
-    position: fixed;
+position: fixed;
     bottom: 0;
     right: 40em;
     background: #00b4d8;
@@ -81,6 +116,9 @@ justify-content: space-between;
     cursor: pointer;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     transition: background 0.3s ease-in-out;
+    @media @tui-tablet {
+      display: none;
+      }
 
   }
   
@@ -105,14 +143,9 @@ justify-content: space-between;
   
   @media (max-width: 992px) {
     .footer app-cards {
-      flex: 0 0 calc(50% - 20px);
-      max-width: calc(50% - 20px);
+      flex: 0 0 calc(100% - 20px);
+      max-width: calc(100% - 20px);
     }
   }
   
-  @media (max-width: 576px) {
-    .footer app-cards {
-      flex: 0 0 100%;
-      max-width: 100%;
-    }
-  }
+

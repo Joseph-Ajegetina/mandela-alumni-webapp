@@ -1,34 +1,27 @@
-import { AsyncPipe, NgFor } from '@angular/common';
+import { NgFor } from '@angular/common';
 import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiAmountPipe } from '@taiga-ui/addon-commerce';
-import { TuiDropdownMobile } from '@taiga-ui/addon-mobile';
+
 import { TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
-import { TuiAvatar } from '@taiga-ui/kit';
+
 import { TuiSearch } from '@taiga-ui/layout';
 import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { SliderComponent } from "../../../shared/ui/slider/slider.component";
 import { Card, Slide } from 'src/app/shared/interfaces/menu-item';
 import { CardsComponent } from "../../../shared/ui/cards/cards.component";
 
-interface User {
-  readonly url: string;
-  readonly name: string;
-  readonly balance: number;
-}
-
 @Component({
   selector: 'app-user-event-page',
   imports: [
     TuiIcon,
-    AsyncPipe,
+
     FormsModule,
     ReactiveFormsModule,
     TuiSearch,
-    TuiAmountPipe,
-    TuiAvatar,
+
+
     TuiDropdown,
-    TuiDropdownMobile,
+
     TuiSelectModule,
     TuiTextfield,
     TuiTextfieldControllerModule,
@@ -47,18 +40,6 @@ export class UserEventPageComponent {
     search: new FormControl(),
   });
 
-  protected selected: readonly User[] = [];
-  protected user: User | null = null;
-
-  protected readonly users: readonly User[] = [
-    { name: 'Alex Inkin', balance: 1_323_525, url: 'https://taiga-ui.dev/assets/images/avatar.jpg' },
-    { name: 'Roman Sedov', balance: 523_242, url: 'RS' },
-    { name: 'Vladimir Potekhin', balance: 645_465, url: 'VP' },
-    { name: 'Nikita Barsukov', balance: 468_468, url: 'NB' },
-    { name: 'Maxim Ivanov', balance: 498_654, url: 'MI' },
-  ];
-
-  protected readonly stringify = ({ name }: User): string => name;
   slide: Slide = {
     images: [
       'images/alumracle/slider1.jpg',
@@ -150,4 +131,11 @@ export class UserEventPageComponent {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   }
+
+  protected items = [
+    'Virtual',
+    'In-Person',
+    'Hybrid',
+];
+protected testValue = new FormControl<string | null>(null);
 }
