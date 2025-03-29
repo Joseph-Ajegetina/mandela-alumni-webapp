@@ -1,36 +1,33 @@
 <div class="slideshow-container">
-  <div class="slideshow" 
-       [ngStyle]="{'background-image': 'url(' + currentSlide + ')'}"
-       [@slideAnimation]="animationState">
-    <div class="text-overlay">
-      <span class="event-type">{{ slide.overlayText.event_type}}</span>
-      <h2>{{ slide.overlayText.title }}</h2>
-      <p class="description">{{ slide.overlayText.description }}</p>
-      <div class="event-details">
-        <p *ngIf="slide.overlayText.date">
-          <tui-icon
-                  icon="@tui.calendar-check"
-                  [style.color]="'#26ABE4'"
-                />
-                 {{ slide.overlayText.date }}
-        </p>
-        
-        <p *ngIf="slide.overlayText.time">
-          <tui-icon
-          icon="@tui.alarm-clock"
-          [style.color]="'#26ABE4'"
-        />{{ slide.overlayText.time }}
-        </p>
-      </div>
-      <div class="buttons">
-        <button
-          *ngFor="let btn of slide.overlayText.buttons"
-          [ngClass]="btn.style"
-          (click)="navigateTo(btn.link)">
-          <tui-icon *ngIf="btn.icon" [icon]="btn.icon" [style.color]="'#FFFFFF'"></tui-icon>
-          {{ btn.text }}
-        </button>
-      </div>
-    </div>
-  </div>
+	<div
+		class="slideshow"
+		[ngStyle]="{ 'background-image': 'url(' + currentSlide + ')' }"
+		[@slideAnimation]="animationState"
+	>
+		<div class="text-overlay">
+			<span class="event-type">{{ slide.overlayText.event_type }}</span>
+			<h2>{{ slide.overlayText.title }}</h2>
+			<p class="description">{{ slide.overlayText.description }}</p>
+			<div class="event-details">
+				<p *ngIf="slide.overlayText.date">
+					<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
+					{{ slide.overlayText.date }}
+				</p>
+
+				<p *ngIf="slide.overlayText.time">
+					<tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />{{ slide.overlayText.time }}
+				</p>
+			</div>
+			<div class="buttons">
+				<button
+					*ngFor="let btn of slide.overlayText.buttons"
+					[ngClass]="btn.style"
+					(click)="navigateTo(btn.link)"
+				>
+					<tui-icon *ngIf="btn.icon" [icon]="btn.icon" [style.color]="'#FFFFFF'"></tui-icon>
+					{{ btn.text }}
+				</button>
+			</div>
+		</div>
+	</div>
 </div>

@@ -1,155 +1,141 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
-.container{
-  background-color: #F5FCFFFA;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  gap:30px;
+.container {
+	background-color: #f5fcfffa;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 30px;
 }
-.header h3{
-  color: #254568;
-  font-size: 16px;
+.header h3 {
+	color: #254568;
+	font-size: 16px;
 }
-.main-content{
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
+.main-content {
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 }
-.top{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  @media @tui-mobile{
-    display: flex;
-    flex-direction: column;
-    gap: 1em;
-    width: 100%;
-    padding: 0;
-    margin: 0;
-  }
+.top {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	@media @tui-mobile {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+}
 
+.srch {
+	width: 30%;
+	@media @tui-mobile-interval {
+		width: 100%;
+	}
+	@media @tui-tablet-interval {
+		width: 20%;
+	}
 }
-
-.srch{
-  width: 30%;
-  @media @tui-mobile-interval{
-    width: 100%;
- 
-  }
-  @media @tui-tablet-interval{
-    width: 20%;
-  }
-}
-.filter{
-  display: flex;
-  gap: 3em;
-  align-items: center;
-  justify-content: space-between;
-  @media @tui-mobile-interval{
-    display: flex;
-    gap: 10px;
-    width: 100%;
-    justify-content: space-between;
-      }
-      @media @tui-tablet{
-        gap: 1em;
-          }
-
+.filter {
+	display: flex;
+	gap: 3em;
+	align-items: center;
+	justify-content: space-between;
+	@media @tui-mobile-interval {
+		display: flex;
+		gap: 10px;
+		width: 100%;
+		justify-content: space-between;
+	}
+	@media @tui-tablet {
+		gap: 1em;
+	}
 }
 .all {
-  width: 100%; 
-  
-  max-width: 100%; 
-  min-width: 250px; 
-  tui-select {
-    width: 100%;
-    display: block; 
-    .tui-select__wrapper {
-      width: 100% !important; 
-   
-    }
-    input {
-      width: 100% !important;
-      min-width: 300px;
-      max-width: 100%;
+	width: 100%;
 
-    }
-  }
-  @media @tui-mobile{
-    min-width: 205px; 
-       }
+	max-width: 100%;
+	min-width: 250px;
+	tui-select {
+		width: 100%;
+		display: block;
+		.tui-select__wrapper {
+			width: 100% !important;
+		}
+		input {
+			width: 100% !important;
+			min-width: 300px;
+			max-width: 100%;
+		}
+	}
+	@media @tui-mobile {
+		min-width: 205px;
+	}
 
-       @media @tui-tablet{
-        min-width: 205px; 
-      
-           }
+	@media @tui-tablet {
+		min-width: 205px;
+	}
 }
 
 @media @tui-tablet {
-  .all {
-    width: 100%;
-    max-width: 500px;
-  }
+	.all {
+		width: 100%;
+		max-width: 500px;
+	}
 }
-.icons{
-  display: flex;
-  gap: 1.5em;
-  align-items: center;
-  @media @tui-mobile{
-    display: flex;
-    gap: 5px;
- 
-  
-      }
-      @media @tui-tablet{
-        display: flex;
-        gap: 5px;
-          }
-
-
+.icons {
+	display: flex;
+	gap: 1.5em;
+	align-items: center;
+	@media @tui-mobile {
+		display: flex;
+		gap: 5px;
+	}
+	@media @tui-tablet {
+		display: flex;
+		gap: 5px;
+	}
 }
 .icon {
-position: fixed;
-    bottom: 0;
-    right: 40em;
-    background: #00b4d8;
-    color: white;
-    border: none;
-    padding: 12px;
-    border-radius: 50%;
-    cursor: pointer;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-    transition: background 0.3s ease-in-out;
-    @media @tui-tablet {
-      display: none;
-      }
-  }
-  
-  .icon:hover {
-    background: #0077b6;
-    
-  }
-  
-  .footer {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 20px;
-    justify-content: space-between;
-    padding: 20px;
+	position: fixed;
+	bottom: 0;
+	right: 40em;
+	background: #00b4d8;
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	transition: background 0.3s ease-in-out;
+	@media @tui-tablet {
+		display: none;
+	}
+}
 
-  }
-  
-  .footer app-cards {
-    flex: 0 0 calc(33.33% - 20px);
-    margin-bottom: 20px;
-    max-width: calc(33.33% - 20px);
-  }
-  
-  @media (max-width: 992px) {
-    .footer app-cards {
-      flex: 0 0 calc(100% - 20px);
-      max-width: calc(100% - 20px);
-    }
-  }
-  
+.icon:hover {
+	background: #0077b6;
+}
 
+.footer {
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: space-between;
+	padding: 20px;
+}
+
+.footer app-cards {
+	flex: 0 0 calc(33.33% - 20px);
+	margin-bottom: 20px;
+	max-width: calc(33.33% - 20px);
+}
+
+@media (max-width: 992px) {
+	.footer app-cards {
+		flex: 0 0 calc(100% - 20px);
+		max-width: calc(100% - 20px);
+	}
+}

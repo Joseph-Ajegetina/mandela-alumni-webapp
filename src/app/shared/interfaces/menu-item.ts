@@ -4,30 +4,26 @@ export interface MenuItem {
 	route: string;
 }
 
-
-
 export interface Slide {
-	images: string[]; 
+	images: string[];
 	overlayText: {
 		event_type?: string;
-	  title: string;
-	  description: string;
-	  date?: string;
-	  time?: string;
-	  buttons?: { icon?: string; text: string; link: string; style?: string }[];
+		title: string;
+		description: string;
+		date?: string;
+		time?: string;
+		buttons?: { icon?: string; text: string; link: string; style?: string }[];
 	};
-  }
-  
+}
 
-  export interface Card{
-	image: string; 
+export interface Card {
+	image: string;
 	overlayText: {
 		event_type?: string;
-	  title: string;
-	  description: string;
-	  date?: string;
-	  time?: string;
-	  buttons?: { icon?: string; text: string; link: string; style?: string }[];
+		title: string;
+		description: string;
+		date?: string;
+		time?: string;
+		buttons?: { icon?: string; text: string; link: string; style?: string }[];
 	};
-  }
-  
+}

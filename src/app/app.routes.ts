@@ -4,11 +4,9 @@ import { LoginComponent } from './features/auth/feature/login/login.component';
 import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
-
-
+import { AdminGuard } from './core/guards/admin.guard';
 
 export const appRoutes: Route[] = [
-
 	{
 		path: '',
 		pathMatch: 'full',
@@ -31,8 +29,6 @@ export const appRoutes: Route[] = [
 		component: RegisterComponent,
 	},
 
-
-
 	{
 		path: '',
 		loadComponent: () =>
@@ -51,10 +47,12 @@ export const appRoutes: Route[] = [
 			{
 				path: 'userevent',
 				loadComponent: () =>
-					import('./features/user/user-event-page/user-event-page.component').then((m) => m.UserEventPageComponent),
+					import('./features/user/user-event-page/user-event-page.component').then(
+						(m) => m.UserEventPageComponent,
+					),
 			},
 		],
-		canActivateChild: [AuthGuard],
+		canActivateChild: [AuthGuard, AdminGuard],
 	},
 
 	{

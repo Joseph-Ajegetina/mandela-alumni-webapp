@@ -1,143 +1,132 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
 
 .slideshow-container {
-  position: relative;
-  width: 100%;
-  height: 380px; 
-  overflow: hidden;
+	position: relative;
+	width: 100%;
+	height: 380px;
+	overflow: hidden;
 
-@media @tui-mobile {
-  height: auto;
-}
-
+	@media @tui-mobile {
+		height: auto;
+	}
 }
 
 .slideshow {
-  position: relative;
-  width: 100%;
-  height: 380px; 
-  background-size: cover;
-  background-position: center;
-  display: flex;
-  align-items: flex-end; 
-  justify-content: flex-start;
-  @media @tui-mobile {
-    height: auto;
-    background-size: cover;
-    background-position: center;
-    position: relative;
-  }
-
+	position: relative;
+	width: 100%;
+	height: 380px;
+	background-size: cover;
+	background-position: center;
+	display: flex;
+	align-items: flex-end;
+	justify-content: flex-start;
+	@media @tui-mobile {
+		height: auto;
+		background-size: cover;
+		background-position: center;
+		position: relative;
+	}
 }
 
 .text-overlay {
- background: #025080E0;
-  color: white;
-  padding: 20px;
-  text-align: left;
-  max-width: 50%;
-  margin-bottom: 0;
-  animation: fadeIn 0.5s ease-in-out;
-  padding-left: 3em;
-  @media @tui-mobile {
-    max-width: 100%;
-    width: 100%;
-    position: relative;
-    padding: 20px 15px;
-    margin: 0;
-    background: rgba(2, 80, 128, 0.9); 
-    box-sizing: border-box;
-  }
-
-
+	background: #025080e0;
+	color: white;
+	padding: 20px;
+	text-align: left;
+	max-width: 50%;
+	margin-bottom: 0;
+	animation: fadeIn 0.5s ease-in-out;
+	padding-left: 3em;
+	@media @tui-mobile {
+		max-width: 100%;
+		width: 100%;
+		position: relative;
+		padding: 20px 15px;
+		margin: 0;
+		background: rgba(2, 80, 128, 0.9);
+		box-sizing: border-box;
+	}
 }
-.description{
-  width: 70%;
-  @media @tui-tablet {
- 
-    width: 75%;
-   }
+.description {
+	width: 70%;
+	@media @tui-tablet {
+		width: 75%;
+	}
 }
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
+	from {
+		opacity: 0;
+		transform: translateX(-20px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
 }
 
 .event-type {
-  display: inline-block;
-  background: #00b4d8;
-  padding: 10px 10px;
-  border-radius: 10px;
-  font-size: 16px;
+	display: inline-block;
+	background: #00b4d8;
+	padding: 10px 10px;
+	border-radius: 10px;
+	font-size: 16px;
 }
 
 h2 {
-  margin-top: 10px;
-  font-size: 28px;
-  @media @tui-tablet {
- 
-    font-size: 20px;
-   }
+	margin-top: 10px;
+	font-size: 28px;
+	@media @tui-tablet {
+		font-size: 20px;
+	}
 }
 
 p {
-  margin-top: 10px;
-  font-size: 11px;
-  @media @tui-tablet {
- 
-     height: auto;
-     font-size: 10px;
-   }
+	margin-top: 10px;
+	font-size: 11px;
+	@media @tui-tablet {
+		height: auto;
+		font-size: 10px;
+	}
 }
 
 .event-details {
-  margin-top: 10px;
-  font-size: 14px;
-
+	margin-top: 10px;
+	font-size: 14px;
 }
 
 .buttons {
-  margin-top: 15px;
-  margin-bottom: 5px; 
-
+	margin-top: 15px;
+	margin-bottom: 5px;
 }
 
 button {
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  font-size: 16px;
-  margin-right: 10px;
-  @media @tui-tablet {
-    padding: 5px 10px;
-
-  }
+	padding: 10px 15px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-right: 10px;
+	@media @tui-tablet {
+		padding: 5px 10px;
+	}
 }
 
 .register-btn {
-  background: #28a745;
-  color: white;
-  @media @tui-tablet {
-   
-    font-size: 10px;
-  }
+	background: #28a745;
+	color: white;
+	@media @tui-tablet {
+		font-size: 10px;
+	}
 }
 
 .details-btn {
-  background: transparent;
-  color: white;
-  border: 1px solid white;
-  border-top: 0.5px solid rgba(255, 255, 255, 0.5);
-  border-radius: 10px;
-  @media @tui-tablet {
-    padding: 10px 15px;
-    font-size: 10px;
-  }
+	background: transparent;
+	color: white;
+	border: 1px solid white;
+	border-top: 0.5px solid rgba(255, 255, 255, 0.5);
+	border-radius: 10px;
+	@media @tui-tablet {
+		padding: 10px 15px;
+		font-size: 10px;
+	}
 }
