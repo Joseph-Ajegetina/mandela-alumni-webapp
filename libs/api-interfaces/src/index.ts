@@ -1,1 +1,1 @@
-export * from './lib/api-interfaces/api-interfaces.component';
+export * from './lib/api-interfaces';
