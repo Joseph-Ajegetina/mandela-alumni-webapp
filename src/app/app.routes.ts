@@ -45,11 +45,9 @@ export const appRoutes: Route[] = [
 					import('./features/admin/approval/approval.component').then((m) => m.ApprovalComponent),
 			},
 			{
-				path: 'userevent',
+				path: 'events',
 				loadComponent: () =>
-					import('./features/user/user-event-page/user-event-page.component').then(
-						(m) => m.UserEventPageComponent,
-					),
+					import('./features/events/events.component').then((m) => m.EventsComponent),
 			},
 		],
 		canActivateChild: [AuthGuard, AdminGuard],

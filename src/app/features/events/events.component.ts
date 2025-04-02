@@ -1,39 +1,33 @@
-import { NgFor } from '@angular/common';
-import { ChangeDetectionStrategy, Component, HostListener } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
+import { CommonModule, NgFor } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-
+import { Card, Slide } from 'src/app/shared/interfaces/menu-item';
 import { TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
-
 import { TuiSearch } from '@taiga-ui/layout';
 import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
-import { SliderComponent } from '../../../shared/ui/slider/slider.component';
-import { Card, Slide } from 'src/app/shared/interfaces/menu-item';
-import { CardsComponent } from '../../../shared/ui/cards/cards.component';
+import { CardsComponent } from 'src/app/shared/ui/cards/cards.component';
+import { SliderComponent } from 'src/app/shared/ui/slider/slider.component';
 
 @Component({
-	selector: 'app-user-event-page',
+	selector: 'app-events',
 	imports: [
+		CommonModule,
 		TuiIcon,
-
 		FormsModule,
 		ReactiveFormsModule,
 		TuiSearch,
-
 		TuiDropdown,
-
 		TuiSelectModule,
 		TuiTextfield,
 		TuiTextfieldControllerModule,
 		SliderComponent,
 		TuiIcon,
 		CardsComponent,
-		NgFor,
 	],
-	templateUrl: './user-event-page.component.html',
-	styleUrls: ['./user-event-page.component.less'],
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	templateUrl: './events.component.html',
+	styleUrl: './events.component.less',
 })
-export class UserEventPageComponent {
+export class EventsComponent {
 	protected readonly form = new FormGroup({
 		search: new FormControl(),
 	});
