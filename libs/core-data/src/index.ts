@@ -1,1 +1,1 @@
-export * from './lib/core-data/core-data.component';
+import { EventsService } from "./lib/services/events/events.service";
