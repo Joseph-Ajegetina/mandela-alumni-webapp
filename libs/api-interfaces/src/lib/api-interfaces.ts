@@ -18,14 +18,5 @@ export interface Event extends BaseEntity {
     date: Date;
     location: string;
     name: string;
+    image: string;
   }
-
-  export interface NewEvent extends Omit<Event, 'id'> {
-    id?: never; // Ensures `id` is never present in new events
-  }
-  
-  export interface ExistingEvent extends Event {
-    id: string; // Ensures `id` is always present in existing events
-  }
-  
-

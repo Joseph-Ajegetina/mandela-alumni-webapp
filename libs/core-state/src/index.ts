@@ -1,1 +1,1 @@
-export * from './lib/core-state/core-state.component';
+export {EventStore} from './lib/events/events.store';

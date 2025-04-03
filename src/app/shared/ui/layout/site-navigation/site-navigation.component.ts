@@ -30,6 +30,8 @@ export class SiteNavigationComponent {
 		home: 'dashboard',
 		directory: 'directory',
 		approval: 'approvals',
+		events: 'events',
+		createEvent: 'createEvent',
 	};
 
 	logout() {
