@@ -8,7 +8,7 @@ import {
 	RouterStateSnapshot,
 } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
+import { AuthState } from 'src/app/auth/data-access/state/auth.state';
 
 @Injectable({ providedIn: 'root' })
 export class AuthGuard implements CanActivate, CanActivateChild {

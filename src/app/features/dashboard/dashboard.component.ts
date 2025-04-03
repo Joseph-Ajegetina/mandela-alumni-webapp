@@ -2,7 +2,7 @@ import { Component, inject, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { map, Observable, of } from 'rxjs';
 import { IUser } from '../../shared/interfaces/user';
-import { AuthState } from '../auth/data-access/state/auth.state';
+import { AuthState } from 'src/app/auth/data-access/state/auth.state';
 import { TuiCalendar, TuiIcon, TuiMarkerHandler } from '@taiga-ui/core';
 import { TuiDay } from '@taiga-ui/cdk';
 

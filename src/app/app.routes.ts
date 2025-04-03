@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
-import { RegisterComponent } from './features/auth/feature/register/register.component';
-import { LoginComponent } from './features/auth/feature/login/login.component';
-import { LoginResolve } from './features/auth/data-access/login.resolve';
+import { RegisterComponent } from './auth/feature/register/register.component';
+import { LoginComponent } from './auth/feature/login/login.component';
+import { LoginResolve } from './auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
@@ -50,10 +50,10 @@ export const appRoutes: Route[] = [
 					import('./features/events/events.component').then((m) => m.EventsComponent),
 			},
 			{
-				path: 'createEvent',
+				path: 'new-event',
 				loadComponent: () =>
-					import('./features/create-new-event/create-new-event.component').then(
-						(m) => m.CreateNewEventComponent,
+					import('./features/events/new-event/new-event.component').then(
+						(m) => m.NewEventComponent,
 					),
 			},
 		],

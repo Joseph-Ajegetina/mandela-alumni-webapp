@@ -7,7 +7,7 @@ import {
 	Router,
 	RouterStateSnapshot,
 } from '@angular/router';
-import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
+import { AuthState } from 'src/app/auth/data-access/state/auth.state';
 
 @Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate, CanActivateChild {

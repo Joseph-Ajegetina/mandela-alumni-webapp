@@ -7,8 +7,8 @@ import {
 } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { catchError, filter, finalize, Observable, Subject, switchMap, throwError } from 'rxjs';
-import { AuthService } from 'src/app/features/auth/data-access/services/auth.service';
-import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
+import { AuthService } from 'src/app/auth/data-access/services/auth.service';
+import { AuthState } from 'src/app/auth/data-access/state/auth.state';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({ providedIn: 'root' })

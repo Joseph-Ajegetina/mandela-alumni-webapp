@@ -1,4 +1,4 @@
-import { AsyncPipe, NgIf } from '@angular/common';
+import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import {
 	FormControl,
@@ -26,9 +26,9 @@ import {
 import { map, startWith, Subject, switchMap, timer } from 'rxjs';
 
 @Component({
-	selector: 'app-create-new-event',
+	selector: 'app-new-event',
 	imports: [
-		NgIf,
+		CommonModule,
 		ReactiveFormsModule,
 		TuiAvatar,
 		TuiFiles,
@@ -47,11 +47,10 @@ import { map, startWith, Subject, switchMap, timer } from 'rxjs';
 		TuiButton,
 		TuiButtonLoading,
 	],
-	templateUrl: './create-new-event.component.html',
-	styleUrl: './create-new-event.component.less',
-	changeDetection: ChangeDetectionStrategy.OnPush,
+	templateUrl: './new-event.component.html',
+	styleUrl: './new-event.component.less',
 })
-export class CreateNewEventComponent {
+export class NewEventComponent {
 	protected readonly control = new FormControl<TuiFileLike | null>(null);
 
 	protected file: TuiFileLike | null = null;

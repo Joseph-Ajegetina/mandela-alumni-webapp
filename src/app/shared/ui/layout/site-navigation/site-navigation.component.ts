@@ -31,7 +31,7 @@ export class SiteNavigationComponent {
 		directory: 'directory',
 		approval: 'approvals',
 		events: 'events',
-		createEvent: 'createEvent',
+		createEvent: 'new-event',
 	};
 
 	logout() {
