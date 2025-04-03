@@ -1,172 +1,157 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
 .container {
-   
-    width: 100%; 
+	width: 100%;
 }
 
 .header {
-    margin-bottom: 3em;
+	margin-bottom: 3em;
 
-  h3 {
-        font-size: 20px;
-       line-height: 1;
-      padding: 0;
-      margin: 0;
-    }
+	h3 {
+		font-size: 20px;
+		line-height: 1;
+		padding: 0;
+		margin: 0;
+	}
 }
 
 .main-content {
-    display: flex;
-    align-items: flex-start; 
-    justify-content: center;
-    padding: 1em;
-    gap: 2em;
-    flex-wrap: wrap;
-    border-radius: 8px;
-    background: #fff;
-  width: 90%;
+	display: flex;
+	align-items: flex-start;
+	justify-content: center;
+	padding: 1em;
+	gap: 2em;
+	flex-wrap: wrap;
+	border-radius: 8px;
+	background: #fff;
+	width: 90%;
 
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  @media @tui-mobile {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    
-}
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+	@media @tui-mobile {
+		display: flex;
+		flex-direction: column;
+		width: 100%;
+	}
 	@media @tui-tablet {
-        display: flex;
-        flex-direction: column;
-        width: 100%;
-        
+		display: flex;
+		flex-direction: column;
+		width: 100%;
 	}
 }
 
 .upload-section {
-    flex: 1.5;
-  
-    max-width:400px;
-    width: 100%;
-    text-align: center;
-    padding: 20px;
-    cursor: pointer;
-    @media @tui-tablet {
-margin-left: 50px;
-padding: 20px;
-	}
-    @media @tui-mobile {
-   width: 100%;
-   margin: 0;
-   padding: 0;
+	flex: 1.5;
 
+	max-width: 400px;
+	width: 100%;
+	text-align: center;
+	padding: 20px;
+	cursor: pointer;
+	@media @tui-tablet {
+		margin-left: 50px;
+		padding: 20px;
 	}
-    
+	@media @tui-mobile {
+		width: 100%;
+		margin: 0;
+		padding: 0;
+	}
 }
 .content {
-    display: flex;
-    block-size: 10rem;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    gap: 1rem;
+	display: flex;
+	block-size: 10rem;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
 }
 
-.file-name{
-    margin-top: 1em;
+.file-name {
+	margin-top: 1em;
 }
 .form-section {
-    flex: 1.9;
-    .wrapper {
-        display: flex;
-        flex-direction: column;
-        gap: 16px;
-        
-    }
-
-    label[tuiLabel] {
-   
-       
-        p {
-            color: #333;
-            font-size: 20px;
-            margin: 0;
-            margin-bottom: 5px;
-       }
-    }
- 
-   
-
-    input[tuiTextfield], 
-    tui-textarea, 
-    tui-input-date, 
-    tui-select {
-        width: 100%;
-        border-radius: 0;
-    }
- 
-   
-    .dates {
-        display: flex;
-        gap: 10px;
-
-        > label {
-            flex: 1;
-        
-        }
-     
-        @media @tui-tablet {
-    
-         
-            width: 100%;
-        }
-        @media @tui-mobile {
-            display: flex;
-            flex-direction: column;
-         
-            width: 100%;
-        }
-    }
-
-    
-	@media @tui-mobile {
-        display: flex;
-        flex-direction: column;
-     
-        width: 100%;
+	flex: 1.9;
+	.wrapper {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
 	}
-    @media @tui-tablet {
-        display: flex;
-        flex-direction: column;
-   
-        width: 100%;
+
+	label[tuiLabel] {
+		p {
+			color: #333;
+			font-size: 20px;
+			margin: 0;
+			margin-bottom: 5px;
+		}
+	}
+
+	input[tuiTextfield],
+	tui-textarea,
+	tui-input-date,
+	tui-select {
+		width: 100%;
+		border-radius: 0;
+	}
+
+	.dates {
+		display: flex;
+		gap: 10px;
+
+		> label {
+			flex: 1;
+		}
+
+		@media @tui-tablet {
+			width: 100%;
+		}
+		@media @tui-mobile {
+			display: flex;
+			flex-direction: column;
+
+			width: 100%;
+		}
+	}
+
+	@media @tui-mobile {
+		display: flex;
+		flex-direction: column;
+
+		width: 100%;
+	}
+	@media @tui-tablet {
+		display: flex;
+		flex-direction: column;
+
+		width: 100%;
 	}
 }
 
 .buuton-group {
-    display: flex;
-    justify-content: space-between;
-    gap: 1em;
-    margin-top: 16px;
-    @media @tui-mobile {
-        display: flex;
-        flex-direction: column;
-     
-        width: 100%;
+	display: flex;
+	justify-content: space-between;
+	gap: 1em;
+	margin-top: 16px;
+	@media @tui-mobile {
+		display: flex;
+		flex-direction: column;
+
+		width: 100%;
 	}
 
-    button[tuiButton] {
-        flex: 1;
-        padding: 5px;
-        @media @tui-mobile {
-            padding: 20px;
-            width: 100%;
-        }
-    }
+	button[tuiButton] {
+		flex: 1;
+		padding: 5px;
+		@media @tui-mobile {
+			padding: 20px;
+			width: 100%;
+		}
+	}
 }
 .create {
-    background-color: #254568 !important;
-    color: white;
+	background-color: #254568 !important;
+	color: white;
 }
-.cancle{
-    color: #254568;
-    border:1px solid #254568;
+.cancle {
+	color: #254568;
+	border: 1px solid #254568;
 }

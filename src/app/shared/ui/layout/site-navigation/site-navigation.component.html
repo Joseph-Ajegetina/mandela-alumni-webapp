@@ -5,6 +5,7 @@
 		</button>
 	</header>
 	<a iconStart="@tui.circle-check" [routerLink]="routes.approval" tuiAsideItem> Approvals </a>
+	<a iconStart="@tui.calendar" [routerLink]="routes.events" tuiAsideItem> Event </a>
 	<button
 		iconStart="@tui.square-library"
 		tuiAsideItem
@@ -14,9 +15,13 @@
 		Directory
 	</button>
 	<button
-	iconStart="@tui.circle-check" tuiAsideItem type="button" [routerLink]="routes.createEvent">
-	Creete Event
-</button>
+		iconStart="@tui.circle-check"
+		tuiAsideItem
+		type="button"
+		[routerLink]="routes.createEvent"
+	>
+		Creete Event
+	</button>
 	<a iconStart="@tui.users" tuiAsideItem> Groups </a>
 
 	<footer>
