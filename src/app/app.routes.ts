@@ -49,6 +49,13 @@ export const appRoutes: Route[] = [
 				loadComponent: () =>
 					import('./features/events/events.component').then((m) => m.EventsComponent),
 			},
+			{
+				path: 'createEvent',
+				loadComponent: () =>
+					import('./features/create-new-event/create-new-event.component').then(
+						(m) => m.CreateNewEventComponent,
+					),
+			},
 		],
 		canActivateChild: [AuthGuard, AdminGuard],
 	},

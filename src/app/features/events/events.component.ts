@@ -36,8 +36,7 @@ export class EventsComponent implements OnInit {
 	});
 
 	ngOnInit(): void {
-		const query = this.eventStore.filter.query;
-		this.eventStore.loadByQuery(query);
+		this.eventStore.loadAll();
 	}
 
 	isAtTop = true; // Initially at the top

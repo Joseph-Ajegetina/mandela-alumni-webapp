@@ -58,6 +58,11 @@ export const EventStore = signalStore(
 				filter: { ...state.filter, order },
 			}));
 		},
+		async loadAll(): Promise<void> {
+			patchState(store, { isLoading: true });
+			const events = await eventsService.all();
+			patchState(store, { events, isLoading: false });
+		  },
 
 		loadByQuery: rxMethod<string>(
 			pipe(

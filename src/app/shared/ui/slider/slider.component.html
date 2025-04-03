@@ -5,13 +5,13 @@
 		[@slideAnimation]="animationState"
 	>
 		<div class="text-overlay">
-			<span class="event-type">{{ slide.type }}</span>
-			<h2>{{ slide.title }}</h2>
-			<p class="description">{{ slide.description }}</p>
+			<span class="event-type">{{ slide?.type }}</span>
+			<h2>{{ slide?.title }}</h2>
+			<p class="description">{{ slide?.description }}</p>
 			<div class="event-details">
 				<p>
 					<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
-					{{ slide.date }}
+					{{ slide?.date }}
 				</p>
 
 				<p><tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />10:00 AM</p>

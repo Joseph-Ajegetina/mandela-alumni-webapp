@@ -19,7 +19,7 @@ import { Event } from '@mandela-alumni-webapp/api-interfaces';
 	],
 })
 export class SliderComponent implements OnInit, OnDestroy {
-	@Input() slide!: Event;
+	@Input() slide!: Event | null;
 	currentIndex = 0;
 	animationState = 0;
 	intervalId: number | null = null;
