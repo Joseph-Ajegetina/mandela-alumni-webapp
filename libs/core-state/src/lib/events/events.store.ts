@@ -24,6 +24,28 @@ export const EventStore = signalStore(
 	withState(initialState),
 	withComputed(({ events, filter }) => ({
 		eventsCount: computed(() => events().length),
+		filteredEvents: computed(() => {
+			const { query, order, type } = filter();
+			return events().filter((event) => {
+				const matchesQuery = event.name.toLowerCase().includes(query.toLowerCase());
+				const matchesType = type ? event.type === type : true;
+				return matchesQuery && matchesType;
+			}).sort((a, b) => {
+				if (order === 'asc') {
+					return a.date.getTime() - b.date.getTime();
+				} else {
+					return b.date.getTime() - a.date.getTime();
+				}
+			});
+		}),
+
+		latestEvent: computed(() => {
+			const allEvents = events(); ;
+			if (allEvents.length === 0) return null;
+			return allEvents.reduce((latest, event) => {
+				return event.date > latest.date ? event : latest;
+			});
+		}),
 	})),
 	withMethods((store, eventsService = inject(EventsService)) => ({
 		updateQuery(query: string): void {

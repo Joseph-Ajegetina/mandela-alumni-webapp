@@ -7,7 +7,6 @@ import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy'
 import { CardsComponent } from 'src/app/shared/ui/cards/cards.component';
 import { SliderComponent } from 'src/app/shared/ui/slider/slider.component';
 import { EventStore } from '@mandela-alumni-webapp/core-state';
-import { CARDS, Slide } from '@mandela-alumni-webapp/core-data';
 
 @Component({
 	selector: 'app-events',
@@ -30,8 +29,6 @@ import { CARDS, Slide } from '@mandela-alumni-webapp/core-data';
 	providers: [EventStore],
 })
 export class EventsComponent implements OnInit {
-	cards = CARDS;
-	slide = Slide;
 	readonly eventStore = inject(EventStore);
 
 	readonly form = new FormGroup({

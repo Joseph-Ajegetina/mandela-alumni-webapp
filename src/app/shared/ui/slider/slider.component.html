@@ -5,27 +5,25 @@
 		[@slideAnimation]="animationState"
 	>
 		<div class="text-overlay">
-			<span class="event-type">{{ slide.overlayText.event_type }}</span>
-			<h2>{{ slide.overlayText.title }}</h2>
-			<p class="description">{{ slide.overlayText.description }}</p>
+			<span class="event-type">{{ slide.type }}</span>
+			<h2>{{ slide.title }}</h2>
+			<p class="description">{{ slide.description }}</p>
 			<div class="event-details">
-				<p *ngIf="slide.overlayText.date">
+				<p>
 					<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
-					{{ slide.overlayText.date }}
+					{{ slide.date }}
 				</p>
 
-				<p *ngIf="slide.overlayText.time">
-					<tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />{{ slide.overlayText.time }}
-				</p>
+				<p><tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />10:00 AM</p>
 			</div>
 			<div class="buttons">
-				<button
-					*ngFor="let btn of slide.overlayText.buttons"
-					[ngClass]="btn.style"
-					(click)="navigateTo(btn.link)"
-				>
-					<tui-icon *ngIf="btn.icon" [icon]="btn.icon" [style.color]="'#FFFFFF'"></tui-icon>
-					{{ btn.text }}
+				<button class="details-btn" (click)="navigateTo('more')">
+					<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
+					More
+				</button>
+				<button class="details-btn" (click)="navigateTo('more')">
+					<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
+					More
 				</button>
 			</div>
 		</div>

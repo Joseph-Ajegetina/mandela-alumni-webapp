@@ -1,12 +1,12 @@
 import { Component, Input, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
-import { Slide } from '../../interfaces/menu-item';
-import { NgClass, NgFor, NgIf, NgStyle } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { trigger, transition, style, animate } from '@angular/animations';
 import { TuiIcon } from '@taiga-ui/core';
+import { Event } from '@mandela-alumni-webapp/api-interfaces';
 
 @Component({
 	selector: 'app-slider',
-	imports: [NgFor, NgIf, NgClass, NgStyle, TuiIcon],
+	imports: [CommonModule, TuiIcon],
 	templateUrl: './slider.component.html',
 	styleUrl: './slider.component.less',
 	animations: [
@@ -19,7 +19,7 @@ import { TuiIcon } from '@taiga-ui/core';
 	],
 })
 export class SliderComponent implements OnInit, OnDestroy {
-	@Input() slide!: Slide;
+	@Input() slide!: Event;
 	currentIndex = 0;
 	animationState = 0;
 	intervalId: number | null = null;
@@ -27,34 +27,16 @@ export class SliderComponent implements OnInit, OnDestroy {
 	constructor(private cdr: ChangeDetectorRef) {}
 
 	get currentSlide() {
-		return this.slide.images[this.currentIndex];
+		return (this.slide && this.slide.image) || null;
 	}
 
-	ngOnInit() {
-		setTimeout(() => {
-			this.startSlider();
-		}, 0);
-	}
+	ngOnInit() {}
 
 	ngOnDestroy() {
 		if (this.intervalId !== null) {
 			window.clearInterval(this.intervalId);
 			this.intervalId = null;
 		}
-	}
-
-	startSlider() {
-		if (this.intervalId !== null) {
-			window.clearInterval(this.intervalId);
-		}
-
-		this.intervalId = window.setInterval(() => {
-			if (this.slide.images && this.slide.images.length > 1) {
-				this.currentIndex = (this.currentIndex + 1) % this.slide.images.length;
-				this.animationState++;
-				this.cdr.detectChanges();
-			}
-		}, 5000);
 	}
 
 	navigateTo(link: string) {

@@ -32,7 +32,9 @@
 			</div>
 		</div>
 		<div class="main">
-			<app-slider [slide]="slide"></app-slider>
+			@if(eventStore.latestEvent()){
+			<app-slider [slide]="eventStore.latestEvent()"></app-slider>
+			}
 		</div>
 	</div>
 	<div
@@ -51,6 +53,8 @@
 		</tui-icon>
 	</div>
 	<div class="footer">
-		<app-cards *ngFor="let card of cards" [card]="card" class="card-item"></app-cards>
+		@for( event of eventStore.filteredEvents(); track event.id){
+		<app-cards [card]="event" class="card-item"></app-cards>
+		}
 	</div>
 </div>
