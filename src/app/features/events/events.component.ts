@@ -1,12 +1,13 @@
-import { Component, HostListener } from '@angular/core';
+import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { Card, Slide } from 'src/app/shared/interfaces/menu-item';
 import { TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
 import { TuiSearch } from '@taiga-ui/layout';
 import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { CardsComponent } from 'src/app/shared/ui/cards/cards.component';
 import { SliderComponent } from 'src/app/shared/ui/slider/slider.component';
+import { EventStore } from '@mandela-alumni-webapp/core-state';
+import { CARDS, Slide } from '@mandela-alumni-webapp/core-data';
 
 @Component({
 	selector: 'app-events',
@@ -26,87 +27,21 @@ import { SliderComponent } from 'src/app/shared/ui/slider/slider.component';
 	],
 	templateUrl: './events.component.html',
 	styleUrl: './events.component.less',
+	providers: [EventStore],
 })
-export class EventsComponent {
-	protected readonly form = new FormGroup({
+export class EventsComponent implements OnInit {
+	cards = CARDS;
+	slide = Slide;
+	readonly eventStore = inject(EventStore);
+
+	readonly form = new FormGroup({
 		search: new FormControl(),
 	});
 
-	slide: Slide = {
-		images: [
-			'images/alumracle/slider1.jpg',
-			'images/alumracle/slider2.jpg',
-			'images/alumracle/slider3.jpg',
-		],
-		overlayText: {
-			event_type: 'Virtual',
-			title: 'Career Growth Webinar',
-			description:
-				'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
-			date: 'April 04, 2025',
-			time: '10:00 AM - 12:00 PM',
-			buttons: [
-				{ icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
-				{ text: 'View Details', link: '/event-details', style: 'details-btn' },
-			],
-		},
-	};
-
-	cards: Card[] = [
-		{
-			image: 'images/alumracle/slider1.jpg',
-
-			overlayText: {
-				event_type: 'Virtual',
-				title: 'Career Growth Webinar',
-				description:
-					'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
-				date: 'April 04, 2025',
-				time: '10:00 AM',
-
-				buttons: [
-					{ icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
-					{ text: 'View Details', link: '/event-details', style: 'details-btn' },
-				],
-			},
-		},
-
-		{
-			image: 'images/alumracle/slider2.jpg',
-
-			overlayText: {
-				event_type: 'Virtual',
-				title: 'Career Growth Webinar',
-				description:
-					'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
-				date: 'April 04, 2025',
-				time: '10:00 AM',
-
-				buttons: [
-					{ icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
-					{ text: 'View Details', link: '/event-details', style: 'details-btn' },
-				],
-			},
-		},
-
-		{
-			image: 'images/alumracle/slider3.jpg',
-
-			overlayText: {
-				event_type: 'Virtual',
-				title: 'Career Growth Webinar',
-				description:
-					'In accumsan sit amet quam nec imperdiet. Curabitug gravida eros eget felis pellentesque dictum eu nec est. Quisquet interdum ante velmsan sit amet quam nec imperdie fikhet....',
-				date: 'April 04, 2025',
-				time: '10:00 AM',
-
-				buttons: [
-					{ icon: '@tui.check', text: 'Register', link: '/register', style: 'register-btn' },
-					{ text: 'View Details', link: '/event-details', style: 'details-btn' },
-				],
-			},
-		},
-	];
+	ngOnInit(): void {
+		const query = this.eventStore.filter.query;
+		this.eventStore.loadByQuery(query);
+	}
 
 	isAtTop = true; // Initially at the top
 
