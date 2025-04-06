@@ -1,0 +1,210 @@
+<div class="container">
+<main>
+        <h2>Payments & Contributions</h2>
+        <div class="cards">
+            <div
+        tuiAppearance="floating"
+        tuiCardLarge
+    >
+
+    
+        <div tuiCell>
+            <tui-icon icon="@tui.circle-check" class="card-icon"  [style.font-size.rem]="2.2"/>
+            <div tuiTitle>
+               Monthly Dues
+                <div tuiSubtitle>$200.30</div>
+            </div>
+        </div>
+    
+        <footer>
+           <small>
+            Your monthly contribution helps sustain a vibrant alumni network. 
+            It supports events, mentorship, and resources that keep you connected—wherever you are.
+           </small>
+        </footer>
+    </div>
+    
+    <div
+    tuiAppearance="floating"
+    tuiCardLarge
+    >
+
+    
+    <div tuiCell>
+        <tui-icon icon="@tui.circle-check"  class="card-icon"   [style.font-size.rem]="2.2"/>
+        <div tuiTitle>
+           Donation
+            <div tuiSubtitle>$200.30</div>
+        </div>
+    </div>
+    
+    <footer>
+        <small>
+            Your monthly contribution helps sustain a vibrant alumni network. 
+            It supports events, mentorship, and resources that keep you connected—wherever you are.
+           </small>
+    </footer>
+    </div>
+    
+    <div
+    tuiAppearance="floating"
+    tuiCardLarge
+    >
+
+    <div tuiCell>
+        <tui-icon icon="@tui.circle-check"   class="card-icon"  [style.font-size.rem]="2.2"/>
+        <div tuiTitle>
+            Monthly Dues
+            <div tuiSubtitle>$200.30</div>
+        </div>
+    </div>
+    
+    <footer>
+        <small>
+            Your monthly contribution helps sustain a vibrant alumni network. 
+            It supports events, mentorship, and resources that keep you connected—wherever you are.
+           </small>
+    </footer>
+    </div>
+     </div>
+
+    <!-- Table -->
+
+    
+    <table
+        tuiTable
+   
+        [style.width.rem]="49"
+    >
+        <thead>
+            <tr>
+                <th tuiTh>
+                    <div [tuiCell]="size">
+                        <input
+                            tuiCheckbox
+                            type="checkbox"
+                            class="check"
+                            [ngModel]="checked"
+                           
+                            (ngModelChange)="onCheck($event)"
+                        />
+                        <span tuiTitle>Payment</span>
+                    </div>
+                </th>
+                <th tuiTh>Amount</th>
+                <th tuiTh
+                class="payment-method-cell-th"  >Payment Method</th>
+                <th tuiTh class="date">Date
+                    Submitted On
+                </th>
+                <th
+                    tuiTh
+                    [style.width.rem]="7"
+                    class="time-col"
+                >
+                    Time
+                </th>
+               
+                <th tuiTh
+                class="btn-th">Actions</th>
+            </tr>
+        </thead>
+        <tbody tuiTbody>
+            <tr *ngFor="let item of data">
+                <td tuiTd>
+                    <div [tuiCell]="size">
+                        <input
+                            tuiCheckbox
+                            type="checkbox"
+                            class="check"
+                            [(ngModel)]="item.selected"
+                        />
+                        <span tuiTitle>
+                            {{ item.checkbox.title }}
+                    
+                        </span>
+                    </div>
+                </td>
+                <td tuiTd>
+                    <div [tuiCell]="size">
+                        <span tuiTitle>
+                            <span tuiStatus>
+                                {{ item.title.title }}
+                                
+                            </span>
+                        </span>
+                    </div>
+                </td>
+                <td tuiTd class="payment-method-cell">
+                    <div 
+                    [tuiCell]="size"
+                    [ngClass]="{'mobile-money-bg': item.cell.name}">
+                   
+                        <span tuiTitle>
+                            {{ item.cell.name }}
+                 
+                        </span>
+                    </div>
+                </td>
+                <td tuiTd>
+                    <span  >{{ item.status.value }}</span>
+                </td>
+                <td tuiTd  class="time-col">
+                    <tui-items-with-more>
+                        <ng-container *ngFor="let chip of item.items">
+                            <tui-badge *tuiItem [ngClass]="{'time': item.items}">{{ chip }}</tui-badge>
+                        </ng-container>
+               
+                    </tui-items-with-more>
+                </td>
+              
+                <td tuiTd>
+                    <span tuiStatus>
+                        <button
+                        class="btn"
+                            appearance="action"
+                            iconStart="@tui.download"
+                            size="s"
+                            tuiIconButton
+                            type="button"
+                        >
+                            Edit
+                        </button>
+                        <button
+                        class="btn"
+                            appearance="action"
+                            iconStart="@tui.eye"
+                            size="s"
+                            tuiIconButton
+                            type="button"
+                        >
+                            More
+                        </button>
+                    </span>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    
+       
+</main>
+    <aside>
+        <div class="payment">
+            <tui-icon 
+            icon="@tui.panel-top-open" 
+            
+            [style.font-size.rem]="2.4">
+          </tui-icon>
+          
+            <p>Pay Monthly Dues</p>
+        </div>
+        <div class="donation">
+            <tui-icon icon="@tui.hand-heart" [style.font-size.rem]="2.4"/>
+            <p>Make a Donation</p>
+        </div>
+        <div class="event">
+            <tui-icon icon="@tui.circle-check"   [style.font-size.rem]="2.4"/>
+            <p>Event Registration</p>
+        </div>
+    </aside>
+</div>

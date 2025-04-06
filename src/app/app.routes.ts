@@ -44,6 +44,11 @@ export const appRoutes: Route[] = [
 				loadComponent: () =>
 					import('./features/admin/approval/approval.component').then((m) => m.ApprovalComponent),
 			},
+		{
+			path	: 'payment',
+			loadComponent: () =>
+				import('./features/payment-page/payment-page.component').then((m) => m.PaymentPageComponent),
+		},
 		],
 		canActivateChild: [AuthGuard, AdminGuard],
 	},
