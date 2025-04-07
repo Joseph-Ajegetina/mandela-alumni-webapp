@@ -57,7 +57,7 @@ export const appRoutes: Route[] = [
 					),
 			},
 		],
-		canActivateChild: [AuthGuard, AdminGuard],
+		canActivateChild: [],
 	},
 
 	{

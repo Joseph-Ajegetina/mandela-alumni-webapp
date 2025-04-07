@@ -1,5 +1,5 @@
 import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
@@ -7,12 +7,21 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { TUI_FALSE_HANDLER, TuiDay } from '@taiga-ui/cdk';
-import { TuiButton, TuiDataList, TuiIcon, TuiLabel, TuiLink, TuiTextfield } from '@taiga-ui/core';
+import { TuiDay } from '@taiga-ui/cdk';
+import {
+	TuiButton,
+	TuiDataList,
+	TuiError,
+	TuiIcon,
+	TuiLabel,
+	TuiLink,
+	TuiTextfield,
+} from '@taiga-ui/core';
 import {
 	TuiAvatar,
 	TuiButtonLoading,
 	TuiDataListWrapper,
+	TuiFieldErrorPipe,
 	TuiFileLike,
 	TuiFiles,
 } from '@taiga-ui/kit';
@@ -23,7 +32,6 @@ import {
 	TuiTextareaModule,
 	TuiTextfieldControllerModule,
 } from '@taiga-ui/legacy';
-import { map, startWith, Subject, switchMap, timer } from 'rxjs';
 
 @Component({
 	selector: 'app-new-event',
@@ -46,19 +54,24 @@ import { map, startWith, Subject, switchMap, timer } from 'rxjs';
 		AsyncPipe,
 		TuiButton,
 		TuiButtonLoading,
+		TuiError,
+		TuiFieldErrorPipe,
 	],
 	templateUrl: './new-event.component.html',
 	styleUrl: './new-event.component.less',
 })
 export class NewEventComponent {
 	protected readonly control = new FormControl<TuiFileLike | null>(null);
+	readonly eventModes = ['online', 'physical', 'hybrid'];
+	creating = signal(false);
 
 	protected file: TuiFileLike | null = null;
 
-	protected eventpage = new FormGroup({
+	protected form = new FormGroup({
 		event: new FormControl('', Validators.required),
 		description: new FormControl('', Validators.required),
 		location: new FormControl('', Validators.required),
+		mode: new FormControl(this.eventModes[0], Validators.required),
 	});
 
 	protected from: TuiDay | null = null;
@@ -67,26 +80,7 @@ export class NewEventComponent {
 	protected max = TuiDay.currentLocal();
 	protected items = [new TuiNamedDay(TuiDay.currentLocal(), 'Until today')];
 
-	protected items1 = [
-		'Digital Training',
-		'Home Coming',
-		'Leadership Seminar',
-		'Product Launch',
-		'Team Building',
-		'Workshop',
-	];
-
 	protected selectfield = new FormControl<string | null>(null);
-
-	protected readonly trigger$ = new Subject<void>();
-	protected readonly loading$ = this.trigger$.pipe(
-		switchMap(() => timer(2000).pipe(map(TUI_FALSE_HANDLER), startWith('Loading'))),
-	);
-
-	protected readonly triggers$ = new Subject<void>();
-	protected readonly loadings$ = this.triggers$.pipe(
-		switchMap(() => timer(2000).pipe(map(TUI_FALSE_HANDLER), startWith('Loading'))),
-	);
 
 	onFileSelect(event: Event): void {
 		const inputElement = event.target as HTMLInputElement;
@@ -117,5 +111,10 @@ export class NewEventComponent {
 			};
 			this.control.setValue(this.file);
 		}
+	}
+
+	createEvent() {
+		this.creating.set(true);
+		console.log(this.form.value);
 	}
 }

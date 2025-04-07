@@ -25,6 +25,7 @@ export class SiteNavigationComponent {
 	theme = input('light');
 	onLogout = output();
 	protected open = false;
+	protected toggleEvents = signal(false);
 	logingOut = false;
 	protected readonly routes: any = {
 		home: 'dashboard',
