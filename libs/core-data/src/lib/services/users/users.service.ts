@@ -1,14 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
+import { IRegister } from '@mandela-alumni-webapp/api-interfaces';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
-import { IRegister } from '../../models/register-data';
 
 @Injectable({
-	providedIn: 'root',
+  providedIn: 'root'
 })
-export class AccountService {
-	private _newMemberUrl = `${environment.domain}/auth/register`;
+export class UsersService {
+
+  private _newMemberUrl = `${environment.domain}/auth/register`;
 	http = inject(HttpClient);
 
 	constructor() {}

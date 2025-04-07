@@ -1,10 +1,10 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, inject } from '@angular/core';
 import { map, Observable } from 'rxjs';
-import { IUser } from '../../../shared/interfaces/user';
-import { IAuthInfo, NewAuthInfo } from '../../models/auth.model';
 import { environment } from 'src/environments/environment.prod';
 import { AuthState } from '@mandela-alumni-webapp/core-state';
+import { IUser } from '@mandela-alumni-webapp/api-interfaces';
+import { IAuthInfo, NewAuthInfo } from '@mandela-alumni-webapp/api-interfaces';
 
 @Injectable({
 	providedIn: 'root',

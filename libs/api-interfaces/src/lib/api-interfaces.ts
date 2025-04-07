@@ -1,7 +1,5 @@
-export interface Message {
-    message: string;
-  }
-  
+export type Roles = 'member' | 'admin';
+
   export interface BaseEntity {
     id: string | null;
   }
@@ -40,5 +38,15 @@ export interface Event extends BaseEntity {
   export interface PendingUser extends IUser {
     selected: boolean;
     category?: string;
+  }
+  
+  export interface IRegister {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    role: Roles;
+    password: string;
+    dob: Date;
   }
   

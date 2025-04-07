@@ -1,7 +1,7 @@
 import { Route } from '@angular/router';
 import { RegisterComponent } from './auth/feature/register/register.component';
 import { LoginComponent } from './auth/feature/login/login.component';
-import { LoginResolve } from './auth/data-access/login.resolve';
+import { LoginResolve } from './core/resolvers/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';

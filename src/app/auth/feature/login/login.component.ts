@@ -19,7 +19,7 @@ import {
 } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiForm, TuiHeader } from '@taiga-ui/layout';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { AuthService } from '../../data-access/services/auth.service';
+import { AuthService } from '@mandela-alumni-webapp/core-data';
 import { Router, RouterLink } from '@angular/router';
 import { IError } from '../../models/error';
 import { AuthState } from '@mandela-alumni-webapp/core-state';

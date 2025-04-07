@@ -6,7 +6,7 @@ import { TuiDay } from '@taiga-ui/cdk';
 import { passwordMatchValidator } from '../../utils/match-password.directive';
 import { IError } from '../../models/error';
 import { TuiAlertService } from '@taiga-ui/core';
-import { AccountService } from '../../data-access/services/account.service';
+import { UsersService } from '@mandela-alumni-webapp/core-data';
 
 @Component({
 	selector: 'app-register',
@@ -15,7 +15,7 @@ import { AccountService } from '../../data-access/services/account.service';
 	styleUrl: './register.component.less',
 })
 export class RegisterComponent {
-	accountService = inject(AccountService);
+	usersService = inject(UsersService);
 	private router = inject(Router);
 	form!: FormGroup;
 	loading = signal(false);
@@ -35,7 +35,7 @@ export class RegisterComponent {
 		const payload = this.getRegistrationDTO();
 		console.log(payload);
 
-		this.accountService.register(payload).subscribe({
+		this.usersService.register(payload).subscribe({
 			next: (result) => {
 				this.loading.set(false);
 				this.router.navigateByUrl('/pending');
