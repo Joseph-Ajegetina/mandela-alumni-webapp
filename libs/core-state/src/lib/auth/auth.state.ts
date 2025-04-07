@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
-import { IAuthInfo } from '../../models/auth.model';
+import { IAuthInfo } from '@mandela-alumni-webapp/api-interfaces';
 import { Router } from '@angular/router';
 
 @Injectable({ providedIn: 'root' })

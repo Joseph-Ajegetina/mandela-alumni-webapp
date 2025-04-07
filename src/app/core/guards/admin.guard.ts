@@ -7,7 +7,7 @@ import {
 	Router,
 	RouterStateSnapshot,
 } from '@angular/router';
-import { AuthState } from 'src/app/auth/data-access/state/auth.state';
+import { AuthState } from '@mandela-alumni-webapp/core-state';
 
 @Injectable({ providedIn: 'root' })
 export class AdminGuard implements CanActivate, CanActivateChild {
@@ -16,8 +16,13 @@ export class AdminGuard implements CanActivate, CanActivateChild {
 
 	canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean {
 		const user = this.authState.getUser();
+		console.log('user', user);
+		if (!user) {
+			this._router.navigateByUrl('login');
+			return false;
+		}
 
-		if (!user || !user.approvedAt) {
+		if (!user.approvedAt) {
 			this._router.navigateByUrl('pending');
 			return false;
 		}

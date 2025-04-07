@@ -15,7 +15,7 @@ import { TuiAvatar, TuiAvatarLabeled } from '@taiga-ui/kit';
 import { TuiPortals } from '@taiga-ui/cdk';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthState } from 'src/app/auth/data-access/state/auth.state';
+import { AuthState } from '@mandela-alumni-webapp/core-state';
 
 @Component({
 	selector: 'app-layout',

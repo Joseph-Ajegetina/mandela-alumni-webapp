@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, Resolve, Router, RouterStateSnapshot } from '@angular/router';
 import { map, Observable } from 'rxjs';
-import { AuthState } from './state/auth.state';
+import { AuthState } from '@mandela-alumni-webapp/core-state';
 
 @Injectable({ providedIn: 'root' })
 export class LoginResolve implements Resolve<boolean> {

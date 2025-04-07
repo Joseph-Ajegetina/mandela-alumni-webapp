@@ -22,7 +22,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { AuthService } from '../../data-access/services/auth.service';
 import { Router, RouterLink } from '@angular/router';
 import { IError } from '../../models/error';
-import { AuthState } from '../../data-access/state/auth.state';
+import { AuthState } from '@mandela-alumni-webapp/core-state';
 @Component({
 	selector: 'app-login',
 	imports: [

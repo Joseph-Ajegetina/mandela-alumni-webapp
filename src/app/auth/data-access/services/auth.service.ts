@@ -4,7 +4,7 @@ import { map, Observable } from 'rxjs';
 import { IUser } from '../../../shared/interfaces/user';
 import { IAuthInfo, NewAuthInfo } from '../../models/auth.model';
 import { environment } from 'src/environments/environment.prod';
-import { AuthState } from '../state/auth.state';
+import { AuthState } from '@mandela-alumni-webapp/core-state';
 
 @Injectable({
 	providedIn: 'root',
