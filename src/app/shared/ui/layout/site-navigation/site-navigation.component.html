@@ -4,37 +4,15 @@
 			<span tuiFade>Home</span>
 		</button>
 	</header>
+
+	<a iconStart="@tui.calendar" [routerLink]="routes.events" tuiAsideItem>
+		Events & opportunities
+	</a>
+	@if (isAdmin()){
 	<a iconStart="@tui.circle-check" [routerLink]="routes.approval" tuiAsideItem> Approvals </a>
-	<tui-aside-group [(open)]="toggleEvents">
-		<button iconStart="@tui.calendar" tuiAsideItem tuiChevron type="button">
-			Events
-			<ng-template>
-				<a iconStart="@tui.calendar" [routerLink]="routes.events" tuiAsideItem> All </a>
-				<button
-					iconStart="@tui.circle-check"
-					tuiAsideItem
-					type="button"
-					[routerLink]="routes.createEvent"
-				>
-					New Event
-				</button>
-			</ng-template>
-		</button>
-	</tui-aside-group>
-
-	<button
-		iconStart="@tui.square-library"
-		tuiAsideItem
-		type="button"
-		[routerLink]="routes.directory"
-	>
-		Directory
-	</button>
-
-	<a iconStart="@tui.users" tuiAsideItem> Groups </a>
-
+	}
 	<footer>
-		<tui-aside-group [(open)]="open">
+		<!-- <tui-aside-group [(open)]="open">
 			<button iconStart="@tui.settings" tuiAsideItem tuiChevron type="button">
 				Settings
 				<ng-template>
@@ -43,7 +21,7 @@
 					<button tuiAsideItem type="button" (click)="open = false">Privacy</button>
 				</ng-template>
 			</button>
-		</tui-aside-group>
+		</tui-aside-group> -->
 		<button
 			iconStart="@tui.log-out"
 			tuiAsideItem

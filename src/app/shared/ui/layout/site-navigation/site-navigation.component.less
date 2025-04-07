@@ -1,5 +1,15 @@
 :host {
-	border-right: 1px solid var(--tui-border-normal);
+	[tuiAsideItem][tuiAsideItem]._active {
+		background: #26abe4;
+		border-radius: 0;
+		color: white;
+	}
+
+	[tuiAsideItem][tuiAsideItem]:hover {
+		background: #26abe4 !important;
+		border-radius: 0;
+		color: white;
+	}
 }
 
 aside::before {
