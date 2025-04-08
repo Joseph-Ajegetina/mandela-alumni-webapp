@@ -1,0 +1,111 @@
+<div class="portal">
+    <aside class="side-bar">
+        <p>
+            <app-user-sidebar></app-user-sidebar>
+        </p>
+    </aside>
+    <main class="right">
+        <section class="header">
+            <div class="h-left">
+                <h3 class="h3-portal">
+                    My Portal
+                </h3>
+                <p class="txt-my-portal">
+                    Welcome {{ userCredentials[0]?.firstName }}👋
+                </p>
+            </div>
+            <div class="h-right">
+                <input type="search" placeholder="placeholder" class="search-input">
+                <img src="images/bell.svg" alt="notification icon" class="bell-icon">
+                <img src="images/Ellipse2.png" alt="my-portal-image" class="my-portal-image">
+            </div>
+        </section>
+        <section class="portal-content">
+            <div class="txt-contribution">
+                <p>
+                    Payments & Contributions
+                </p>
+            </div>
+            <div class="pc-below">
+                <div class="pcb-left">
+                    <div class="payment-status">
+                        <div class="payment-sum">
+                            <div class="ps-img">
+                                <img src="/images/check-circle.svg" alt="check-icon">
+                            </div>
+                            <div class="ps-p">
+                                <p>Monthly Dues</p>
+                                <p>${{totalMonthlyDues | number:'1.2-2'}}</p>
+                            </div>
+                        </div>
+                        <div class="payment-sum">
+                            <div class="ps-img">
+                                <img src="/images/check-circle.svg" alt="check-icon">
+                            </div>
+                            <div class="ps-p">
+                                <p>Donation</p>
+                                <p>${{totalDonations | number:'1.2-2'}}</p>
+                            </div>
+                        </div>
+                        <div class="payment-sum">
+                            <div class="ps-img">
+                                <img src="/images/check-circle.svg" alt="check-icon">
+                            </div>
+                            <div class="ps-p">
+                                <p>Event Fees</p>
+                                <p>${{totalEventFees | number:'1.2-2'}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="payment-table">
+                        <table>
+                            <tr>
+                              <th>Payment Type</th>
+                              <th>Amount</th>
+                              <th>Payment Method</th>
+                              <th> Date Submitted On</th>
+                              <th>Time</th>
+                              <th>Action</th>
+                            </tr>
+                            <tr *ngFor="let payment of userPayments">
+                              <td>{{ payment.paymentType }}</td>
+                              <td>{{ payment.amount }}</td>
+                              <td>
+                                <div class="payment">
+                                    {{ payment.paymentMethod }}
+                                </div>
+                              </td>
+                              <td>{{ payment.submittedDate | date: 'dd-MM-yyyy'}}</td>
+                              <td>{{ payment.time | date: 'hh:mm' }}</td>
+                              <td>
+                                <div>
+                                    <button class="action-btn">
+                                        <img src="/images/download.svg" alt="Download" width="14" height="15" />
+                                    </button>
+                                    <button class="action-btn">
+                                        <img src="/images/eye.svg" alt="View" width="14" height="15" />
+                                    </button>
+                                </div>
+                              </td>
+                            </tr>
+                          </table>                      
+                    </div>
+                </div>
+                <div class="pcb-right">
+                    <button class="dues-route">
+                        <img src="/images/Vector.png" alt="wallet icon" class="pch-img">
+                        <p>Pay Monthly Dues</p>
+                    </button>
+                    <button class="donation-route">
+                        <img src="/images/donation.png" alt="donation icon" class="pch-img">
+                        <p>Make a Donation</p>
+                    </button>
+                    <button class="registration-route">
+                        <img src="/images/check-circle.svg" alt="check icon" class="pch-img">
+                        <p>Event Registration</p>
+                    </button>
+                </div>
+            </div>
+        </section>
+    </main>
+</div>
