@@ -29,6 +29,21 @@
 	}
 }
 
+.top-container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	@media @tui-mobile {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
+}
+
 .srch {
 	width: 30%;
 	@media @tui-mobile-interval {

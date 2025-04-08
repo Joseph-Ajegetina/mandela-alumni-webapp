@@ -1,0 +1,31 @@
+<tui-carousel [duration]="4000" [(index)]="currentIndex">
+	<ng-container *ngFor="let event of events(); trackBy: trackByEventId">
+		<div *tuiItem class="item slide-container">
+			<img [src]="event.image" class="slide-image" alt="Slide" />
+			<div class="slide-overlay">
+				<span class="event-type">{{ event?.type }}</span>
+				<h2>{{ event?.title }}</h2>
+				<p class="description">{{ event?.description }}</p>
+				<div class="event-details">
+					<p>
+						<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
+						{{ event?.date }}
+					</p>
+
+					<p><tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />10:00 AM</p>
+				</div>
+				<div class="buttons">
+					<button class="details-btn" (click)="navigateTo('more')">
+						<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
+						More
+					</button>
+					<button class="details-btn" (click)="navigateTo('more')">
+						<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
+						More
+					</button>
+				</div>
+			</div>
+		</div>
+	</ng-container>
+</tui-carousel>
+<tui-pagination size="s" class="pagination" [length]="events.length" [(index)]="currentIndex" />

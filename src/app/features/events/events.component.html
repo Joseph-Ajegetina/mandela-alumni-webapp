@@ -1,7 +1,17 @@
 <div class="container">
-	<div class="header">
-		<h3>Events</h3>
+	<div class="top-container">
+		<div class="header">
+			<h3>Events</h3>
+		</div>
+		@if (userStore.isAdmin()){
+		<div class="add-event">
+			<button iconStart="@tui.plus" tuiButton type="button" routerLink="../new-event">
+				Create Event
+			</button>
+		</div>
+		}
 	</div>
+
 	<div class="main-content">
 		<div class="top">
 			<div class="srch">
@@ -32,7 +42,7 @@
 			</div>
 		</div>
 		<div class="main">
-			<app-slider [slide]="eventStore.latestEvent()"></app-slider>
+			<app-events-slideshow [events]="eventStore.latestEvents()"></app-events-slideshow>
 		</div>
 	</div>
 	<div

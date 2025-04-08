@@ -26,25 +26,28 @@ export const EventStore = signalStore(
 		eventsCount: computed(() => events().length),
 		filteredEvents: computed(() => {
 			const { query, order, type } = filter();
-			return events().filter((event) => {
-				const matchesQuery = event.name.toLowerCase().includes(query.toLowerCase());
-				const matchesType = type ? event.type === type : true;
-				return matchesQuery && matchesType;
-			}).sort((a, b) => {
-				if (order === 'asc') {
-					return a.date.getTime() - b.date.getTime();
-				} else {
-					return b.date.getTime() - a.date.getTime();
-				}
-			});
+			return events()
+				.filter((event) => {
+					const matchesQuery = event.name.toLowerCase().includes(query.toLowerCase());
+					const matchesType = type ? event.type === type : true;
+					return matchesQuery && matchesType;
+				})
+				.sort((a, b) => {
+					if (order === 'asc') {
+						return a.date.getTime() - b.date.getTime();
+					} else {
+						return b.date.getTime() - a.date.getTime();
+					}
+				});
 		}),
 
-		latestEvent: computed(() => {
-			const allEvents = events(); ;
-			if (allEvents.length === 0) return null;
-			return allEvents.reduce((latest, event) => {
-				return event.date > latest.date ? event : latest;
-			});
+		latestEvents: computed(() => {
+			const allEvents = events();
+			if (allEvents.length === 0) return [];
+
+			return [...allEvents]
+				.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime())
+				.slice(0, 3);
 		}),
 	})),
 	withMethods((store, eventsService = inject(EventsService)) => ({
@@ -62,23 +65,6 @@ export const EventStore = signalStore(
 			patchState(store, { isLoading: true });
 			const events = await eventsService.all();
 			patchState(store, { events, isLoading: false });
-		  },
-
-		loadByQuery: rxMethod<string>(
-			pipe(
-				debounceTime(300),
-				distinctUntilChanged(),
-				tap(() => patchState(store, { isLoading: true })),
-				switchMap((query) => {
-					return eventsService.getByQuery(query).pipe(
-						tapResponse({
-							next: (events) => patchState(store, { events }),
-							error: (error) => console.error(error),
-							finalize: () => patchState(store, { isLoading: false }),
-						}),	
-					);
-				})
-			),
-		),
+		},
 	})),
 );

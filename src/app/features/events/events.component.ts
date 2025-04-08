@@ -1,12 +1,13 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
+import { TuiButton, TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
 import { TuiSearch } from '@taiga-ui/layout';
 import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { CardsComponent } from 'src/app/shared/ui/cards/cards.component';
-import { SliderComponent } from 'src/app/shared/ui/slider/slider.component';
-import { EventStore } from '@mandela-alumni-webapp/core-state';
+import { EventStore, UserStore } from '@mandela-alumni-webapp/core-state';
+import { EventsSlideshowComponent } from './events-slideshow/events-slideshow.component';
+import { RouterLink } from '@angular/router';
 
 @Component({
 	selector: 'app-events',
@@ -20,9 +21,11 @@ import { EventStore } from '@mandela-alumni-webapp/core-state';
 		TuiSelectModule,
 		TuiTextfield,
 		TuiTextfieldControllerModule,
-		SliderComponent,
 		TuiIcon,
 		CardsComponent,
+		TuiButton,
+		EventsSlideshowComponent,
+		RouterLink,
 	],
 	templateUrl: './events.component.html',
 	styleUrl: './events.component.less',
@@ -30,6 +33,7 @@ import { EventStore } from '@mandela-alumni-webapp/core-state';
 })
 export class EventsComponent implements OnInit {
 	readonly eventStore = inject(EventStore);
+	readonly userStore = inject(UserStore);
 
 	readonly form = new FormGroup({
 		search: new FormControl(),
