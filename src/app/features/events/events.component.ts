@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, OnInit } from '@angular/core';
+import { Component, effect, HostListener, inject, OnInit, signal } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiButton, TuiDropdown, TuiIcon, TuiLoader, TuiTextfield } from '@taiga-ui/core';
@@ -8,6 +8,7 @@ import { CardsComponent } from 'src/app/shared/ui/cards/cards.component';
 import { EventStore, UserStore } from '@mandela-alumni-webapp/core-state';
 import { EventsSlideshowComponent } from './events-slideshow/events-slideshow.component';
 import { RouterLink } from '@angular/router';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 
 @Component({
 	selector: 'app-events',
@@ -36,15 +37,27 @@ export class EventsComponent implements OnInit {
 	readonly eventStore = inject(EventStore);
 	readonly userStore = inject(UserStore);
 
+	readonly eventModes = ['online', 'physical', 'hybrid'];
+	type = signal<string | null>(null);
+
+	form = new FormGroup({
+		searchTerm: new FormControl(''),
+	});
+
 	events = this.eventStore.events;
 	isLoading = this.eventStore.isLoading;
 
-	readonly form = new FormGroup({
-		search: new FormControl(),
-	});
+	constructor() {}
 
 	ngOnInit(): void {
-		this.eventStore.loadAll();
+		this.form.valueChanges
+			.pipe(
+				debounceTime(300),
+				distinctUntilChanged((prev, curr) => prev.searchTerm === curr.searchTerm),
+			)
+			.subscribe((formValue) => {
+				this.eventStore.updateSearchTerm(formValue.searchTerm || '');
+			});
 	}
 
 	isAtTop = true; // Initially at the top
@@ -61,7 +74,4 @@ export class EventsComponent implements OnInit {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
 	}
-
-	protected items = ['Virtual', 'In-Person', 'Hybrid'];
-	protected testValue = new FormControl<string | null>(null);
 }

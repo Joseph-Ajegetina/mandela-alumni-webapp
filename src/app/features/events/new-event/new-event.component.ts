@@ -138,7 +138,7 @@ export class NewEventComponent {
 		}
 
 		try {
-			await this.eventStore.createEvent(formData);
+			this.eventStore.addEvent(formData);
 
 			this.router.navigate(['/events']);
 		} catch (err) {

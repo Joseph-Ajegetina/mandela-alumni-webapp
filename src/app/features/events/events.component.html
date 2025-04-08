@@ -24,7 +24,7 @@
 					<form [formGroup]="form">
 						<fieldset tuiTextfieldSize="l">
 							<tui-textfield iconStart="@tui.search">
-								<input placeholder="Search" tuiTextfield formControlName="search" />
+								<input placeholder="Search" tuiTextfield formControlName="searchTerm" />
 							</tui-textfield>
 						</fieldset>
 					</form>
@@ -33,10 +33,10 @@
 
 			<div class="filter">
 				<div class="all">
-					<tui-select [formControl]="testValue">
+					<tui-select [(ngModel)]="type" (ngModelChange)="eventStore.updateType($event)">
 						Event Type
 						<input placeholder="" tuiTextfieldLegacy />
-						<tui-data-list-wrapper *tuiDataList [items]="items" />
+						<tui-data-list-wrapper *tuiDataList [items]="eventModes" />
 					</tui-select>
 				</div>
 				<div class="icons">

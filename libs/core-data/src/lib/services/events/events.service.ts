@@ -13,7 +13,7 @@ export class EventsService {
 	model = '/events';
 	constructor() {}
 
-	async all() {
+	 all() {
 		return this.http.get<Event[]>(this.getUrl());
 	}
 
@@ -21,7 +21,7 @@ export class EventsService {
 		return this.http.get<Event>(this.getUrlWithId(id));
 	}
 
-	create(event: Partial<Event>) {
+	create(event: FormData) {
 		return this.http.post<Event>(this.getUrl(), event);
 	}
 
