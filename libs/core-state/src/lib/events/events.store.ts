@@ -39,12 +39,9 @@ export const EventStore = signalStore(
 				eventService.all().pipe(
 					map((events) => {
 						patchState(store, { initialized: true });
-						console.log(events);
-						console.log(searchTerm);
 						const filteredEvents = events.filter((event) =>
 							!!searchTerm ? event.name.toLowerCase().includes(searchTerm.toLowerCase()) : true,
 						);
-						console.log(filteredEvents);
 						return filteredEvents;
 					}),
 					catchError((error) => {
