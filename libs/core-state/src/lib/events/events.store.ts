@@ -2,9 +2,7 @@ import { patchState, signalStore, withComputed, withMethods, withState } from '@
 import { Event } from '@mandela-alumni-webapp/api-interfaces';
 import { EventsService } from '@mandela-alumni-webapp/core-data';
 import { computed, inject } from '@angular/core';
-import { debounceTime, distinctUntilChanged, pipe, switchMap, tap } from 'rxjs';
-import { rxMethod } from '@ngrx/signals/rxjs-interop';
-import { tapResponse } from '@ngrx/operators';
+import { firstValueFrom } from 'rxjs';
 
 type EventsState = {
 	events: Event[];
@@ -25,20 +23,16 @@ export const EventStore = signalStore(
 	withComputed(({ events, filter }) => ({
 		eventsCount: computed(() => events().length),
 		filteredEvents: computed(() => {
-			const { query, order, type } = filter();
-			return events()
-				.filter((event) => {
-					const matchesQuery = event.name.toLowerCase().includes(query.toLowerCase());
-					const matchesType = type ? event.type === type : true;
-					return matchesQuery && matchesType;
-				})
-				.sort((a, b) => {
-					if (order === 'asc') {
-						return a.date.getTime() - b.date.getTime();
-					} else {
-						return b.date.getTime() - a.date.getTime();
-					}
-				});
+			const { query, type } = filter();
+			return events().filter((event) => {
+				if (!!query || !type) {
+					return true;
+				}
+
+				const matchesQuery = event.name.toLowerCase().includes(query.toLowerCase());
+				const matchesType = type ? event.type === type : true;
+				return matchesQuery && matchesType;
+			});
 		}),
 
 		latestEvents: computed(() => {
@@ -63,8 +57,19 @@ export const EventStore = signalStore(
 		},
 		async loadAll(): Promise<void> {
 			patchState(store, { isLoading: true });
-			const events = await eventsService.all();
-			patchState(store, { events, isLoading: false });
+			(await eventsService.all()).subscribe((events) => {
+				patchState(store, { events, isLoading: false });
+			});
+		},
+
+		async createEvent(event: any): Promise<void> {
+			patchState(store, { isLoading: true });
+			eventsService.create(event).subscribe((newEvent) => {
+				patchState(store, (state) => ({
+					events: [...state.events, newEvent],
+					isLoading: false,
+				}));
+			});
 		},
 	})),
 );

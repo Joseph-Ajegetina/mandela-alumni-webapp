@@ -1,5 +1,5 @@
-import { AsyncPipe, CommonModule, NgIf } from '@angular/common';
-import { Component, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { Component, inject } from '@angular/core';
 import {
 	FormControl,
 	FormGroup,
@@ -7,8 +7,11 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
+import { Router } from '@angular/router';
+import { EventStore } from '@mandela-alumni-webapp/core-state';
 import { TuiDay } from '@taiga-ui/cdk';
 import {
+	TuiAlertService,
 	TuiButton,
 	TuiDataList,
 	TuiError,
@@ -17,6 +20,7 @@ import {
 	TuiLink,
 	TuiTextfield,
 } from '@taiga-ui/core';
+
 import {
 	TuiAvatar,
 	TuiButtonLoading,
@@ -32,6 +36,7 @@ import {
 	TuiTextareaModule,
 	TuiTextfieldControllerModule,
 } from '@taiga-ui/legacy';
+import { IError } from 'src/app/auth/models/error';
 
 @Component({
 	selector: 'app-new-event',
@@ -51,7 +56,6 @@ import {
 		TuiDataList,
 		TuiSelectModule,
 		TuiDataListWrapper,
-		AsyncPipe,
 		TuiButton,
 		TuiButtonLoading,
 		TuiError,
@@ -59,18 +63,23 @@ import {
 	],
 	templateUrl: './new-event.component.html',
 	styleUrl: './new-event.component.less',
+	providers: [EventStore],
 })
 export class NewEventComponent {
 	protected readonly control = new FormControl<TuiFileLike | null>(null);
+	readonly router = inject(Router);
 	readonly eventModes = ['online', 'physical', 'hybrid'];
-	creating = signal(false);
+	readonly eventStore = inject(EventStore);
+	creating = this.eventStore.isLoading;
+	readonly error = this.eventStore.error;
+	readonly alerts = inject(TuiAlertService);
 
 	protected file: TuiFileLike | null = null;
 
 	protected form = new FormGroup({
-		event: new FormControl('', Validators.required),
-		description: new FormControl('', Validators.required),
-		location: new FormControl('', Validators.required),
+		name: new FormControl(null, Validators.required),
+		description: new FormControl(null, Validators.required),
+		location: new FormControl(null, Validators.required),
 		mode: new FormControl(this.eventModes[0], Validators.required),
 	});
 
@@ -113,8 +122,36 @@ export class NewEventComponent {
 		}
 	}
 
-	createEvent() {
-		this.creating.set(true);
-		console.log(this.form.value);
+	async createEvent() {
+		const formData = new FormData();
+		formData.append('name', this.form.value.name || '');
+		formData.append('description', this.form.value.description || '');
+		formData.append('location', this.form.value.location || '');
+		formData.append('type', this.form.value.mode || '');
+		formData.append('date', new Date().toISOString());
+
+		const file: File | null =
+			this.file && 'asFile' in this.file ? (this.file.asFile as File) : null;
+
+		if (file) {
+			formData.append('image', file);
+		}
+
+		try {
+			await this.eventStore.createEvent(formData);
+
+			this.router.navigate(['/events']);
+		} catch (err) {
+			this.handleError();
+		}
+	}
+
+	handleError() {
+		this.alerts
+			.open(this.error() || 'Something went wrong', {
+				label: 'Error',
+				appearance: 'negative',
+			})
+			.subscribe();
 	}
 }

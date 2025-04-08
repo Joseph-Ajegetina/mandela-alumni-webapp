@@ -12,6 +12,11 @@
 		}
 	</div>
 
+	@if (isLoading()){
+	<div class="loading">
+		<tui-loader></tui-loader>
+	</div>
+	}@else{
 	<div class="main-content">
 		<div class="top">
 			<div class="srch">
@@ -65,4 +70,5 @@
 		<app-cards [card]="event" class="card-item"></app-cards>
 		}
 	</div>
+	}
 </div>

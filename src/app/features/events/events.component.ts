@@ -1,7 +1,7 @@
 import { Component, HostListener, inject, OnInit } from '@angular/core';
 import { CommonModule, NgFor } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiButton, TuiDropdown, TuiIcon, TuiTextfield } from '@taiga-ui/core';
+import { TuiButton, TuiDropdown, TuiIcon, TuiLoader, TuiTextfield } from '@taiga-ui/core';
 import { TuiSearch } from '@taiga-ui/layout';
 import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { CardsComponent } from 'src/app/shared/ui/cards/cards.component';
@@ -26,6 +26,7 @@ import { RouterLink } from '@angular/router';
 		TuiButton,
 		EventsSlideshowComponent,
 		RouterLink,
+		TuiLoader,
 	],
 	templateUrl: './events.component.html',
 	styleUrl: './events.component.less',
@@ -34,6 +35,9 @@ import { RouterLink } from '@angular/router';
 export class EventsComponent implements OnInit {
 	readonly eventStore = inject(EventStore);
 	readonly userStore = inject(UserStore);
+
+	events = this.eventStore.events;
+	isLoading = this.eventStore.isLoading;
 
 	readonly form = new FormGroup({
 		search: new FormControl(),

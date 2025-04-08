@@ -14,9 +14,7 @@ export class EventsService {
 	constructor() {}
 
 	async all() {
-		sleep(1000);
-		return EVENTS;
-		// return this.http.get<Event[]>(this.getUrl());
+		return this.http.get<Event[]>(this.getUrl());
 	}
 
 	find(id: string) {
@@ -24,7 +22,7 @@ export class EventsService {
 	}
 
 	create(event: Partial<Event>) {
-		return this.http.post(this.getUrl(), event);
+		return this.http.post<Event>(this.getUrl(), event);
 	}
 
 	update(event: Event) {
