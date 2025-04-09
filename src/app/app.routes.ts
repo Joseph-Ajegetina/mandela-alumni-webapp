@@ -69,17 +69,17 @@ export const appRoutes: Route[] = [
 			{
 				path: 'profile',
 				loadComponent: ()=>
-					import('./features/account-mangement/profile-page/profile-page.component').then((m) =>m.ProfilePageComponent)
+					import('./account-mangement/features/profile-page/profile-page.component').then((m) =>m.ProfilePageComponent)
 			},
 			{
 				path: 'security',
 				loadComponent: ()=>
-					import('./features/account-mangement/security-access/security-access.component').then((m) =>m.SecurityAccessComponent)
+					import('./account-mangement/features/security-access/security-access.component').then((m) =>m.SecurityAccessComponent)
 			},
 			{
 				path: 'preference',
 				loadComponent: ()=>
-					import('./features/account-mangement/preference-page/preference-page.component').then((m) =>m.PreferencePageComponent)
+					import('./account-mangement/features/preference-page/preference-page.component').then((m) =>m.PreferencePageComponent)
 			},
 		]
 	},
