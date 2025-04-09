@@ -72,7 +72,7 @@
 	</div>
 	<div class="footer">
 		@for( event of eventStore.filteredEvents(); track event.id){
-		<app-cards [card]="event" class="card-item"></app-cards>
+		<app-event-card [event]="event" class="card-item"></app-event-card>
 		}
 	</div>
 	}

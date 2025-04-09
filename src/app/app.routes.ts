@@ -47,12 +47,14 @@ export const appRoutes: Route[] = [
 			{
 				path: 'events',
 				loadComponent: () =>
-					import('./events/events.component').then((m) => m.EventsComponent),
+					import('./events/features/events-list/events-list.component').then(
+						(m) => m.EventsListComponent,
+					),
 			},
 			{
 				path: 'new-event',
 				loadComponent: () =>
-					import('./events/new-event/new-event.component').then(
+					import('./events/features/new-event/new-event.component').then(
 						(m) => m.NewEventComponent,
 					),
 			},

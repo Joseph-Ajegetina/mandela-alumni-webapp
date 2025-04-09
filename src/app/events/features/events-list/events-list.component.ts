@@ -1,18 +1,19 @@
-import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
+import { Component, HostListener, inject, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { EventStore, UserStore } from '@mandela-alumni-webapp/core-state';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { TuiButton, TuiDropdown, TuiIcon, TuiLoader, TuiTextfield } from '@taiga-ui/core';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { RouterLink } from '@angular/router';
+import { TuiIcon, TuiDropdown, TuiTextfield, TuiButton, TuiLoader } from '@taiga-ui/core';
+import { TuiFilterByInputPipe } from '@taiga-ui/kit';
 import { TuiSearch } from '@taiga-ui/layout';
 import { TuiSelectModule, TuiTextfieldControllerModule } from '@taiga-ui/legacy';
 import { CardsComponent } from 'src/app/shared/ui/cards/cards.component';
-import { EventStore, UserStore } from '@mandela-alumni-webapp/core-state';
-import { EventsSlideshowComponent } from './events-slideshow/events-slideshow.component';
-import { RouterLink } from '@angular/router';
-import { debounceTime, distinctUntilChanged } from 'rxjs';
-import { TuiFilterByInputPipe } from '@taiga-ui/kit';
+import { EventsSlideshowComponent } from '../../ui/events-slideshow/events-slideshow.component';
+import { EventCardComponent } from '../../ui/event-card/event-card.component';
 
 @Component({
-	selector: 'app-events',
+	selector: 'app-events-list',
 	imports: [
 		CommonModule,
 		TuiIcon,
@@ -30,12 +31,13 @@ import { TuiFilterByInputPipe } from '@taiga-ui/kit';
 		RouterLink,
 		TuiLoader,
 		TuiFilterByInputPipe,
+		EventCardComponent,
 	],
-	templateUrl: './events.component.html',
-	styleUrl: './events.component.less',
+	templateUrl: './events-list.component.html',
+	styleUrl: './events-list.component.less',
 	providers: [EventStore],
 })
-export class EventsComponent implements OnInit {
+export class EventsListComponent {
 	readonly eventStore = inject(EventStore);
 	readonly userStore = inject(UserStore);
 
