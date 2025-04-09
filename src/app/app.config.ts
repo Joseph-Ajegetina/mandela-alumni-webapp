@@ -10,7 +10,7 @@ import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
 import { HTTP_INTERCEPTORS, provideHttpClient, withInterceptorsFromDi } from '@angular/common/http';
 import { AppInterceptor } from './core/interceptors/http.interceptor';
-import { AuthState } from './features/auth/data-access/state/auth.state';
+import { AuthState } from '@mandela-alumni-webapp/core-state';
 
 export const appConfig: ApplicationConfig = {
 	providers: [
