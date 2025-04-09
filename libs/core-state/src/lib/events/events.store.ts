@@ -8,22 +8,24 @@ import {
 	withProps,
 	withState,
 } from '@ngrx/signals';
-import { Event } from '@mandela-alumni-webapp/api-interfaces';
+import { Event, EventMode } from '@mandela-alumni-webapp/api-interfaces';
 import { EventsService } from '@mandela-alumni-webapp/core-data';
 import { computed, effect, inject } from '@angular/core';
-import { catchError, map, of } from 'rxjs';
+import { catchError, finalize, map, Observable, of, tap, throwError } from 'rxjs';
 import { rxResource } from '@angular/core/rxjs-interop';
 
 type EventsState = {
 	isLoading: boolean;
+	isCreatingEvent: boolean;
 	error: string | null;
 	initialized: boolean;
-	filter: { order: 'asc' | 'desc'; type: 'online' | 'physical' | 'hybrid' | null };
+	filter: { order: 'asc' | 'desc'; type: EventMode | null };
 	searchTerm: string;
 };
 
 const initialState: EventsState = {
 	isLoading: false,
+	isCreatingEvent: false,
 	initialized: false,
 	error: null,
 	searchTerm: '',
@@ -86,10 +88,30 @@ export const EventStore = signalStore(
 			}));
 		},
 
-		addEvent(event: FormData): void {
-			eventsService.create(event).subscribe((newEvent) => {
-				store._eventsResource.update((events) => [newEvent, ...(events ?? [])]);
-			});
+		addEvent(event: FormData): Observable<any> {
+			patchState(store, (state) => ({
+				...state,
+				isCreatingEvent: true,
+			}));
+			return eventsService.create(event).pipe(
+				catchError((error) => {
+					patchState(store, (state) => ({
+						...state,
+						error: error,
+					}));
+					console.log('error  ', error)
+					return throwError(() => error);
+				}),
+				tap((newEvent) => {
+					store._eventsResource.update((events) => [newEvent, ...(events ?? [])]);
+				}),
+				finalize(() => {
+					patchState(store, (state) => ({
+						...state,
+						isCreatingEvent: false,
+					}));
+				}),
+			);
 		},
 	})),
 	withHooks({

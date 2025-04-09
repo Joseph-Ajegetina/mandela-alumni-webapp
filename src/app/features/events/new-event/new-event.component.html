@@ -1,4 +1,5 @@
 <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
+{{ eventStore.error() | json }}
 <div class="container">
 	<div class="header">
 		<h3>Create an Event</h3>
@@ -6,7 +7,7 @@
 	<div class="main-content">
 		<div class="upload-section" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
 			<label tuiInputFiles>
-				<input tuiInputFiles [formControl]="control" (change)="onFileSelect($event)" />
+				<input tuiInputFiles [formControl]="fileControl" (change)="onFileSelect($event)" />
 				<ng-template let-dragged>
 					<div *ngIf="dragged; else base" class="content">
 						<tui-avatar appearance="secondary" src="@tui.droplet" />
@@ -47,26 +48,18 @@
 				</label>
 				<div class="dates">
 					<label tuiLabel>
-						<p>Event Start</p>
+						<p>Date</p>
 						<tui-input-date
 							tuiTextfieldAppearance="neutral"
-							[max]="max"
-							[min]="min"
-							class="startdate"
-							[(ngModel)]="from"
+							[min]="startDate"
+							formControlName="date"
 						>
 						</tui-input-date>
 					</label>
 					<label tuiLabel>
-						<p>Event End</p>
-						<tui-input-date
-							tuiTextfieldAppearance="neutral"
-							[items]="items"
-							[min]="from || min"
-							[(ngModel)]="to"
-							class="startdate"
-						>
-						</tui-input-date>
+						<p>Time</p>
+						<tui-input-time tuiTextfieldAppearance="neutral" formControlName="time">
+						</tui-input-time>
 					</label>
 				</div>
 
@@ -102,7 +95,14 @@
 				</label>
 
 				<div class="buuton-group">
-					<button appearance="outline" class="cancel" type="button" tuiButton type="button">
+					<button
+						appearance="outline"
+						class="cancel"
+						type="button"
+						tuiButton
+						type="button"
+						routerLink="../events"
+					>
 						Cancel
 					</button>
 

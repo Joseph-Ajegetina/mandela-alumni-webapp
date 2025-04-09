@@ -7,9 +7,9 @@ import {
 	ReactiveFormsModule,
 	Validators,
 } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { EventStore } from '@mandela-alumni-webapp/core-state';
-import { TuiDay } from '@taiga-ui/cdk';
+import { TuiDay, TuiTime } from '@taiga-ui/cdk';
 import {
 	TuiAlertService,
 	TuiButton,
@@ -31,11 +31,12 @@ import {
 } from '@taiga-ui/kit';
 import {
 	TuiInputDateModule,
-	TuiNamedDay,
+	TuiInputTimeModule,
 	TuiSelectModule,
 	TuiTextareaModule,
 	TuiTextfieldControllerModule,
 } from '@taiga-ui/legacy';
+import { firstValueFrom } from 'rxjs';
 import { IError } from 'src/app/auth/models/error';
 
 @Component({
@@ -60,36 +61,39 @@ import { IError } from 'src/app/auth/models/error';
 		TuiButtonLoading,
 		TuiError,
 		TuiFieldErrorPipe,
+		RouterLink,
+		TuiInputTimeModule,
 	],
 	templateUrl: './new-event.component.html',
 	styleUrl: './new-event.component.less',
 	providers: [EventStore],
 })
 export class NewEventComponent {
-	protected readonly control = new FormControl<TuiFileLike | null>(null);
+	protected readonly fileControl = new FormControl<TuiFileLike | null>(null);
 	readonly router = inject(Router);
 	readonly eventModes = ['online', 'physical', 'hybrid'];
 	readonly eventStore = inject(EventStore);
-	creating = this.eventStore.isLoading;
+	creating = this.eventStore.isCreatingEvent;
 	readonly error = this.eventStore.error;
 	readonly alerts = inject(TuiAlertService);
 
+	today = new Date();
+
 	protected file: TuiFileLike | null = null;
+	protected startDate = new TuiDay(
+		this.today.getFullYear(),
+		this.today.getMonth(),
+		this.today.getDate(),
+	);
 
 	protected form = new FormGroup({
 		name: new FormControl(null, Validators.required),
 		description: new FormControl(null, Validators.required),
 		location: new FormControl(null, Validators.required),
 		mode: new FormControl(this.eventModes[0], Validators.required),
+		date: new FormControl(),
+		time: new FormControl(new TuiTime(12, 30)),
 	});
-
-	protected from: TuiDay | null = null;
-	protected to: TuiDay | null = null;
-	protected min = new TuiDay(2017, 9, 4);
-	protected max = TuiDay.currentLocal();
-	protected items = [new TuiNamedDay(TuiDay.currentLocal(), 'Until today')];
-
-	protected selectfield = new FormControl<string | null>(null);
 
 	onFileSelect(event: Event): void {
 		const inputElement = event.target as HTMLInputElement;
@@ -102,7 +106,7 @@ export class NewEventComponent {
 				size: uploadedFile.size,
 				type: uploadedFile.type,
 			};
-			this.control.setValue(this.file);
+			this.fileControl.setValue(this.file);
 		}
 	}
 	onDragOver(event: DragEvent): void {
@@ -118,7 +122,7 @@ export class NewEventComponent {
 				size: uploadedFile.size,
 				type: uploadedFile.type,
 			};
-			this.control.setValue(this.file);
+			this.fileControl.setValue(this.file);
 		}
 	}
 
@@ -128,7 +132,7 @@ export class NewEventComponent {
 		formData.append('description', this.form.value.description || '');
 		formData.append('location', this.form.value.location || '');
 		formData.append('type', this.form.value.mode || '');
-		formData.append('date', new Date().toISOString());
+		formData.append('date', this.getEventDateTime());
 
 		const file: File | null =
 			this.file && 'asFile' in this.file ? (this.file.asFile as File) : null;
@@ -138,7 +142,7 @@ export class NewEventComponent {
 		}
 
 		try {
-			this.eventStore.addEvent(formData);
+			await firstValueFrom(this.eventStore.addEvent(formData));
 
 			this.router.navigate(['/events']);
 		} catch (err) {
@@ -148,10 +152,20 @@ export class NewEventComponent {
 
 	handleError() {
 		this.alerts
-			.open(this.error() || 'Something went wrong', {
+			.open('Something went wrong', {
 				label: 'Error',
 				appearance: 'negative',
 			})
 			.subscribe();
+	}
+
+	getEventDateTime() {
+		const date: TuiDay = this.form.value.date ?? null;
+		const time: TuiTime | null = this.form.value.time ?? null;
+		const utcDate = date?.toUtcNativeDate();
+		const milliseconds = time?.toAbsoluteMilliseconds();
+		utcDate.setMilliseconds(milliseconds || 0);
+
+		return utcDate?.toISOString();
 	}
 }

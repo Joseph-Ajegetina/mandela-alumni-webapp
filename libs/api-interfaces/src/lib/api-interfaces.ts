@@ -1,5 +1,7 @@
 export type Roles = 'member' | 'admin';
 
+export type EventMode = 'online' | 'physical' | 'hybrid'
+
   export interface BaseEntity {
     id: string | null;
   }

@@ -1,5 +1,5 @@
-import { Component, effect, HostListener, inject, OnInit, signal } from '@angular/core';
-import { CommonModule, NgFor } from '@angular/common';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
+import { CommonModule } from '@angular/common';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TuiButton, TuiDropdown, TuiIcon, TuiLoader, TuiTextfield } from '@taiga-ui/core';
 import { TuiSearch } from '@taiga-ui/layout';
@@ -9,6 +9,7 @@ import { EventStore, UserStore } from '@mandela-alumni-webapp/core-state';
 import { EventsSlideshowComponent } from './events-slideshow/events-slideshow.component';
 import { RouterLink } from '@angular/router';
 import { debounceTime, distinctUntilChanged } from 'rxjs';
+import { TuiFilterByInputPipe } from '@taiga-ui/kit';
 
 @Component({
 	selector: 'app-events',
@@ -28,6 +29,7 @@ import { debounceTime, distinctUntilChanged } from 'rxjs';
 		EventsSlideshowComponent,
 		RouterLink,
 		TuiLoader,
+		TuiFilterByInputPipe,
 	],
 	templateUrl: './events.component.html',
 	styleUrl: './events.component.less',
@@ -42,10 +44,11 @@ export class EventsComponent implements OnInit {
 
 	form = new FormGroup({
 		searchTerm: new FormControl(''),
+		type: new FormControl(''),
 	});
 
 	events = this.eventStore.events;
-	isLoading = this.eventStore.isLoading;
+	isLoading = this.eventStore.eventsLoading;
 
 	constructor() {}
 
@@ -60,7 +63,7 @@ export class EventsComponent implements OnInit {
 			});
 	}
 
-	isAtTop = true; // Initially at the top
+	isAtTop = false; // Initially at the top
 
 	@HostListener('window:scroll', [])
 	onScroll(): void {

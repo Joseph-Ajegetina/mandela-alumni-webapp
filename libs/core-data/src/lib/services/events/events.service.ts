@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment.prod';
 import { Event } from '@mandela-alumni-webapp/api-interfaces';
 import { EVENTS } from './mock-data';
+import { of } from 'rxjs';
 
 @Injectable({
 	providedIn: 'root',
@@ -14,6 +15,8 @@ export class EventsService {
 	constructor() {}
 
 	 all() {
+		// sleep(20000)
+		// return of(EVENTS)
 		return this.http.get<Event[]>(this.getUrl());
 	}
 
