@@ -1,7 +1,7 @@
-export interface Message {
-    message: string;
-  }
-  
+export type Roles = 'member' | 'admin';
+
+export type EventMode = 'online' | 'physical' | 'hybrid'
+
   export interface BaseEntity {
     id: string | null;
   }
@@ -18,14 +18,37 @@ export interface Event extends BaseEntity {
     date: Date;
     location: string;
     name: string;
+    image: string;
   }
 
-  export interface NewEvent extends Omit<Event, 'id'> {
-    id?: never; // Ensures `id` is never present in new events
-  }
-  
-  export interface ExistingEvent extends Event {
-    id: string; // Ensures `id` is always present in existing events
-  }
-  
 
+  export interface IUser {
+    id: number;
+    email: string;
+    firstname: string;
+    lastname: string;
+    phone: string;
+    verifiedSmsAt: string;
+    verifiedEmailAt: string;
+    approvedAt: string;
+    disapprovedAt: string;
+    superAdmin: string;
+    createdAt: string;
+    updatedAt: string;
+  }
+  
+  export interface PendingUser extends IUser {
+    selected: boolean;
+    category?: string;
+  }
+  
+  export interface IRegister {
+    firstName: string;
+    lastName: string;
+    email: string;
+    phone: string;
+    role: Roles;
+    password: string;
+    dob: Date;
+  }
+  
