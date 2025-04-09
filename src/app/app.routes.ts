@@ -3,7 +3,7 @@ import { RegisterComponent } from './auth/feature/register/register.component';
 import { LoginComponent } from './auth/feature/login/login.component';
 import { LoginResolve } from './core/resolvers/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ApprovalPageComponent } from './features/pending-approval/approval-page/approval-page.component';
+import { ApprovalPageComponent } from './pending-approval/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
 
 export const appRoutes: Route[] = [
@@ -37,22 +37,22 @@ export const appRoutes: Route[] = [
 			{
 				path: 'dashboard',
 				loadComponent: () =>
-					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+					import('./dashboard/dashboard.component').then((m) => m.DashboardComponent),
 			},
 			{
 				path: 'approvals',
 				loadComponent: () =>
-					import('./features/approval/approval.component').then((m) => m.ApprovalComponent),
+					import('./approval/approval.component').then((m) => m.ApprovalComponent),
 			},
 			{
 				path: 'events',
 				loadComponent: () =>
-					import('./features/events/events.component').then((m) => m.EventsComponent),
+					import('./events/events.component').then((m) => m.EventsComponent),
 			},
 			{
 				path: 'new-event',
 				loadComponent: () =>
-					import('./features/events/new-event/new-event.component').then(
+					import('./events/new-event/new-event.component').then(
 						(m) => m.NewEventComponent,
 					),
 			},
