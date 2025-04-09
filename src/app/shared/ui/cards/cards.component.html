@@ -10,12 +10,12 @@
 			<div class="datetime">
 				<p *ngIf="card.date">
 					<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
-					{{ card.date }}
+					{{ card.date | date : 'fullDate' }}
 				</p>
 
 				<p>
 					<tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />
-					10:40
+					{{ card.date | date : 'shortTime' }}
 				</p>
 			</div>
 			<div class="text1">

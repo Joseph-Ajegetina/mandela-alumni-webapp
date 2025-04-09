@@ -9,10 +9,14 @@
 				<div class="event-details">
 					<p>
 						<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
-						{{ event?.date }}
+						{{ event?.date | date : 'fullDate' }}
 					</p>
 
-					<p><tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />10:00 AM</p>
+					<p>
+						<tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />{{
+							event?.date | date : 'shortTime'
+						}}
+					</p>
 				</div>
 				<div class="buttons">
 					<button class="details-btn register-btn" routerLink="../event/register">

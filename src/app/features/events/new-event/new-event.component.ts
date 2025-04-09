@@ -106,9 +106,10 @@ export class NewEventComponent {
 				size: uploadedFile.size,
 				type: uploadedFile.type,
 			};
-			this.fileControl.setValue(this.file);
+			this.fileControl.setValue(uploadedFile);
 		}
 	}
+
 	onDragOver(event: DragEvent): void {
 		event.preventDefault();
 	}
@@ -122,7 +123,7 @@ export class NewEventComponent {
 				size: uploadedFile.size,
 				type: uploadedFile.type,
 			};
-			this.fileControl.setValue(this.file);
+			this.fileControl.setValue(uploadedFile);
 		}
 	}
 
@@ -134,11 +135,10 @@ export class NewEventComponent {
 		formData.append('type', this.form.value.mode || '');
 		formData.append('date', this.getEventDateTime());
 
-		const file: File | null =
-			this.file && 'asFile' in this.file ? (this.file.asFile as File) : null;
+		const file = this.file ? (this.fileControl.value as File) : null;
 
 		if (file) {
-			formData.append('image', file);
+			formData.append('file', file);
 		}
 
 		try {
