@@ -5,6 +5,7 @@ import { LoginResolve } from './features/auth/data-access/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
+import { PreferencesComponent } from './features/preferences/preferences.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -27,6 +28,10 @@ export const appRoutes: Route[] = [
 	{
 		path: 'register',
 		component: RegisterComponent,
+	},
+	{
+		path: 'preferences',
+		component: PreferencesComponent
 	},
 
 	{
