@@ -5,12 +5,13 @@ import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment.prod';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root',
 })
 export class UsersService {
-
-  private _newMemberUrl = `${environment.domain}/auth/register`;
+	private _newMemberUrl = `${environment.domain}/auth/register`;
 	http = inject(HttpClient);
+	url = environment.domain;
+	model = '/user';
 
 	constructor() {}
 
@@ -23,5 +24,21 @@ export class UsersService {
 			phone: payload.phone,
 		};
 		return this.http.post<IRegister>(this._newMemberUrl, dto);
+	}
+
+	getApprovals(): Observable<any> {
+		return this.http.get(this.getUrl());
+	}
+
+	update(id: number, payload: any): Observable<any> {
+		return this.http.patch(this.getUrlWithId(id), payload);
+	}
+
+	private getUrl() {
+		return `${environment.domain}${this.model}`;
+	}
+
+	private getUrlWithId(id: number) {
+		return `${this.getUrl()}/${id}`;
 	}
 }

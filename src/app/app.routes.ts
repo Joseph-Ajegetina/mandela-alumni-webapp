@@ -3,7 +3,7 @@ import { RegisterComponent } from './auth/feature/register/register.component';
 import { LoginComponent } from './auth/feature/login/login.component';
 import { LoginResolve } from './core/resolvers/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
+import { ApprovalPageComponent } from './features/pending-approval/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
 
 export const appRoutes: Route[] = [
@@ -42,7 +42,7 @@ export const appRoutes: Route[] = [
 			{
 				path: 'approvals',
 				loadComponent: () =>
-					import('./features/admin/approval/approval.component').then((m) => m.ApprovalComponent),
+					import('./features/approval/approval.component').then((m) => m.ApprovalComponent),
 			},
 			{
 				path: 'events',

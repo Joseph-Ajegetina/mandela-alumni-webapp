@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiCell, TuiHeader, TuiSearch } from '@taiga-ui/layout';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -11,9 +11,10 @@ import {
 	TuiTitle,
 } from '@taiga-ui/core';
 import { TuiTable } from '@taiga-ui/addon-table';
-import { TuiBadge, TuiCheckbox, TuiPulse, TuiStatus, TuiTile } from '@taiga-ui/kit';
-import { ApprovalService } from './data-access/approval.service';
-import { IUser, PendingUser } from 'src/app/shared/interfaces/user';
+import { TuiBadge, TuiCheckbox, TuiStatus } from '@taiga-ui/kit';
+
+import { PendingUser } from 'src/app/shared/interfaces/user';
+import { UsersService } from '@mandela-alumni-webapp/core-data';
 
 @Component({
 	selector: 'app-approval',
@@ -38,7 +39,7 @@ import { IUser, PendingUser } from 'src/app/shared/interfaces/user';
 	styleUrl: './approval.component.less',
 })
 export class ApprovalComponent implements OnInit {
-	approvalService = inject(ApprovalService);
+	userService = inject(UsersService);
 	protected size = 'l';
 	private readonly alerts = inject(TuiAlertService);
 	pending: PendingUser[] = [];
@@ -56,7 +57,7 @@ export class ApprovalComponent implements OnInit {
 
 	ngOnInit(): void {
 		this.loading.set(true);
-		this.approvalService.getApprovals().subscribe((users: PendingUser[]) => {
+		this.userService.getApprovals().subscribe((users: PendingUser[]) => {
 			const pendingUsers = this.getPendingUsers(users);
 			this.pending = pendingUsers;
 			this.loading.set(false);
@@ -82,7 +83,7 @@ export class ApprovalComponent implements OnInit {
 
 	approve(pendingUser: PendingUser) {
 		this.approving.set(true);
-		this.approvalService.update(pendingUser.id, { approvedAt: new Date() }).subscribe((res) => {
+		this.userService.update(pendingUser.id, { approvedAt: new Date() }).subscribe((res) => {
 			this.pending = this.getPendingUsers(this.pending);
 			this.showMessage(`${this.selected()?.firstname} aproved`);
 			this.closeTooltip();
@@ -95,7 +96,7 @@ export class ApprovalComponent implements OnInit {
 
 	deny(pendingUser: PendingUser) {
 		this.denying.set(true);
-		this.approvalService.update(pendingUser.id, { disapprovedAt: new Date() }).subscribe((res) => {
+		this.userService.update(pendingUser.id, { disapprovedAt: new Date() }).subscribe((res) => {
 			this.pending = this.getPendingUsers(this.pending);
 			this.showMessage(`${this.selected()?.firstname} dissaproved`);
 			this.closeTooltip();
