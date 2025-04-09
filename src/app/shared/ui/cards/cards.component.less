@@ -1,0 +1,120 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.card-container {
+	width: 100%;
+	overflow: hidden;
+	border-radius: 10px;
+	display: flex;
+	flex-direction: column;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	@media @tui-tablet {
+		display: flex;
+		flex-direction: column;
+	}
+}
+
+.cardshow {
+	margin-top: 0;
+	width: 100%;
+	height: 12em;
+	background-size: cover;
+	background-position: center;
+}
+
+.text-overlay {
+	color: white;
+	margin-left: 1em;
+	text-align: left;
+}
+.details {
+	display: flex;
+	flex-direction: column;
+}
+.datetime {
+	display: flex;
+	justify-content: space-around;
+}
+.description {
+	width: 78%;
+
+	@media @tui-tablet {
+		width: 75%;
+	}
+}
+.text1 {
+	margin-left: 1.8em;
+}
+.event-type {
+	display: inline-block;
+	background: #00b4d8;
+	padding: 10px 10px;
+	border-radius: 10px;
+	font-size: 16px;
+	margin-top: 5.5em;
+
+	@media @tui-tablet {
+		font-size: 15px;
+		padding: 7px 7px;
+	}
+}
+
+h2 {
+	margin-top: 3px;
+	font-size: 18px;
+
+	@media @tui-tablet {
+		font-size: 14px;
+	}
+}
+
+p {
+	margin-top: 10px;
+	font-size: 11px;
+
+	@media @tui-tablet {
+		font-size: 9px;
+	}
+}
+
+.event-details {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.buttons {
+	margin-top: 15px;
+	margin-bottom: 5px;
+	display: flex;
+}
+
+button {
+	padding: 5px 5px;
+	border: none;
+	border-radius: 5px;
+	cursor: pointer;
+	font-size: 16px;
+	margin-right: 10px;
+
+	@media @tui-tablet {
+		padding: 5px 10px;
+	}
+}
+
+.register-btn {
+	background: #28a745;
+	color: black;
+	@media @tui-tablet {
+		font-size: 10px;
+	}
+}
+
+.details-btn {
+	background: transparent;
+	color: black;
+	border: 1px solid black;
+
+	border-radius: 10px;
+	@media @tui-tablet {
+		font-size: 10px;
+	}
+}
