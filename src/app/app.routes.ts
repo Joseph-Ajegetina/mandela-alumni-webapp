@@ -61,7 +61,28 @@ export const appRoutes: Route[] = [
 		],
 		canActivateChild: [AuthGuard, AdminGuard],
 	},
-
+	{
+		path: 'account',
+		loadComponent: ()=>
+			import('./shared/ui/account-layout/account-layout.component').then((m) => m.AccountLayoutComponent),
+		children: [
+			{
+				path: 'profile',
+				loadComponent: ()=>
+					import('./account-mangement/features/profile-page/profile-page.component').then((m) =>m.ProfilePageComponent)
+			},
+			{
+				path: 'security',
+				loadComponent: ()=>
+					import('./account-mangement/features/security-access/security-access.component').then((m) =>m.SecurityAccessComponent)
+			},
+			{
+				path: 'preference',
+				loadComponent: ()=>
+					import('./account-mangement/features/preference-page/preference-page.component').then((m) =>m.PreferencePageComponent)
+			},
+		]
+	},
 	{
 		path: '**',
 		loadComponent: () =>
