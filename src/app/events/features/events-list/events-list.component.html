@@ -1,0 +1,79 @@
+<div class="container">
+	<div class="top-container">
+		<div class="header">
+			<h3>Events</h3>
+		</div>
+		@if (userStore.isAdmin()){
+		<div class="add-event">
+			<button iconStart="@tui.plus" tuiButton type="button" routerLink="../new-event" [size]="'m'">
+				Create Event
+			</button>
+		</div>
+		}
+	</div>
+
+	@if (isLoading()){
+	<div class="loading">
+		<tui-loader></tui-loader>
+	</div>
+	}@else{
+	<div class="main-content">
+		<div class="top">
+			<div class="srch">
+				<search tuiSearch>
+					<form [formGroup]="form">
+						<fieldset tuiTextfieldSize="m">
+							<tui-textfield iconStart="@tui.search">
+								<input placeholder="Search events" tuiTextfield formControlName="searchTerm" />
+							</tui-textfield>
+						</fieldset>
+					</form>
+				</search>
+			</div>
+
+			<div class="filter">
+				<div class="all">
+					<tui-select
+						[(ngModel)]="type"
+						(ngModelChange)="eventStore.updateType($event)"
+						tuiTextfieldSize="m"
+						[tuiTextfieldCleaner]="true"
+					>
+						Event Type
+						<input placeholder="" tuiTextfieldLegacy />
+						<tui-data-list-wrapper *tuiDataList [items]="eventModes | tuiFilterByInput" />
+					</tui-select>
+				</div>
+				<!-- <div class="icons">
+					<tui-icon icon="@tui.upload" [style.color]="'#000000'" />
+					<tui-icon icon="@tui.refresh-ccw" [style.color]="'#000000'" />
+					<tui-icon icon="@tui.chevrons-up-down" [style.color]="'#000000'" />
+				</div> -->
+			</div>
+		</div>
+		<div class="main">
+			<app-events-slideshow [events]="eventStore.latestEvents()"></app-events-slideshow>
+		</div>
+	</div>
+	<div
+		class="icon arrow"
+		(click)="toggleScroll()"
+		(keydown.enter)="toggleScroll()"
+		(keydown.space)="toggleScroll()"
+		tabindex="0"
+		role="button"
+		aria-label="Scroll up or down"
+	>
+		<tui-icon
+			[icon]="isAtTop ? '@tui.arrow-down-to-line' : '@tui.arrow-up-to-line'"
+			[style.color]="'#FFFFFF'"
+		>
+		</tui-icon>
+	</div>
+	<div class="footer">
+		@for( event of eventStore.filteredEvents(); track event.id){
+		<app-event-card [event]="event" class="card-item"></app-event-card>
+		}
+	</div>
+	}
+</div>
