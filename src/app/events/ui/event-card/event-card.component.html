@@ -1,0 +1,37 @@
+<div class="card-container">
+	<div class="image">
+		<div class="cardshow" [ngStyle]="{ 'background-image': 'url(' + event()?.image + ')' }">
+			<div class="text-overlay">
+				<span class="event-type">{{ event()?.type }}</span>
+			</div>
+		</div>
+
+		<div class="details">
+			<div class="datetime">
+				<p *ngIf="event()?.date">
+					<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
+					{{ event()?.date | date : 'fullDate' }}
+				</p>
+
+				<p>
+					<tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />
+					{{ event()?.date | date : 'shortTime' }}
+				</p>
+			</div>
+			<div class="text1">
+				<h2>{{ event()?.name }}</h2>
+				<p class="description">{{ event()?.description }}</p>
+				<div class="buttons">
+					<button class="details-btn">
+						<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
+						register
+					</button>
+					<button class="details-btn">
+						<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
+						View details
+					</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

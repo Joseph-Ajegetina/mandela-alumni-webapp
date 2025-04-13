@@ -19,6 +19,8 @@
 		"@angular/platform-browser": "~19.1.0",
 		"@angular/platform-browser-dynamic": "~19.1.0",
 		"@angular/router": "~19.1.0",
+		"@ngrx/operators": "^19.1.0",
+		"@ngrx/signals": "^19.1.0",
 		"@taiga-ui/addon-mobile": "^4.24.0",
 		"@taiga-ui/addon-table": "^4.28.0",
 		"@taiga-ui/cdk": "^4.23.0",
