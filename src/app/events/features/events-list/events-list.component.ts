@@ -1,4 +1,4 @@
-import { Component, HostListener, inject, signal } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EventStore, UserStore } from '@mandela-alumni-webapp/core-state';
 import { FormControl, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
@@ -37,7 +37,7 @@ import { EventCardComponent } from '../../ui/event-card/event-card.component';
 	styleUrl: './events-list.component.less',
 	providers: [EventStore],
 })
-export class EventsListComponent {
+export class EventsListComponent implements OnInit{
 	readonly eventStore = inject(EventStore);
 	readonly userStore = inject(UserStore);
 
@@ -52,8 +52,6 @@ export class EventsListComponent {
 	events = this.eventStore.events;
 	isLoading = this.eventStore.eventsLoading;
 
-	constructor() {}
-
 	ngOnInit(): void {
 		this.form.valueChanges
 			.pipe(
@@ -65,11 +63,11 @@ export class EventsListComponent {
 			});
 	}
 
-	isAtTop = false; // Initially at the top
+	isAtTop = false; 
 
 	@HostListener('window:scroll', [])
 	onScroll(): void {
-		this.isAtTop = window.scrollY < 100; // Detect scroll position
+		this.isAtTop = window.scrollY < 100; 
 	}
 
 	toggleScroll(): void {
