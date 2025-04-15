@@ -1,7 +1,7 @@
 import { Component, ChangeDetectionStrategy} from '@angular/core';
 import type { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { UserSidebarComponent } from "../user-sidebar/user-sidebar.component";
+// import { UserSidebarComponent } from "../user-sidebar/user-sidebar.component";
 import { TuiPlatform } from '@taiga-ui/cdk';
 import { TuiSwitch } from '@taiga-ui/kit';
 import { TuiButton, TuiDropdown, TuiSizeS } from '@taiga-ui/core';
@@ -11,7 +11,7 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 	selector: 'app-preferences',
 	imports: [
 		CommonModule, 
-		UserSidebarComponent, 
+		// UserSidebarComponent, 
 		TuiPlatform, 
 		TuiSwitch,
 		TuiDropdown,
