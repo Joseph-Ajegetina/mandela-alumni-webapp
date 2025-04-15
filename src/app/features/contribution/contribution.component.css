@@ -1,0 +1,127 @@
+.contribution-div{
+    overflow:hidden;
+}
+.back-arrow-btn{
+    display: flex;
+    border:none;
+    align-items: center;
+    height:50px;
+    width: 120px;
+    background-color: white;
+    font-size: large;
+    cursor: pointer;
+}
+.back-arrow{
+    width:180px;
+}
+.page-content{
+    height:700px;
+    position: relative;
+    display:flex;
+}
+.did-ctd{
+    position:relative;
+    display: flex;
+    height:700px;
+    width:40%;
+    align-items: center;
+    justify-content: right;
+}
+.content-txt-div{
+    position: absolute;
+    height: fit-content;
+    margin-top:150px;
+    right:-120px;
+}
+.map-img-div{
+    width:60%;
+}
+.map-img{
+    width:950px;
+}
+.yellow-footprint-img{
+    position: absolute;
+    top:50px;
+    right:-50px;
+    width: 270px;
+}
+.p1-ctd{
+    font-family: "Kumbh Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:"YOPQ" 300;
+    width:550px;
+    font-size: 55px;
+    font-weight: 400;
+    line-height: 70px;
+    letter-spacing: 2px;
+    margin:0;
+}
+.further{
+    font-family: "Playwrite US Trad", cursive;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-size:55px;
+}
+.p2-ctd{
+    font-family: "Kumbh Sans", sans-serif;
+    font-style: normal;
+    font-variation-settings:"YOPQ" 300;
+    width:290px;
+    font-size: 18px;
+    font-weight: 200;
+}
+
+.information-box{
+    box-sizing: border-box;
+    height:350px;
+    display:flex;
+    color:white;
+    width:100%;
+}
+.box1, .box2, .box3{
+    width: 33.33%;
+    font-size: 22px;
+    font-family: 'Times New Roman', Times, serif;
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+.box1 p, 
+.box2 p, 
+.box3 p{
+    font-family: "Kumbh Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:"YOPQ" 300;
+    width:270px;
+    line-height: 40px;
+    height: fit-content;
+}
+.box1{
+    background-color:rgba(2, 80, 128, 0.88);
+}
+.box2{
+    background-color: rgba(221,76,30,0.88);
+}
+.box3{
+    background-color: rgba(38,171,228, 0.88);
+}
+
+@media (max-width: 1080px){
+    .did-ctd{
+        left:250px;
+    }
+    .map-img-div{
+        position:absolute;
+        right:-350px;
+    }
+    .information-box{
+        display:block;
+        height:600px;
+    }
+    .box1, .box2, .box3{
+        width:100%;
+        height: 200px;
+    }
+}
