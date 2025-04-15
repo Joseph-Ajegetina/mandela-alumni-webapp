@@ -1,20 +1,21 @@
+<aside [style.height.rem]="27" [tuiNavigationAside]="true" [attr.tuiTheme]="theme()">
+	<a [routerLink]="routes.profile" tuiAsideItem routerLinkActive="active"> My Profile </a>
 
-    <aside
-      [style.height.rem]="27"
-      [tuiNavigationAside]="true"
-      [attr.tuiTheme]="theme()"
-    >
+	<a
+		iconStart="@tui.circle-check"
+		[routerLink]="routes.security"
+		tuiAsideItem
+		routerLinkActive="active"
+	>
+		Security & Access
+	</a>
 
-      <a [routerLink]="routes.profile" tuiAsideItem   routerLinkActive="active">
-        My Profile
-      </a>
-
-      <a iconStart="@tui.circle-check" [routerLink]="routes.security" tuiAsideItem   routerLinkActive="active">
-      Security & Access
-      </a>
-
-      <a iconStart="@tui.circle-check" [routerLink]="routes.preference" tuiAsideItem   routerLinkActive="active">
-     Prefrence
-        </a>
-  
-    </aside>
+	<a
+		iconStart="@tui.circle-check"
+		[routerLink]="routes.preference"
+		tuiAsideItem
+		routerLinkActive="active"
+	>
+		Prefrence
+	</a>
+</aside>

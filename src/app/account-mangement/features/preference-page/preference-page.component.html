@@ -1,1 +1,119 @@
-<p>preference-page works!</p>
+<section>
+	<header>
+		<p class="title">Preferences</p>
+	</header>
+	<div class="content">
+		<div class="div-content">
+			<div class="p-content">
+				<p class="p1">Language Preference</p>
+				<p class="p2">Select your preferred language for the platform and communication</p>
+			</div>
+			<div class="div-btn">
+				<button
+					appearance="outline"
+					iconEnd="@tui.chevron-down"
+					size="s"
+					tuiButton
+					type="button"
+					class="language"
+				>
+					English
+				</button>
+			</div>
+		</div>
+		<div class="div-content">
+			<div class="p-content">
+				<p>Show Birthdays on My Profile</p>
+				<p>Allow other alumni to see and celebrate your birthday</p>
+			</div>
+			<div
+				class="div-checkbox"
+				[class.wrapper_web]="topPlatform === 'web'"
+				[tuiPlatform]="topPlatform"
+			>
+				<input
+					tuiSwitch
+					type="checkbox"
+					[ngModel]="true"
+					[showIcons]="true"
+					[size]="getSize(true)"
+				/>
+			</div>
+		</div>
+		<div class="div-content">
+			<div class="p-content">
+				<p>Allow Connection Requests from Alumni</p>
+				<p>Manage whether others can send you connection invites</p>
+			</div>
+			<div
+				class="div-checkbox"
+				[class.wrapper_web]="topPlatform === 'web'"
+				[tuiPlatform]="topPlatform"
+			>
+				<input
+					tuiSwitch
+					type="checkbox"
+					[ngModel]="true"
+					[showIcons]="true"
+					[size]="getSize(true)"
+				/>
+			</div>
+		</div>
+		<div class="div-content">
+			<div class="p-content">
+				<p>Preferred Time Zone</p>
+				<p>Helps us show events and deadlines in your local time</p>
+			</div>
+			<div class="div-btn">
+				<button
+					appearance="outline"
+					iconEnd="@tui.chevron-down"
+					size="s"
+					tuiButton
+					type="button"
+					class="gmt"
+				>
+					G.M.T
+				</button>
+			</div>
+		</div>
+		<div class="div-content">
+			<div class="p-content">
+				<p>Display My Country on Profile</p>
+				<p>Toggle to control whether your country is visible to other users</p>
+			</div>
+			<div
+				class="div-checkbox"
+				[class.wrapper_web]="topPlatform === 'web'"
+				[tuiPlatform]="topPlatform"
+			>
+				<input
+					tuiSwitch
+					type="checkbox"
+					[ngModel]="true"
+					[showIcons]="true"
+					[size]="getSize(true)"
+				/>
+			</div>
+		</div>
+		<div class="div-content">
+			<div class="p-content">
+				<p>Show Birthdays on My Profile</p>
+				<p>Allow other alumni to see and celebrate your birthday</p>
+			</div>
+			<div
+				class="div-checkbox"
+				[class.wrapper_web]="topPlatform === 'web'"
+				[tuiPlatform]="topPlatform"
+			>
+				<input
+					tuiSwitch
+					type="checkbox"
+					[ngModel]="true"
+					[showIcons]="true"
+					[size]="getSize(true)"
+				/>
+			</div>
+		</div>
+	</div>
+</section>
