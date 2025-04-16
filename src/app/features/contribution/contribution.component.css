@@ -1,11 +1,13 @@
 .contribution-div{
-    overflow:hidden;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
 }
 .back-arrow-btn{
     display: flex;
     border:none;
     align-items: center;
-    height:50px;
+    min-height:5%;
     width: 120px;
     background-color: white;
     font-size: large;
@@ -15,7 +17,7 @@
     width:180px;
 }
 .page-content{
-    height:700px;
+    min-height:65%;
     position: relative;
     display:flex;
 }
@@ -74,7 +76,7 @@
 
 .information-box{
     box-sizing: border-box;
-    height:350px;
+    min-height:30%;
     display:flex;
     color:white;
     width:100%;
