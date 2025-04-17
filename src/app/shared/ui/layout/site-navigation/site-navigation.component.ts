@@ -36,6 +36,7 @@ export class SiteNavigationComponent {
 		home: 'dashboard',
 		directory: 'directory',
 		approval: 'approvals',
+		payment: 'payment',
 		events: 'events',
 		createEvent: 'new-event',
 	};
