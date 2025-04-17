@@ -1,4 +1,12 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
+.one {
+    display: block;
+    margin: -1.25rem;
+    padding: 1.875rem;
+    background: #3e4757;
+    color: var(--tui-background-base);
+}
+
 
 .container {
     display: flex;
@@ -52,9 +60,11 @@ main{
        gap: 10px;
     }
 }
-
-
-.cards [tuiCardLarge] {
+.cards .cardse{
+    display: flex;
+    gap: 10px;
+    align-content: center;
+    align-items: center;
     background: #0250804A;
 
     border-radius: 12px;
@@ -68,15 +78,39 @@ main{
         height: 5em;
     }
     @media @tui-mobile-interval{
-        flex-direction: column;
+
         width: 100%;
         height: 5em;
     }
     @media @tui-tablet-interval{
-        width: 160px;
+        width: 100%;
        
         }
 }
+.content{
+
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+table{
+    @media @tui-mobile {
+        width: 2em !important;
+        margin-right: 5em;
+    }
+
+    @media @tui-mobile-interval{
+ width: 100% !important;
+
+    }
+    @media @tui-tablet-interval{
+        width: 100% !important;
+   
+        }
+}
+
+
+
 table{
     @media @tui-mobile {
         width: 2em !important;
@@ -149,21 +183,22 @@ table th{
 }
 
 
-.cards  [tuiCell] {
+.cards  .title{
     display: flex;
     transition: transform 0.4s ease;  
 }
 
-.cards [tuiTitle] {
+.cards .title {
     font-size: 1rem;
 }
 
 .card-icon{
     color: #fff;
     background: none;
+    margin-left: 1em;
 
 }
-.cards  [tuiSubtitle] {
+.amount {
     font-size: 1rem;
     font-weight: bold;
     color: #444;
@@ -184,61 +219,14 @@ table th{
    margin-left: 1em;
     }
 
-  
-footer {
-    width: 100%;
-    transform: translateY(-100%);
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-    @media @tui-mobile {
-        display: none;
-       }
-       @media @tui-mobile-interval{
-           display: none;
-       }
-       @media @tui-tablet-interval{
-           display: none;
-       }
-}
-[tuiCardLarge] {
+ 
+.cardse {
     height: 80px; 
     transition: all 0.4s ease;
     overflow: hidden;
     position: relative;
   }
 
-
-[tuiCardLarge]:hover {
-    transform: scale(1.1);
-    height: auto;
-    
-}
-
-[tuiCardLarge]:hover [tuiCell] {
-    margin-top: 0;  
-    transition: margin 0.4s ease;
-}
-
-[tuiCardLarge]:hover footer {
-    transform: translateY(0);
-    opacity: 1;
-    transition: transform 0.4s ease, opacity 0.4s ease;
-}
-
-footer span {
-    display: block;
-    text-align: left;
-    transform: translateY(-100%);
-    transition: transform 0.4s ease, opacity 0.4s ease;
-    opacity: 0;
-}
-
-
-[tuiCardLarge]:hover footer span {
-    transform: translateY(0);
-    opacity: 1;
-  
-}
 
 [tuiTh],
 [tuiTd] {

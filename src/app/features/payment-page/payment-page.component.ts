@@ -1,16 +1,21 @@
 import { NgClass, NgFor, NgForOf} from '@angular/common';
 import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { RouterLink } from '@angular/router';
 import { TuiTable } from '@taiga-ui/addon-table';
-import { TuiAppearance, TuiButton, TuiDropdown, TuiIcon, TuiTitle } from '@taiga-ui/core';
-import {TuiBadge, TuiCheckbox,  TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
+import { TuiAppearance, TuiAutoColorPipe, TuiButton, TuiDropdown, TuiHintDirective, TuiIcon, TuiLink, TuiTitle } from '@taiga-ui/core';
+import {TuiAvatar, TuiBadge, TuiCheckbox,  TuiItemsWithMore, TuiStatus } from '@taiga-ui/kit';
 import { TuiCardLarge, TuiCell} from '@taiga-ui/layout';
 
 @Component({
   selector: 'app-payment-page',
   imports: [
     TuiAppearance,
- 
+    RouterLink,
+    TuiAutoColorPipe,
+    TuiAvatar,
+    TuiHintDirective,
+    TuiLink,
     TuiButton,
     TuiCardLarge,
     TuiCell,
