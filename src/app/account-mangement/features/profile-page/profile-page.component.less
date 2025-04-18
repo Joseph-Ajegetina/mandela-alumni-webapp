@@ -1,0 +1,113 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.container{
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+h2, h3{
+    color: #254568;
+}
+.main-content{
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+}
+.user{
+ 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media @tui-mobile-interval, @tui-mobile{
+        width: 100%;
+        margin: 0;
+    }
+    @media @tui-tablet-interval{
+        width: 100%;
+    }
+}
+.profile{
+ 
+    display: flex;
+    gap: 1em;
+    align-items: center;
+    margin-left: 1em;
+    @media @tui-mobile-interval, @tui-mobile{
+        margin: 0;
+    }
+}
+
+.avatar{
+    @media @tui-mobile-interval, @tui-mobile{
+        width: 2em;
+        height: 2em;
+    }
+}
+.name{
+    display: flex;
+    line-height: 0;
+    flex-direction: column;
+    gap: 0;
+    justify-content: start;
+}
+.name h2{
+    font-size: 15px;
+}
+.personal, .address{
+    display: flex;
+    justify-content: space-between;
+    @media @tui-mobile-interval, @tui-mobile{
+        width: 100%;
+        margin: 0;
+    }
+    @media @tui-tablet-interval{
+        width: 100%;
+    }
+}
+.personal .content,
+.address .content {
+  width: 100%;
+}
+.info-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    row-gap: 16px;
+    column-gap: 2rem;
+    margin-left: 1em;
+    @media @tui-mobile-interval, @tui-mobile{
+     grid-template-columns: 1fr;
+       
+        width: 100%;
+        row-gap: 10px;
+ 
+     
+    }
+    @media @tui-tablet-interval{
+        width: 100%;
+        grid-template-columns: 1fr;
+        row-gap: 16px;
+        row-gap: 16px;
+    }
+    
+  }
+  
+  .info-item {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .label {
+    font-weight: 500;
+    color: #6b7280; 
+    font-size: 0.9rem;
+  }
+  
+  .value {
+    font-weight: 500;
+    color: #111827; 
+    font-size: 1rem;
+  }
+  
+    
