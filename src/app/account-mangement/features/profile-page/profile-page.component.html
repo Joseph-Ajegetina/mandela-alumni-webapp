@@ -1,1 +1,95 @@
-<p>profile-page works!</p>
+<div class="container">
+    <h3>My Profile</h3>
+    <div class="main-content">
+       <div class="user">
+            <div class="profile">
+                <tui-avatar
+                size="xl"
+                class="avatar"
+                appearance="negative"
+                src="@tui.user"
+            />
+            <div class="name">
+                <h2 class="check">Boansi Collins</h2>
+                <p>Web Developer</p>
+                <p>Accra Ghana</p>
+            </div> 
+       </div>
+        <app-action-buttons
+        [buttons]="profileActions"
+        (buttonClick)="handleAction($event)">
+      </app-action-buttons>
+      
+        </div>
+     
+        <div class="personal">
+           <div class="content">
+                <h3>Personal Information</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                      <span class="label">First Name:</span>
+                      <span class="value">Collins</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Last Name:</span>
+                      <span class="value">Boansi</span>
+                    </div>
+                  
+                    <div class="info-item">
+                      <span class="label">Email:</span>
+                      <span class="value">prof&#64;example.com</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Gender:</span>
+                      <span class="value">Male</span>
+                    </div>
+                  
+                    <div class="info-item">
+                      <span class="label">Phone:</span>
+                      <span class="value">+1234567890</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Profession:</span>
+                      <span class="value">Software Developer</span>
+                    </div>
+           </div>
+              </div>
+              <app-action-buttons
+              [buttons]="profileActions"
+              (buttonClick)="handleAction($event)">
+            </app-action-buttons>
+        </div>
+  
+        <div class="address">
+           <div class="content">
+                <h3>Address</h3>
+                <div class="info-grid">
+                    <div class="info-item">
+                      <span class="label">Country:</span>
+                      <span class="value">Ghana</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">City/State:</span>
+                      <span class="value">Accra</span>
+                    </div>
+                  
+                    <div class="info-item">
+                      <span class="label">Postal Code:</span>
+                      <span class="value">CO-4499</span>
+                    </div>
+                    <div class="info-item">
+                      <span class="label">Telephone:</span>
+                      <span class="value">+1234567890
+                        
+                      </span>
+                    </div>
+           </div>
+              
+              </div>
+              <app-action-buttons
+              [buttons]="profileActions"
+              (buttonClick)="handleAction($event)">
+            </app-action-buttons>
+        </div>
+    </div>
+</div>
