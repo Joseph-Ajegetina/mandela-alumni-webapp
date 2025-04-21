@@ -1,7 +1,7 @@
 .security-section {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem; 
+    gap: 5px; 
   }
   .setting-title{
     color: #254568;
@@ -14,10 +14,18 @@
     justify-content: space-between;
     align-items: center;
     background-color: transparent;
-    padding: 1rem;
+    padding: 10px;
     border-radius: 10px;
-    border-color: #000;
+    border: 1px solid #f2f2f2;
     margin-top: 10px;
+    font: var(--tui-font-text-l);
+
+    .button-group{
+      display: inline-block;
+      align-items: center;
+      justify-content: center;
+      margin-top: 10px;
+    }
   }
   
   .security-info {
@@ -34,4 +42,11 @@
     font-size: 0.875rem;
     white-space: nowrap;
   }
- 
+.deleteButton{
+    color: #C74634;
+    cursor: pointer;
+  }
+.deleteHeader{
+  color: #C74634;
+  font-weight: 500;
+}

@@ -27,3 +27,5 @@ export interface Card {
 		buttons?: { icon?: string; text: string; link: string; style?: string }[];
 	};
 }
+
+

@@ -1,21 +1,83 @@
 <h1 class="setting-title">Security Access</h1>
-<form [formGroup]="testForm" class="security-section">
+ <form [formGroup]="testForm" class="security-section">
+ <!-- first setting -->
+         <label class="security-item" appearance="secondary" tuiBlock>
+             <div class="security-info">
+                 <span tuiTitle>
+                     Change Password
+                     <span tuiSubtitle>
+                         Keep your account secure by updating your password regularly.            
+                     </span>
+                 </span>
+             </div>
+             <input formControlName="testValue3" tuiButton type="button"/>
+             <div tuiAppearance="outline" tuiButtonGroup class="security-action">
+                 <button type="button">
+                     <tui-icon icon="@tui.pencil-line" />
+                     Edit Password
+                 </button>
+             </div>
+         </label>
 
-        <label class="security-item" appearance="secondary" tuiBlock>
-            <div class="security-info">
-                <span tuiTitle>
-                    Change Password
-                    <span tuiSubtitle>
-                        Keep your account secure by updating your password regularly.            
-                    </span>
-                </span>
-            </div>
+<!-- second setting -->
+         <label class="security-item" appearance="secondary" tuiBlock>
+          <div class="security-info">
+              <span tuiTitle>
+                Email for Notifications
+                  <span tuiSubtitle>
+                    Manage the email address used for platform alerts and updates.            
+                  </span>
+              </span>
+          </div>
             <input formControlName="testValue3" tuiButton type="button"/>
-            <div tuiAppearance="outline" tuiButtonGroup class="security-action">
-                <button type="button">
-                    <tui-icon icon="@tui.pencil-line" />
-                    Edit Password
-                </button>
-            </div>
-        </label>
-</form>
+            <div class="button-group">
+              <div tuiAppearance="outline" tuiButtonGroup class="security-action">
+                  <button type="button">
+                      <tui-icon icon="@tui.pencil-line" />
+                      Change Email
+                  </button>
+              </div>
+              <p>ajjnfkjdnfngmail.com</p>
+          </div>
+      </label>
+
+<!-- third setting -->
+      <label class="security-item" appearance="secondary" tuiBlock>
+        <div class="security-info">
+            <span tuiTitle>
+              Login Activity
+                <span tuiSubtitle>
+                  See where your account was last accessed from.
+                </span>
+            </span>
+        </div>
+        <input formControlName="testValue3" tuiButton type="button"/>
+        <div tuiAppearance="outline" tuiButtonGroup class="security-action">
+            <button type="button">
+                <tui-icon icon="@tui.eye" />
+                View recent logins
+            </button>
+        </div>
+    </label>
+
+<!-- fourth setting -->
+<label class="security-item" appearance="secondary" tuiBlock>
+  <div class="security-info">
+      <span tuiTitle class="deleteHeader">
+          Delete Account
+          <span tuiSubtitle>
+            <tui-icon icon="@tui.circle-alert"/>
+            Permanently remove your account and all associated data.
+          </span>
+      </span>
+  </div>
+  <input formControlName="testValue3" tuiButton type="button"/>
+  <div tuiAppearance="outline" tuiButtonGroup class="security-action">
+      <button tuiButton type="button" class="deleteButton" (click)="onClick()">
+          <tui-icon icon="@tui.trash-2"/>
+          Delete Account
+      </button>
+  </div>
+</label>
+
+ </form>
