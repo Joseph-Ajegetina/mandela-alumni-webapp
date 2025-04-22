@@ -39,7 +39,7 @@ import { AuthState } from '@mandela-alumni-webapp/core-state';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [],
 })
-export class LayoutComponent extends TuiPortals {
+export class LayoutComponent {
 	protected darkMode = inject(TUI_DARK_MODE);
 	protected authState = inject(AuthState);
 	protected router = inject(Router);
