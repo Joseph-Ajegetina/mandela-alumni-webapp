@@ -6,6 +6,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 import { ApprovalPageComponent } from './pending-approval/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
 import { PreferencesComponent } from './features/preferences/preferences.component';
+import { ContributionComponent } from './features/contribution/contribution.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -32,6 +33,10 @@ export const appRoutes: Route[] = [
 	{
 		path: 'preferences',
 		component: PreferencesComponent
+	},
+	{
+		path: 'contribution',
+		component: ContributionComponent
 	},
 
 	{
