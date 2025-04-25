@@ -7,6 +7,7 @@
     flex-direction: column;
     gap: 10px;
 }
+
 h2, h3{
     color: #254568;
 }
@@ -16,7 +17,7 @@ h2, h3{
     gap: 1em;
 }
 .user{
- 
+   
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -31,6 +32,7 @@ h2, h3{
 .profile{
  
     display: flex;
+
     gap: 1em;
     align-items: center;
     margin-left: 1em;
@@ -51,6 +53,11 @@ h2, h3{
     flex-direction: column;
     gap: 0;
     justify-content: start;
+    @media @tui-mobile-interval{
+    width: 100%;
+   
+     
+    }
 }
 .name h2{
     font-size: 15px;
@@ -58,18 +65,25 @@ h2, h3{
 .personal, .address{
     display: flex;
     justify-content: space-between;
+
+   
     @media @tui-mobile-interval, @tui-mobile{
         width: 100%;
         margin: 0;
+
     }
     @media @tui-tablet-interval{
         width: 100%;
+        display: flex;
+        
     }
 }
 .personal .content,
 .address .content {
-  width: 100%;
+    width: 100%;  
+    
 }
+
 .info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -92,7 +106,7 @@ h2, h3{
     }
     
   }
-  
+
   .info-item {
     display: flex;
     flex-direction: column;
@@ -110,4 +124,4 @@ h2, h3{
     font-size: 1rem;
   }
   
-    
+  

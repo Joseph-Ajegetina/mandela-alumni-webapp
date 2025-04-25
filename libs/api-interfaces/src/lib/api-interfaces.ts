@@ -35,6 +35,9 @@ export interface Event extends BaseEntity {
     superAdmin: string;
     createdAt: string;
     updatedAt: string;
+    gender?: string;
+    professon?: string;
+    location?: string;
   }
   
   export interface PendingUser extends IUser {

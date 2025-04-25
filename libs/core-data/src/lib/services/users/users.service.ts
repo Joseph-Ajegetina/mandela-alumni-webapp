@@ -33,7 +33,10 @@ export class UsersService {
 	update(id: number, payload: any): Observable<any> {
 		return this.http.patch(this.getUrlWithId(id), payload);
 	}
-
+	getById(id: number): Observable<IRegister> {
+		return this.http.get<IRegister>(this.getUrlWithId(id));
+	  }
+	  
 	private getUrl() {
 		return `${environment.domain}${this.model}`;
 	}

@@ -1,95 +1,96 @@
 <div class="container">
-    <h3>My Profile</h3>
-    <div class="main-content">
-       <div class="user">
-            <div class="profile">
-                <tui-avatar
-                size="xl"
-                class="avatar"
-                appearance="negative"
-                src="@tui.user"
-            />
-            <div class="name">
-                <h2 class="check">Boansi Collins</h2>
-                <p>Web Developer</p>
-                <p>Accra Ghana</p>
-            </div> 
-       </div>
-        <app-action-buttons
-        [buttons]="profileActions"
-        (buttonClick)="handleAction($event)">
-      </app-action-buttons>
-      
+  <h3>My Profile</h3>
+  <div class="main-content">
+
+    <!-- USER SECTION -->
+    <div class="user">
+      <div class="profile">
+        <tui-avatar
+          size="xl"
+          class="avatar"
+          appearance="negative"
+          [src]="profileImage || '@tui.user'"
+        />
+   
+        <div class="name">
+          <h2 class="check">{{ currentUser.firstname }} {{ currentUser.lastname }}</h2>
+          <p>{{ currentUser.profession || 'Web Developer'}}</p>
+          <p>{{ currentUser.city || 'Accra'}}, {{ currentUser.country || 'Ghana' }}</p>
         </div>
-     
-        <div class="personal">
-           <div class="content">
-                <h3>Personal Information</h3>
-                <div class="info-grid">
-                    <div class="info-item">
-                      <span class="label">First Name:</span>
-                      <span class="value">Collins</span>
-                    </div>
-                    <div class="info-item">
-                      <span class="label">Last Name:</span>
-                      <span class="value">Boansi</span>
-                    </div>
-                  
-                    <div class="info-item">
-                      <span class="label">Email:</span>
-                      <span class="value">prof&#64;example.com</span>
-                    </div>
-                    <div class="info-item">
-                      <span class="label">Gender:</span>
-                      <span class="value">Male</span>
-                    </div>
-                  
-                    <div class="info-item">
-                      <span class="label">Phone:</span>
-                      <span class="value">+1234567890</span>
-                    </div>
-                    <div class="info-item">
-                      <span class="label">Profession:</span>
-                      <span class="value">Software Developer</span>
-                    </div>
-           </div>
-              </div>
-              <app-action-buttons
-              [buttons]="profileActions"
-              (buttonClick)="handleAction($event)">
-            </app-action-buttons>
-        </div>
-  
-        <div class="address">
-           <div class="content">
-                <h3>Address</h3>
-                <div class="info-grid">
-                    <div class="info-item">
-                      <span class="label">Country:</span>
-                      <span class="value">Ghana</span>
-                    </div>
-                    <div class="info-item">
-                      <span class="label">City/State:</span>
-                      <span class="value">Accra</span>
-                    </div>
-                  
-                    <div class="info-item">
-                      <span class="label">Postal Code:</span>
-                      <span class="value">CO-4499</span>
-                    </div>
-                    <div class="info-item">
-                      <span class="label">Telephone:</span>
-                      <span class="value">+1234567890
-                        
-                      </span>
-                    </div>
-           </div>
-              
-              </div>
-              <app-action-buttons
-              [buttons]="profileActions"
-              (buttonClick)="handleAction($event)">
-            </app-action-buttons>
-        </div>
+      </div>
+
+      <app-action-buttons
+        [buttons]="getButtonsFor('user')"
+        (buttonClick)="handleAction($event, 'user')"
+      ></app-action-buttons>
     </div>
+
+    <!-- PERSONAL SECTION -->
+    <div class="personal">
+      <div class="content">
+        <h3>Personal Information</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">First Name:</span>
+            <span class="value">{{ currentUser.firstname }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Last Name:</span>
+            <span class="value">{{ currentUser.lastname }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Email:</span>
+            <span class="value">{{ currentUser.email }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Gender:</span>
+            <span class="value">{{ currentUser.gender ? currentUser.gender : 'Male' }}</span> 
+          </div>
+          <div class="info-item">
+            <span class="label">Phone:</span>
+            <span class="value">{{ currentUser.phone }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Profession:</span>
+            <span class="value">{{ currentUser.profession || 'Web Developer' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <app-action-buttons
+        [buttons]="getButtonsFor('personal')"
+        (buttonClick)="handleAction($event, 'personal')"
+      ></app-action-buttons>
+    </div>
+
+    <!-- ADDRESS SECTION -->
+    <div class="address">
+      <div class="content">
+        <h3>Address</h3>
+        <div class="info-grid">
+          <div class="info-item">
+            <span class="label">Country:</span>
+            <span class="value">{{ currentUser.country || 'Ghana' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">City/State:</span>
+            <span class="value">{{ currentUser.city || 'Accra' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Postal Code:</span>
+            <span class="value">{{ currentUser.postalCode || 'GHA-2025' }}</span>
+          </div>
+          <div class="info-item">
+            <span class="label">Telephone:</span>
+            <span class="value">{{ currentUser.phone }}</span>
+          </div>
+        </div>
+      </div>
+
+      <app-action-buttons
+        [buttons]="getButtonsFor('address')"
+        (buttonClick)="handleAction($event, 'address')"
+      ></app-action-buttons>
+    </div>
+  </div>
 </div>
