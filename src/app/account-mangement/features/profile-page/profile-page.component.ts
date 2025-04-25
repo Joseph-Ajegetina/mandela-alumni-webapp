@@ -1,45 +1,63 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
 import { TuiAvatar } from '@taiga-ui/kit';
 import { ActionButtonsComponent } from "../../../shared/action-buttons/action-buttons.component";
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '@mandela-alumni-webapp/core-data';
-import { IRegister } from '@mandela-alumni-webapp/api-interfaces';
 import { AuthState } from '@mandela-alumni-webapp/core-state';
 import { IUser } from 'src/app/shared/interfaces/user';
+import { NgIf } from '@angular/common';
+import { environment } from 'src/environments/environment.prod';
 
 
 @Component({
   selector: 'app-profile-page',
-  imports: [TuiAvatar,  ActionButtonsComponent],
+  imports: [TuiAvatar,  ActionButtonsComponent, NgIf, FormsModule, ReactiveFormsModule],
   templateUrl: './profile-page.component.html',
   styleUrl: './profile-page.component.less'
 })
-export class ProfilePageComponent implements OnInit { 
+export class ProfilePageComponent implements OnInit, OnChanges  { 
   profileForm: FormGroup;
   currentUser!: IUser;
   userId!: number; 
+  profileImage: string | ArrayBuffer | null = null; 
+  selectedImageFile: File | null = null;   
+  imageLoaded: boolean = false;        
+  
 
   constructor(
     private fb: FormBuilder,
     private userService: UsersService,
-    private authState: AuthState
+    private authState: AuthState,
+    private cdr: ChangeDetectorRef 
   ) {
     this.profileForm = this.fb.group({
       firstname: [''],
       lastname: [''],
       email: [''],
       phone: [''],
+      profession: [''],
+      dob: [''],
+      city: [''],
+      country: [''],
+      postalCode: [''],
+      profile: [''],
+      gender: ['']
+
     });
   }
   ngOnInit(): void {
     const user = this.authState.getUser(); 
     if (user) {
       this.currentUser = user;
-      this.userId = user.id; // <-- ✅ Assign userId
+      this.userId = user.id; 
       this.profileForm.patchValue(user);
+      this.profileImage = this.currentUser.profile || null;
+
     }
   }
+  ngOnChanges() {
 
+  }
   isEditing: { [key: string]: boolean } = {
     user: false,
     personal: false,
@@ -53,6 +71,9 @@ export class ProfilePageComponent implements OnInit {
         ]
       : [
           { label: 'Edit', icon: '@tui.pencil-line', appearance: 'accent', action: 'edit' },
+        ]; 
+        [
+          { label: 'Cancel', icon: '@tui.close', appearance: 'danger', action: 'cancel' },
         ];
   }
 
@@ -67,15 +88,18 @@ export class ProfilePageComponent implements OnInit {
           phone: userData.phone,
           profession: userData.role, 
           dob: userData.dob,
+          city: userData,
+          country: userData.country,
+          postalCode: userData.postalCode,
+
+       
         });
       },
       error: (err) => {
         console.error('Failed to load user profile', err);
       }
     });
-  }
-  profileImage: string | ArrayBuffer | null = null; 
-  selectedImageFile: File | null = null;           
+  }          
   
   onImageSelected(event: Event) {
     const input = event.target as HTMLInputElement;
@@ -87,9 +111,55 @@ export class ProfilePageComponent implements OnInit {
     const reader = new FileReader();
     reader.onload = () => {
       this.profileImage = reader.result;
+      this.imageLoaded = true;
+      this.cdr.detectChanges();
     };
     reader.readAsDataURL(file);
   }
+  getProfileImageUrl(image: string | ArrayBuffer | null): string {
+    if (!image) return '';
+  
+    if (typeof image === 'string' && image.startsWith('http')) {
+      return image;
+    }
+    if (typeof image === 'string' && image.startsWith('data:image')) {
+      return image;
+    }
+    // Else treat as a filename and prepend your API image URL path
+    return `${environment.domain}/profiles/${image}`;
+  }
+  
+  updateProfile() {
+    const formData = new FormData();
+    formData.append('firstname', this.profileForm.get('firstname')?.value);
+    formData.append('lastname', this.profileForm.get('lastname')?.value);
+    formData.append('email', this.profileForm.get('email')?.value);
+    formData.append('phone', this.profileForm.get('phone')?.value);
+    formData.append('city', this.profileForm.get('city')?.value);
+    formData.append('country', this.profileForm.get('country')?.value);
+    formData.append('postalCode', this.profileForm.get('postalCode')?.value);
+    formData.append('profession', this.profileForm.get('profession')?.value);
+    formData.append('dob', this.profileForm.get('dob')?.value); 
+    formData.append('gender', this.profileForm.get('gender')?.value); 
+  
+    if (this.selectedImageFile) {
+      formData.append('file', this.selectedImageFile, this.selectedImageFile.name);  
+    }
+  
+    this.userService.update(this.userId, formData).subscribe({
+      next: (res) => {
+        console.log('Profile updated', res);
+        this.isEditing['user'] = false;
+        this.isEditing['personal'] = false;
+        this.isEditing['address'] = false;
+      },
+      error: (err) => {
+        console.error('Update failed', err);
+      },
+    });
+  }
+  
+
   
   handleAction(action: string, section: string) {
     switch (action) {
@@ -105,23 +175,32 @@ export class ProfilePageComponent implements OnInit {
     }
   }
   
-
+  onSave(): void {
+    if (!this.imageLoaded) {
+      console.log('Image not yet loaded.');
+      return;  
+    }
+    this.saveProfile('user');
+  }
   saveProfile(section: string) {
     const payload = this.profileForm.value;
     const formData = new FormData();
-
-  Object.entries(payload).forEach(([key, value]) => {
-    formData.append(key, value as string);
-  });
-
-  if (this.selectedImageFile) {
-    formData.append('avatar', this.selectedImageFile);
-  }
-
-    this.userService.update(this.userId, payload).subscribe({
+    
+    Object.entries(payload).forEach(([key, value]) => {
+      if (value !== null && value !== undefined) {
+        formData.append(key, value as string);
+      }
+    });
+    
+    if (this.selectedImageFile) {
+      formData.append('file', this.selectedImageFile);
+    }
+  
+    this.userService.update(this.userId, formData).subscribe({
       next: (res) => {
         console.log('Profile updated', res);
-    
+        this.currentUser = res;
+        this.profileImage = this.currentUser.profile || null;
         this.isEditing[section] = false;
       },
       error: (err) => {
@@ -129,6 +208,8 @@ export class ProfilePageComponent implements OnInit {
       },
     });
   }
+  
+  
 }
   
 

@@ -11,11 +11,12 @@ export interface IUser {
 	superAdmin: string;
 	createdAt: string;
 	updatedAt: string;
-	gender?: string;
+	gender : string;
     profession?: string;
-    country?: string;
-	city?: string;
-	postalCode?: string;
+    country : string;
+	city : string;
+	postalCode : string;
+	profile : string;
 
 }
 

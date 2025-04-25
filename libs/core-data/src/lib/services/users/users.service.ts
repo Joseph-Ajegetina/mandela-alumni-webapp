@@ -30,7 +30,7 @@ export class UsersService {
 		return this.http.get(this.getUrl());
 	}
 
-	update(id: number, payload: any): Observable<any> {
+	update(id: number,  payload: FormData | any): Observable<any> {
 		return this.http.patch(this.getUrlWithId(id), payload);
 	}
 	getById(id: number): Observable<IRegister> {
