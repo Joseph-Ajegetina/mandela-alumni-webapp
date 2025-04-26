@@ -17,7 +17,7 @@
 			<button iconStart="@tui.settings" tuiAsideItem tuiChevron type="button">
 				Settings
 				<ng-template>
-					<button tuiAsideItem type="button" (click)="open = false">Account</button>
+					<button tuiAsideItem type="button" (click)="open = false" [routerLink]="routes.account">Account</button>
 					<button tuiAsideItem type="button" (click)="open = false">Notifications</button>
 					<button tuiAsideItem type="button" (click)="open = false">Privacy</button>
 				</ng-template>

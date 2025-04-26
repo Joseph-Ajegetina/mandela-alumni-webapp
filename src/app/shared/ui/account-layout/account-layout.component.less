@@ -58,9 +58,14 @@ overflow: hidden;
   display: none;
   position: relative;
   z-index: 101;
-  @media @tui-mobile {
+
+  @media @tui-mobile-interval {
     display: flex;
   }
+  @media @tui-tablet-interval {
+    display: flex;
+  }
+
 }
 
 .menu-button app-account-navigation {
@@ -72,13 +77,19 @@ overflow: hidden;
 }
 
 .content-container {
-  @media @tui-mobile {
+  @media @tui-mobile-interval {
     display: none;
+  }@media @tui-tablet-interval {
+    display: none;
+  
+
   }
+
 }
 
 app-account-navigation.navigation {
   position: relative;
+
 
 }
 

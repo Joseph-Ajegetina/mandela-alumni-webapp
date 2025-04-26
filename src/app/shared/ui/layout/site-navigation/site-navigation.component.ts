@@ -35,7 +35,9 @@ export class SiteNavigationComponent {
 	protected readonly routes: any = {
 		home: 'dashboard',
 		directory: 'directory',
-		approval: 'approvals',
+		approval: 'approvals'
+		account: 'account',
+
 		payment: 'payment',
 		events: 'events',
 		createEvent: 'new-event',
