@@ -15,7 +15,7 @@ import { TuiAvatar, TuiAvatarLabeled } from '@taiga-ui/kit';
 import { TuiPortals } from '@taiga-ui/cdk';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
+import { AuthState } from '@mandela-alumni-webapp/core-state';
 
 @Component({
 	selector: 'app-layout',
@@ -39,7 +39,7 @@ import { AuthState } from 'src/app/features/auth/data-access/state/auth.state';
 	changeDetection: ChangeDetectionStrategy.OnPush,
 	providers: [],
 })
-export class LayoutComponent extends TuiPortals {
+export class LayoutComponent {
 	protected darkMode = inject(TUI_DARK_MODE);
 	protected authState = inject(AuthState);
 	protected router = inject(Router);

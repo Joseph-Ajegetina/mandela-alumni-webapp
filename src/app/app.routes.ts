@@ -1,10 +1,11 @@
 import { Route } from '@angular/router';
-import { RegisterComponent } from './features/auth/feature/register/register.component';
-import { LoginComponent } from './features/auth/feature/login/login.component';
-import { LoginResolve } from './features/auth/data-access/login.resolve';
+import { RegisterComponent } from './auth/feature/register/register.component';
+import { LoginComponent } from './auth/feature/login/login.component';
+import { LoginResolve } from './core/resolvers/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
-import { ApprovalPageComponent } from './features/approval-page/approval-page/approval-page.component';
+import { ApprovalPageComponent } from './pending-approval/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
+import { PreferencesComponent } from './features/preferences/preferences.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -28,6 +29,10 @@ export const appRoutes: Route[] = [
 		path: 'register',
 		component: RegisterComponent,
 	},
+	{
+		path: 'preferences',
+		component: PreferencesComponent
+	},
 
 	{
 		path: '',
@@ -37,13 +42,32 @@ export const appRoutes: Route[] = [
 			{
 				path: 'dashboard',
 				loadComponent: () =>
-					import('../app/features/dashboard/dashboard.component').then((m) => m.DashboardComponent),
+					import('./dashboard/dashboard.component').then((m) => m.DashboardComponent),
 			},
 			{
 				path: 'approvals',
 				loadComponent: () =>
-					import('./features/admin/approval/approval.component').then((m) => m.ApprovalComponent),
+					import('./approval/approval.component').then((m) => m.ApprovalComponent),
 			},
+			{
+				path: 'events',
+				loadComponent: () =>
+					import('./events/features/events-list/events-list.component').then(
+						(m) => m.EventsListComponent,
+					),
+			},
+			{
+				path: 'new-event',
+				loadComponent: () =>
+					import('./events/features/new-event/new-event.component').then(
+						(m) => m.NewEventComponent,
+					),
+			},
+		{
+			path	: 'payment',
+			loadComponent: () =>
+				import('./features/payment-page/payment-page.component').then((m) => m.PaymentPageComponent),
+		},
 		],
 		canActivateChild: [AuthGuard, AdminGuard],
 	},
@@ -55,17 +79,17 @@ export const appRoutes: Route[] = [
 			{
 				path: 'profile',
 				loadComponent: ()=>
-					import('./features/account-mangement/profile-page/profile-page.component').then((m) =>m.ProfilePageComponent)
+					import('./account-mangement/features/profile-page/profile-page.component').then((m) =>m.ProfilePageComponent)
 			},
 			{
 				path: 'security',
 				loadComponent: ()=>
-					import('./features/account-mangement/security-access/security-access.component').then((m) =>m.SecurityAccessComponent)
+					import('./account-mangement/features/security-access/security-access.component').then((m) =>m.SecurityAccessComponent)
 			},
 			{
 				path: 'preference',
 				loadComponent: ()=>
-					import('./features/account-mangement/preference-page/preference-page.component').then((m) =>m.PreferencePageComponent)
+					import('./account-mangement/features/preference-page/preference-page.component').then((m) =>m.PreferencePageComponent)
 			},
 		]
 	},

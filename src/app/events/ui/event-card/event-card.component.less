@@ -1,0 +1,117 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.card-container {
+	width: 100%;
+	overflow: hidden;
+	border-radius: 10px;
+	box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+	height: 400px;
+	display: flex;
+	flex-direction: column;
+	
+  }
+  .cardshow {
+	margin-top: 0;
+	width: 100%;
+	height: 12em;
+	background-size: cover;
+	background-position: center;
+	flex-shrink: 0;
+  }
+.text-overlay {
+	color: white;
+	margin-left: 1em;
+	text-align: left;
+}
+.details {
+	display: flex;
+	flex-direction: column;
+	flex-grow: 1;
+	position: relative; 
+	padding-bottom: 60px ;
+  }
+  
+.datetime {
+	display: flex;
+	justify-content: flex-start;
+	gap: 2em;
+	margin-left: 1.7em;
+}
+
+.description {
+	width: 78%;
+	height: 60px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	display: -webkit-box;
+	@media @tui-tablet-interval {
+	  width: 75%;
+	  -webkit-line-clamp: 3;
+	}
+  }
+.text1 {
+  margin-left: 1.8em;
+  display: flex;
+  flex-direction: column;
+}
+.event-type {
+	display: inline-block;
+	background: #00b4d8;
+	padding: 10px 10px;
+	border-radius: 10px;
+	font-size: 16px;
+	margin-top: 5.5em;
+
+	@media @tui-tablet {
+		font-size: 15px;
+		padding: 7px 7px;
+	}
+}
+
+h2 {
+	margin-top: 3px;
+	font-size: 18px;
+	@media @tui-tablet {
+		font-size: 14px;
+	}
+}
+
+p {
+	margin-top: 10px;
+	font-size: 11px;
+
+	@media @tui-tablet {
+		font-size: 9px;
+	}
+}
+
+.event-details {
+	margin-top: 10px;
+	font-size: 14px;
+}
+
+.buttons {
+	position: absolute;
+	bottom: 15px;
+	left: 1.8em;
+	display: flex;
+	gap: 12px;
+	
+	@media @tui-mobile-interval {
+	  font-size: 10px;
+	}
+}  
+.details-btn {
+	background-color: #6ad66a;
+
+	border: none;
+	padding: 10px 16px;
+	border-radius: 6px;
+	color: white;
+	font-weight: 600;
+	display: flex;
+	align-items: center;
+	gap: 6px;
+	cursor: pointer;
+	transition: background-color 0.3s ease;
+}
