@@ -7,6 +7,7 @@ import { AuthState } from '@mandela-alumni-webapp/core-state';
 import { IUser } from 'src/app/shared/interfaces/user';
 import { NgIf } from '@angular/common';
 import { environment } from 'src/environments/environment.prod';
+import { TuiAlertService } from '@taiga-ui/core';
 
 
 @Component({
@@ -28,7 +29,8 @@ export class ProfilePageComponent implements OnInit, OnChanges  {
     private fb: FormBuilder,
     private userService: UsersService,
     private authState: AuthState,
-    private cdr: ChangeDetectorRef 
+    private cdr: ChangeDetectorRef ,
+    private alerts: TuiAlertService
   ) {
     this.profileForm = this.fb.group({
       firstname: [''],
@@ -67,14 +69,12 @@ export class ProfilePageComponent implements OnInit, OnChanges  {
     return this.isEditing[section]
       ? [
           { label: 'Save', icon: '@tui.check', appearance: 'positive', action: 'save' },
- 
+          { label: 'Cancel', icon: '@tui.x', appearance: 'danger', action: 'cancel' },
         ]
       : [
           { label: 'Edit', icon: '@tui.pencil-line', appearance: 'accent', action: 'edit' },
         ]; 
-        [
-          { label: 'Cancel', icon: '@tui.close', appearance: 'danger', action: 'cancel' },
-        ];
+  
   }
 
 
@@ -125,7 +125,7 @@ export class ProfilePageComponent implements OnInit, OnChanges  {
     if (typeof image === 'string' && image.startsWith('data:image')) {
       return image;
     }
-    // Else treat as a filename and prepend your API image URL path
+    
     return `${environment.domain}/profiles/${image}`;
   }
   
@@ -198,12 +198,21 @@ export class ProfilePageComponent implements OnInit, OnChanges  {
   
     this.userService.update(this.userId, formData).subscribe({
       next: (res) => {
+        this.alerts.open(' Profile Successfully Updated' , {
+          label: 'Success',
+          appearance: 'positive',
+        }).subscribe();
+        
         console.log('Profile updated', res);
         this.currentUser = res;
         this.profileImage = this.currentUser.profile || null;
         this.isEditing[section] = false;
       },
       error: (err) => {
+        this.alerts.open('Failed to update profile', {
+          label: 'Error',
+          appearance: 'negative',
+        }).subscribe();
         console.error('Update failed', err);
       },
     });

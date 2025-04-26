@@ -49,7 +49,7 @@
           <div class="info-item">
             <span class="label">First Name:</span>
             <ng-container *ngIf="isEditing['personal'] else showFirstName">
-              <input formControlName="firstname" />
+              <input class="edit-input" formControlName="firstname"  />
             </ng-container>
             <ng-template #showFirstName>
               <span class="value">{{ currentUser.firstname }}</span>
@@ -59,7 +59,7 @@
           <div class="info-item">
             <span class="label">Last Name:</span>
             <ng-container *ngIf="isEditing['personal']else showLastName">
-              <input formControlName="lastname" />
+              <input  class="edit-input" formControlName="lastname" />
             </ng-container>
             <ng-template #showLastName>
               <span class="value">{{ currentUser.lastname }}</span>
@@ -69,7 +69,7 @@
           <div class="info-item">
             <span class="label">Email:</span>
             <ng-container *ngIf="isEditing['personal']else showEmail">
-              <input formControlName="email" />
+              <input  class="edit-input" formControlName="email" />
             </ng-container>
             <ng-template #showEmail>
               <span class="value">{{ currentUser.email }}</span>
@@ -79,7 +79,7 @@
           <div class="info-item">
             <span class="label">Gender:</span>
             <ng-container *ngIf="isEditing['personal'] else showGender">
-              <select formControlName="gender">
+              <select  class="edit-input" formControlName="gender">
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
               </select>
@@ -92,7 +92,7 @@
           <div class="info-item">
             <span class="label">Phone:</span>
             <ng-container *ngIf="isEditing['personal'] else showPhone">
-              <input formControlName="phone" />
+              <input  class="edit-input" formControlName="phone" />
             </ng-container>
             <ng-template #showPhone>
               <span class="value">{{ currentUser.phone }}</span>
@@ -102,7 +102,7 @@
           <div class="info-item">
             <span class="label">Profession:</span>
             <ng-container *ngIf="isEditing['personal'] else showProfession">
-              <input formControlName="profession" />
+              <input  class="edit-input" formControlName="profession" />
             </ng-container>
             <ng-template #showProfession>
               <span class="value">{{ currentUser.profession || 'Web Developer' }}</span>
@@ -125,7 +125,7 @@
           <div class="info-item">
             <span class="label">Country:</span>
             <ng-container *ngIf="isEditing['address'] else showCountry">
-              <input formControlName="country" />
+              <input  class="edit-input"formControlName="country" />
             </ng-container>
             <ng-template #showCountry>
               <span class="value">{{ currentUser.country || 'Ghana' }}</span>
@@ -135,7 +135,7 @@
           <div class="info-item">
             <span class="label">City/State:</span>
             <ng-container *ngIf="isEditing['address'] else showCity">
-              <input formControlName="city" />
+              <input  class="edit-input" formControlName="city" />
             </ng-container>
             <ng-template #showCity>
               <span class="value">{{ currentUser.city || 'Accra' }}</span>
@@ -145,7 +145,7 @@
           <div class="info-item">
             <span class="label">Postal Code:</span>
             <ng-container *ngIf="isEditing['address']; else showCity">
-              <input formControlName="postalCode" />
+              <input  class="edit-input" formControlName="postalCode" />
             </ng-container>
             <ng-template #showPostal>
               <span class="value">{{ currentUser.postalCode || 'GHA-2025' }}</span>
@@ -155,7 +155,7 @@
           <div class="info-item">
             <span class="label">Telephone:</span>
             <ng-container *ngIf="isEditing['address'] else showTel">
-              <input formControlName="phone" />
+              <input  class="edit-input" formControlName="phone" />
             </ng-container>
             <ng-template #showTel>
               <span class="value">{{ currentUser.phone }}</span>

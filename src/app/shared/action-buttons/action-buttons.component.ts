@@ -1,10 +1,10 @@
-import { NgFor, NgIf } from '@angular/common';
+import { NgClass, NgFor, NgIf } from '@angular/common';
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TuiIcon } from '@taiga-ui/core';
 
 @Component({
   selector: 'app-action-buttons',
-  imports: [TuiIcon, NgFor, NgIf,TuiIcon],
+  imports: [TuiIcon, NgFor, NgIf,TuiIcon, NgClass],
   templateUrl: './action-buttons.component.html',
   styleUrl: './action-buttons.component.less'
 })

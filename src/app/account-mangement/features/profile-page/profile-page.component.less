@@ -24,6 +24,8 @@ h2, h3{
     @media @tui-mobile-interval, @tui-mobile{
         width: 100%;
         margin: 0;
+    
+     
     }
     @media @tui-tablet-interval{
         width: 100%;
@@ -32,12 +34,12 @@ h2, h3{
 .profile{
  
     display: flex;
-
     gap: 1em;
     align-items: center;
     margin-left: 1em;
     @media @tui-mobile-interval, @tui-mobile{
         margin: 0;
+        justify-content: space-between;
     }
 }
 
@@ -53,10 +55,17 @@ h2, h3{
     flex-direction: column;
     gap: 0;
     justify-content: start;
-    @media @tui-mobile-interval{
+    @media @tui-mobile-interval, @tui-mobile{
     width: 100%;
+
+    display: none;
    
      
+    }
+    @media @tui-tablet-interval{
+        width: 100%;
+
+    display: none;
     }
 }
 .name h2{
@@ -70,20 +79,75 @@ h2, h3{
     @media @tui-mobile-interval, @tui-mobile{
         width: 100%;
         margin: 0;
-
     }
     @media @tui-tablet-interval{
         width: 100%;
         display: flex;
         
     }
+    @media @tui-desktop-interval{
+        width: 100%;
+        display: flex;
+ 
+    }
 }
 .personal .content,
 .address .content {
-    width: 100%;  
+    width: 100%; 
+    @media @tui-mobile-interval, @tui-mobile{
+        width: 60%;
+        margin: 0;
+    }
+    @media @tui-tablet-interval{
+        width: 60%;
+    }
+    @media @tui-desktop-interval{
+        width: 60%;
+ 
+    }
+    @media @tui-desktop-lg-min{
+        width: 60%;
+ 
+    }
+
     
 }
-
+.personal{
+    @media @tui-mobile-interval, @tui-mobile{
+   
+    app-action-buttons{
+       
+        display: flex;
+      justify-content: start;
+        flex-direction: column;
+  
+    }
+    }
+    @media @tui-tablet-interval{
+        app-action-buttons{
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+        }
+    }
+    @media @tui-desktop-interval{
+        app-action-buttons{
+            display: flex;
+            justify-content: start;
+            flex-direction: column;
+     
+        }
+        @media @tui-desktop-lg-min{
+            app-action-buttons{
+                display: flex;
+                justify-content: start;
+                flex-direction: column;
+         
+            }
+    }
+        }
+    
+}
 .info-grid {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
@@ -92,11 +156,8 @@ h2, h3{
     margin-left: 1em;
     @media @tui-mobile-interval, @tui-mobile{
      grid-template-columns: 1fr;
-       
         width: 100%;
         row-gap: 10px;
- 
-     
     }
     @media @tui-tablet-interval{
         width: 100%;
@@ -123,5 +184,43 @@ h2, h3{
     color: #111827; 
     font-size: 1rem;
   }
+  
+  .edit-input {
+   
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: 1px solid #cbd5e1; 
+
+    border-radius: 6px;
+    background-color: #f9fafb; 
+    color: #111827; 
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+    width: 100%;
+      box-sizing: border-box; 
+    @media @tui-mobile-interval, @tui-mobile{
+        width: 85%;
+    }
+    @media @tui-tablet-interval{
+        width:85%;
+    }
+    @media @tui-desktop-interval{
+        width: 85%;
+ 
+    }
+  
+    &:focus {
+      border-color: #3b82f6; 
+      box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+    }
+
+    &.select {
+        appearance: none; 
+        background-repeat: no-repeat;
+        background-position: right 0.75rem center;
+        background-size: 1rem;
+        padding-right: 2.5rem; 
+      }
+    }
   
   
