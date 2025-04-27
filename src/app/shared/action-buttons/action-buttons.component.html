@@ -1,13 +1,13 @@
-<div class="button-group" style="display: flex; gap: 1rem; flex-wrap: wrap;">
-  <button
-    *ngFor="let btn of buttons"
-    [ngClass]="['custom-action-btn', btn.appearance]"
-    tuiButton
-    type="button"
-    (click)="onClick(btn.action)"
-    size="s"
-  >
-    <tui-icon *ngIf="btn.icon" [icon]="btn.icon"></tui-icon>
-    {{ btn.label }}
-  </button>
+<div class="button-group" style="display: flex; gap: 1rem; flex-wrap: wrap">
+	<button
+		*ngFor="let btn of buttons"
+		[ngClass]="['custom-action-btn', btn.appearance]"
+		tuiButton
+		type="button"
+		(click)="onClick(btn.action)"
+		size="s"
+	>
+		<tui-icon *ngIf="btn.icon" [icon]="btn.icon"></tui-icon>
+		{{ btn.label }}
+	</button>
 </div>

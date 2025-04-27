@@ -34,7 +34,7 @@ import { AuthState } from '@mandela-alumni-webapp/core-state';
 		TuiIcon,
 		TuiAutoColorPipe,
 		SiteNavigationComponent,
-		TuiDataList
+		TuiDataList,
 	],
 	templateUrl: './layout.component.html',
 	styleUrl: './layout.component.less',

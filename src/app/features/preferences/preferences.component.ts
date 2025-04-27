@@ -1,4 +1,4 @@
-import { Component, ChangeDetectionStrategy} from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import type { OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiPlatform } from '@taiga-ui/cdk';
@@ -9,11 +9,11 @@ import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 @Component({
 	selector: 'app-preferences',
 	imports: [
-		CommonModule, 
-		TuiPlatform, 
+		CommonModule,
+		TuiPlatform,
 		TuiSwitch,
 		TuiDropdown,
-		FormsModule, 
+		FormsModule,
 		ReactiveFormsModule,
 		TuiButton,
 	],
@@ -29,15 +29,15 @@ export class PreferencesComponent implements OnInit {
 		'ios',
 	];
 	protected readonly topPlatform = this.platforms[0];
-	protected readonly invalidTrue = new FormControl(true, () => ({invalid: true}));
-    protected readonly invalidFalse = new FormControl(false, () => ({invalid: true}));
- 
-    public ngOnInit(): void {
-        this.invalidTrue.markAsTouched();
-        this.invalidFalse.markAsTouched();
-    }
+	protected readonly invalidTrue = new FormControl(true, () => ({ invalid: true }));
+	protected readonly invalidFalse = new FormControl(false, () => ({ invalid: true }));
+
+	public ngOnInit(): void {
+		this.invalidTrue.markAsTouched();
+		this.invalidFalse.markAsTouched();
+	}
 
 	protected getSize(first: boolean): TuiSizeS {
-        return first ? 'm' : 's';
-    }
+		return first ? 'm' : 's';
+	}
 }
