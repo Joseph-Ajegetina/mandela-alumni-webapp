@@ -17,7 +17,7 @@ import { TuiNavigation } from '@taiga-ui/layout';
   changeDetection: ChangeDetectionStrategy.OnPush,
     providers: [],
 })
-export class AccountLayoutComponent extends TuiPortals {
+export class AccountLayoutComponent {
   protected darkMode = inject(TUI_DARK_MODE);
   protected open = signal(false);
   theme = computed(() => (this.darkMode() ? 'dark' : 'light'));

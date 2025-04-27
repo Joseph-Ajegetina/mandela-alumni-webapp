@@ -11,7 +11,7 @@ import { TuiNavigation } from '@taiga-ui/layout';
   templateUrl: './account-navigation.component.html',
   styleUrl: './account-navigation.component.less'
 })
-export class AccountNavigationComponent   extends TuiPortals{
+export class AccountNavigationComponent{
   theme = input('light');
   protected expanded = signal(false);
   protected readonly routes: any = {
