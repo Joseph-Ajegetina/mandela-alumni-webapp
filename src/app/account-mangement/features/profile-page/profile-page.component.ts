@@ -1,5 +1,5 @@
 import { ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
-import { TuiAvatar } from '@taiga-ui/kit';
+import { TuiAvatar, TuiChip } from '@taiga-ui/kit';
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '@mandela-alumni-webapp/core-data';
@@ -8,10 +8,19 @@ import { IUser } from 'src/app/shared/interfaces/user';
 import { NgIf } from '@angular/common';
 import { environment } from 'src/environments/environment.prod';
 import { TuiAlertService } from '@taiga-ui/core';
+import { TuiCardMedium } from '@taiga-ui/layout';
 
 @Component({
 	selector: 'app-profile-page',
-	imports: [TuiAvatar, ActionButtonsComponent, NgIf, FormsModule, ReactiveFormsModule],
+	imports: [
+		TuiAvatar,
+		ActionButtonsComponent,
+		NgIf,
+		FormsModule,
+		ReactiveFormsModule,
+		TuiCardMedium,
+		TuiChip,
+	],
 	templateUrl: './profile-page.component.html',
 	styleUrl: './profile-page.component.less',
 })
@@ -46,6 +55,7 @@ export class ProfilePageComponent implements OnInit, OnChanges {
 	}
 	ngOnInit(): void {
 		const user = this.authState.getUser();
+		console.log('user ', user);
 		if (user) {
 			this.currentUser = user;
 			this.userId = user.id;

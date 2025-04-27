@@ -48,7 +48,6 @@ h3 {
 }
 .name {
 	display: flex;
-	line-height: 0;
 	flex-direction: column;
 	gap: 0;
 	justify-content: start;
@@ -61,6 +60,17 @@ h3 {
 		width: 100%;
 
 		display: none;
+	}
+
+	.check {
+		font-size: 18px;
+		color: rgba(37, 69, 104, 1);
+	}
+
+	span {
+		font-weight: 600;
+		font-size: 15px;
+		display: block;
 	}
 }
 .name h2 {
@@ -156,9 +166,10 @@ h3 {
 }
 
 .label {
-	font-weight: 500;
+	font-weight: 600;
 	color: #6b7280;
-	font-size: 0.9rem;
+	font-size: 15px;
+	line-height: 55px;
 }
 
 .value {
@@ -201,4 +212,28 @@ h3 {
 		background-size: 1rem;
 		padding-right: 2.5rem;
 	}
+}
+
+.heading {
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 55px;
+}
+
+.card-wrapper {
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	padding: 16px 28px;
+}
+
+.card-label {
+	color: rgba(37, 69, 104, 1);
+	font-size: 18px;
+	margin-left: 13px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
 }
