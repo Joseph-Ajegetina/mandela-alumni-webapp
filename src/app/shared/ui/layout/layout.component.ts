@@ -10,6 +10,7 @@ import {
 	TuiFallbackSrcPipe,
 	TuiIcon,
 	TuiAutoColorPipe,
+	TuiLink,
 } from '@taiga-ui/core';
 import { TuiAvatar, TuiAvatarLabeled } from '@taiga-ui/kit';
 import { TuiPortals } from '@taiga-ui/cdk';
@@ -33,6 +34,7 @@ import { AuthState } from '@mandela-alumni-webapp/core-state';
 		TuiIcon,
 		TuiAutoColorPipe,
 		SiteNavigationComponent,
+		TuiDataList
 	],
 	templateUrl: './layout.component.html',
 	styleUrl: './layout.component.less',
