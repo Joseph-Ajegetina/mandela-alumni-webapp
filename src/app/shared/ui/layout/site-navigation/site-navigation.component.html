@@ -1,16 +1,30 @@
 <aside [tuiNavigationAside]="true" [attr.tuiTheme]="theme()">
 	<header>
-		<button iconStart="@tui.home" tuiAsideItem type="button" [routerLink]="routes.home">
+		<span tuiNavigationLogo [routerLink]="'home'" class="logo">
+			<img src="/images/alumracle-logo.png" width="75x" height="71px" alt="Alumracle logo" />
+			<span class="icon-text">Alumrace</span>
+		</span>
+		<button
+			iconStart="@tui.home"
+			tuiAsideItem
+			type="button"
+			[routerLink]="routes.home"
+			class="site-nav"
+		>
 			<span tuiFade>Home</span>
 		</button>
 	</header>
 
-	<a iconStart="@tui.calendar" [routerLink]="routes.events" tuiAsideItem>
+	<a iconStart="@tui.calendar" [routerLink]="routes.events" tuiAsideItem class="site-nav">
 		Events & opportunities
 	</a>
-	<a iconStart="@tui.book" [routerLink]="routes.payment" tuiAsideItem> Payments </a>
+	<a iconStart="@tui.book" [routerLink]="routes.payment" tuiAsideItem class="site-nav">
+		Payments
+	</a>
 	@if (isAdmin()){
-	<a iconStart="@tui.circle-check" [routerLink]="routes.approval" tuiAsideItem> Approvals </a>
+	<a iconStart="@tui.circle-check" [routerLink]="routes.approval" tuiAsideItem class="site-nav">
+		Approvals
+	</a>
 	}
 	<footer>
 		<!-- <tui-aside-group [(open)]="open">
@@ -29,6 +43,7 @@
 			type="button"
 			(click)="logout()"
 			loading="logingOut"
+			class="site-nav"
 		>
 			Log out
 		</button>

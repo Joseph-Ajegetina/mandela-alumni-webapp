@@ -9,9 +9,13 @@
 	>
 		<app-site-navigation></app-site-navigation>
 	</button>
-	<span tuiNavigationLogo [routerLink]="'home'">
+	<!-- <span tuiNavigationLogo [routerLink]="'home'">
 		<img src="/images/alumracle-logo.png" width="50px" height="50px" alt="Alumracle logo" />
-	</span>
+	</span> -->
+	<div class="welcome-container">
+		<span class="text">My Portal</span>
+		<span class="subtext">Welcome, {{ user()?.firstname }} 👋</span>
+	</div>
 	<hr />
 	<!-- <p>
 		<button
