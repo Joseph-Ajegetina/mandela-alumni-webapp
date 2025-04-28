@@ -1,102 +1,102 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
 
 .main {
-  background: #F5FCFFFA;
-  display: flex;
-  height: 100vh;
-position: relative;
-overflow: hidden;
-  justify-content: center;
-  @media @tui-mobile {
-    width: 100%;
-  }
+	background: #f5fcfffa;
+	display: flex;
+	position: relative;
+	justify-content: center;
+	@media @tui-mobile {
+		width: 100%;
+	}
 }
 
 .btn {
-  background: none;
-  color: black;
-  position: fixed;
-  top: 0;
-  left: 0;
-  @media @tui-mobile {
-    display: none;
-  }
+	background: none;
+	color: black;
+	position: fixed;
+	top: 0;
+	left: 0;
+	@media @tui-mobile {
+		display: none;
+	}
 }
 
 .content {
-  width: 85%;
-  height: calc(100% - 2rem); 
-  padding: 1rem;
-  padding-bottom: 2rem; 
+	width: 85%;
+	height: calc(100% - 2rem);
+	padding: 1rem;
+	padding-bottom: 2rem;
 
-  position: relative;
-  box-sizing: border-box;
+	position: relative;
+	box-sizing: border-box;
 
-  @media @tui-mobile {
-    width: 100%;
-    height: auto;
-    padding: 1rem;
-  }
+	@media @tui-mobile {
+		width: 100%;
+		height: auto;
+		padding: 1rem;
+	}
 }
 
 .profile {
-  gap: 1rem;
-  
-  display: flex;
-  background-color: white;
-  overflow: hidden; 
-  height: calc(100% - 50px); 
-  position: relative; 
-  @media @tui-mobile {
-    flex-direction: column;
-    margin: 0;
-    padding: 0;
-  }
+	gap: 1rem;
+
+	display: flex;
+	background-color: white;
+	overflow: hidden;
+	height: calc(100% - 50px);
+	position: relative;
+	@media @tui-mobile {
+		flex-direction: column;
+		margin: 0;
+		padding: 0;
+	}
 }
 
 .menu-button {
-  display: none;
-  position: relative;
-  z-index: 101;
-  @media @tui-mobile {
-    display: flex;
-  }
+	display: none;
+	position: relative;
+	z-index: 101;
+	@media @tui-mobile {
+		display: flex;
+	}
 }
 
 .menu-button app-account-navigation {
-  position: relative;
+	position: relative;
 
-  @media @tui-mobile {
-    line-height: 1;
-  }
+	@media @tui-mobile {
+		line-height: 1;
+	}
 }
 
 .content-container {
-  @media @tui-mobile {
-    display: none;
-  }
+	@media @tui-mobile {
+		display: none;
+	}
 }
 
 app-account-navigation.navigation {
-  position: relative;
-
+	position: relative;
 }
-
 
 ::ng-deep .nav-in-button {
-  display: block;
- position: fixed;
- left: 0;
- top: 10em;
- z-index: 1000;
-
+	display: block;
+	position: fixed;
+	left: 0;
+	top: 10em;
+	z-index: 1000;
 }
-.main-container{
-  background-color: white;
-  position: relative;
-  margin-left: 1rem;
-  @media @tui-mobile {
-  margin-left: 0;
-  }
+.main-container {
+	background-color: rgba(255, 255, 255, 1);
+	position: relative;
+	margin-left: 1rem;
+	@media @tui-mobile {
+		margin-left: 0;
+	}
+}
 
+.heading {
+	font-weight: 600;
+	font-size: 26px;
+	line-height: 55px;
 }

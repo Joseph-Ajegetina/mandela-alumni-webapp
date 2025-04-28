@@ -1,16 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PreferencesComponent } from '../preferences.component';
 
-describe('PreferencesComponent', () => {
-	let component: PreferencesComponent;
-	let fixture: ComponentFixture<PreferencesComponent>;
+import { ActionButtonsComponent } from './action-buttons.component';
+
+describe('ActionButtonsComponent', () => {
+	let component: ActionButtonsComponent;
+	let fixture: ComponentFixture<ActionButtonsComponent>;
 
 	beforeEach(async () => {
 		await TestBed.configureTestingModule({
-			imports: [PreferencesComponent],
+			imports: [ActionButtonsComponent],
 		}).compileComponents();
 
-		fixture = TestBed.createComponent(PreferencesComponent);
+		fixture = TestBed.createComponent(ActionButtonsComponent);
 		component = fixture.componentInstance;
 		fixture.detectChanges();
 	});

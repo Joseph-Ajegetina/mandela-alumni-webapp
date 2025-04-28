@@ -23,7 +23,18 @@
 			(click)="darkMode.set(!darkMode())"
 		></button>
 	</p> -->
-	<tui-avatar src="AI" class="text" [style.background]="'AI' | tuiAutoColor" />
+
+	<button appearance="action" tuiDropdownHover tuiButton type="button" [tuiDropdown]="dropdown">
+		<tui-avatar [src]="user()?.profile" class="text" [style.background]="'AI' | tuiAutoColor" />
+	</button>
+
+	<ng-template #dropdown>
+		<tui-data-list role="menu">
+			<a iconStart="@tui.user-pen" role="menuitem" routerLink="account/profile" tuiOption size="s">
+				Profile
+			</a>
+		</tui-data-list>
+	</ng-template>
 </header>
 <div class="content-container">
 	<app-site-navigation

@@ -1,0 +1,265 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.container {
+	padding: 0;
+	margin: 0;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+
+h2,
+h3 {
+	color: #254568;
+}
+.main-content {
+	display: flex;
+	flex-direction: column;
+	gap: 1em;
+}
+.user {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 100%;
+		margin: 0;
+	}
+	@media @tui-tablet-interval {
+		width: 100%;
+	}
+}
+.profile {
+	display: flex;
+	gap: 1em;
+	align-items: center;
+	margin-left: 1em;
+	@media @tui-mobile-interval, @tui-mobile {
+		margin: 0;
+		justify-content: space-between;
+	}
+}
+
+.avatar {
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 2em;
+		height: 2em;
+	}
+}
+.name {
+	display: flex;
+	flex-direction: column;
+	gap: 0;
+	justify-content: start;
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 100%;
+
+		display: none;
+	}
+	@media @tui-tablet-interval {
+		width: 100%;
+
+		display: none;
+	}
+
+	.check {
+		font-size: 18px;
+		color: rgba(37, 69, 104, 1);
+	}
+
+	span {
+		font-weight: 600;
+		font-size: 15px;
+		display: block;
+	}
+}
+.name h2 {
+	font-size: 15px;
+}
+.personal,
+.address {
+	display: flex;
+	justify-content: space-between;
+
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 100%;
+		margin: 0;
+	}
+	@media @tui-tablet-interval {
+		width: 100%;
+		display: flex;
+	}
+	@media @tui-desktop-interval {
+		width: 100%;
+		display: flex;
+	}
+}
+.personal .content,
+.address .content {
+	width: 100%;
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 60%;
+		margin: 0;
+	}
+	@media @tui-tablet-interval {
+		width: 60%;
+	}
+	@media @tui-desktop-interval {
+		width: 60%;
+	}
+	@media @tui-desktop-lg-min {
+		width: 60%;
+	}
+}
+.personal {
+	@media @tui-mobile-interval, @tui-mobile {
+		app-action-buttons {
+			display: flex;
+			justify-content: start;
+			flex-direction: column;
+		}
+	}
+	@media @tui-tablet-interval {
+		app-action-buttons {
+			display: flex;
+			justify-content: start;
+			flex-direction: column;
+		}
+	}
+	@media @tui-desktop-interval {
+		app-action-buttons {
+			display: flex;
+			justify-content: start;
+			flex-direction: column;
+		}
+		@media @tui-desktop-lg-min {
+			app-action-buttons {
+				display: flex;
+				justify-content: start;
+				flex-direction: column;
+			}
+		}
+	}
+}
+.info-grid {
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+	row-gap: 16px;
+	column-gap: 2rem;
+	margin-left: 1em;
+	@media @tui-mobile-interval, @tui-mobile {
+		grid-template-columns: 1fr;
+		width: 100%;
+		row-gap: 10px;
+	}
+	@media @tui-tablet-interval {
+		width: 100%;
+		grid-template-columns: 1fr;
+		row-gap: 16px;
+		row-gap: 16px;
+	}
+}
+
+.info-item {
+	display: flex;
+	flex-direction: column;
+}
+
+.label {
+	font-weight: 600;
+	color: #6b7280;
+	font-size: 15px;
+	line-height: 55px;
+}
+
+.value {
+	font-weight: 500;
+	color: #111827;
+	font-size: 1rem;
+}
+
+.edit-input {
+	padding: 8px 12px;
+	font-size: 1rem;
+	border: 1px solid #cbd5e1;
+
+	border-radius: 6px;
+	background-color: #f9fafb;
+	color: #111827;
+	outline: none;
+	transition: border-color 0.2s, box-shadow 0.2s;
+	width: 100%;
+	box-sizing: border-box;
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 85%;
+	}
+	@media @tui-tablet-interval {
+		width: 85%;
+	}
+	@media @tui-desktop-interval {
+		width: 85%;
+	}
+
+	&:focus {
+		border-color: #3b82f6;
+		box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+	}
+
+	&.select {
+		appearance: none;
+		background-repeat: no-repeat;
+		background-position: right 0.75rem center;
+		background-size: 1rem;
+		padding-right: 2.5rem;
+	}
+}
+
+.heading {
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 55px;
+}
+
+.card-wrapper {
+	border: 1px solid rgba(0, 0, 0, 0.05);
+	border-radius: 10px;
+	padding: 16px 28px;
+}
+
+.card-label {
+	color: rgba(37, 69, 104, 1);
+	font-size: 18px;
+	margin-left: 13px;
+}
+
+.header {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+
+.custom-action-btn {
+	border: 1px solid #191c3030 !important;
+	font-weight: 500;
+	height: 2.5em;
+	width: 5em;
+	color: rgba(27, 31, 59, 0.65);
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 0.3em;
+
+	tui-icon {
+		color: inherit;
+	}
+}
+
+.positive {
+	color: #00a86b;
+	border-color: #00a86b !important;
+}
+
+.danger {
+	color: #e53935;
+	border-color: #e53935 !important;
+}

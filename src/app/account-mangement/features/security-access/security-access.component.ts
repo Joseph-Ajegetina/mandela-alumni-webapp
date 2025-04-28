@@ -1,11 +1,9 @@
 import { Component } from '@angular/core';
 
 @Component({
-  selector: 'app-security-access',
-  imports: [],
-  templateUrl: './security-access.component.html',
-  styleUrl: './security-access.component.css'
+	selector: 'app-security-access',
+	imports: [],
+	templateUrl: './security-access.component.html',
+	styleUrl: './security-access.component.css',
 })
-export class SecurityAccessComponent {
-
-}
+export class SecurityAccessComponent {}

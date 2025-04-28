@@ -1,1 +1,223 @@
-<p>profile-page works!</p>
+<div class="container">
+	<div class="header">
+		<h3 class="heading">My Profile</h3>
+	</div>
+
+	<div class="main-content">
+		@if(!user() || !currentUser){
+		<p>Loading</p>
+
+		}@else{
+
+		<div class="user card-wrapper">
+			<div class="profile">
+				<!-- Editing -->
+				<ng-container *ngIf="isEditing['user']; else staticAvatar">
+					<label class="avatar-upload" [tuiSkeleton]="isEditing['user'] && isUpdating()">
+						<input type="file" hidden (change)="onImageSelected($event)" />
+						<tui-avatar
+							size="xl"
+							class="avatar"
+							appearance="negative"
+							[src]="getProfileImageUrl(profileImage)"
+						></tui-avatar>
+					</label>
+				</ng-container>
+
+				<!-- Static display -->
+				<ng-template #staticAvatar>
+					<tui-avatar
+						size="xl"
+						class="avatar"
+						appearance="negative"
+						[src]="getProfileImageUrl(profileImage)"
+					></tui-avatar>
+				</ng-template>
+
+				<div class="name">
+					<h2 class="check">{{ currentUser.firstname }} {{ currentUser.lastname }}</h2>
+					<span>{{ currentUser.profession || 'Web Developer' }}</span>
+					<span>{{ currentUser.city || 'Accra' }}, {{ currentUser.country || 'Ghana' }}</span>
+				</div>
+			</div>
+			<app-action-buttons
+				[buttons]="getButtonsFor('user')"
+				(buttonClick)="handleAction($event, 'user')"
+			></app-action-buttons>
+		</div>
+
+		<!-- PERSONAL SECTION -->
+		<div class="card-wrapper">
+			<form class="personal" [formGroup]="profileForm">
+				<div class="content">
+					<h3 class="card-label">Personal Information</h3>
+					<div class="info-grid">
+						<div class="info-item">
+							<span class="label">First Name:</span>
+							<ng-container *ngIf="isEditing['personal']; else showFirstName">
+								<input
+									class="edit-input"
+									formControlName="firstname"
+									[tuiSkeleton]="isEditing['personal'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showFirstName>
+								<span class="value">{{ currentUser.firstname }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">Last Name:</span>
+							<ng-container *ngIf="isEditing['personal']; else showLastName">
+								<input
+									class="edit-input"
+									formControlName="lastname"
+									[tuiSkeleton]="isEditing['personal'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showLastName>
+								<span class="value">{{ currentUser.lastname }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">Email:</span>
+							<ng-container *ngIf="isEditing['personal']; else showEmail">
+								<input
+									class="edit-input"
+									formControlName="email"
+									[tuiSkeleton]="isEditing['personal'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showEmail>
+								<span class="value">{{ currentUser.email }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">Gender:</span>
+							<ng-container *ngIf="isEditing['personal']; else showGender">
+								<select
+									class="edit-input"
+									formControlName="gender"
+									[tuiSkeleton]="isEditing['personal'] && isUpdating()"
+								>
+									<option value="Male">Male</option>
+									<option value="Female">Female</option>
+								</select>
+							</ng-container>
+							<ng-template #showGender>
+								<span class="value">{{ currentUser.gender || 'Male' }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">Phone:</span>
+							<ng-container *ngIf="isEditing['personal']; else showPhone">
+								<input
+									class="edit-input"
+									formControlName="phone"
+									[tuiSkeleton]="isEditing['personal'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showPhone>
+								<span class="value">{{ currentUser.phone }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">Profession:</span>
+							<ng-container *ngIf="isEditing['personal']; else showProfession">
+								<input
+									class="edit-input"
+									formControlName="profession"
+									[tuiSkeleton]="isEditing['personal'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showProfession>
+								<span class="value">{{ currentUser.profession || 'Web Developer' }}</span>
+							</ng-template>
+						</div>
+					</div>
+				</div>
+
+				<app-action-buttons
+					[buttons]="getButtonsFor('personal')"
+					(buttonClick)="handleAction($event, 'personal')"
+				></app-action-buttons>
+			</form>
+		</div>
+
+		<!-- ADDRESS SECTION -->
+		<div class="card-wrapper">
+			<form class="address" [formGroup]="profileForm">
+				<div class="content">
+					<h3 class="card-label">Address</h3>
+					<div class="info-grid">
+						<div class="info-item">
+							<span class="label">Country:</span>
+							<ng-container *ngIf="isEditing['address']; else showCountry">
+								<input
+									class="edit-input"
+									formControlName="country"
+									[tuiSkeleton]="isEditing['address'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showCountry>
+								<span class="value">{{ currentUser.country || 'Ghana' }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">City/State:</span>
+							<ng-container *ngIf="isEditing['address']; else showCity">
+								<input
+									class="edit-input"
+									formControlName="city"
+									[tuiSkeleton]="isEditing['address'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showCity>
+								<span class="value">{{ currentUser.city || 'Accra' }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">Postal Code:</span>
+							<ng-container *ngIf="isEditing['address']; else showCity">
+								<input
+									class="edit-input"
+									formControlName="postalCode"
+									[tuiSkeleton]="isEditing['address'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showPostal>
+								<span class="value">{{ currentUser.postalCode || 'GHA-2025' }}</span>
+							</ng-template>
+						</div>
+
+						<div class="info-item">
+							<span class="label">Telephone:</span>
+							<ng-container *ngIf="isEditing['address']; else showTel">
+								<input
+									class="edit-input"
+									formControlName="phone"
+									[tuiSkeleton]="isEditing['address'] && isUpdating()"
+								/>
+							</ng-container>
+							<ng-template #showTel>
+								<span class="value">{{ currentUser.phone }}</span>
+							</ng-template>
+						</div>
+					</div>
+				</div>
+
+				<app-action-buttons
+					[buttons]="getButtonsFor('address')"
+					(buttonClick)="handleAction($event, 'address')"
+				></app-action-buttons>
+			</form>
+		</div>
+		}
+	</div>
+</div>
