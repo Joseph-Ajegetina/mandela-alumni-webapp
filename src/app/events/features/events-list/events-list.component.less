@@ -1,192 +1,193 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
 .container {
- background-color: #f5fcfffa;
- display: flex;
- flex-direction: column;
- justify-content: space-between;
- gap: 30px;
+	background-color: #f5fcfffa;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	gap: 30px;
 }
 .header h3 {
- color: #254568;
- font-size: 16px;
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 55px;
+	color: rgba(37, 69, 104, 1);
 }
 .main-content {
- display: flex;
- flex-direction: column;
- gap: 5px;
+	display: flex;
+	flex-direction: column;
+	gap: 5px;
 }
 .top {
- display: flex;
- justify-content: space-between;
- align-items: center;
- padding: 0 17px;
- margin-bottom: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 0 17px;
+	margin-bottom: 10px;
 
-@media @tui-mobile-interval, @tui-mobile {
- display: flex;
- flex-direction: column;
- gap: 1em;
- width: 90%;
- padding: 0;
- margin: 0;
- margin-left: 2em;
- }
+	@media @tui-mobile-interval, @tui-mobile {
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+		width: 90%;
+		padding: 0;
+		margin: 0;
+		margin-left: 2em;
+	}
 }
 .top-container {
- display: flex;
- justify-content: space-between;
- align-items: center;
- width: 100%;
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	width: 100%;
+	padding-left: 20px;
 
-@media @tui-mobile-interval, @tui-mobile {
- display: flex;;
- flex-direction: column;
-justify-content: space-around;
- width: 100%;
- padding: 0;
- margin: 0;
- }
+	@media @tui-mobile-interval, @tui-mobile {
+		display: flex;
+		flex-direction: column;
+		justify-content: space-around;
+		width: 100%;
+		padding: 0;
+		margin: 0;
+	}
 }
 .filter {
- display: flex;
- gap: 3em;
- align-items: center;
- justify-content: space-between;
+	display: flex;
+	gap: 3em;
+	align-items: center;
+	justify-content: space-between;
 
-@media @tui-mobile-interval, @tui-mobile {
- display: flex;
- flex-direction: column;
- gap: 10px;
- width: 100%;
- justify-content: space-between;
- }
+	@media @tui-mobile-interval, @tui-mobile {
+		display: flex;
+		flex-direction: column;
+		gap: 10px;
+		width: 100%;
+		justify-content: space-between;
+	}
 
-@media @tui-tablet-interval {
- gap: 1em;
- }
+	@media @tui-tablet-interval {
+		gap: 1em;
+	}
 }
 .srch {
- width: 30%;
+	width: 30%;
 
-@media @tui-mobile-interval, @tui-mobile {
- width: 100%;
- }
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 100%;
+	}
 
- @media @tui-tablet-interval {
-	min-width: 205px;
+	@media @tui-tablet-interval {
+		min-width: 205px;
 	}
 }
 .srch tui-textfield,
 .srch input[tuiTextfield] {
- width: 100% !important;
- min-width: unset !important;
+	width: 100% !important;
+	min-width: unset !important;
 
-@media @tui-mobile-interval, @tui-mobile {
- min-width: unset;
- width: 100%;
- max-width: 100%;
- }
-
+	@media @tui-mobile-interval, @tui-mobile {
+		min-width: unset;
+		width: 100%;
+		max-width: 100%;
+	}
 }
 .all {
- width: 100%;
- max-width: 100%;
- min-width: 250px;
+	width: 100%;
+	max-width: 100%;
+	min-width: 250px;
 
- tui-select {
-   width: 100%;
-   display: block;
+	tui-select {
+		width: 100%;
+		display: block;
 
-   .tui-select__wrapper {
-     width: 100% !important;
-   }
-   
-   input {
-     width: 100% !important;
-     min-width: 300px;
-     max-width: 100%;
-   }
- }
+		.tui-select__wrapper {
+			width: 100% !important;
+		}
 
-@media @tui-mobile-interval, @tui-mobile {
- min-width: unset;
- width: 100%;
- max-width: 100%;
- }
+		input {
+			width: 100% !important;
+			min-width: 300px;
+			max-width: 100%;
+		}
+	}
 
-@media @tui-tablet-interval {
- min-width: 205px;
- }
+	@media @tui-mobile-interval, @tui-mobile {
+		min-width: unset;
+		width: 100%;
+		max-width: 100%;
+	}
+
+	@media @tui-tablet-interval {
+		min-width: 205px;
+	}
 }
 
 @media @tui-tablet-interval {
- .all {
-   width: 100%;
-   max-width: 500px;
- }
+	.all {
+		width: 100%;
+		max-width: 500px;
+	}
 }
 .icons {
- display: flex;
- gap: 1.5em;
- align-items: center;
+	display: flex;
+	gap: 1.5em;
+	align-items: center;
 
-@media @tui-mobile-interval, @tui-mobile {
- display: flex;
- gap: 5px;
- }
+	@media @tui-mobile-interval, @tui-mobile {
+		display: flex;
+		gap: 5px;
+	}
 
-@media @tui-tablet-interval {
- display: flex;
- gap: 5px;
- }
+	@media @tui-tablet-interval {
+		display: flex;
+		gap: 5px;
+	}
 }
 .icon {
- position: fixed;
- bottom: 0;
- right: 40em;
- background: #00b4d8;
- color: white;
- border: none;
- padding: 12px;
- border-radius: 50%;
- cursor: pointer;
- box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
- transition: background 0.3s ease-in-out;
- @media @tui-mobile-interval, @tui-mobile {
-	display: none;
-	
+	position: fixed;
+	bottom: 0;
+	right: 40em;
+	background: #00b4d8;
+	color: white;
+	border: none;
+	padding: 12px;
+	border-radius: 50%;
+	cursor: pointer;
+	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+	transition: background 0.3s ease-in-out;
+	@media @tui-mobile-interval, @tui-mobile {
+		display: none;
 	}
-@media @tui-tablet-interval {
- display: none;
- }
+	@media @tui-tablet-interval {
+		display: none;
+	}
 }
 .icon:hover {
- background: #0077b6;
+	background: #0077b6;
 }
 .footer {
- display: flex;
- flex-wrap: wrap;
- gap: 20px;
- justify-content: flex-start;
- padding: 20px;
+	display: flex;
+	flex-wrap: wrap;
+	gap: 20px;
+	justify-content: flex-start;
+	padding: 20px;
 }
 .footer app-event-card {
- flex: 0 0 calc(33.33% - 20px);
- margin-bottom: 20px;
- max-width: calc(33.33% - 20px);
- display: block;
+	flex: 0 0 calc(33.33% - 20px);
+	margin-bottom: 20px;
+	max-width: calc(33.33% - 20px);
+	display: block;
 }
 
 @media @tui-tablet-interval {
- .footer app-event-card {
-   flex: 0 0 calc(50% - 20px);
-   max-width: calc(50% - 20px);
- }
+	.footer app-event-card {
+		flex: 0 0 calc(50% - 20px);
+		max-width: calc(50% - 20px);
+	}
 }
 
 @media (max-width: 992px) {
- .footer app-event-card {
-   flex: 0 0 calc(100% - 20px);
-   max-width: calc(100% - 20px);
- }
+	.footer app-event-card {
+		flex: 0 0 calc(100% - 20px);
+		max-width: calc(100% - 20px);
+	}
 }

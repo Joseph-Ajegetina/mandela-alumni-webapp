@@ -6,9 +6,10 @@
 
 app-site-navigation.navigation {
 	position: fixed;
-	top: 4rem;
+	top: 0;
 	bottom: 0;
 	inline-size: 15.25rem;
+	z-index: 100;
 }
 
 header::before {
@@ -27,9 +28,9 @@ header::before {
 
 .nav-header {
 	block-size: 4.125rem !important;
-	padding: 0 1.25rem !important;
+	padding: 3rem 1.25rem !important;
 	box-shadow: var(--tui-shadow-small);
-	border-block-end: 1px solid var(--tui-border-normal);
+	// border-block-end: 1px solid var(--tui-border-normal);
 }
 
 tui-avatar {
@@ -41,6 +42,11 @@ tui-avatar {
 		display: none;
 	}
 
+	.welcome-container {
+		margin-left: 0;
+		flex-direction: column;
+	}
+
 	.main-container {
 		margin-left: 0;
 	}
@@ -50,5 +56,25 @@ tui-avatar {
 	.menu-button {
 		width: 200px;
 		display: none;
+	}
+}
+
+.welcome-container {
+	display: flex;
+	flex-direction: column;
+	margin-left: 284px;
+
+	.text {
+		font-weight: 700;
+		font-size: 28px;
+		line-height: 55px;
+		color: rgba(37, 69, 104, 1);
+	}
+
+	.subtext {
+		font-weight: 600;
+		font-size: 20px;
+		line-height: 28px;
+		color: rgba(90, 103, 112, 1);
 	}
 }

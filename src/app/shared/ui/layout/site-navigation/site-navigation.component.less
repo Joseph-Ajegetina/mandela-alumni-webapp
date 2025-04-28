@@ -1,15 +1,5 @@
 :host {
-	[tuiAsideItem][tuiAsideItem]._active {
-		background: #26abe4;
-		border-radius: 0;
-		color: white;
-	}
-
-	[tuiAsideItem][tuiAsideItem]:hover {
-		background: #26abe4 !important;
-		border-radius: 0;
-		color: white;
-	}
+	--tui-theme-color: #fff !important;
 }
 
 aside::before {
@@ -22,4 +12,44 @@ aside {
 
 aside::after {
 	display: none;
+}
+
+.site-nav._active {
+	background: #26abe4 !important;
+	border-radius: 0;
+	color: white;
+}
+
+.site-nav:hover {
+	background: transparent !important;
+	border-radius: 0;
+	color: #26abe4 !important;
+}
+
+header {
+	margin-top: 2rem;
+}
+
+.site-nav {
+	font-weight: 800;
+	font-size: 15px !important;
+	line-height: 24px;
+	font-size: 15px;
+	font-weight: 800;
+	line-height: 24px;
+	width: 332px;
+	height: 56px;
+}
+
+.logo {
+	margin-bottom: 3rem;
+	display: flex;
+	justify-content: center;
+}
+
+.icon-text {
+	font-weight: 600;
+	font-size: 20px;
+	line-height: 48px;
+	color: rgba(37, 69, 104, 1);
 }

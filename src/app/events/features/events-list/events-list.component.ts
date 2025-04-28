@@ -37,7 +37,7 @@ import { EventCardComponent } from '../../ui/event-card/event-card.component';
 	styleUrl: './events-list.component.less',
 	providers: [EventStore],
 })
-export class EventsListComponent implements OnInit{
+export class EventsListComponent implements OnInit {
 	readonly eventStore = inject(EventStore);
 	readonly userStore = inject(UserStore);
 
@@ -63,11 +63,11 @@ export class EventsListComponent implements OnInit{
 			});
 	}
 
-	isAtTop = false; 
+	isAtTop = false;
 
 	@HostListener('window:scroll', [])
 	onScroll(): void {
-		this.isAtTop = window.scrollY < 100; 
+		this.isAtTop = window.scrollY < 100;
 	}
 
 	toggleScroll(): void {
