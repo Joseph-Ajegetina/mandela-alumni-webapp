@@ -26,7 +26,7 @@
 						<tui-icon icon="@tui.pencil-line" [style.color]="'#FFFFFF'"></tui-icon>
 						register
 					</button>
-					<button class="details-btn">
+					<button class="details-btn" [routerLink]="['/events', event()?.id]">
 						<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
 						View details
 					</button>
