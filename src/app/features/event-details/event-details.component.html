@@ -1,0 +1,46 @@
+@if(isLoading()){
+<tui-loader></tui-loader>
+}@else{
+<div class="container">
+	<div class="image">
+		<button
+			class="back-button"
+			appearance="secondary"
+			iconStart="@tui.arrow-left"
+			tuiButton
+			type="button"
+			[routerLink]="['/events']"
+		></button>
+		<img class="image" [src]="currentEvent?.image" alt="currentEvent?.name" />
+	</div>
+
+	<div class="details">
+		<button class="register-button" iconStart="@tui.pen-line" tuiButton type="button">
+			Register
+		</button>
+		<div class="text">
+			<h1 class="event-title">{{ currentEvent?.name }}</h1>
+			<h2>Details</h2>
+			<p>
+				{{ currentEvent?.description }}
+			</p>
+
+			<div class="event-information">
+				<span tuiTitle>
+					<span> Date </span>
+					<span tuiSubtitle>{{ currentEvent?.date | date : 'fullDate' }}</span>
+				</span>
+				<span tuiTitle>
+					<span> Time </span>
+					<span tuiSubtitle>{{ currentEvent?.date | date : 'shortTime' }} </span>
+				</span>
+				<span tuiTitle>
+					<span> Event Mode </span>
+					<span tuiSubtitle>{{ currentEvent?.type }}</span>
+				</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+}

@@ -19,6 +19,7 @@ export interface Event extends BaseEntity {
     location: string;
     name: string;
     image: string;
+    time?: string;
   }
 
 
