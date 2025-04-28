@@ -3,8 +3,7 @@ import { RegisterComponent } from './auth/feature/register/register.component';
 import { LoginComponent } from './auth/feature/login/login.component';
 import { LoginResolve } from './core/resolvers/login.resolve';
 import { AuthGuard } from './core/guards/auth.guard';
-import { EventDetailsComponent } from './features/event-details/event-details.component';
-2;
+
 import { ApprovalPageComponent } from './pending-approval/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
 
@@ -29,6 +28,15 @@ export const appRoutes: Route[] = [
 	{
 		path: 'register',
 		component: RegisterComponent,
+	},
+
+	{
+		path: 'events/:id',
+		loadComponent: () =>
+			import('./features/event-details/event-details.component').then(
+				(c) => c.EventDetailsComponent,
+			),
+		canActivateChild: [AuthGuard],
 	},
 
 	{
@@ -65,13 +73,6 @@ export const appRoutes: Route[] = [
 				loadComponent: () =>
 					import('./features/payment-page/payment-page.component').then(
 						(m) => m.PaymentPageComponent,
-					),
-			},
-			{
-				path: 'events/:id',
-				loadComponent: () =>
-					import('./features/event-details/event-details.component').then(
-						(c) => c.EventDetailsComponent,
 					),
 			},
 		],
