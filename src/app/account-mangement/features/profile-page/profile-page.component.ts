@@ -1,25 +1,31 @@
-import { ChangeDetectorRef, Component, OnChanges, OnInit } from '@angular/core';
-import { TuiAvatar, TuiChip } from '@taiga-ui/kit';
+import {
+	ChangeDetectorRef,
+	Component,
+	effect,
+	inject,
+	OnChanges,
+	OnInit,
+	signal,
+} from '@angular/core';
+import { TuiAvatar, TuiChip, TuiSkeleton } from '@taiga-ui/kit';
 import { ActionButtonsComponent } from '../../../shared/action-buttons/action-buttons.component';
 import { FormBuilder, FormGroup, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UsersService } from '@mandela-alumni-webapp/core-data';
-import { AuthState } from '@mandela-alumni-webapp/core-state';
+import { UserStore } from '@mandela-alumni-webapp/core-state';
 import { IUser } from 'src/app/shared/interfaces/user';
-import { NgIf } from '@angular/common';
+import { CommonModule } from '@angular/common';
 import { environment } from 'src/environments/environment.prod';
 import { TuiAlertService } from '@taiga-ui/core';
-import { TuiCardMedium } from '@taiga-ui/layout';
 
 @Component({
 	selector: 'app-profile-page',
 	imports: [
 		TuiAvatar,
 		ActionButtonsComponent,
-		NgIf,
 		FormsModule,
 		ReactiveFormsModule,
-		TuiCardMedium,
-		TuiChip,
+		CommonModule,
+		TuiSkeleton,
 	],
 	templateUrl: './profile-page.component.html',
 	styleUrl: './profile-page.component.less',
@@ -31,14 +37,13 @@ export class ProfilePageComponent implements OnInit, OnChanges {
 	profileImage: string | ArrayBuffer | null = null;
 	selectedImageFile: File | null = null;
 	imageLoaded: boolean = false;
+	alerts = inject(TuiAlertService);
+	userStore = inject(UserStore);
+	readonly user = this.userStore.currentUser;
+	readonly isUpdating = this.userStore.isUpdating;
+	cdr = inject(ChangeDetectorRef);
 
-	constructor(
-		private fb: FormBuilder,
-		private userService: UsersService,
-		private authState: AuthState,
-		private cdr: ChangeDetectorRef,
-		private alerts: TuiAlertService,
-	) {
+	constructor(private fb: FormBuilder, private userService: UsersService) {
 		this.profileForm = this.fb.group({
 			firstname: [''],
 			lastname: [''],
@@ -52,17 +57,18 @@ export class ProfilePageComponent implements OnInit, OnChanges {
 			profile: [''],
 			gender: [''],
 		});
+
+		effect(() => {
+			const user = this.user();
+			if (user) {
+				this.profileForm.patchValue(user);
+				this.userId = user.id;
+				this.currentUser = user;
+				this.profileImage = this.currentUser.profile || null;
+			}
+		});
 	}
-	ngOnInit(): void {
-		const user = this.authState.getUser();
-		console.log('user ', user);
-		if (user) {
-			this.currentUser = user;
-			this.userId = user.id;
-			this.profileForm.patchValue(user);
-			this.profileImage = this.currentUser.profile || null;
-		}
-	}
+	ngOnInit(): void {}
 	ngOnChanges() {}
 	isEditing: { [key: string]: boolean } = {
 		user: false,
@@ -144,9 +150,8 @@ export class ProfilePageComponent implements OnInit, OnChanges {
 			formData.append('file', this.selectedImageFile, this.selectedImageFile.name);
 		}
 
-		this.userService.update(this.userId, formData).subscribe({
+		this.userStore.updateUser(this.userId, formData).subscribe({
 			next: (res) => {
-				console.log('Profile updated', res);
 				this.isEditing['user'] = false;
 				this.isEditing['personal'] = false;
 				this.isEditing['address'] = false;
@@ -178,12 +183,13 @@ export class ProfilePageComponent implements OnInit, OnChanges {
 		}
 		this.saveProfile('user');
 	}
+
 	saveProfile(section: string) {
 		const payload = this.profileForm.value;
 		const formData = new FormData();
 
 		Object.entries(payload).forEach(([key, value]) => {
-			if (value !== null && value !== undefined) {
+			if (value !== null && value !== undefined && Boolean(value) && key !== 'profile') {
 				formData.append(key, value as string);
 			}
 		});
@@ -192,7 +198,7 @@ export class ProfilePageComponent implements OnInit, OnChanges {
 			formData.append('file', this.selectedImageFile);
 		}
 
-		this.userService.update(this.userId, formData).subscribe({
+		this.userStore.updateUser(this.userId, formData).subscribe({
 			next: (res) => {
 				this.alerts
 					.open(' Profile Successfully Updated', {
@@ -201,7 +207,6 @@ export class ProfilePageComponent implements OnInit, OnChanges {
 					})
 					.subscribe();
 
-				console.log('Profile updated', res);
 				this.currentUser = res;
 				this.profileImage = this.currentUser.profile || null;
 				this.isEditing[section] = false;

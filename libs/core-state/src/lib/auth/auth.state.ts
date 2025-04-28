@@ -85,6 +85,7 @@ export class AuthState {
 
 	private _removeUser() {
 		localStorage.removeItem('user');
+		this.router.navigateByUrl('/login');
 	}
 
 	private _getUser(): IAuthInfo | null {

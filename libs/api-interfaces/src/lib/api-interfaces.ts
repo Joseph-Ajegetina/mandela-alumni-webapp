@@ -36,7 +36,7 @@ export interface Event extends BaseEntity {
     createdAt: string;
     updatedAt: string;
     gender : string;
-    professon: string;
+    profession: string;
     location: string;
     dob : Date;
     city : string;

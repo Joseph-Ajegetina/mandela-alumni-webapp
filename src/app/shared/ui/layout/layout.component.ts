@@ -16,7 +16,7 @@ import { TuiAvatar, TuiAvatarLabeled } from '@taiga-ui/kit';
 import { TuiPortals } from '@taiga-ui/cdk';
 import { FormsModule } from '@angular/forms';
 import { Router, RouterModule } from '@angular/router';
-import { AuthState } from '@mandela-alumni-webapp/core-state';
+import { AuthState, UserStore } from '@mandela-alumni-webapp/core-state';
 
 @Component({
 	selector: 'app-layout',
@@ -35,6 +35,7 @@ import { AuthState } from '@mandela-alumni-webapp/core-state';
 		TuiAutoColorPipe,
 		SiteNavigationComponent,
 		TuiDataList,
+		TuiAutoColorPipe,
 	],
 	templateUrl: './layout.component.html',
 	styleUrl: './layout.component.less',
@@ -45,7 +46,8 @@ export class LayoutComponent {
 	protected darkMode = inject(TUI_DARK_MODE);
 	protected authState = inject(AuthState);
 	protected router = inject(Router);
-
+	readonly userStore = inject(UserStore);
+	readonly user = this.userStore.currentUser;
 	protected open = signal(false);
 
 	theme = computed(() => (this.darkMode() ? 'dark' : 'light'));
