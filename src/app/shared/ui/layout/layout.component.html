@@ -9,9 +9,13 @@
 	>
 		<app-site-navigation></app-site-navigation>
 	</button>
-	<span tuiNavigationLogo [routerLink]="'home'">
+	<!-- <span tuiNavigationLogo [routerLink]="'home'">
 		<img src="/images/alumracle-logo.png" width="50px" height="50px" alt="Alumracle logo" />
-	</span>
+	</span> -->
+	<div class="welcome-container">
+		<span class="text">My Portal</span>
+		<span class="subtext">Welcome, {{ user()?.firstname }} 👋</span>
+	</div>
 	<hr />
 	<!-- <p>
 		<button
@@ -23,7 +27,18 @@
 			(click)="darkMode.set(!darkMode())"
 		></button>
 	</p> -->
-	<tui-avatar src="AI" class="text" [style.background]="'AI' | tuiAutoColor" />
+
+	<button appearance="action" tuiDropdownHover tuiButton type="button" [tuiDropdown]="dropdown">
+		<tui-avatar [src]="user()?.profile" class="text" [style.background]="'AI' | tuiAutoColor" />
+	</button>
+
+	<ng-template #dropdown>
+		<tui-data-list role="menu">
+			<a iconStart="@tui.user-pen" role="menuitem" routerLink="account/profile" tuiOption size="s">
+				Profile
+			</a>
+		</tui-data-list>
+	</ng-template>
 </header>
 <div class="content-container">
 	<app-site-navigation

@@ -11,6 +11,12 @@ export interface IUser {
 	superAdmin: string;
 	createdAt: string;
 	updatedAt: string;
+	gender: string;
+	profession?: string;
+	country: string;
+	city: string;
+	postalCode: string;
+	profile: string;
 }
 
 export interface PendingUser extends IUser {

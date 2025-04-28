@@ -13,7 +13,7 @@ export class LoginResolve implements Resolve<boolean> {
 	resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<boolean> {
 		return this.authState.stateItem$.pipe(
 			map((user) => {
-				if (user) {
+				if (user?.user?.approvedAt) {
 					this.router.navigate([this.authState.redirectUrl || '/dashboard']);
 					return false;
 				}

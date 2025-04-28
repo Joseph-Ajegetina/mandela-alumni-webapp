@@ -1,0 +1,32 @@
+<div class="main">
+	<div class="icons">
+		<button appearance="icon" size="m" tuiButton type="button" class="btn" routerLink="/dashboard">
+			<tui-icon icon="@tui.arrow-left" />
+		</button>
+	</div>
+
+	<div class="content">
+		<h2 class="heading">Account Settings</h2>
+		<div class="profile">
+			<div>
+				<button
+					tuiNavigationDrawer
+					tuiIconButton
+					title="Menu"
+					type="button"
+					[(open)]="open"
+					class="menu-button"
+				>
+					<app-account-navigation class="nav-in-button"></app-account-navigation>
+				</button>
+
+				<div class="content-container">
+					<app-account-navigation class="navigation"></app-account-navigation>
+				</div>
+			</div>
+			<main tuiNavigationMain class="main-container">
+				<router-outlet></router-outlet>
+			</main>
+		</div>
+	</div>
+</div>

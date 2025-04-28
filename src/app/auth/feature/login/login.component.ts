@@ -82,7 +82,6 @@ export class LoginComponent {
 			next: (result) => {
 				this.loading.set(false);
 				const user = this.authState.getUser();
-				console.log(user);
 				if (user?.approvedAt) {
 					this.router.navigateByUrl(this.authState.redirectUrl || '/dashboard');
 				} else {

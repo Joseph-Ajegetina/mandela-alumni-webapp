@@ -35,6 +35,14 @@ export interface Event extends BaseEntity {
     superAdmin: string;
     createdAt: string;
     updatedAt: string;
+    gender : string;
+    profession: string;
+    location: string;
+    dob : Date;
+    city : string;
+    country : string;
+    postalCode: string;
+    profile : string;
   }
   
   export interface PendingUser extends IUser {
@@ -50,5 +58,12 @@ export interface Event extends BaseEntity {
     role: Roles;
     password: string;
     dob: Date;
+    gender?: string;
+    professon?: string;
+    location?: string;
+    city?: string;
+    country?: string;
+    postalCode?: string;
+    profile?: string;
   }
   
