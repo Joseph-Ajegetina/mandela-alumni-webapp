@@ -68,6 +68,11 @@ export const appRoutes: Route[] = [
 						(m) => m.NewEventComponent,
 					),
 			},
+		{
+			path	: 'payment',
+			loadComponent: () =>
+				import('./features/payment-page/payment-page.component').then((m) => m.PaymentPageComponent),
+		},
 		],
 		canActivateChild: [AuthGuard, AdminGuard],
 	},

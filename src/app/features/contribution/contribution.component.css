@@ -109,7 +109,123 @@
 .box3{
     background-color: rgba(38,171,228, 0.88);
 }
-
+.payment-div{
+    display: flex;
+    height:fit-content;
+    padding-bottom:100px;
+    justify-content: center;
+    background-color: rgba(245, 252, 255, 0.98);
+}
+.dpd-div{
+    width:fit-content;
+}
+.payment-topbar{
+    width:100%;
+    display:flex;
+    margin-top:100px;
+    justify-content: space-between;
+}
+.pt-right-div{
+    display:flex;
+    width:300px;
+    justify-content: space-between;
+}
+.pt-all-dropdown{
+    width:100px;
+}
+.ptr-content{
+    display:flex;
+    width:80px;
+    margin-left: 50px;
+    height:50px;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.ptr-icons{
+    padding:7px;
+    cursor: pointer;
+}
+.dptr-icons{
+    padding:7px;
+    cursor: pointer;
+    border: 1px solid transparent;
+}
+.dptr-icons:hover{
+    border: 1px solid gray;
+}
+.ptr-icons:hover{
+    background-color: rgb(210, 209, 209);
+}
+.div-ptad{
+    background-color: white;
+    border-radius: 10px;
+    padding:0px 20px;
+    display:flex;
+    width:150px;
+    justify-content: space-evenly;
+    align-items: center;
+}
+.ptad-notify{
+    width:auto;
+    height:auto;
+    padding:2px 8px;
+    border-radius:20px;
+    background-color: rgb(210, 209, 209);
+    cursor:pointer;
+}
+.cards{
+    margin-top:100px;
+    display:grid;
+    gap:30px;
+    grid-template-columns: 300fr 300fr 300fr;
+}
+.general-fund{
+    background-color:white;
+    border-radius:20px;
+    width:300px;
+    height:auto;
+    padding: 30px;
+    border-radius: 20px;
+}
+.gfd-title{
+    border-bottom:2px solid rgb(23, 85, 147);
+    align-items: center;
+    display:flex;
+    font-size:23px;
+    height:60px;
+    justify-content: space-between;
+}
+.gfd-txt{
+    line-height: 25px;
+    padding-bottom:10px;
+}
+.gf-right-arrow{
+    border:1px solid transparent;
+    width:auto;
+    height:auto;
+    padding:4px;
+    cursor: pointer;
+    align-items: center;
+    text-align: center;
+}
+.gf-right-arrow:hover{
+    border: 1px solid gray;
+}
+.gftba{
+    font-family: "Kumbh Sans", sans-serif;
+    font-optical-sizing: auto;
+    font-style: normal;
+    font-variation-settings:"YOPQ" 300;
+    margin-top:40px;
+}
+.ra-img-div{
+    display: flex;
+    justify-content: right;
+}
+.gift-box-img{
+    width:30px;
+    height:auto;
+}
 @media (max-width: 1080px){
     .did-ctd{
         left:250px;
@@ -125,5 +241,38 @@
     .box1, .box2, .box3{
         width:100%;
         height: 200px;
+    }
+}
+@media (max-width: 1140px){
+    .cards{
+        grid-template-columns: 300fr 300fr;
+    }
+}
+@media (max-width: 800px){
+    .payment-topbar{
+        display:flex;
+        flex-direction: column;
+        height:130px;
+    }
+    .cards{
+        display:grid;
+        justify-content: center;
+        grid-template-columns: 380px;
+    }
+}
+@media (max-width:400px){
+    .contribution-div{
+        transform: scale(1);
+    }
+    .content-txt-div{
+        left:-240px;
+    }
+    .p1-ctd{
+        position: relative;
+        font-size: 50px;
+        width:200px;
+    }
+    .payment-div{
+        transform: scale(0.8);
     }
 }
