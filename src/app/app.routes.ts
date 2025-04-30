@@ -6,6 +6,7 @@ import { AuthGuard } from './core/guards/auth.guard';
 
 import { ApprovalPageComponent } from './pending-approval/approval-page/approval-page.component';
 import { AdminGuard } from './core/guards/admin.guard';
+import { ContributionComponent } from './features/contribution/contribution.component';
 
 export const appRoutes: Route[] = [
 	{
@@ -29,16 +30,20 @@ export const appRoutes: Route[] = [
 		path: 'register',
 		component: RegisterComponent,
 	},
-
+	{
+		path: 'contribution',
+		component: ContributionComponent
+	},
+	
 	{
 		path: 'events/:id',
 		loadComponent: () =>
 			import('./features/event-details/event-details.component').then(
 				(c) => c.EventDetailsComponent,
 			),
-		canActivateChild: [AuthGuard],
-	},
-
+			canActivateChild: [AuthGuard],
+		},
+		
 	{
 		path: '',
 		loadComponent: () =>
@@ -75,6 +80,7 @@ export const appRoutes: Route[] = [
 						(m) => m.PaymentPageComponent,
 					),
 			},
+			
 		],
 		canActivateChild: [AuthGuard, AdminGuard],
 	},
