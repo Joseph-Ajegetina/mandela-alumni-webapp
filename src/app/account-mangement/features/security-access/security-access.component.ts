@@ -1,31 +1,40 @@
-import { Component, ChangeDetectionStrategy,inject } from '@angular/core';
-import { TuiIcon, TuiTitle, TuiAppearance, TuiAlertService, TuiButton} from '@taiga-ui/core';
-import {TuiBlock, TuiButtonGroup} from '@taiga-ui/kit';
-import type {TuiConfirmData} from '@taiga-ui/kit';
+import { CommonModule } from '@angular/common';
+import { Component, ChangeDetectionStrategy, inject } from '@angular/core';
+import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { TuiPlatform } from '@taiga-ui/cdk';
+import { TuiButton, TuiDropdown, TuiSizeS, TuiAlertService, TuiIcon } from '@taiga-ui/core';
+import { TuiSwitch, TuiConfirmData } from '@taiga-ui/kit'; 
+import { switchMap } from 'rxjs';
+import { TuiResponsiveDialogService } from '@taiga-ui/addon-mobile';
 import {TUI_CONFIRM} from '@taiga-ui/kit';
-import {FormControl, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {TuiResponsiveDialogService} from '@taiga-ui/addon-mobile';
-import {switchMap} from 'rxjs';
+
 
 @Component({
   selector: 'app-security-access',
   imports: [ 
-    TuiIcon,
-    TuiBlock,
-    ReactiveFormsModule,
-    TuiTitle,
-    TuiButtonGroup,
-    TuiAppearance,
+    CommonModule,
+		TuiPlatform,
+		TuiSwitch,
+		TuiDropdown,
+		FormsModule,
+		ReactiveFormsModule,
+		TuiButton,
+    TuiIcon
   ],
   templateUrl: './security-access.component.html',
   styleUrl: './security-access.component.less',
   changeDetection: ChangeDetectionStrategy.OnPush,
+
 })
 export class SecurityAccessComponent {
-  protected readonly testForm = new FormGroup({
-    testValue3: new FormControl(),
-  });
-  private readonly dialogs = inject(TuiResponsiveDialogService);
+  protected readonly platforms: ReadonlyArray<'android' | 'ios' | 'web'> = [
+		'web',
+		'web',
+		'android',
+		'ios',
+	];
+	
+	private readonly dialogs = inject(TuiResponsiveDialogService);
   private readonly alerts = inject(TuiAlertService);
 
   protected onClick(): void {
@@ -47,4 +56,8 @@ export class SecurityAccessComponent {
         .pipe(switchMap((response) => this.alerts.open(String(response))))
         .subscribe();
 }
+
+	protected getSize(first: boolean): TuiSizeS {
+		return first ? 'm' : 's';
+  }
 }

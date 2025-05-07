@@ -1,83 +1,89 @@
-<h1 class="setting-title">Security Access</h1>
- <form [formGroup]="testForm" class="security-section">
- <!-- first setting -->
-         <label class="security-item" appearance="secondary" tuiBlock>
-             <div class="security-info">
-                 <span tuiTitle>
-                     Change Password
-                     <span tuiSubtitle>
-                         Keep your account secure by updating your password regularly.            
-                     </span>
-                 </span>
-             </div>
-             <input formControlName="testValue3" tuiButton type="button"/>
-             <div tuiAppearance="outline" tuiButtonGroup class="security-action">
-                 <button type="button">
-                     <tui-icon icon="@tui.pencil-line" />
-                     Edit Password
-                 </button>
-             </div>
-         </label>
-
-<!-- second setting -->
-         <label class="security-item" appearance="secondary" tuiBlock>
-          <div class="security-info">
-              <span tuiTitle>
-                Email for Notifications
-                  <span tuiSubtitle>
-                    Manage the email address used for platform alerts and updates.            
-                  </span>
-              </span>
-          </div>
-            <input formControlName="testValue3" tuiButton type="button"/>
-            <div class="button-group">
-              <div tuiAppearance="outline" tuiButtonGroup class="security-action">
-                  <button type="button">
-                      <tui-icon icon="@tui.pencil-line" />
-                      Change Email
-                  </button>
-              </div>
-              <p>ajjnfkjdnfngmail.com</p>
-          </div>
-      </label>
-
-<!-- third setting -->
-      <label class="security-item" appearance="secondary" tuiBlock>
-        <div class="security-info">
-            <span tuiTitle>
-              Login Activity
-                <span tuiSubtitle>
-                  See where your account was last accessed from.
-                </span>
-            </span>
+<section>
+	<header>
+		<p class="title">Security & Access</p>
+	</header>
+	<div class="content">
+        <!-- first option -->
+		<div class="div-content">
+			<div class="p-content">
+				<p class="p1">Change Password</p>
+				<p class="p2">Keep your account secure by updating your password regularly.</p>
+			</div>
+			<div class="div-btn">
+				<button
+					appearance="outline"
+					iconEnd="@tui.pencil-line"
+					size="s"
+					tuiButton
+                    class="btn-style"
+					type="button"
+				>
+					Change password
+				</button>
+			</div>
+		</div>
+        <!-- second option -->
+        <div class="div-content">
+			<div class="p-content">
+				<p class="p1">Email for Notifications</p>
+				<p class="p2">Manage the email address used for platform alerts and updates.</p>
+			</div>
+			<div class="div-btn">
+				<button
+					appearance="outline"
+					iconEnd="@tui.pencil-line"
+					size="s"
+					tuiButton
+                    class="btn-style"
+					type="button"
+				>
+					Change email
+				</button>
+                <p>ajjnfkjdnfngmail.com</p>
+			</div>
+		</div>
+        <!-- third option -->
+        <div class="div-content">
+            <div class="p-content">
+                <p class="p1">Login Activity</p>
+                <p class="p2">See where your account was last accessed.</p>
+            </div>
+            <div class="div-btn">
+                <button
+                    appearance="outline"
+                    iconEnd="@tui.eye"
+                    size="s"
+                    tuiButton
+                    class="btn-style"
+                    type="button"
+                >
+                    View recent login
+                </button>
+            </div>
         </div>
-        <input formControlName="testValue3" tuiButton type="button"/>
-        <div tuiAppearance="outline" tuiButtonGroup class="security-action">
-            <button type="button">
-                <tui-icon icon="@tui.eye" />
-                View recent logins
-            </button>
-        </div>
-    </label>
-
-<!-- fourth setting -->
-<label class="security-item" appearance="secondary" tuiBlock>
-  <div class="security-info">
-      <span tuiTitle class="deleteHeader">
-          Delete Account
-          <span tuiSubtitle>
-            <tui-icon icon="@tui.circle-alert"/>
-            Permanently remove your account and all associated data.
-          </span>
-      </span>
-  </div>
-  <input formControlName="testValue3" tuiButton type="button"/>
-  <div tuiAppearance="outline" tuiButtonGroup class="security-action">
-      <button tuiButton type="button" class="deleteButton" (click)="onClick()">
-          <tui-icon icon="@tui.trash-2"/>
-          Delete Account
-      </button>
-  </div>
-</label>
-
- </form>
+        <!-- fourth option -->
+        <div class="div-content">
+			<div class="p-content">
+				<p class="p1" style="color: #C74634;">Delete Account</p>
+				<p class="p2">Permanently remove your account and all associated data.</p>
+               <div class="deletebtnCombo">
+                    <tui-icon style="color: #C74634;" icon="@tui.circle-alert"/>
+                    <p class="p2">This action cannot be undone</p>
+               </div>
+			</div>
+			<div class="div-btn">
+				<button
+					appearance="outline"
+					iconEnd="@tui.trash-2"
+					size="s"
+					tuiButton
+                    class="btn-style btn-delete"
+					type="button"
+                    (click)="onClick()"
+				>
+					Delete
+				</button>
+			</div>
+		</div>
+	</div>
+</section>
