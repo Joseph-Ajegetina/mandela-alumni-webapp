@@ -21,16 +21,19 @@ header::before {
 }
 
 .main-container {
-	margin-left: 15.25rem;
+	margin-left: 14rem;
 	background: #f5fcfffa;
-	padding: 1rem 2rem;
+	padding: 1rem 1rem;
 }
 
 .nav-header {
 	block-size: 4.125rem !important;
 	padding: 3rem 1.25rem !important;
 	box-shadow: var(--tui-shadow-small);
-	// border-block-end: 1px solid var(--tui-border-normal);
+	position: sticky;
+	top: 0;
+	z-index: 100;
+	background: #f5fcfffa;
 }
 
 tui-avatar {
@@ -60,9 +63,17 @@ tui-avatar {
 }
 
 .welcome-container {
+	margin-top: 1rem;
 	display: flex;
 	flex-direction: column;
 	margin-left: 284px;
+	transition: opacity 0.3s ease, transform 0.3s ease;
+
+	&.scrolled {
+		opacity: 0;
+		transform: translateY(-10px);
+		pointer-events: none;
+	}
 
 	.text {
 		font-weight: 700;
@@ -76,5 +87,16 @@ tui-avatar {
 		font-size: 20px;
 		line-height: 28px;
 		color: rgba(90, 103, 112, 1);
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+
+		img {
+			margin-top: -4px;
+		}
 	}
+}
+
+.user-button {
+	scale: 1.1;
 }

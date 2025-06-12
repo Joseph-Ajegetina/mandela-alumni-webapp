@@ -1,4 +1,11 @@
-import { ChangeDetectionStrategy, Component, computed, inject, signal } from '@angular/core';
+import {
+	ChangeDetectionStrategy,
+	Component,
+	computed,
+	inject,
+	signal,
+	HostListener,
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiNavigation } from '@taiga-ui/layout';
 import { SiteNavigationComponent } from './site-navigation/site-navigation.component';
@@ -49,6 +56,13 @@ export class LayoutComponent {
 	readonly userStore = inject(UserStore);
 	readonly user = this.userStore.currentUser;
 	protected open = signal(false);
+	isScrolled = false;
+
+	@HostListener('window:scroll', ['$event'])
+	onWindowScroll() {
+		const scrollPosition = window.scrollY || document.documentElement.scrollTop;
+		this.isScrolled = scrollPosition > 50;
+	}
 
 	theme = computed(() => (this.darkMode() ? 'dark' : 'light'));
 
