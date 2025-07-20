@@ -1,0 +1,278 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.dashboard-container {
+	display: grid;
+	grid-template-columns: 1fr 350px;
+	gap: 2rem;
+	padding: 2rem;
+	min-height: 100vh;
+	background: #f8f9fa;
+	max-width: 100%;
+	overflow-x: hidden;
+	box-sizing: border-box;
+}
+
+.main-content {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	min-width: 0;
+	overflow-x: hidden;
+}
+
+.sidebar {
+	display: flex;
+	flex-direction: column;
+	gap: 2rem;
+	min-width: 0;
+	overflow-x: hidden;
+}
+
+// Metrics Section
+.metrics-section {
+	.metrics-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
+		gap: 1.5rem;
+		justify-content: center;
+		max-width: 100%;
+	}
+}
+
+// Recent Activities Section
+.recent-activities {
+	.activities-list {
+		.activity-item {
+			display: flex;
+			align-items: center;
+			gap: 1rem;
+			padding: 1rem;
+			border-bottom: 1px solid #f3f3f3;
+
+			&:last-child {
+				border-bottom: none;
+			}
+
+			.activity-icon {
+				flex-shrink: 0;
+				width: 40px;
+				height: 40px;
+				display: flex;
+				align-items: center;
+				justify-content: center;
+				background: rgba(37, 69, 104, 0.1);
+				border-radius: 8px;
+			}
+
+			.activity-content {
+				flex: 1;
+
+				p {
+					margin: 0;
+				}
+			}
+
+			.activity-status {
+				.status-completed {
+					background: rgba(83, 215, 136, 0.15);
+					color: #00a86b;
+					padding: 0.25rem 0.75rem;
+					border-radius: 20px;
+					font-size: 0.8rem;
+					font-weight: 500;
+				}
+
+				.status-pending {
+					background: rgba(235, 176, 68, 0.15);
+					color: #e67e22;
+					padding: 0.25rem 0.75rem;
+					border-radius: 20px;
+					font-size: 0.8rem;
+					font-weight: 500;
+				}
+			}
+		}
+	}
+}
+
+// Upcoming Events Section
+.upcoming-events {
+	.events-grid {
+		display: grid;
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+	}
+
+	.event-card {
+		background: white;
+		border-radius: 8px;
+		overflow: hidden;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+		border: 1px solid #f3f3f3;
+		transition: transform 0.2s ease;
+
+		&:hover {
+			transform: translateY(-2px);
+		}
+
+		.event-image {
+			width: 100%;
+			height: 128px;
+			overflow: hidden;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+
+		.event-content {
+			padding: 1rem;
+
+			.event-details {
+				display: flex;
+				gap: 0.5rem;
+				margin-top: 0.5rem;
+			}
+
+			.event-location {
+				display: flex;
+				align-items: center;
+				gap: 0.25rem;
+				margin-top: 0.5rem;
+			}
+		}
+	}
+}
+
+// Reminders Section
+.reminders-section {
+	background: white;
+	border-radius: 8px;
+	padding: 16px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	min-height: 241.74px;
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+	.reminders-list {
+		display: flex;
+		flex-direction: column;
+		gap: 1rem;
+		flex: 1;
+	}
+
+	.reminder-item {
+		display: flex;
+		align-items: center;
+		gap: 1rem;
+		padding: 0.75rem;
+		border-radius: 5px;
+		margin-bottom: 0.5rem;
+
+		.reminder-dot {
+			width: 12px;
+			height: 12px;
+			border-radius: 50%;
+			flex-shrink: 0;
+		}
+
+		.reminder-content {
+			flex: 1;
+
+			p {
+				margin: 0;
+			}
+		}
+	}
+}
+
+// Section Headers
+.section-header {
+	display: flex;
+	align-items: center;
+	gap: 0.5rem;
+	margin-bottom: 1.5rem;
+
+	h4 {
+		color: #254568;
+		font-size: 1.2rem;
+		margin: 0;
+		font-weight: 600;
+	}
+}
+
+// Responsive Design
+@media (min-width: 1400px) {
+	.metrics-grid {
+		grid-template-columns: repeat(3, 350px) !important;
+		justify-content: center;
+	}
+}
+
+@media (max-width: 1200px) {
+	.dashboard-container {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+		padding: 1rem;
+	}
+
+	.sidebar {
+		order: -1;
+	}
+
+	.metrics-grid {
+		grid-template-columns: repeat(auto-fit, minmax(200px, 350px)) !important;
+		justify-content: center;
+	}
+
+	.events-grid {
+		grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)) !important;
+	}
+}
+
+@media (max-width: 768px) {
+	.dashboard-container {
+		padding: 0.5rem;
+	}
+
+	.metrics-grid {
+		grid-template-columns: repeat(auto-fit, minmax(180px, 350px)) !important;
+		gap: 1rem !important;
+		justify-content: center;
+	}
+
+	.events-grid {
+		grid-template-columns: 1fr !important;
+	}
+
+	.reminders-section {
+		width: 100% !important;
+		height: auto !important;
+	}
+
+	.reminder-item {
+		width: 100% !important;
+		height: auto !important;
+		padding: 1rem !important;
+	}
+}
+
+@media (max-width: 480px) {
+	.recent-activities {
+		.activities-list {
+			.activity-item {
+				flex-direction: column;
+				align-items: flex-start;
+				gap: 0.5rem;
+
+				.activity-status {
+					align-self: flex-end;
+				}
+			}
+		}
+	}
+} 

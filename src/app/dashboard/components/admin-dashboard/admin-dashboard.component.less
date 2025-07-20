@@ -1,0 +1,118 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.dashboard-container {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	gap: 2rem;
+	padding: 0 1.5rem 1.5rem;
+	background: #f5fcfffa;
+	min-height: 100vh;
+
+	@media @tui-mobile {
+		grid-template-columns: 1fr;
+		padding: 1rem;
+	}
+}
+
+.main-content {
+	display: grid;
+	gap: 2rem;
+}
+
+// Metrics Section
+.metrics-section {
+	.metrics-grid {
+		@media @tui-mobile {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+
+.metric-card {
+	.metric-content {
+		margin-bottom: 0.5rem;
+	}
+
+	.metric-trend {
+		align-items: center;
+	}
+}
+
+// Quick Actions Section
+.quick-actions {
+	.actions-grid {
+		@media @tui-mobile {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+
+// Recent Registrations Section
+.recent-registrations {
+	.table-container {
+		overflow-x: auto;
+	}
+
+	.status-active {
+		background: #00a86b;
+		color: white;
+		padding: 0.25rem 0.75rem;
+		border-radius: 1rem;
+		font-size: 0.75rem;
+	}
+
+	.status-pending {
+		background: #ff9500;
+		color: white;
+		padding: 0.25rem 0.75rem;
+		border-radius: 1rem;
+		font-size: 0.75rem;
+	}
+}
+
+// Manage Events Section
+.manage-events {
+	.events-grid {
+		@media @tui-mobile {
+			grid-template-columns: 1fr;
+		}
+	}
+
+	.event-actions {
+		align-items: center;
+	}
+}
+
+// Sidebar
+.sidebar {
+	display: grid;
+	gap: 2rem;
+
+	@media @tui-mobile {
+		display: none;
+	}
+}
+
+.calendar-section {
+	.calendar-widget {
+		tui-calendar {
+			box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+			width: 88%;
+		}
+	}
+}
+
+.reminders {
+	.reminder-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		flex-shrink: 0;
+		margin-top: 0.25rem;
+	}
+
+	.bg-warning {
+		background-color: #ff9500;
+	}
+} 

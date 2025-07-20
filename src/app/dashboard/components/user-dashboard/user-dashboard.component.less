@@ -1,0 +1,162 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+.dashboard-container {
+	display: grid;
+	grid-template-columns: 3fr 1fr;
+	gap: 2rem;
+	padding: 0 1.5rem 1.5rem;
+	background: #f5fcfffa;
+	min-height: 100vh;
+
+	@media @tui-mobile {
+		grid-template-columns: 1fr;
+		padding: 1rem;
+	}
+}
+
+.main-content {
+	display: grid;
+	gap: 2rem;
+}
+
+// Welcome Section
+.welcome-section {
+	.welcome-content {
+		margin-bottom: 1rem;
+	}
+
+	.welcome-greeting {
+		align-items: center;
+	}
+}
+
+// Summary Cards Section
+.summary-cards {
+	.summary-grid {
+		@media @tui-mobile {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+.summary-card {
+	.summary-content {
+		.trend {
+			align-items: center;
+		}
+	}
+}
+
+// Quick Actions Section
+.quick-actions {
+	.actions-grid {
+		@media @tui-mobile {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+}
+
+// Upcoming Events Section
+.upcoming-events {
+	.events-grid {
+		@media @tui-mobile {
+			grid-template-columns: 1fr;
+		}
+	}
+}
+
+// Recent Activities Section
+.recent-activities {
+	.activity-details {
+		flex: 1;
+	}
+
+	.status-completed {
+		background: #00a86b;
+		color: white;
+		padding: 0.25rem 0.75rem;
+		border-radius: 1rem;
+		font-size: 0.75rem;
+	}
+
+	.status-pending {
+		background: #ff9500;
+		color: white;
+		padding: 0.25rem 0.75rem;
+		border-radius: 1rem;
+		font-size: 0.75rem;
+	}
+
+	.pagination {
+		justify-content: center;
+
+		.pagination-btn {
+			padding: 0.5rem 1rem;
+			border: 1px solid #e5e7eb;
+			border-radius: 0.375rem;
+			background: white;
+			color: #374151;
+			cursor: pointer;
+			transition: all 0.2s;
+
+			&:hover {
+				background: #f9fafb;
+			}
+		}
+	}
+}
+
+// Sidebar
+.sidebar {
+	display: grid;
+	gap: 2rem;
+
+	@media @tui-mobile {
+		display: none;
+	}
+}
+
+// Profile Completion Section
+.profile-completion {
+	.completion-progress {
+		.progress-bar {
+			background-color: #e5e7eb;
+		}
+
+		.progress-fill {
+			background-color: #254568;
+		}
+	}
+
+	.completion-checklist {
+		.checklist-item {
+			align-items: center;
+		}
+	}
+}
+
+// Calendar Section
+.calendar-section {
+	.calendar-widget {
+		tui-calendar {
+			box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+			border-radius: 5px;
+			width: 88%;
+		}
+	}
+}
+
+// Reminders Section
+.reminders {
+	.reminder-dot {
+		width: 8px;
+		height: 8px;
+		border-radius: 50%;
+		flex-shrink: 0;
+		margin-top: 0.25rem;
+	}
+
+	.bg-warning {
+		background-color: #ff9500;
+	}
+} 

@@ -1,0 +1,236 @@
+import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { TuiIcon, TuiCalendar, TuiMarkerHandler } from '@taiga-ui/core';
+import { TuiDay } from '@taiga-ui/cdk';
+import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder, RecentUser } from '@mandela-alumni-webapp/core-data';
+
+@Component({
+	selector: 'app-admin-dashboard-ui',
+	standalone: true,
+	imports: [CommonModule, TuiIcon, TuiCalendar],
+	template: `
+		<div class="dashboard-container">
+			<div class="main-content">
+				<!-- Key Metrics Section -->
+				<section class="metrics-section">
+					<div class="metrics-grid grid grid-cols-5 gap-lg">
+						<div 
+							class="metric-card-admin" 
+							[class.metric-card-dark]="metric.id === '1'"
+							[class.metric-card-light]="metric.id !== '1'"
+							*ngFor="let metric of metrics"
+						>
+							<!-- Header: Label -->
+							<div class="metric-header">
+								<p class="text-sm opacity-90 mb-0">{{ metric.label }}</p>
+							</div>
+							
+							<!-- Content: Value -->
+							<div class="metric-content">
+								<h3 class="text-2xl font-bold mb-0">{{ metric.value }}</h3>
+							</div>
+							
+							<!-- Footer: Trend -->
+							<div class="metric-footer">
+								<div class="metric-trend flex items-center gap-sm">
+									<tui-icon [icon]="metric.icon" class="text-success" />
+									<span class="text-xs">{{ metric.trend }}%</span>
+								</div>
+								<p class="text-xs opacity-75 mb-0">from last month</p>
+							</div>
+						</div>
+					</div>
+				</section>
+
+				<!-- Quick Actions Section -->
+				<section class="quick-actions card">
+					<div class="section-header">
+						<h4>Quick Actions</h4>
+						<tui-icon icon="@tui.zap" />
+					</div>
+					<div class="actions-grid grid grid-cols-5 gap-md">
+						<button class="action-btn">
+							<tui-icon icon="@tui.user-plus" />
+							<span class="text-sm">Add User</span>
+						</button>
+						<button class="action-btn">
+							<tui-icon icon="@tui.calendar-plus" />
+							<span class="text-sm">Create Event</span>
+						</button>
+						<button class="action-btn">
+							<tui-icon icon="@tui.edit" />
+							<span class="text-sm">Send Notice</span>
+						</button>
+						<button class="action-btn">
+							<tui-icon icon="@tui.heart" />
+							<span class="text-sm">Make a donation</span>
+						</button>
+						<button class="action-btn">
+							<tui-icon icon="@tui.download" />
+							<span class="text-sm">Export Data</span>
+						</button>
+					</div>
+				</section>
+
+				<!-- Recent User Registrations Section -->
+				<section class="recent-registrations card">
+					<div class="section-header">
+						<h4>Recent User Registrations</h4>
+						<tui-icon icon="@tui.users" />
+					</div>
+					<div class="table-container">
+						<table class="w-full">
+							<thead>
+								<tr class="border-b">
+									<th class="text-left p-md text-sm font-semibold">Name</th>
+									<th class="text-left p-md text-sm font-semibold">Email</th>
+									<th class="text-left p-md text-sm font-semibold">Date Submitted</th>
+									<th class="text-left p-md text-sm font-semibold">Request Category</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="border-b" *ngFor="let user of recentUsers">
+									<td class="p-md text-sm">{{ user.name }}</td>
+									<td class="p-md text-sm">{{ user.email }}</td>
+									<td class="p-md text-sm">{{ user.date }}</td>
+									<td class="p-md">
+										<span [class]="user.status === 'Active' ? 'status-active' : 'status-pending'">
+											{{ user.status }}
+										</span>
+									</td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</section>
+
+				<!-- Manage Upcoming Events Section -->
+				<section class="manage-events card">
+					<div class="section-header flex-between">
+						<div class="flex gap-sm">
+							<h4>Manage Upcoming Events</h4>
+							<tui-icon icon="@tui.calendar" />
+						</div>
+						<a href="/events" class="text-secondary text-sm flex gap-sm">
+							<span>View All</span>
+							<tui-icon icon="@tui.arrow-right" />
+						</a>
+					</div>
+					<div class="events-grid grid grid-cols-2 gap-lg">
+						<div class="event-card flex bg-white rounded-md overflow-hidden shadow-md" *ngFor="let event of events">
+							<div class="event-content flex-1 p-md">
+								<h4 class="text-light text-sm mb-sm">{{ event.title }}</h4>
+								<p class="text-muted text-xs mb-sm">{{ event.date }}</p>
+								<p class="text-success text-xs" *ngIf="event.attendees">{{ event.attendees }}</p>
+							</div>
+							<div class="event-actions p-md flex-center">
+								<button class="btn btn-secondary p-sm">
+									<tui-icon icon="@tui.edit" />
+								</button>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+
+			<div class="sidebar">
+				<!-- Calendar Section -->
+				<section class="calendar-section card">
+					<div class="section-header">
+						<h4>Calendar</h4>
+						<tui-icon icon="@tui.calendar-days" class="text-primary" />
+					</div>
+					<div class="calendar-widget">
+						<tui-calendar
+							[value]="selectedDays"
+							[markerHandler]="markerHandler"
+							(dayClick)="onDayClick($event)"
+						>
+						</tui-calendar>
+					</div>
+				</section>
+
+				<!-- Reminders Section -->
+				<section class="reminders-section">
+					<h4 class="text-primary text-lg mb-md">Reminders</h4>
+					<div class="reminders-list">
+						<div class="reminder-item reminder-item-orange">
+							<div class="reminder-dot bg-reminder-orange rounded-full w-3 h-3"></div>
+							<div class="reminder-content flex-1">
+								<p class="text-sm font-medium mb-0">Membership Renewal</p>
+								<p class="text-xs text-muted mb-0">Due in 2 days</p>
+							</div>
+						</div>
+						<div class="reminder-item reminder-item-blue">
+							<div class="reminder-dot bg-reminder-blue rounded-full w-3 h-3"></div>
+							<div class="reminder-content flex-1">
+								<p class="text-sm font-medium mb-0">Summit Registration</p>
+								<p class="text-xs text-muted mb-0">Closes Jan 20</p>
+							</div>
+						</div>
+						<div class="reminder-item reminder-item-green">
+							<div class="reminder-dot bg-reminder-green rounded-full w-3 h-3"></div>
+							<div class="reminder-content flex-1">
+								<p class="text-sm font-medium mb-0">Budget Review</p>
+								<p class="text-xs text-muted mb-0">Due tomorrow</p>
+							</div>
+						</div>
+					</div>
+				</section>
+			</div>
+		</div>
+	`,
+	styleUrls: ['./admin-dashboard-ui.component.less']
+})
+export class AdminDashboardUiComponent {
+	@Input() metrics: DashboardMetric[] = [];
+	@Input() events: DashboardEvent[] = [];
+	@Input() activities: DashboardActivity[] = [];
+	@Input() reminders: DashboardReminder[] = [];
+	@Input() isLoading = false;
+	@Input() error: string | null = null;
+
+	@Output() loadData = new EventEmitter<void>();
+
+	selectedDays: TuiDay[] = [];
+	
+	// Mock recent users data
+	recentUsers: RecentUser[] = [
+		{ 
+			name: 'Kofi Manu Sarpong', 
+			email: 'kofi.sarpong@example.com', 
+			date: '21-02-2025', 
+			status: 'Active',
+			profile: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=150&h=150&fit=crop&crop=face'
+		},
+		{ 
+			name: 'Ama Osei', 
+			email: 'ama.osei@example.com', 
+			date: '20-02-2025', 
+			status: 'Pending',
+			profile: 'https://images.unsplash.com/photo-1494790108755-2616b612b786?w=150&h=150&fit=crop&crop=face'
+		},
+		{ 
+			name: 'Kwame Addo', 
+			email: 'kwame.addo@example.com', 
+			date: '19-02-2025', 
+			status: 'Active',
+			profile: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=150&h=150&fit=crop&crop=face'
+		},
+		{ 
+			name: 'Sarah Johnson', 
+			email: 'sarah.johnson@example.com', 
+			date: '18-02-2025', 
+			status: 'Pending',
+			profile: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=150&h=150&fit=crop&crop=face'
+		}
+	];
+
+	onDayClick(day: TuiDay): void {
+		// Handle calendar day click
+	}
+
+	markerHandler: TuiMarkerHandler = (day: TuiDay) => {
+		return this.selectedDays.some((d) => d.daySame(day)) ? ['var(--tui-primary)'] : [];
+	};
+} 
