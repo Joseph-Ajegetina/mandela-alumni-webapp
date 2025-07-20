@@ -48,16 +48,16 @@
 				<tui-icon icon="@tui.zap" />
 			</div>
 			<div class="actions-grid grid grid-cols-5 gap-md">
-				<button class="action-btn">
+				<button class="action-btn" (click)="onAddUser()">
 					<tui-icon icon="@tui.user-plus" />
 					<span class="text-sm">Add User</span>
 				</button>
-				<button class="action-btn">
+				<button class="action-btn" (click)="onCreateEvent()">
 					<tui-icon icon="@tui.calendar-plus" />
 					<span class="text-sm">Create Event</span>
 				</button>
 				<button class="action-btn">
-					<tui-icon icon="@tui.edit" />
+					<tui-icon icon="@tui.pen-line" />
 					<span class="text-sm">Send Notice</span>
 				</button>
 				<button class="action-btn">
@@ -116,15 +116,13 @@
 				</a>
 			</div>
 			<div class="events-grid grid grid-cols-2 gap-lg">
-				<div
-					class="event-card flex bg-white rounded-md overflow-hidden shadow-md"
-					[class.selected]="selectedEvents.includes(event.id)"
-					(click)="toggleEventSelection(event)"
-					(keydown.enter)="toggleEventSelection(event)"
-					(keydown.space)="toggleEventSelection(event)"
+				<div 
+					class="event-card flex bg-white rounded-md overflow-hidden shadow-md" 
+					(click)="onEventClick(event)"
+					(keydown.enter)="onEventClick(event)"
+					(keydown.space)="onEventClick(event)"
 					tabindex="0"
 					role="button"
-					[attr.aria-pressed]="selectedEvents.includes(event.id)"
 					*ngFor="let event of events"
 				>
 					<div class="event-content flex-1 p-md">

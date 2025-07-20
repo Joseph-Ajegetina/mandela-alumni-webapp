@@ -217,26 +217,15 @@
 		border: 1px solid #f3f3f3;
 		cursor: pointer;
 		transition: all 0.2s ease;
-
+		
 		&:hover {
 			transform: translateY(-2px);
 			box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 		}
-
-		&.selected {
-			border: 2px solid var(--tui-primary);
-			background-color: rgba(37, 69, 104, 0.05);
-			box-shadow: 0 4px 12px rgba(37, 69, 104, 0.2);
-
-			&::before {
-				content: '';
-				position: absolute;
-				top: 0;
-				left: 0;
-				right: 0;
-				height: 3px;
-				background-color: var(--tui-primary);
-			}
+		
+		&:active {
+			transform: translateY(0);
+			box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 		}
 	}
 

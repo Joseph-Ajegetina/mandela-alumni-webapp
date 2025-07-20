@@ -10,6 +10,7 @@ import {
 	RecentUser,
 } from '@mandela-alumni-webapp/core-data';
 import { SimpleChanges } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
 	selector: 'app-admin-dashboard-ui',
@@ -29,8 +30,7 @@ export class AdminDashboardUiComponent {
 	@Output() loadData = new EventEmitter<void>();
 
 	selectedDays: TuiDay[] = [];
-	selectedEvents: string[] = [];
-
+	
 	// Setter for reminders to trigger calendar update
 	set _reminders(value: DashboardReminder[]) {
 		this.reminders = value;
@@ -73,7 +73,7 @@ export class AdminDashboardUiComponent {
 		},
 	];
 
-	constructor() {
+	constructor(private router: Router) {
 		// Initialize calendar with reminder dates
 		this.initializeReminderDates();
 	}
@@ -124,22 +124,26 @@ export class AdminDashboardUiComponent {
 		// Handle calendar day click
 	}
 
-	onEventAction(event: DashboardEvent): void {
-		// Handle event action button click
-		// You can add navigation or modal opening logic here
-		// For example: this.router.navigate(['/events', event.id, 'edit']);
+	onEventClick(event: DashboardEvent): void {
+		// Navigate to event detail page
+		this.router.navigate(['/events', event.id]);
 	}
 
-	toggleEventSelection(event: DashboardEvent): void {
-		// Toggle event selection
-		const eventId = event.id;
-		if (this.selectedEvents.includes(eventId)) {
-			// Remove from selection
-			this.selectedEvents = this.selectedEvents.filter((id) => id !== eventId);
-		} else {
-			// Add to selection
-			this.selectedEvents.push(eventId);
-		}
+	onEventAction(event: DashboardEvent): void {
+		// Handle event action button click (external link, modal, etc.)
+		console.log('Event action clicked for:', event.title);
+		// You can add external link opening or modal logic here
+		// For example: window.open(event.externalUrl, '_blank');
+	}
+
+	onAddUser(): void {
+		// Navigate to register page
+		this.router.navigate(['/register']);
+	}
+
+	onCreateEvent(): void {
+		// Navigate to create event page
+		this.router.navigate(['/events/new-event']);
 	}
 
 	getReminderColor(reminder: DashboardReminder): string {
