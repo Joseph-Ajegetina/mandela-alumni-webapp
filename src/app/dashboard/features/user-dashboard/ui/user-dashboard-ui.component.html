@@ -4,8 +4,8 @@
 		<!-- Key Metrics Section -->
 		<section class="metrics-section">
 			<div class="metrics-grid">
-				<div 
-					class="metric-card-user" 
+				<div
+					class="metric-card-user"
 					[class.metric-card-dark]="metric.id === '1'"
 					[class.metric-card-light]="metric.id !== '1'"
 					*ngFor="let metric of metrics"
@@ -87,16 +87,16 @@
 				</a>
 			</div>
 			<div class="events-container overflow-auto">
-				<div class="events-grid flex gap-lg" style="min-width: max-content;">
-					<div 
-						class="event-card bg-white rounded-lg overflow-hidden shadow-md border" 
+				<div class="events-grid flex gap-lg" style="min-width: max-content">
+					<div
+						class="event-card bg-white rounded-lg overflow-hidden shadow-md border"
 						(click)="onEventClick(event)"
 						(keydown.enter)="onEventClick(event)"
 						(keydown.space)="onEventClick(event)"
 						tabindex="0"
 						role="button"
 						*ngFor="let event of events"
-						style="min-width: 300px; max-width: 350px;"
+						style="min-width: 300px; max-width: 350px"
 					>
 						<div class="event-image w-full h-32 overflow-hidden" *ngIf="event.image">
 							<img [src]="event.image" [alt]="event.title" class="w-full h-full object-cover" />
@@ -135,9 +135,7 @@
 						<p class="text-xs text-muted">{{ activity.description }}</p>
 					</div>
 					<div class="activity-status">
-						<span
-							[class]="activity.status === 'completed' ? 'status-completed' : 'status-pending'"
-						>
+						<span [class]="activity.status === 'completed' ? 'status-completed' : 'status-pending'">
 							{{ activity.status }}
 						</span>
 					</div>
@@ -171,7 +169,9 @@
 					<div class="text-xs text-muted uppercase tracking-wide">Connections</div>
 				</div>
 			</div>
-			<button class="w-full py-md bg-primary text-white rounded-md font-medium hover:bg-primary-dark transition-colors">
+			<button
+				class="w-full py-md bg-primary text-white rounded-md font-medium hover:bg-primary-dark transition-colors"
+			>
 				View Full Impact Report
 			</button>
 		</section>
@@ -217,4 +217,4 @@
 			</div>
 		</section>
 	</div>
-</div> 
+</div>

@@ -4,7 +4,6 @@
 	display: grid;
 	grid-template-columns: 1fr 350px;
 	gap: 2rem;
-	padding: 2rem;
 	min-height: 100vh;
 	background: #f8f9fa;
 	max-width: 100%;
@@ -30,12 +29,19 @@
 
 // Metrics Section
 .metrics-section {
+	width: 100%;
+	min-width: 1000px;
+	overflow-x: auto;
+
 	.metrics-grid {
 		display: grid;
-		grid-template-columns: repeat(auto-fit, minmax(250px, 350px));
-		gap: 1.5rem;
-		justify-content: center;
-		max-width: 100%;
+		grid-template-columns: repeat(3, 232px);
+		column-gap: 2rem;
+		row-gap: 0;
+		width: fit-content;
+		margin: 0;
+		padding: 0;
+		justify-content: start;
 	}
 }
 
@@ -208,8 +214,8 @@
 // Responsive Design
 @media (min-width: 1400px) {
 	.metrics-grid {
-		grid-template-columns: repeat(3, 350px) !important;
-		justify-content: center;
+		grid-template-columns: repeat(3, 296px) !important;
+		justify-content: start;
 	}
 }
 
@@ -217,7 +223,6 @@
 	.dashboard-container {
 		grid-template-columns: 1fr;
 		gap: 1rem;
-		padding: 1rem;
 	}
 
 	.sidebar {
@@ -225,8 +230,8 @@
 	}
 
 	.metrics-grid {
-		grid-template-columns: repeat(auto-fit, minmax(200px, 350px)) !important;
-		justify-content: center;
+		grid-template-columns: repeat(auto-fit, minmax(200px, 232px)) !important;
+		justify-content: start;
 	}
 
 	.events-grid {
@@ -240,9 +245,9 @@
 	}
 
 	.metrics-grid {
-		grid-template-columns: repeat(auto-fit, minmax(180px, 350px)) !important;
+		grid-template-columns: repeat(auto-fit, minmax(180px, 232px)) !important;
 		gap: 1rem !important;
-		justify-content: center;
+		justify-content: start;
 	}
 
 	.events-grid {

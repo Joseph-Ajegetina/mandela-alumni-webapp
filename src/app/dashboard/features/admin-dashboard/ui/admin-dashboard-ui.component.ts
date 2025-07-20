@@ -30,7 +30,7 @@ export class AdminDashboardUiComponent {
 	@Output() loadData = new EventEmitter<void>();
 
 	selectedDays: TuiDay[] = [];
-	
+
 	// Setter for reminders to trigger calendar update
 	set _reminders(value: DashboardReminder[]) {
 		this.reminders = value;

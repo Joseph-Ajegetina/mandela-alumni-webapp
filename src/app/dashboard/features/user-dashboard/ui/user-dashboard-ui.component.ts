@@ -43,7 +43,7 @@ export class UserDashboardUiComponent {
 		const due = new Date(dueDate);
 		const diffTime = due.getTime() - today.getTime();
 		const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-		
+
 		if (diffDays < 0) {
 			return `Overdue by ${Math.abs(diffDays)} days`;
 		} else if (diffDays === 0) {
