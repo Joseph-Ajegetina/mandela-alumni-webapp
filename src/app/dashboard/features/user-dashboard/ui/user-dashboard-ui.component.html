@@ -182,12 +182,15 @@
 		<section class="calendar-section card">
 			<div class="section-header">
 				<h4>Calendar</h4>
-				<tui-icon icon="tuiIconCalendarDays" class="text-primary" />
+				<tui-icon icon="@tui.calendar-days" class="text-primary" />
 			</div>
 			<div class="calendar-widget">
-				<div class="bg-light rounded-lg p-md min-h-300 flex-center">
-					<p class="text-muted">Calendar Component</p>
-				</div>
+				<tui-calendar
+					[value]="selectedDays"
+					[markerHandler]="markerHandler"
+					(dayClick)="onDayClick($event)"
+				>
+				</tui-calendar>
 			</div>
 		</section>
 

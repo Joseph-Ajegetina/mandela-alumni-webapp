@@ -1,6 +1,7 @@
-import { Component, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter, OnInit, SimpleChanges } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TuiIcon } from '@taiga-ui/core';
+import { TuiIcon, TuiCalendar, TuiMarkerHandler } from '@taiga-ui/core';
+import { TuiDay } from '@taiga-ui/cdk';
 import {
 	DashboardMetric,
 	DashboardEvent,
@@ -11,11 +12,11 @@ import {
 @Component({
 	selector: 'app-user-dashboard-ui',
 	standalone: true,
-	imports: [CommonModule, TuiIcon],
+	imports: [CommonModule, TuiIcon, TuiCalendar],
 	templateUrl: './user-dashboard-ui.component.html',
 	styleUrls: ['./user-dashboard-ui.component.less'],
 })
-export class UserDashboardUiComponent {
+export class UserDashboardUiComponent implements OnInit {
 	@Input() metrics: DashboardMetric[] = [];
 	@Input() events: DashboardEvent[] = [];
 	@Input() activities: DashboardActivity[] = [];
@@ -29,6 +30,18 @@ export class UserDashboardUiComponent {
 	@Output() findAlumni = new EventEmitter<void>();
 	@Output() registerEvent = new EventEmitter<void>();
 	@Output() makeDonation = new EventEmitter<void>();
+
+	selectedDays: TuiDay[] = [];
+
+	ngOnInit(): void {
+		this.initializeReminderDates();
+	}
+
+	ngOnChanges(changes: SimpleChanges): void {
+		if (changes['reminders']) {
+			this.updateReminderDates();
+		}
+	}
 
 	onEventClick(event: DashboardEvent): void {
 		this.eventClick.emit(event);
@@ -49,6 +62,42 @@ export class UserDashboardUiComponent {
 	onMakeDonation(): void {
 		this.makeDonation.emit();
 	}
+
+	onDayClick(day: TuiDay): void {
+		// Handle calendar day click
+		console.log('Day clicked:', day);
+	}
+
+	private initializeReminderDates(): void {
+		// Add some default reminder dates for demonstration
+		const today = TuiDay.currentLocal();
+		this.selectedDays = [
+			today.append({ day: 2 }), // Membership Renewal - Due in 2 days
+			today.append({ day: 1 }), // Budget Review - Due tomorrow
+			today.append({ day: 10 }), // Summit Registration - Closes Jan 20
+		];
+	}
+
+	private updateReminderDates(): void {
+		if (this.reminders && this.reminders.length > 0) {
+			this.selectedDays = this.reminders
+				.map(reminder => this.parseDateToTuiDay(reminder.dueDate))
+				.filter(day => day !== null);
+		}
+	}
+
+	private parseDateToTuiDay(dateString: string): TuiDay | null {
+		try {
+			const date = new Date(dateString);
+			return new TuiDay(date.getFullYear(), date.getMonth(), date.getDate());
+		} catch {
+			return null;
+		}
+	}
+
+	markerHandler: TuiMarkerHandler = (day: TuiDay) => {
+		return this.selectedDays.some((d) => d.daySame(day)) ? ['var(--tui-primary)'] : [];
+	};
 
 	getReminderColor(reminder: DashboardReminder): string {
 		// Extract color from the reminder's color property
