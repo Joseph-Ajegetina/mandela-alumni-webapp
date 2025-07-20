@@ -13,7 +13,7 @@ import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder, 
 			<div class="main-content">
 				<!-- Key Metrics Section -->
 				<section class="metrics-section">
-					<div class="metrics-grid grid grid-cols-5 gap-lg">
+					<div class="metrics-grid">
 						<div 
 							class="metric-card-admin" 
 							[class.metric-card-dark]="metric.id === '1'"
@@ -33,10 +33,18 @@ import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder, 
 							<!-- Footer: Trend -->
 							<div class="metric-footer">
 								<div class="metric-trend flex items-center gap-sm">
-									<tui-icon [icon]="metric.icon" class="text-success" />
-									<span class="text-xs">{{ metric.trend }}%</span>
+									<tui-icon 
+										icon="@tui.chart-line"
+										[class.text-success]="metric.trend >= 0"
+										[class.text-danger]="metric.trend < 0"
+									/>
+									<span class="text-xs">
+										<span 
+											[class.text-success]="metric.trend >= 0"
+											[class.text-danger]="metric.trend < 0"
+										>{{ metric.trend }}%</span> from last month
+									</span>
 								</div>
-								<p class="text-xs opacity-75 mb-0">from last month</p>
 							</div>
 						</div>
 					</div>
