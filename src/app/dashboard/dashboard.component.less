@@ -21,194 +21,125 @@
 
 // Quick Links Section
 .quick-links {
-	background: white;
+	// Using utility classes instead of custom styles
+	// .card utility provides: background, border-radius, padding, box-shadow
+}
+
+.actions-grid {
+	// Using utility classes for grid layout
+}
+
+.action-btn {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 0.5rem;
+	padding: 1rem;
+	background: #25688e;
+	color: white;
+	border: none;
 	border-radius: 8px;
-	padding: 1.5rem;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	cursor: pointer;
+	transition: transform 0.2s;
 
-	.section-header {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 1.5rem;
-
-		h4 {
-			color: #254568;
-			font-size: 1.2rem;
-			margin: 0;
-		}
+	&:hover {
+		transform: translateY(-2px);
 	}
 
-	.actions-grid {
-		display: grid;
-		grid-template-columns: repeat(5, 1fr);
-		gap: 1rem;
-
-		@media @tui-mobile {
-			grid-template-columns: repeat(2, 1fr);
-		}
-	}
-
-	.action-btn {
-		display: flex;
-		flex-direction: column;
-		align-items: center;
-		gap: 0.5rem;
-		padding: 1rem;
-		background: #25688e;
-		color: white;
-		border: none;
-		border-radius: 8px;
-		cursor: pointer;
-		transition: transform 0.2s;
-
-		&:hover {
-			transform: translateY(-2px);
-		}
-
-		span {
-			font-size: 0.9rem;
-			text-align: center;
-		}
+	span {
+		font-size: 0.9rem;
+		text-align: center;
 	}
 }
 
 // Upcoming Events Section
 .upcoming-events {
+	// Using utility classes instead of custom styles
+}
+
+.events-grid {
+	// Using utility classes for grid layout
+}
+
+.event-card {
+	display: flex;
 	background: white;
 	border-radius: 8px;
-	padding: 1.5rem;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	overflow: hidden;
+	box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
 
-	.section-header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 1.5rem;
+	.event-content {
+		flex: 1;
+		padding: 1rem;
+		position: relative;
 
-		.title {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-
-			h4 {
-				color: #254568;
-				font-size: 1.2rem;
-				margin: 0;
-			}
-		}
-
-		.see-more {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
-			color: #25688e;
-			text-decoration: none;
+		h4 {
+			color: #191c30;
 			font-size: 0.9rem;
+			margin: 0 0 0.5rem;
+		}
+
+		p {
+			color: #191c30;
+			font-size: 0.8rem;
+			margin: 0;
+			opacity: 0.8;
+		}
+
+		tui-icon {
+			position: absolute;
+			bottom: 1rem;
+			right: 1rem;
 		}
 	}
 
-	.events-grid {
-		display: grid;
-		grid-template-columns: repeat(3, 1fr);
-		gap: 1.5rem;
-
-		@media @tui-mobile {
-			grid-template-columns: 1fr;
-		}
-	}
-
-	.event-card {
+	.event-image {
+		width: 40%;
+		background: #bdccd8;
 		display: flex;
-		background: white;
-		border-radius: 8px;
-		overflow: hidden;
-		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+		align-items: center;
+		justify-content: center;
 
-		.event-content {
-			flex: 1;
-			padding: 1rem;
-			position: relative;
-
-			h4 {
-				color: #191c30;
-				font-size: 0.9rem;
-				margin: 0 0 0.5rem;
-			}
-
-			p {
-				color: #191c30;
-				font-size: 0.8rem;
-				margin: 0;
-				opacity: 0.8;
-			}
-
-			tui-icon {
-				position: absolute;
-				bottom: 1rem;
-				right: 1rem;
-			}
-		}
-
-		.event-image {
-			width: 40%;
-			background: #bdccd8;
-			display: flex;
-			align-items: center;
-			justify-content: center;
-
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-			}
+		img {
+			width: 100%;
+			height: 100%;
+			object-fit: cover;
 		}
 	}
 }
 
 // Recent Activities Section
 .recent-activities {
-	background: white;
-	border-radius: 8px;
-	padding: 1.5rem;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	// Using utility classes instead of custom styles
+}
 
-	h4 {
-		color: #254568;
-		font-size: 1.2rem;
-		margin: 0 0 1.5rem;
-	}
+.activities-list {
+	// Using utility classes for flex layout
+}
 
-	.activities-list {
+.activity-item {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	padding: 1rem;
+	border: 1px solid #f3f3f3;
+	border-radius: 4px;
+
+	.activity-content {
 		display: flex;
-		flex-direction: column;
-		gap: 1rem;
-	}
-
-	.activity-item {
-		display: flex;
-		justify-content: space-between;
 		align-items: center;
-		padding: 1rem;
-		border: 1px solid #f3f3f3;
-		border-radius: 4px;
+		gap: 1rem;
 
-		.activity-content {
-			display: flex;
-			align-items: center;
-			gap: 1rem;
-
-			p {
-				margin: 0;
-				font-size: 0.9rem;
-				color: #333;
-			}
+		p {
+			margin: 0;
+			font-size: 0.9rem;
+			color: #333;
 		}
+	}
 
-		.activity-date {
-			color: #666;
-			font-size: 0.8rem;
-		}
+	.activity-date {
+		color: #666;
+		font-size: 0.8rem;
 	}
 }
 
@@ -223,95 +154,68 @@
 }
 
 .calendar-section {
-	background: white;
-	border-radius: 8px;
-	padding: 1.5rem;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	// Using utility classes instead of custom styles
+}
 
-	.section-header {
-		display: flex;
-		align-items: center;
-		gap: 0.5rem;
-		margin-bottom: 1.5rem;
-		border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-		padding-bottom: 1rem;
-
-		h4 {
-			color: #254568;
-			font-size: 1.2rem;
-			margin: 0;
-		}
-	}
-
-	.calendar-widget {
-		tui-calendar {
-			box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
-			border-radius: 5px;
-			width: 88%;
-		}
+.calendar-widget {
+	tui-calendar {
+		box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.1);
+		border-radius: 5px;
+		width: 88%;
 	}
 }
 
 .reminders {
-	background: white;
-	border-radius: 8px;
-	padding: 1.5rem;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	// Using utility classes instead of custom styles
+}
 
-	h4 {
-		color: #254568;
-		font-size: 1.2rem;
-		margin: 0 0 1.5rem;
-	}
+.reminders-list {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	max-height: 300px;
+	overflow-y: auto;
+}
 
-	.reminders-list {
+.reminder-item {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+
+	.date-box {
 		display: flex;
 		flex-direction: column;
-		gap: 1rem;
-		max-height: 300px;
-		overflow-y: auto;
-	}
-
-	.reminder-item {
-		display: flex;
 		align-items: center;
-		gap: 1rem;
+		min-width: 50px;
 
-		.date-box {
-			display: flex;
-			flex-direction: column;
-			align-items: center;
-			min-width: 50px;
-
-			.day {
-				font-size: 1.2rem;
-				font-weight: bold;
-				color: #333;
-			}
-
-			.month {
-				font-size: 0.8rem;
-				color: #666;
-			}
+		.day {
+			font-size: 1.2rem;
+			font-weight: bold;
+			color: #333;
 		}
 
-		.reminder-content {
-			display: flex;
-			align-items: center;
-			gap: 0.5rem;
+		.month {
+			font-size: 0.8rem;
+			color: #666;
+		}
+	}
 
-			.vertical-line {
-				width: 3px;
-				height: 35px;
-				background: #d9534f;
-				border-radius: 2px;
-			}
+	.reminder-content {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
 
-			p {
-				margin: 0;
-				font-size: 0.9rem;
-				color: #333;
-			}
+		.vertical-line {
+			width: 3px;
+			height: 35px;
+			background: #d9534f;
+			border-radius: 2px;
+		}
+
+		p {
+			margin: 0;
+			font-size: 0.9rem;
+			color: #333;
 		}
 	}
 }

@@ -1,0 +1,236 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+// ============================================================================
+// LAYOUT UTILITIES
+// ============================================================================
+
+// Flexbox utilities
+.flex { display: flex; }
+.flex-col { display: flex; flex-direction: column; }
+.flex-row { display: flex; flex-direction: row; }
+.flex-center { display: flex; align-items: center; justify-content: center; }
+.flex-between { display: flex; align-items: center; justify-content: space-between; }
+.flex-start { display: flex; align-items: center; justify-content: flex-start; }
+.flex-end { display: flex; align-items: center; justify-content: flex-end; }
+.flex-1 { flex: 1; }
+
+// Grid utilities
+.grid { display: grid; }
+.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
+.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
+.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
+.grid-cols-5 { grid-template-columns: repeat(5, 1fr); }
+
+// Gap utilities
+.gap-xs { gap: 0.25rem; }
+.gap-sm { gap: 0.5rem; }
+.gap-md { gap: 1rem; }
+.gap-lg { gap: 1.5rem; }
+.gap-xl { gap: 2rem; }
+
+// ============================================================================
+// SPACING UTILITIES
+// ============================================================================
+
+// Padding
+.p-0 { padding: 0; }
+.p-sm { padding: 0.5rem; }
+.p-md { padding: 1rem; }
+.p-lg { padding: 1.5rem; }
+.p-xl { padding: 2rem; }
+
+// Padding X (horizontal)
+.px-sm { padding-left: 0.5rem; padding-right: 0.5rem; }
+.px-md { padding-left: 1rem; padding-right: 1rem; }
+.px-lg { padding-left: 1.5rem; padding-right: 1.5rem; }
+
+// Padding Y (vertical)
+.py-sm { padding-top: 0.5rem; padding-bottom: 0.5rem; }
+.py-md { padding-top: 1rem; padding-bottom: 1rem; }
+.py-lg { padding-top: 1.5rem; padding-bottom: 1.5rem; }
+
+// Margin
+.m-0 { margin: 0; }
+.m-sm { margin: 0.5rem; }
+.m-md { margin: 1rem; }
+.m-lg { margin: 1.5rem; }
+.m-xl { margin: 2rem; }
+
+// Margin bottom
+.mb-sm { margin-bottom: 0.5rem; }
+.mb-md { margin-bottom: 1rem; }
+.mb-lg { margin-bottom: 1.5rem; }
+.mb-xl { margin-bottom: 2rem; }
+
+// ============================================================================
+// COLOR UTILITIES
+// ============================================================================
+
+// Text colors
+.text-primary { color: #254568; }
+.text-secondary { color: #26abe4; }
+.text-accent { color: #00b4d8; }
+.text-success { color: #00a86b; }
+.text-danger { color: #e53935; }
+.text-muted { color: #666; }
+.text-light { color: #191c30; }
+.text-white { color: white; }
+
+// Background colors
+.bg-primary { background-color: #254568; }
+.bg-secondary { background-color: #26abe4; }
+.bg-accent { background-color: #00b4d8; }
+.bg-success { background-color: #00a86b; }
+.bg-danger { background-color: #e53935; }
+.bg-light { background-color: #f5fcfffa; }
+.bg-white { background-color: white; }
+.bg-gray { background-color: #bdccd8; }
+
+// ============================================================================
+// BORDER & BORDER RADIUS UTILITIES
+// ============================================================================
+
+// Border radius
+.rounded-sm { border-radius: 4px; }
+.rounded-md { border-radius: 8px; }
+.rounded-lg { border-radius: 12px; }
+.rounded-full { border-radius: 50%; }
+
+// Border
+.border { border: 1px solid #f3f3f3; }
+.border-primary { border: 1px solid #254568; }
+.border-secondary { border: 1px solid #26abe4; }
+
+// ============================================================================
+// SHADOW UTILITIES
+// ============================================================================
+
+.shadow-sm { box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); }
+.shadow-md { box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15); }
+.shadow-lg { box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); }
+
+// ============================================================================
+// TYPOGRAPHY UTILITIES
+// ============================================================================
+
+// Font sizes
+.text-xs { font-size: 0.8rem; }
+.text-sm { font-size: 0.9rem; }
+.text-md { font-size: 1rem; }
+.text-lg { font-size: 1.2rem; }
+.text-xl { font-size: 1.5rem; }
+
+// Font weights
+.font-normal { font-weight: normal; }
+.font-medium { font-weight: 500; }
+.font-semibold { font-weight: 600; }
+.font-bold { font-weight: bold; }
+
+// ============================================================================
+// COMPONENT-SPECIFIC UTILITIES
+// ============================================================================
+
+// Card utilities
+.card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Section header utilities
+.section-header {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+
+  h4 {
+    color: #254568;
+    font-size: 1.2rem;
+    margin: 0;
+  }
+}
+
+// Button utilities
+.btn {
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: transform 0.2s;
+
+  &:hover {
+    transform: translateY(-2px);
+  }
+}
+
+.btn-primary {
+  background: #25688e;
+  color: white;
+}
+
+.btn-secondary {
+  background: #26abe4;
+  color: white;
+}
+
+// ============================================================================
+// RESPONSIVE UTILITIES
+// ============================================================================
+
+// Mobile responsive grid
+@media @tui-mobile {
+  .grid-cols-5 {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .grid-cols-3 {
+    grid-template-columns: 1fr;
+  }
+}
+
+// ============================================================================
+// POSITIONING UTILITIES
+// ============================================================================
+
+.relative { position: relative; }
+.absolute { position: absolute; }
+.fixed { position: fixed; }
+
+// Position utilities
+.bottom-md { bottom: 1rem; }
+.right-md { right: 1rem; }
+
+// ============================================================================
+// WIDTH & HEIGHT UTILITIES
+// ============================================================================
+
+.w-full { width: 100%; }
+.w-40 { width: 40%; }
+.w-3 { width: 3px; }
+.h-full { height: 100%; }
+.h-35 { height: 35px; }
+.min-h-screen { min-height: 100vh; }
+.min-w-50 { min-width: 50px; }
+.max-h-300 { max-height: 300px; }
+
+// ============================================================================
+// OVERFLOW UTILITIES
+// ============================================================================
+
+.overflow-hidden { overflow: hidden; }
+.overflow-auto { overflow: auto; }
+.overflow-y-auto { overflow-y: auto; }
+
+// ============================================================================
+// OBJECT FIT UTILITIES
+// ============================================================================
+
+.object-cover { object-fit: cover; }
+.object-contain { object-fit: contain; }
+
+// ============================================================================
+// OPACITY UTILITIES
+// ============================================================================
+
+.opacity-80 { opacity: 0.8; } 
