@@ -3,191 +3,13 @@ import { CommonModule } from '@angular/common';
 import { TuiIcon, TuiCalendar, TuiMarkerHandler } from '@taiga-ui/core';
 import { TuiDay } from '@taiga-ui/cdk';
 import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder, RecentUser } from '@mandela-alumni-webapp/core-data';
+import { SimpleChanges } from '@angular/core';
 
 @Component({
 	selector: 'app-admin-dashboard-ui',
 	standalone: true,
 	imports: [CommonModule, TuiIcon, TuiCalendar],
-	template: `
-		<div class="dashboard-container">
-			<div class="main-content">
-				<!-- Key Metrics Section -->
-				<section class="metrics-section">
-					<div class="metrics-grid">
-						<div 
-							class="metric-card-admin" 
-							[class.metric-card-dark]="metric.id === '1'"
-							[class.metric-card-light]="metric.id !== '1'"
-							*ngFor="let metric of metrics"
-						>
-							<!-- Header: Label -->
-							<div class="metric-header">
-								<p class="text-sm opacity-90 mb-0">{{ metric.label }}</p>
-							</div>
-							
-							<!-- Content: Value -->
-							<div class="metric-content">
-								<h3 class="text-2xl font-bold mb-0">{{ metric.value }}</h3>
-							</div>
-							
-							<!-- Footer: Trend -->
-							<div class="metric-footer">
-								<div class="metric-trend flex items-center gap-sm">
-									<tui-icon 
-										icon="@tui.chart-line"
-										[class.text-success]="metric.trend >= 0"
-										[class.text-danger]="metric.trend < 0"
-									/>
-									<span class="text-xs">
-										<span 
-											[class.text-success]="metric.trend >= 0"
-											[class.text-danger]="metric.trend < 0"
-										>{{ metric.trend }}%</span> from last month
-									</span>
-								</div>
-							</div>
-						</div>
-					</div>
-				</section>
-
-				<!-- Quick Actions Section -->
-				<section class="quick-actions card">
-					<div class="section-header">
-						<h4>Quick Actions</h4>
-						<tui-icon icon="@tui.zap" />
-					</div>
-					<div class="actions-grid grid grid-cols-5 gap-md">
-						<button class="action-btn">
-							<tui-icon icon="@tui.user-plus" />
-							<span class="text-sm">Add User</span>
-						</button>
-						<button class="action-btn">
-							<tui-icon icon="@tui.calendar-plus" />
-							<span class="text-sm">Create Event</span>
-						</button>
-						<button class="action-btn">
-							<tui-icon icon="@tui.edit" />
-							<span class="text-sm">Send Notice</span>
-						</button>
-						<button class="action-btn">
-							<tui-icon icon="@tui.heart" />
-							<span class="text-sm">Make a donation</span>
-						</button>
-						<button class="action-btn">
-							<tui-icon icon="@tui.download" />
-							<span class="text-sm">Export Data</span>
-						</button>
-					</div>
-				</section>
-
-				<!-- Recent User Registrations Section -->
-				<section class="recent-registrations card">
-					<div class="section-header">
-						<h4>Recent User Registrations</h4>
-						<tui-icon icon="@tui.users" />
-					</div>
-					<div class="table-container">
-						<table class="w-full">
-							<thead>
-								<tr class="border-b">
-									<th class="text-left p-md text-sm font-semibold">Name</th>
-									<th class="text-left p-md text-sm font-semibold">Email</th>
-									<th class="text-left p-md text-sm font-semibold">Date Submitted</th>
-									<th class="text-left p-md text-sm font-semibold">Request Category</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="border-b" *ngFor="let user of recentUsers">
-									<td class="p-md text-sm">{{ user.name }}</td>
-									<td class="p-md text-sm">{{ user.email }}</td>
-									<td class="p-md text-sm">{{ user.date }}</td>
-									<td class="p-md">
-										<span [class]="user.status === 'Active' ? 'status-active' : 'status-pending'">
-											{{ user.status }}
-										</span>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</section>
-
-				<!-- Manage Upcoming Events Section -->
-				<section class="manage-events card">
-					<div class="section-header flex-between">
-						<div class="flex gap-sm">
-							<h4>Manage Upcoming Events</h4>
-							<tui-icon icon="@tui.calendar" />
-						</div>
-						<a href="/events" class="text-secondary text-sm flex gap-sm">
-							<span>View All</span>
-							<tui-icon icon="@tui.arrow-right" />
-						</a>
-					</div>
-					<div class="events-grid grid grid-cols-2 gap-lg">
-						<div class="event-card flex bg-white rounded-md overflow-hidden shadow-md" *ngFor="let event of events">
-							<div class="event-content flex-1 p-md">
-								<h4 class="text-light text-sm mb-sm">{{ event.title }}</h4>
-								<p class="text-muted text-xs mb-sm">{{ event.date }}</p>
-								<p class="text-success text-xs" *ngIf="event.attendees">{{ event.attendees }}</p>
-							</div>
-							<div class="event-actions p-md flex-center">
-								<button class="btn btn-secondary p-sm">
-									<tui-icon icon="@tui.edit" />
-								</button>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-
-			<div class="sidebar">
-				<!-- Calendar Section -->
-				<section class="calendar-section card">
-					<div class="section-header">
-						<h4>Calendar</h4>
-						<tui-icon icon="@tui.calendar-days" class="text-primary" />
-					</div>
-					<div class="calendar-widget">
-						<tui-calendar
-							[value]="selectedDays"
-							[markerHandler]="markerHandler"
-							(dayClick)="onDayClick($event)"
-						>
-						</tui-calendar>
-					</div>
-				</section>
-
-				<!-- Reminders Section -->
-				<section class="reminders-section">
-					<h4 class="text-primary text-lg mb-md">Reminders</h4>
-					<div class="reminders-list">
-						<div class="reminder-item reminder-item-orange">
-							<div class="reminder-dot bg-reminder-orange rounded-full w-3 h-3"></div>
-							<div class="reminder-content flex-1">
-								<p class="text-sm font-medium mb-0">Membership Renewal</p>
-								<p class="text-xs text-muted mb-0">Due in 2 days</p>
-							</div>
-						</div>
-						<div class="reminder-item reminder-item-blue">
-							<div class="reminder-dot bg-reminder-blue rounded-full w-3 h-3"></div>
-							<div class="reminder-content flex-1">
-								<p class="text-sm font-medium mb-0">Summit Registration</p>
-								<p class="text-xs text-muted mb-0">Closes Jan 20</p>
-							</div>
-						</div>
-						<div class="reminder-item reminder-item-green">
-							<div class="reminder-dot bg-reminder-green rounded-full w-3 h-3"></div>
-							<div class="reminder-content flex-1">
-								<p class="text-sm font-medium mb-0">Budget Review</p>
-								<p class="text-xs text-muted mb-0">Due tomorrow</p>
-							</div>
-						</div>
-					</div>
-				</section>
-			</div>
-		</div>
-	`,
+	templateUrl: './admin-dashboard-ui.component.html',
 	styleUrls: ['./admin-dashboard-ui.component.less']
 })
 export class AdminDashboardUiComponent {
@@ -201,6 +23,12 @@ export class AdminDashboardUiComponent {
 	@Output() loadData = new EventEmitter<void>();
 
 	selectedDays: TuiDay[] = [];
+	
+	// Setter for reminders to trigger calendar update
+	set _reminders(value: DashboardReminder[]) {
+		this.reminders = value;
+		this.updateReminderDates();
+	}
 	
 	// Mock recent users data
 	recentUsers: RecentUser[] = [
@@ -234,11 +62,130 @@ export class AdminDashboardUiComponent {
 		}
 	];
 
+	constructor() {
+		// Initialize calendar with reminder dates
+		this.initializeReminderDates();
+	}
+
+	ngOnInit() {
+		// Update reminder dates when reminders input changes
+		this.updateReminderDates();
+	}
+
+	ngOnChanges(changes: SimpleChanges) {
+		// Update reminder dates when reminders input changes
+		if (changes['reminders']) {
+			console.log('Reminders changed:', this.reminders);
+			this.updateReminderDates();
+		}
+	}
+
+	private initializeReminderDates(): void {
+		// Add some default reminder dates for demonstration
+		const today = TuiDay.currentLocal();
+		this.selectedDays = [
+			today.append({ day: 2 }), // Membership Renewal - Due in 2 days
+			today.append({ day: 1 }), // Budget Review - Due tomorrow
+			today.append({ day: 10 }), // Summit Registration - Closes Jan 20
+		];
+	}
+
+	private updateReminderDates(): void {
+		if (this.reminders && this.reminders.length > 0) {
+			console.log('Updating reminder dates with:', this.reminders);
+			// Convert reminder dates to TuiDay objects
+			this.selectedDays = this.reminders.map(reminder => {
+				// Parse the reminder dueDate (format: '2025-07-22')
+				const dateParts = reminder.dueDate.split('-');
+				const tuiDay = new TuiDay(
+					parseInt(dateParts[0]), // year
+					parseInt(dateParts[1]) - 1, // month (0-based)
+					parseInt(dateParts[2]) // day
+				);
+				console.log('Created TuiDay for reminder:', reminder.title, tuiDay);
+				return tuiDay;
+			});
+			console.log('Updated selectedDays:', this.selectedDays);
+		} else {
+			// Fallback to default reminder dates if no reminders provided
+			this.initializeReminderDates();
+		}
+	}
+
 	onDayClick(day: TuiDay): void {
 		// Handle calendar day click
+		console.log('Calendar day clicked:', day);
+	}
+
+	getReminderColor(reminder: DashboardReminder): string {
+		// Calculate days remaining to determine color
+		const daysRemaining = this.calculateDaysRemaining(reminder.dueDate);
+		
+		if (daysRemaining <= 1) return 'orange'; // Critical - orange
+		if (daysRemaining <= 3) return 'blue'; // Urgent - blue
+		return 'green'; // Normal - green
+	}
+
+	getDaysRemaining(dueDate: string): string {
+		const daysRemaining = this.calculateDaysRemaining(dueDate);
+		
+		if (daysRemaining === 0) return 'Due today';
+		if (daysRemaining === 1) return 'Due tomorrow';
+		if (daysRemaining < 0) return 'Overdue';
+		return `Due in ${daysRemaining} days`;
+	}
+
+	private calculateDaysRemaining(dueDate: string): number {
+		// Parse the due date (format: '2025-07-22')
+		const dateParts = dueDate.split('-');
+		const dueDateObj = new Date(
+			parseInt(dateParts[0]), // year
+			parseInt(dateParts[1]) - 1, // month (0-based)
+			parseInt(dateParts[2]) // day
+		);
+		
+		// Set current date to July 20, 2025 for testing
+		const today = new Date(2025, 6, 20); // July 20, 2025 (month is 0-based)
+		today.setHours(0, 0, 0, 0); // Reset time to start of day
+		dueDateObj.setHours(0, 0, 0, 0); // Reset time to start of day
+		
+		const timeDiff = dueDateObj.getTime() - today.getTime();
+		const daysDiff = Math.ceil(timeDiff / (1000 * 3600 * 24));
+		
+		return daysDiff;
 	}
 
 	markerHandler: TuiMarkerHandler = (day: TuiDay) => {
-		return this.selectedDays.some((d) => d.daySame(day)) ? ['var(--tui-primary)'] : [];
+		// Check if this day has any reminders
+		const dayReminders = this.selectedDays.filter(d => d.daySame(day));
+		if (dayReminders.length > 0) {
+			// Find the reminder for this day and get its color
+			const reminder = this.reminders?.find(r => {
+				const reminderDate = this.parseDateToTuiDay(r.dueDate);
+				return reminderDate.daySame(day);
+			});
+			console.log('is reminder', reminder);
+			if (reminder) {
+				const color = this.getReminderColor(reminder);
+				console.log('Reminder color:', color);
+				switch (color) {
+					case 'orange': return ['var(--reminder-orange)'];
+					case 'blue': return ['var(--reminder-blue)'];
+					case 'green': return ['var(--reminder-green)'];
+					default: return ['var(--tui-primary)'];
+				}
+			}
+			return ['var(--tui-primary)'];
+		}
+		return [];
 	};
+
+	private parseDateToTuiDay(dateString: string): TuiDay {
+		const dateParts = dateString.split('-');
+		return new TuiDay(
+			parseInt(dateParts[0]), // year
+			parseInt(dateParts[1]) - 1, // month (0-based)
+			parseInt(dateParts[2]) // day
+		);
+	}
 } 

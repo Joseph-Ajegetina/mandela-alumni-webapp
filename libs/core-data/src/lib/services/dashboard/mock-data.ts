@@ -95,10 +95,10 @@ export const MOCK_ADMIN_DASHBOARD: DashboardData = {
 		}
 	],
 	reminders: [
-		{ id: '1', title: 'Membership Renewal', dueDate: 'Due in 2 days', color: 'bg-warning' },
-		{ id: '2', title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-primary' },
-		{ id: '3', title: 'Budget Review', dueDate: 'Due tomorrow', color: 'bg-success' },
-		{ id: '4', title: 'Team Meeting', dueDate: 'Today 3:00 PM', color: 'bg-accent' }
+		{ id: '1', title: 'Membership Renewal', dueDate: '2025-07-22', color: 'bg-warning' },
+		{ id: '2', title: 'Summit Registration', dueDate: '2025-07-25', color: 'bg-primary' },
+		{ id: '3', title: 'Budget Review', dueDate: '2025-07-21', color: 'bg-success' },
+		{ id: '4', title: 'Event Reminder', dueDate: '2025-07-23', color: 'bg-accent' }
 	]
 };
 
@@ -207,10 +207,10 @@ export const MOCK_USER_DASHBOARD: DashboardData = {
 		}
 	],
 	reminders: [
-		{ id: '1', title: 'Membership Renewal', dueDate: 'Due in 2 days', color: 'bg-warning' },
-		{ id: '2', title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-primary' },
-		{ id: '3', title: 'Profile Completion', dueDate: 'Complete your profile', color: 'bg-success' },
-		{ id: '4', title: 'Event Reminder', dueDate: 'Leadership Summit tomorrow', color: 'bg-accent' }
+		{ id: '1', title: 'Membership Renewal', dueDate: '2025-07-22', color: 'bg-warning' },
+		{ id: '2', title: 'Summit Registration', dueDate: '2025-07-25', color: 'bg-primary' },
+		{ id: '3', title: 'Profile Completion', dueDate: '2025-07-28', color: 'bg-success' },
+		{ id: '4', title: 'Event Reminder', dueDate: '2025-07-23', color: 'bg-accent' }
 	]
 };
 

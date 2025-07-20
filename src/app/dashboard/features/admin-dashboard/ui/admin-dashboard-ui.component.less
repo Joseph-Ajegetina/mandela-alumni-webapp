@@ -272,6 +272,26 @@
 		height: 44px;
 		flex-shrink: 0;
 
+		&.reminder-item-red {
+			background-color: rgba(239, 68, 68, 0.1);
+			border-left: 3px solid #ef4444;
+		}
+		
+		&.reminder-item-orange {
+			background-color: rgba(249, 115, 22, 0.1);
+			border-left: 3px solid var(--reminder-orange);
+		}
+		
+		&.reminder-item-blue {
+			background-color: rgba(59, 130, 246, 0.1);
+			border-left: 3px solid var(--reminder-blue);
+		}
+		
+		&.reminder-item-green {
+			background-color: rgba(34, 197, 94, 0.1);
+			border-left: 3px solid var(--reminder-green);
+		}
+
 		.reminder-dot {
 			width: 12px;
 			height: 12px;
@@ -299,6 +319,18 @@
 			.text-xs {
 				font-size: 0.75rem;
 				color: #666;
+			}
+		}
+	}
+
+	.reminders-list {
+		.no-reminders {
+			padding: 1rem;
+			text-align: center;
+			
+			p {
+				color: var(--tui-text-03);
+				font-style: italic;
 			}
 		}
 	}
