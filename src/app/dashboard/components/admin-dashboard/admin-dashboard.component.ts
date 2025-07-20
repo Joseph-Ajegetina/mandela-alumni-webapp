@@ -207,7 +207,7 @@ import { TuiDay } from '@taiga-ui/cdk';
 			</div>
 		</div>
 	`,
-	styleUrls: ['./admin-dashboard.component.less']
+	styleUrls: ['./admin-dashboard.component.less'],
 })
 export class AdminDashboardComponent {
 	selectedDays: TuiDay[] = [];
@@ -215,13 +215,13 @@ export class AdminDashboardComponent {
 		{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Active' },
 		{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Pending' },
 		{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Active' },
-		{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Pending' }
+		{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Pending' },
 	];
 
 	reminders = [
 		{ title: 'Membership Renewal', dueDate: 'Due in 2 days', color: 'bg-warning' },
 		{ title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-primary' },
-		{ title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-success' }
+		{ title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-success' },
 	];
 
 	onDayClick(day: TuiDay): void {
@@ -231,4 +231,4 @@ export class AdminDashboardComponent {
 	markerHandler: TuiMarkerHandler = (day: TuiDay) => {
 		return this.selectedDays.some((d) => d.daySame(day)) ? ['var(--tui-primary)'] : [];
 	};
-} 
+}

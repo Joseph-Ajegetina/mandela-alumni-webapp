@@ -22,18 +22,20 @@ import { DashboardMetric } from '../../../services/dashboard.service';
 			<p class="text-xs opacity-75 mt-sm">from last month</p>
 		</div>
 	`,
-	styles: [`
-		.metric-card {
-			.metric-content {
-				margin-bottom: 0.5rem;
-			}
+	styles: [
+		`
+			.metric-card {
+				.metric-content {
+					margin-bottom: 0.5rem;
+				}
 
-			.metric-trend {
-				align-items: center;
+				.metric-trend {
+					align-items: center;
+				}
 			}
-		}
-	`]
+		`,
+	],
 })
 export class MetricCardComponent {
 	@Input() metric!: DashboardMetric;
-} 
+}

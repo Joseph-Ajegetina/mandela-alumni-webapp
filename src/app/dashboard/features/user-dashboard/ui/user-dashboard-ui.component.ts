@@ -1,7 +1,12 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { TuiIcon } from '@taiga-ui/core';
-import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder } from '@mandela-alumni-webapp/core-data';
+import {
+	DashboardMetric,
+	DashboardEvent,
+	DashboardActivity,
+	DashboardReminder,
+} from '@mandela-alumni-webapp/core-data';
 
 @Component({
 	selector: 'app-user-dashboard-ui',
@@ -13,20 +18,17 @@ import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder }
 				<!-- Key Metrics Section -->
 				<section class="metrics-section">
 					<div class="metrics-grid grid grid-cols-3 gap-lg">
-						<div 
-							class="metric-card-user" 
-							*ngFor="let metric of metrics"
-						>
+						<div class="metric-card-user" *ngFor="let metric of metrics">
 							<!-- Header: Label -->
 							<div class="metric-header">
 								<p class="text-sm opacity-90 mb-0">{{ metric.label }}</p>
 							</div>
-							
+
 							<!-- Content: Value -->
 							<div class="metric-content">
 								<h3 class="text-2xl font-bold mb-0">{{ metric.value }}</h3>
 							</div>
-							
+
 							<!-- Footer: Trend -->
 							<div class="metric-footer">
 								<div class="metric-trend flex items-center gap-sm">
@@ -46,7 +48,10 @@ import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder }
 						<tui-icon icon="@tui.activity" />
 					</div>
 					<div class="activities-list">
-						<div class="activity-item flex gap-md p-md border-b" *ngFor="let activity of activities">
+						<div
+							class="activity-item flex gap-md p-md border-b"
+							*ngFor="let activity of activities"
+						>
 							<div class="activity-icon">
 								<tui-icon [icon]="activity.icon" class="text-primary" />
 							</div>
@@ -55,7 +60,9 @@ import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder }
 								<p class="text-xs text-muted">{{ activity.description }}</p>
 							</div>
 							<div class="activity-status">
-								<span [class]="activity.status === 'completed' ? 'status-completed' : 'status-pending'">
+								<span
+									[class]="activity.status === 'completed' ? 'status-completed' : 'status-pending'"
+								>
 									{{ activity.status }}
 								</span>
 							</div>
@@ -76,7 +83,10 @@ import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder }
 						</a>
 					</div>
 					<div class="events-grid grid grid-cols-3 gap-lg">
-						<div class="event-card bg-white rounded-lg overflow-hidden shadow-md" *ngFor="let event of events">
+						<div
+							class="event-card bg-white rounded-lg overflow-hidden shadow-md"
+							*ngFor="let event of events"
+						>
 							<div class="event-image" *ngIf="event.image">
 								<img [src]="event.image" [alt]="event.title" class="w-full h-32 object-cover" />
 							</div>
@@ -135,7 +145,7 @@ import { DashboardMetric, DashboardEvent, DashboardActivity, DashboardReminder }
 			</div>
 		</div>
 	`,
-	styleUrls: ['./user-dashboard-ui.component.less']
+	styleUrls: ['./user-dashboard-ui.component.less'],
 })
 export class UserDashboardUiComponent {
 	@Input() metrics: DashboardMetric[] = [];
@@ -147,4 +157,4 @@ export class UserDashboardUiComponent {
 
 	@Output() loadData = new EventEmitter<void>();
 	@Output() eventClick = new EventEmitter<DashboardEvent>();
-} 
+}

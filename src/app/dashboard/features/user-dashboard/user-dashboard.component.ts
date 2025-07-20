@@ -29,4 +29,4 @@ export class UserDashboardComponent implements OnInit {
 	loadDashboardData(): void {
 		this.dashboardStore.loadUserDashboard().subscribe();
 	}
-} 
+}

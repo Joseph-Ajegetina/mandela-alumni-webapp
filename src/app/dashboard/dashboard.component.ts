@@ -17,7 +17,7 @@ import { UserDashboardComponent } from './features/user-dashboard/user-dashboard
 })
 export class DashboardComponent implements OnInit {
 	private userStore = inject(UserStore);
-	
+
 	// Get isAdmin signal from user store
 	isAdmin = this.userStore.isAdmin;
 

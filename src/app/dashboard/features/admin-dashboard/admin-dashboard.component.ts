@@ -29,4 +29,4 @@ export class AdminDashboardComponent implements OnInit {
 	loadDashboardData(): void {
 		this.dashboardStore.loadAdminDashboard().subscribe();
 	}
-} 
+}

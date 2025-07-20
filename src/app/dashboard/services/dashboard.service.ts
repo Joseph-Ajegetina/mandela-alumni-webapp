@@ -38,10 +38,9 @@ export interface DashboardReminder {
 }
 
 @Injectable({
-	providedIn: 'root'
+	providedIn: 'root',
 })
 export class DashboardService {
-
 	// Admin Dashboard Data
 	getAdminMetrics(): Observable<DashboardMetric[]> {
 		return of([
@@ -50,29 +49,29 @@ export class DashboardService {
 				label: 'Active Users',
 				trend: 2.03,
 				icon: '@tui.users',
-				color: 'bg-primary'
+				color: 'bg-primary',
 			},
 			{
 				value: '$15,000',
 				label: 'Monthly Revenue',
 				trend: 2.03,
 				icon: '@tui.dollar-sign',
-				color: 'bg-secondary'
+				color: 'bg-secondary',
 			},
 			{
 				value: '15,000',
 				label: 'Total Users',
 				trend: 2.03,
 				icon: '@tui.user-check',
-				color: 'bg-accent'
+				color: 'bg-accent',
 			},
 			{
 				value: '300',
 				label: 'Pending Approvals',
 				trend: 2.03,
 				icon: '@tui.clock',
-				color: 'bg-success'
-			}
+				color: 'bg-success',
+			},
 		]);
 	}
 
@@ -83,24 +82,44 @@ export class DashboardService {
 				title: 'Leadership Summit 2025',
 				description: 'Leadership Summit – Learn from the Best!',
 				date: 'Jul 12, 2025',
-				attendees: '245/300 attendees'
+				attendees: '245/300 attendees',
 			},
 			{
 				id: '2',
 				title: 'Alumni Networking Mixer',
 				description: 'Annual Alumni Reunion – Relive the Moments!',
 				date: 'Jul 15, 2025',
-				attendees: '180/200 attendees'
-			}
+				attendees: '180/200 attendees',
+			},
 		]);
 	}
 
 	getAdminRecentUsers(): Observable<any[]> {
 		return of([
-			{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Active' },
-			{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Pending' },
-			{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Active' },
-			{ name: 'Kofi Manu Sarpong', email: 'kofi@example.com', date: '21-02-2025', status: 'Pending' }
+			{
+				name: 'Kofi Manu Sarpong',
+				email: 'kofi@example.com',
+				date: '21-02-2025',
+				status: 'Active',
+			},
+			{
+				name: 'Kofi Manu Sarpong',
+				email: 'kofi@example.com',
+				date: '21-02-2025',
+				status: 'Pending',
+			},
+			{
+				name: 'Kofi Manu Sarpong',
+				email: 'kofi@example.com',
+				date: '21-02-2025',
+				status: 'Active',
+			},
+			{
+				name: 'Kofi Manu Sarpong',
+				email: 'kofi@example.com',
+				date: '21-02-2025',
+				status: 'Pending',
+			},
 		]);
 	}
 
@@ -112,22 +131,22 @@ export class DashboardService {
 				label: 'Total Alumni',
 				trend: 2.03,
 				icon: '@tui.users',
-				color: 'bg-primary'
+				color: 'bg-primary',
 			},
 			{
 				value: '$15,000',
 				label: 'Donations This Year',
 				trend: 2.03,
 				icon: '@tui.heart',
-				color: 'bg-secondary'
+				color: 'bg-secondary',
 			},
 			{
 				value: '24',
 				label: 'Events This Month',
 				trend: 2.03,
 				icon: '@tui.calendar',
-				color: 'bg-accent'
-			}
+				color: 'bg-accent',
+			},
 		]);
 	}
 
@@ -138,22 +157,22 @@ export class DashboardService {
 				title: 'Leadership Summit 2025',
 				description: 'Leadership Summit – Learn from the Best!',
 				date: 'Jul 12, 2025',
-				image: 'images/graph.png'
+				image: 'images/graph.png',
 			},
 			{
 				id: '2',
 				title: 'Alumni Networking Mixer',
 				description: 'Annual Alumni Reunion – Relive the Moments!',
 				date: 'Jul 15, 2025',
-				image: 'images/network.png'
+				image: 'images/network.png',
 			},
 			{
 				id: '3',
 				title: 'Career Growth Webinar',
 				description: 'Career Fair – Unlock New Opportunities!',
 				date: 'Jul 18, 2025',
-				image: 'images/career.png'
-			}
+				image: 'images/career.png',
+			},
 		]);
 	}
 
@@ -166,7 +185,7 @@ export class DashboardService {
 				date: '2 days ago',
 				status: 'completed',
 				amount: '$150',
-				icon: '@tui.badge-dollar-sign'
+				icon: '@tui.badge-dollar-sign',
 			},
 			{
 				id: '2',
@@ -174,16 +193,16 @@ export class DashboardService {
 				description: '3 days ago • Free',
 				date: '3 days ago',
 				status: 'pending',
-				icon: '@tui.file-text'
+				icon: '@tui.file-text',
 			},
 			{
 				id: '3',
-				title: 'Registered for \'Alumni Leadership Summit 2025\'.',
+				title: "Registered for 'Alumni Leadership Summit 2025'.",
 				description: 'Jul 12, 2025 2:58 p.m. • Free',
 				date: 'Jul 12, 2025 2:58 p.m.',
 				status: 'pending',
-				icon: '@tui.calendar-1'
-			}
+				icon: '@tui.calendar-1',
+			},
 		]);
 	}
 
@@ -192,7 +211,7 @@ export class DashboardService {
 		return of([
 			{ id: '1', title: 'Membership Renewal', dueDate: 'Due in 2 days', color: 'bg-warning' },
 			{ id: '2', title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-primary' },
-			{ id: '3', title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-success' }
+			{ id: '3', title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-success' },
 		]);
 	}
 
@@ -215,4 +234,4 @@ export class DashboardService {
 		// Handle calendar day click
 		console.log('Day clicked:', day);
 	}
-} 
+}

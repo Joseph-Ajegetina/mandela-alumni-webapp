@@ -106,21 +106,33 @@ import { TuiDay } from '@taiga-ui/cdk';
 						<div class="event-card flex bg-white rounded-md overflow-hidden shadow-md">
 							<div class="event-content flex-1 p-md relative">
 								<h4 class="text-light text-sm mb-sm">Leadership Summit 2025</h4>
-								<p class="text-light text-xs opacity-80">Leadership Summit – Learn from the Best!</p>
+								<p class="text-light text-xs opacity-80">
+									Leadership Summit – Learn from the Best!
+								</p>
 								<tui-icon icon="@tui.arrow-right" class="absolute bottom-md right-md" />
 							</div>
 							<div class="event-image w-40 bg-gray flex-center">
-								<img src="images/graph.png" alt="Leadership Summit" class="w-full h-full object-cover" />
+								<img
+									src="images/graph.png"
+									alt="Leadership Summit"
+									class="w-full h-full object-cover"
+								/>
 							</div>
 						</div>
 						<div class="event-card flex bg-white rounded-md overflow-hidden shadow-md">
 							<div class="event-content flex-1 p-md relative">
 								<h4 class="text-light text-sm mb-sm">Alumni Networking Mixer</h4>
-								<p class="text-light text-xs opacity-80">Annual Alumni Reunion – Relive the Moments!</p>
+								<p class="text-light text-xs opacity-80">
+									Annual Alumni Reunion – Relive the Moments!
+								</p>
 								<tui-icon icon="@tui.arrow-right" class="absolute bottom-md right-md" />
 							</div>
 							<div class="event-image w-40 bg-gray flex-center">
-								<img src="images/network.png" alt="Networking Event" class="w-full h-full object-cover" />
+								<img
+									src="images/network.png"
+									alt="Networking Event"
+									class="w-full h-full object-cover"
+								/>
 							</div>
 						</div>
 						<div class="event-card flex bg-white rounded-md overflow-hidden shadow-md">
@@ -130,7 +142,11 @@ import { TuiDay } from '@taiga-ui/cdk';
 								<tui-icon icon="@tui.arrow-right" class="absolute bottom-md right-md" />
 							</div>
 							<div class="event-image w-40 bg-gray flex-center">
-								<img src="images/career.png" alt="Career Event" class="w-full h-full object-cover" />
+								<img
+									src="images/career.png"
+									alt="Career Event"
+									class="w-full h-full object-cover"
+								/>
 							</div>
 						</div>
 					</div>
@@ -156,7 +172,9 @@ import { TuiDay } from '@taiga-ui/cdk';
 							<div class="activity-content flex gap-md">
 								<tui-icon icon="@tui.file-text" class="text-primary" />
 								<div class="activity-details">
-									<p class="text-sm m-0">Submitted application for the Alumni Entrepreneurship Fund.</p>
+									<p class="text-sm m-0">
+										Submitted application for the Alumni Entrepreneurship Fund.
+									</p>
 									<p class="text-xs text-muted">3 days ago • Free</p>
 								</div>
 							</div>
@@ -251,14 +269,14 @@ import { TuiDay } from '@taiga-ui/cdk';
 			</div>
 		</div>
 	`,
-	styleUrls: ['./user-dashboard.component.less']
+	styleUrls: ['./user-dashboard.component.less'],
 })
 export class UserDashboardComponent {
 	selectedDays: TuiDay[] = [];
 	reminders = [
 		{ title: 'Membership Renewal', dueDate: 'Due in 2 days', color: 'bg-warning' },
 		{ title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-primary' },
-		{ title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-success' }
+		{ title: 'Summit Registration', dueDate: 'Closes Jan 20', color: 'bg-success' },
 	];
 
 	onDayClick(day: TuiDay): void {
@@ -268,4 +286,4 @@ export class UserDashboardComponent {
 	markerHandler: TuiMarkerHandler = (day: TuiDay) => {
 		return this.selectedDays.some((d) => d.daySame(day)) ? ['var(--tui-primary)'] : [];
 	};
-} 
+}
