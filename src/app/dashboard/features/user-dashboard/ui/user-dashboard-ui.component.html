@@ -1,0 +1,225 @@
+<!-- User Dashboard Layout -->
+<div class="dashboard-container">
+	<div class="main-content">
+		<!-- Key Metrics Section -->
+		<section class="metrics-section">
+			<div class="metrics-grid">
+				<div
+					class="metric-card-user"
+					[class.metric-card-dark]="metric.id === '1'"
+					[class.metric-card-light]="metric.id !== '1'"
+					*ngFor="let metric of metrics"
+				>
+					<!-- Header: Label -->
+					<div class="metric-header">
+						<p class="text-sm opacity-90 mb-0">{{ metric.label }}</p>
+					</div>
+
+					<!-- Content: Value -->
+					<div class="metric-content">
+						<h3 class="text-2xl font-bold mb-0">{{ metric.value }}</h3>
+					</div>
+
+					<!-- Footer: Trend -->
+					<div class="metric-footer">
+						<div class="metric-trend flex items-center gap-sm">
+							<tui-icon
+								icon="@tui.chart-line"
+								[class.text-success]="metric.trend >= 0"
+								[class.text-danger]="metric.trend < 0"
+								[class.text-white]="metric.id === '1'"
+							/>
+							<span class="text-xs">
+								<span
+									[class.text-success]="metric.trend >= 0"
+									[class.text-danger]="metric.trend < 0"
+									>{{ metric.trend }}%</span
+								>
+								from last month
+							</span>
+						</div>
+					</div>
+
+					<!-- Bottom Right Corner Visual Element -->
+					<div class="metric-corner-element"></div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Quick Actions Section -->
+		<section class="quick-actions card">
+			<div class="section-header">
+				<div class="flex gap-sm">
+					<h4>Quick actions</h4>
+					<tui-icon icon="tuiIconRefresh" />
+				</div>
+			</div>
+			<div class="actions-grid grid grid-cols-4 gap-md">
+				<button class="action-btn" (click)="onPayDues()">
+					<tui-icon icon="@tui.banknote" />
+					<span class="text-sm">Pay Dues</span>
+				</button>
+				<button class="action-btn" (click)="onFindAlumni()">
+					<tui-icon icon="@tui.search" />
+					<span class="text-sm">Find an Alumni</span>
+				</button>
+				<button class="action-btn" (click)="onRegisterEvent()">
+					<tui-icon icon="@tui.pen-line" />
+					<span class="text-sm">Register for an event</span>
+				</button>
+				<button class="action-btn" (click)="onMakeDonation()">
+					<tui-icon icon="@tui.heart" />
+					<span class="text-sm">Make a donation</span>
+				</button>
+			</div>
+		</section>
+
+		<!-- Upcoming Events Section -->
+		<section class="upcoming-events card">
+			<div class="section-header flex-between">
+				<div class="flex gap-sm">
+					<h4>Upcoming Events</h4>
+					<tui-icon icon="tuiIconCalendar" />
+				</div>
+				<a href="/events" class="text-secondary text-sm flex gap-sm">
+					<span>See More</span>
+					<tui-icon icon="tuiIconArrowRight" />
+				</a>
+			</div>
+			<div class="events-container overflow-auto">
+				<div class="events-grid flex gap-lg" style="min-width: max-content">
+					<div
+						class="event-card"
+						(click)="onEventClick(event)"
+						(keydown.enter)="onEventClick(event)"
+						(keydown.space)="onEventClick(event)"
+						tabindex="0"
+						role="button"
+						*ngFor="let event of events"
+						style="min-width: 300px; max-width: 350px"
+					>
+						<div class="event-image">
+							<img [src]="event.image" [alt]="event.title" class="w-full h-full object-cover" />
+						</div>
+						<div class="event-content">
+							<h4 class="event-title">{{ event.title }}</h4>
+							<p class="event-description">{{ event.description }}</p>
+							<div class="event-footer">
+								<div class="event-date">
+									<span>{{ event.date }}</span>
+									<span *ngIf="event.time">{{ event.time }}</span>
+								</div>
+								<div class="event-arrow">
+									<tui-icon icon="tuiIconArrowRight" />
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- Recent Activities Section -->
+		<section class="recent-activities card">
+			<div class="section-header">
+				<div class="flex gap-sm">
+					<h4>Recent Activities</h4>
+					<tui-icon icon="tuiIconBarChart" />
+				</div>
+			</div>
+			<div class="activities-list">
+				<div class="activity-item flex gap-md p-md border-b" *ngFor="let activity of activities">
+					<div class="activity-icon">
+						<tui-icon [icon]="activity.icon" class="text-primary" />
+					</div>
+					<div class="activity-content flex-1">
+						<p class="text-sm font-medium">{{ activity.title }}</p>
+						<p class="text-xs text-muted">{{ activity.description }}</p>
+					</div>
+					<div class="activity-status">
+						<span [class]="activity.status === 'completed' ? 'status-completed' : 'status-pending'">
+							{{ activity.status }}
+						</span>
+					</div>
+				</div>
+			</div>
+		</section>
+	</div>
+
+	<div class="sidebar">
+		<!-- Alumni Impact Section -->
+		<section class="alumni-impact card">
+			<div class="section-header flex-between">
+				<div class="flex gap-sm">
+					<h4>Alumni Impact</h4>
+					<tui-icon icon="tuiIconGraduationCap" />
+				</div>
+			</div>
+			<div class="impact-grid grid grid-cols-2 gap-md mb-md">
+				<div class="impact-card impact-card-blue">
+					<div class="text-xl font-bold text-blue-600 mb-xs">24</div>
+					<div class="text-xs text-muted uppercase tracking-wide">Years Member</div>
+				</div>
+				<div class="impact-card impact-card-orange">
+					<div class="text-xl font-bold text-orange-600 mb-xs">$2000</div>
+					<div class="text-xs text-muted uppercase tracking-wide">Donated</div>
+				</div>
+				<div class="impact-card impact-card-gray">
+					<div class="text-xl font-bold text-gray-600 mb-xs">12</div>
+					<div class="text-xs text-muted uppercase tracking-wide">Events Attended</div>
+				</div>
+				<div class="impact-card impact-card-green">
+					<div class="text-xl font-bold text-green-600 mb-xs">120</div>
+					<div class="text-xs text-muted uppercase tracking-wide">Connections</div>
+				</div>
+			</div>
+			<button class="impact-report-btn">
+				View Full Impact Report
+			</button>
+		</section>
+
+		<!-- Calendar Section -->
+		<section class="calendar-section card">
+			<div class="section-header">
+				<h4>Calendar</h4>
+				<tui-icon icon="@tui.calendar-days" class="text-primary" />
+			</div>
+			<div class="calendar-widget">
+				<tui-calendar
+					[value]="selectedDays"
+					[markerHandler]="markerHandler"
+					(dayClick)="onDayClick($event)"
+				>
+				</tui-calendar>
+			</div>
+		</section>
+
+		<!-- Reminders Section -->
+		<section class="reminders-section">
+			<h4 class="text-primary text-lg mb-md">Reminders</h4>
+			<div class="reminders-list">
+				<div *ngIf="reminders && reminders.length > 0; else noReminders">
+					<div
+						class="reminder-item"
+						*ngFor="let reminder of reminders"
+						[class]="'reminder-item-' + getReminderColor(reminder)"
+					>
+						<div
+							class="reminder-dot"
+							[class]="'bg-reminder-' + getReminderColor(reminder) + ' rounded-full w-3 h-3'"
+						></div>
+						<div class="reminder-content flex-1">
+							<p class="text-sm font-medium mb-0">{{ reminder.title }}</p>
+							<p class="text-xs text-muted mb-0">{{ getDaysRemaining(reminder.dueDate) }}</p>
+						</div>
+					</div>
+				</div>
+				<ng-template #noReminders>
+					<div class="no-reminders">
+						<p class="text-sm text-muted text-center">No Reminders</p>
+					</div>
+				</ng-template>
+			</div>
+		</section>
+	</div>
+</div>

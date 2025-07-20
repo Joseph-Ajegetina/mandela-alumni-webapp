@@ -12,12 +12,20 @@
 	<!-- <span tuiNavigationLogo [routerLink]="'home'">
 		<img src="/images/alumracle-logo.png" width="50px" height="50px" alt="Alumracle logo" />
 	</span> -->
-	<div class="welcome-container">
+	<div class="welcome-container" [class.scrolled]="isScrolled">
 		<span class="text">My Portal</span>
-		<span class="subtext">Welcome, {{ user()?.firstname }} 👋</span>
+		<span class="subtext"
+			>Welcome, {{ user()?.firstname }}
+			<img
+				width="24"
+				height="24"
+				src="https://img.icons8.com/emoji/48/waving-hand-medium-light-skin-tone.png"
+				alt="waving-hand-medium-light-skin-tone"
+			/>
+		</span>
 	</div>
 	<hr />
-	<p>
+	<!-- <p>
 		<button
 			appearance="secondary"
 			tuiButton
@@ -26,9 +34,16 @@
 			type="button"
 			(click)="darkMode.set(!darkMode())"
 		></button>
-	</p>
+	</p> -->
 
-	<button appearance="action" tuiDropdownHover tuiButton type="button" [tuiDropdown]="dropdown">
+	<button
+		appearance="action"
+		class="user-button"
+		tuiDropdownHover
+		tuiButton
+		type="button"
+		[tuiDropdown]="dropdown"
+	>
 		<tui-avatar [src]="user()?.profile" class="text" [style.background]="'AI' | tuiAutoColor" />
 	</button>
 

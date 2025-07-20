@@ -1,5 +1,11 @@
 :host {
 	--tui-theme-color: #fff !important;
+
+	::ng-deep {
+		aside[tuiNavigationAside] {
+			padding: 0.5rem 0.7rem 0.25rem;
+		}
+	}
 }
 
 aside::before {
@@ -16,7 +22,7 @@ aside::after {
 
 .site-nav._active {
 	background: #26abe4 !important;
-	border-radius: 0;
+	border-radius: 3px;
 	color: white;
 }
 
@@ -27,24 +33,24 @@ aside::after {
 }
 
 header {
-	margin-top: 2rem;
+	margin-top: 1rem;
 }
 
 .site-nav {
-	font-weight: 800;
-	font-size: 15px !important;
-	line-height: 24px;
-	font-size: 15px;
-	font-weight: 800;
+	font-weight: 600;
+	font-size: 17px;
 	line-height: 24px;
 	width: 332px;
-	height: 56px;
+	height: 50px;
+	--t-padding: 20px;
 }
 
 .logo {
-	margin-bottom: 3rem;
+	margin-bottom: 2rem;
 	display: flex;
-	justify-content: center;
+	justify-content: left;
+	padding-left: 5px;
+	column-gap: 2px;
 }
 
 .icon-text {
