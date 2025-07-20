@@ -25,9 +25,29 @@ export class UserDashboardUiComponent {
 
 	@Output() loadData = new EventEmitter<void>();
 	@Output() eventClick = new EventEmitter<DashboardEvent>();
+	@Output() payDues = new EventEmitter<void>();
+	@Output() findAlumni = new EventEmitter<void>();
+	@Output() registerEvent = new EventEmitter<void>();
+	@Output() makeDonation = new EventEmitter<void>();
 
 	onEventClick(event: DashboardEvent): void {
 		this.eventClick.emit(event);
+	}
+
+	onPayDues(): void {
+		this.payDues.emit();
+	}
+
+	onFindAlumni(): void {
+		this.findAlumni.emit();
+	}
+
+	onRegisterEvent(): void {
+		this.registerEvent.emit();
+	}
+
+	onMakeDonation(): void {
+		this.makeDonation.emit();
 	}
 
 	getReminderColor(reminder: DashboardReminder): string {

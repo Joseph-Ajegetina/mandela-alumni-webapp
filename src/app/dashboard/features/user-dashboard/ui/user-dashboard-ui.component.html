@@ -55,19 +55,19 @@
 				</div>
 			</div>
 			<div class="actions-grid grid grid-cols-4 gap-md">
-				<button class="action-btn">
+				<button class="action-btn" (click)="onPayDues()">
 					<tui-icon icon="@tui.banknote" />
 					<span class="text-sm">Pay Dues</span>
 				</button>
-				<button class="action-btn">
+				<button class="action-btn" (click)="onFindAlumni()">
 					<tui-icon icon="@tui.search" />
 					<span class="text-sm">Find an Alumni</span>
 				</button>
-				<button class="action-btn">
+				<button class="action-btn" (click)="onRegisterEvent()">
 					<tui-icon icon="@tui.pen-line" />
 					<span class="text-sm">Register for an event</span>
 				</button>
-				<button class="action-btn">
+				<button class="action-btn" (click)="onMakeDonation()">
 					<tui-icon icon="@tui.heart" />
 					<span class="text-sm">Make a donation</span>
 				</button>
@@ -82,14 +82,14 @@
 					<tui-icon icon="tuiIconCalendar" />
 				</div>
 				<a href="/events" class="text-secondary text-sm flex gap-sm">
-					<span>View All</span>
+					<span>See More</span>
 					<tui-icon icon="tuiIconArrowRight" />
 				</a>
 			</div>
 			<div class="events-container overflow-auto">
 				<div class="events-grid flex gap-lg" style="min-width: max-content">
 					<div
-						class="event-card bg-white rounded-lg overflow-hidden shadow-md border"
+						class="event-card"
 						(click)="onEventClick(event)"
 						(keydown.enter)="onEventClick(event)"
 						(keydown.space)="onEventClick(event)"
@@ -98,19 +98,21 @@
 						*ngFor="let event of events"
 						style="min-width: 300px; max-width: 350px"
 					>
-						<div class="event-image w-full h-32 overflow-hidden" *ngIf="event.image">
+						<div class="event-image">
 							<img [src]="event.image" [alt]="event.title" class="w-full h-full object-cover" />
 						</div>
-						<div class="event-content p-md">
-							<h4 class="text-light text-sm mb-sm">{{ event.title }}</h4>
-							<p class="text-muted text-xs mb-sm">{{ event.description }}</p>
-							<div class="flex gap-sm text-xs text-muted">
-								<span>{{ event.date }}</span>
-								<span *ngIf="event.time">{{ event.time }}</span>
+						<div class="event-content">
+							<h4 class="event-title">{{ event.title }}</h4>
+							<p class="event-description">{{ event.description }}</p>
+							<div class="event-footer">
+								<div class="event-date">
+									<span>{{ event.date }}</span>
+									<span *ngIf="event.time">{{ event.time }}</span>
+								</div>
+								<div class="event-arrow">
+									<tui-icon icon="tuiIconArrowRight" />
+								</div>
 							</div>
-						</div>
-						<div class="event-actions p-md flex-center">
-							<tui-icon icon="tuiIconArrowRight" />
 						</div>
 					</div>
 				</div>
