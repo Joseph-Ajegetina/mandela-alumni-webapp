@@ -5,7 +5,6 @@
 	width: 100%;
 	height: 500px; // Reduced from 617px for better fit
 	overflow: hidden;
-	border-radius: 12px; // Increased for modern look
 
 	@media @tui-mobile-interval, @tui-mobile {
 		height: 400px;
@@ -35,7 +34,7 @@
 	display: flex;
 	flex-direction: column;
 	justify-content: center;
-	border-radius: 0 12px 12px 0; // Rounded right corners
+ // Rounded right corners
 
 	@media @tui-mobile-interval, @tui-mobile {
 		width: 100%;
@@ -132,24 +131,24 @@ h2 {
 }
 
 .details-btn {
-	background-color: #6ad66a;
 	border: none;
-	padding: 12px 20px;
+	padding: 10px 16px;
 	border-radius: 8px;
 	color: white;
-	font-weight: 600;
+	font-weight: 500;
 	display: flex;
 	align-items: center;
 	gap: 8px;
 	cursor: pointer;
-	transition: all 0.3s ease;
+	transition: all 0.2s ease;
 	font-size: 14px;
-	min-width: 120px;
+	min-height: 40px;
 	justify-content: center;
+	text-decoration: none;
+	color: inherit;
 
 	&:hover {
-		background-color: #5ac55a;
-		transform: translateY(-1px);
+		transform: translateY(-2px);
 		box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 	}
 
@@ -163,9 +162,35 @@ h2 {
 	}
 
 	@media @tui-mobile-interval, @tui-mobile {
-		padding: 10px 16px;
+		padding: 8px 12px;
 		font-size: 13px;
-		min-width: 100px;
+		min-height: 36px;
+	}
+}
+
+// Register button styling to match event card
+.register-btn {
+	background: #10b981;
+	color: #ffffff;
+	box-shadow: 0 2px 4px rgba(16, 185, 129, 0.2);
+
+	&:hover {
+		background: #059669;
+		box-shadow: 0 4px 8px rgba(16, 185, 129, 0.3);
+	}
+}
+
+// Details button styling to match event card
+.details-btn:not(.register-btn) {
+	background: #ffffff;
+	color: #374151;
+	border: 1px solid #d1d5db;
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+
+	&:hover {
+		background: #f9fafb;
+		border-color: #9ca3af;
+		box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 	}
 }
 

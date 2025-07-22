@@ -4,7 +4,7 @@
 			<img [src]="event.image" class="slide-image" alt="Slide" />
 			<div class="slide-overlay">
 				<span class="event-type">{{ event?.type }}</span>
-				<h2>{{ event?.title }}</h2>
+				<h2>{{ event?.name }}</h2>
 				<p class="description">{{ event?.description }}</p>
 				<div class="event-details">
 					<p>
@@ -20,11 +20,11 @@
 				</div>
 				<div class="buttons">
 					<button class="details-btn register-btn" routerLink="../event/register">
-						<tui-icon icon="@tui.pencil-line" [style.color]="'#FFFFFF'"></tui-icon>
+						<tui-icon icon="@tui.square-pen"></tui-icon>
 						register
 					</button>
 					<button class="details-btn" routerLink="../event/details">
-						<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
+						<tui-icon icon="@tui.eye"></tui-icon>
 						View details
 					</button>
 				</div>
