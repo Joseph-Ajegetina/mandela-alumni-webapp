@@ -43,6 +43,7 @@ export class EventsListComponent implements OnInit {
 
 	readonly eventModes = ['online', 'physical', 'hybrid'];
 	type = signal<string | null>(null);
+	showEventsList = false; // Control visibility of events list
 
 	form = new FormGroup({
 		searchTerm: new FormControl(''),
@@ -76,5 +77,15 @@ export class EventsListComponent implements OnInit {
 		} else {
 			window.scrollTo({ top: 0, behavior: 'smooth' });
 		}
+	}
+
+	scrollToEventsList(): void {
+		this.showEventsList = true; // Show the events list
+		setTimeout(() => {
+			const eventsListElement = document.getElementById('events-list');
+			if (eventsListElement) {
+				eventsListElement.scrollIntoView({ behavior: 'smooth' });
+			}
+		}, 100); // Small delay to ensure the element is rendered
 	}
 }
