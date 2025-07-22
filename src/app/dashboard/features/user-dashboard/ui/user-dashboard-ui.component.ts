@@ -81,8 +81,8 @@ export class UserDashboardUiComponent implements OnInit {
 	private updateReminderDates(): void {
 		if (this.reminders && this.reminders.length > 0) {
 			this.selectedDays = this.reminders
-				.map(reminder => this.parseDateToTuiDay(reminder.dueDate))
-				.filter(day => day !== null);
+				.map((reminder) => this.parseDateToTuiDay(reminder.dueDate))
+				.filter((day) => day !== null);
 		}
 	}
 
@@ -122,5 +122,22 @@ export class UserDashboardUiComponent implements OnInit {
 		} else {
 			return `Due in ${diffDays} days`;
 		}
+	}
+
+	// TrackBy functions for better performance
+	trackByMetric(index: number, metric: DashboardMetric): string {
+		return metric.id;
+	}
+
+	trackByEvent(index: number, event: DashboardEvent): string {
+		return event.id;
+	}
+
+	trackByActivity(index: number, activity: DashboardActivity): string {
+		return activity.id;
+	}
+
+	trackByReminder(index: number, reminder: DashboardReminder): string {
+		return reminder.id;
 	}
 }
