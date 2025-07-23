@@ -83,6 +83,13 @@ export const appRoutes: Route[] = [
 					),
 			},
 			{
+				path: 'users/create',
+				loadComponent: () =>
+					import('./users/create-user.component').then(
+						(m) => m.CreateUserComponent,
+					),
+			},
+			{
 				path: 'payment',
 				loadComponent: () =>
 					import('./features/payment-page/payment-page.component').then(

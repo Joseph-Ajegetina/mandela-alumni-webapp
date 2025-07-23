@@ -35,6 +35,29 @@ tui-loader {
 	color: rgba(37, 69, 104, 1);
 }
 
+// Header actions styling
+.header-actions {
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+}
+
+.create-user-btn {
+	background: var(--tui-primary) !important;
+	color: white !important;
+	border: none !important;
+	transition: all 0.2s ease !important;
+
+	&:hover {
+		background: var(--tui-primary-hover) !important;
+		transform: translateY(-1px) !important;
+	}
+
+	&:active {
+		transform: translateY(0) !important;
+	}
+}
+
 .filter-buttons {
 	display: flex;
 	gap: 0.5rem;

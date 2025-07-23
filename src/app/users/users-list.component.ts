@@ -13,7 +13,7 @@ import {
 import { TuiTable } from '@taiga-ui/addon-table';
 import { TuiBadge, TuiCheckbox, TuiStatus, TuiDataListWrapper } from '@taiga-ui/kit';
 import { TuiSelectModule } from '@taiga-ui/legacy';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 
 import { IUser } from 'src/app/shared/interfaces/user';
 import { UsersService } from '@mandela-alumni-webapp/core-data';
@@ -44,6 +44,7 @@ export interface UserWithStatus extends IUser {
 		TuiTitle,
 		TuiSelectModule,
 		TuiDataListWrapper,
+		RouterLink,
 	],
 	templateUrl: './users-list.component.html',
 	styleUrl: './users-list.component.less',

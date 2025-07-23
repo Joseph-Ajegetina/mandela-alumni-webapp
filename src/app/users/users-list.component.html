@@ -1,5 +1,16 @@
 <div tuiHeader="h2">
 	<h2 class="heading">Users</h2>
+	<div class="header-actions">
+		<button 
+			iconStart="@tui.user-plus" 
+			tuiButton 
+			type="button" 
+			routerLink="/users/create"
+			[size]="'m'"
+		>
+			Create New User
+		</button>
+	</div>
 </div>
 
 @if (loading()){
