@@ -85,7 +85,7 @@ export const appRoutes: Route[] = [
 			{
 				path: 'users/create',
 				loadComponent: () =>
-					import('./users/create-user.component').then(
+					import('./users/create-user/create-user.component').then(
 						(m) => m.CreateUserComponent,
 					),
 			},

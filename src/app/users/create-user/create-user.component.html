@@ -1,0 +1,284 @@
+<div class="container">
+	<div class="header">
+		<h3>Create New User</h3>
+		<p class="subtitle">Add a new user to the system with appropriate permissions and status.</p>
+	</div>
+
+	<!-- Tab Navigation -->
+	<div class="tab-navigation">
+		<button 
+			class="tab-button" 
+			[class.active]="activeTab() === 'single'"
+			(click)="setActiveTab('single')"
+		>
+			<tui-icon src="@tui.user-plus"></tui-icon>
+			Single User
+		</button>
+		<button 
+			class="tab-button" 
+			[class.active]="activeTab() === 'bulk'"
+			(click)="setActiveTab('bulk')"
+		>
+			<tui-icon src="@tui.upload"></tui-icon>
+			Bulk Upload (CSV)
+		</button>
+	</div>
+
+	<!-- Single User Tab -->
+	<div class="tab-content" *ngIf="activeTab() === 'single'">
+		<div class="form-container">
+			<form
+				tuiAppearance="flat"
+				tuiCardLarge
+				tuiForm="l"
+				[formGroup]="form"
+				(ngSubmit)="submit()"
+			>
+				<div class="form-grid">
+					<!-- Personal Information -->
+					<div class="form-section">
+						<h4 class="section-title">Personal Information</h4>
+						<div class="grid">
+							<div class="stack">
+								<tui-textfield>
+									<label tuiLabel>First Name</label>
+									<input formControlName="firstName" tuiTextfield type="text" placeholder="Enter first name" />
+								</tui-textfield>
+								<tui-error formControlName="firstName" [error]="[] | tuiFieldError | async" />
+							</div>
+							<div class="stack">
+								<tui-textfield>
+									<label tuiLabel>Last Name</label>
+									<input formControlName="lastName" tuiTextfield type="text" placeholder="Enter last name" />
+								</tui-textfield>
+								<tui-error formControlName="lastName" [error]="[] | tuiFieldError | async" />
+							</div>
+						</div>
+
+						<div class="grid">
+							<div class="stack">
+								<tui-textfield>
+									<label tuiLabel>Email</label>
+									<input formControlName="email" tuiTextfield type="email" placeholder="Enter email address" />
+								</tui-textfield>
+								<tui-error formControlName="email" [error]="[] | tuiFieldError | async" />
+							</div>
+							<div class="stack">
+								<tui-textfield>
+									<label tuiLabel>Phone Number</label>
+									<input formControlName="phone" tuiTextfield type="tel" placeholder="Enter phone number" />
+								</tui-textfield>
+								<tui-error formControlName="phone" [error]="[] | tuiFieldError | async" />
+							</div>
+						</div>
+
+						<div class="grid">
+							<div class="stack">
+								<tui-input-date formControlName="dob">
+									Date of Birth
+									<input placeholder="Select date" tuiTextfieldLegacy />
+								</tui-input-date>
+								<tui-error formControlName="dob" [error]="[] | tuiFieldError | async" />
+							</div>
+						</div>
+					</div>
+
+					<!-- Account Settings -->
+					<div class="form-section">
+						<h4 class="section-title">Account Settings</h4>
+						<div class="grid">
+							<div class="stack">
+								<tui-select formControlName="role">
+									User Role
+									<input placeholder="Select role" tuiTextfieldLegacy />
+									<tui-data-list-wrapper *tuiDataList [items]="userRoles" />
+								</tui-select>
+								<tui-error formControlName="role" [error]="[] | tuiFieldError | async" />
+							</div>
+							<div class="stack">
+								<tui-select formControlName="approvalStatus">
+									Approval Status
+									<input placeholder="Select status" tuiTextfieldLegacy />
+									<tui-data-list-wrapper *tuiDataList [items]="approvalStatuses" />
+								</tui-select>
+								<tui-error formControlName="approvalStatus" [error]="[] | tuiFieldError | async" />
+							</div>
+						</div>
+
+						<div class="grid">
+							<div class="stack">
+								<tui-textfield>
+									<label tuiLabel>Password</label>
+									<input formControlName="password" tuiTextfield type="password" placeholder="Enter password" />
+								</tui-textfield>
+								<tui-error formControlName="password" [error]="[] | tuiFieldError | async" />
+							</div>
+							<div class="stack">
+								<tui-textfield>
+									<label tuiLabel>Confirm Password</label>
+									<input formControlName="confirmPassword" tuiTextfield type="password" placeholder="Confirm password" />
+								</tui-textfield>
+								<tui-error formControlName="confirmPassword" [error]="[] | tuiFieldError | async" />
+								<tui-error
+									*ngIf="form.hasError('mismatch') && (form.touched || form.dirty)"
+									[error]="'Passwords do not match'"
+								/>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="form-actions">
+					<button
+						type="button"
+						appearance="outline"
+						tuiButton
+						(click)="cancel()"
+						class="cancel-btn"
+					>
+						Cancel
+					</button>
+					<button
+						[loading]="loading()"
+						[disabled]="form.invalid"
+						iconEnd="@tui.user-plus"
+						tuiButton
+						type="submit"
+					>
+						Create User
+					</button>
+				</div>
+			</form>
+		</div>
+	</div>
+
+	<!-- Bulk Upload Tab -->
+	<div class="tab-content" *ngIf="activeTab() === 'bulk'">
+		<div class="form-container">
+			<div class="bulk-upload-section">
+				<h4 class="section-title">Bulk User Upload</h4>
+				
+				<!-- CSV Template Download -->
+				<div class="template-section">
+					<h5>Step 1: Download Template</h5>
+					<p>Download the CSV template to ensure your file has the correct format.</p>
+					<button
+						type="button"
+						appearance="outline"
+						tuiButton
+						(click)="downloadTemplate()"
+						iconEnd="@tui.download"
+					>
+						Download CSV Template
+					</button>
+				</div>
+
+				<!-- File Upload -->
+				<div class="upload-section">
+					<h5>Step 2: Upload CSV File</h5>
+					<p>Select a CSV file with user data to bulk create users.</p>
+					
+					<div class="file-upload-area" 
+						 [class.dragover]="isDragOver()"
+						 (dragover)="onDragOver($event)"
+						 (dragleave)="onDragLeave($event)"
+						 (drop)="onDrop($event)">
+						
+						<div class="upload-content" *ngIf="!selectedFile()">
+							<tui-icon src="@tui.upload" class="upload-icon"></tui-icon>
+							<p>Drag and drop your CSV file here, or</p>
+							<button
+								type="button"
+								appearance="outline"
+								tuiButton
+								(click)="fileInput.click()"
+							>
+								Choose File
+							</button>
+							<input 
+								#fileInput
+								type="file" 
+								accept=".csv"
+								(change)="onFileSelected($event)"
+								style="display: none;"
+							/>
+						</div>
+
+						<div class="file-selected" *ngIf="selectedFile()">
+							<tui-icon src="@tui.file" class="file-icon"></tui-icon>
+							<div class="file-info">
+								<p class="file-name">{{ selectedFile()?.name }}</p>
+								<p class="file-size">{{ selectedFile()?.size || 0 | fileSize }}</p>
+							</div>
+							<button
+								type="button"
+								appearance="outline"
+								tuiButton
+								(click)="removeFile()"
+								iconEnd="@tui.close"
+							>
+								Remove
+							</button>
+						</div>
+					</div>
+
+					<!-- Preview Section -->
+					<div class="preview-section" *ngIf="csvData().length > 0">
+						<h5>Step 3: Preview Data</h5>
+						<p>Review the data before creating users. {{ csvData().length }} users will be created.</p>
+						
+						<div class="preview-table">
+							<table>
+								<thead>
+									<tr>
+										<th>First Name</th>
+										<th>Last Name</th>
+										<th>Email</th>
+										<th>Phone</th>
+										<th>Role</th>
+										<th>Status</th>
+									</tr>
+								</thead>
+								<tbody>
+									<tr *ngFor="let user of csvData().slice(0, 5); trackBy: trackByIndex">
+										<td>{{ user.firstName }}</td>
+										<td>{{ user.lastName }}</td>
+										<td>{{ user.email }}</td>
+										<td>{{ user.phone }}</td>
+										<td>{{ user.role }}</td>
+										<td>{{ user.approvalStatus }}</td>
+									</tr>
+								</tbody>
+							</table>
+							<p class="preview-note" *ngIf="csvData().length > 5">
+								Showing first 5 records. Total: {{ csvData().length }} users.
+							</p>
+						</div>
+					</div>
+
+					<!-- Upload Actions -->
+					<div class="upload-actions" *ngIf="selectedFile()">
+						<button
+							type="button"
+							appearance="outline"
+							tuiButton
+							(click)="cancel()"
+							class="cancel-btn"
+						>
+							Cancel
+						</button>
+						<button
+							[loading]="bulkLoading()"
+							[disabled]="csvData().length === 0"
+							iconEnd="@tui.upload"
+							tuiButton
+							(click)="uploadBulkUsers()"
+						>
+							Upload {{ csvData().length }} Users
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div> 
