@@ -18,48 +18,17 @@
 
 	<hr />
 	
-	<!-- Status Filter Buttons -->
-	<div class="filter-buttons">
-		<button 
-			appearance="flat-grayscale" 
-			iconStart="@tui.users" 
-			tuiIconButton 
-			type="button"
-			[class.active]="selectedStatus() === 'all'"
-			(click)="onStatusFilterChange('all')"
+	<!-- Status Filter Selector -->
+	<div class="filter-container">
+		<tui-select
+			[formControl]="statusFilterControl"
+			(ngModelChange)="onStatusFilterChange($event)"
+			class="status-filter-select"
 		>
-			All Users
-		</button>
-		<button 
-			appearance="flat-grayscale" 
-			iconStart="@tui.check-circle" 
-			tuiIconButton 
-			type="button"
-			[class.active]="selectedStatus() === 'approved'"
-			(click)="onStatusFilterChange('approved')"
-		>
-			Approved
-		</button>
-		<button 
-			appearance="flat-grayscale" 
-			iconStart="@tui.clock" 
-			tuiIconButton 
-			type="button"
-			[class.active]="selectedStatus() === 'pending'"
-			(click)="onStatusFilterChange('pending')"
-		>
-			Pending
-		</button>
-		<button 
-			appearance="flat-grayscale" 
-			iconStart="@tui.x-circle" 
-			tuiIconButton 
-			type="button"
-			[class.active]="selectedStatus() === 'disapproved'"
-			(click)="onStatusFilterChange('disapproved')"
-		>
-			Disapproved
-		</button>
+			Filter by Status
+			<input placeholder="" tuiTextfieldLegacy />
+			<tui-data-list-wrapper *tuiDataList [items]="statusOptions" />
+		</tui-select>
 	</div>
 </div>
 
@@ -131,20 +100,15 @@
 				</td>
 				<td tuiTd>
 					<span tuiStatus>
-						<button
-							appearance="primary"
-							iconStart="@tui.eye"
-							size="xs"
-							tuiButton
-							type="button"
-							[tuiHint]="'View user details'"
-							tuiHintDirection="left"
-							tuiHintAppearance="dark"
-							(click)="viewUser(user)"
-							class="view-button"
+						<tui-select
+							[formControl]="getActionControl(user)"
+							(ngModelChange)="onActionSelect($event, user)"
+							class="action-select"
 						>
-							View
-						</button>
+							Actions
+							<input placeholder="" tuiTextfieldLegacy />
+							<tui-data-list-wrapper *tuiDataList [items]="['View', 'Edit', 'Delete']" />
+						</tui-select>
 					</span>
 				</td>
 			</tr>

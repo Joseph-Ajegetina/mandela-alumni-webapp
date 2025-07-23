@@ -11,7 +11,8 @@ import {
 	TuiTitle,
 } from '@taiga-ui/core';
 import { TuiTable } from '@taiga-ui/addon-table';
-import { TuiBadge, TuiCheckbox, TuiStatus } from '@taiga-ui/kit';
+import { TuiBadge, TuiCheckbox, TuiStatus, TuiDataListWrapper } from '@taiga-ui/kit';
+import { TuiSelectModule } from '@taiga-ui/legacy';
 import { Router } from '@angular/router';
 
 import { IUser } from 'src/app/shared/interfaces/user';
@@ -41,6 +42,8 @@ export interface UserWithStatus extends IUser {
 		TuiHint,
 		TuiLoader,
 		TuiTitle,
+		TuiSelectModule,
+		TuiDataListWrapper,
 	],
 	templateUrl: './users-list.component.html',
 	styleUrl: './users-list.component.less',
@@ -59,6 +62,9 @@ export class UsersListComponent implements OnInit {
 	form = new FormGroup({
 		search: new FormControl(''),
 	});
+
+	statusFilterControl = new FormControl('all');
+	statusOptions = ['all', 'approved', 'pending', 'disapproved'];
 
 	loading = signal(false);
 	selectedStatus = signal<'all' | 'approved' | 'pending' | 'disapproved'>('all');
@@ -135,14 +141,38 @@ export class UsersListComponent implements OnInit {
 		});
 	}
 
-	onStatusFilterChange(status: 'all' | 'approved' | 'pending' | 'disapproved'): void {
-		this.selectedStatus.set(status);
+	onStatusFilterChange(status: string): void {
+		this.selectedStatus.set(status as 'all' | 'approved' | 'pending' | 'disapproved');
 		this.filterUsers();
 	}
 
 	viewUser(user: UserWithStatus): void {
 		// Navigate to user details page
 		this.router.navigate(['/users', user.id]);
+	}
+
+	onActionSelect(action: string, user: UserWithStatus): void {
+		switch (action) {
+			case 'View':
+				this.viewUser(user);
+				break;
+			case 'Edit':
+				// Navigate to edit user page
+				this.router.navigate(['/users/edit', user.id]);
+				break;
+			case 'Delete':
+				// Handle delete action - could show confirmation dialog
+				console.log('Delete user:', user.id);
+				break;
+			default:
+				console.log('Unknown action:', action);
+		}
+	}
+
+	getActionControl(user: UserWithStatus): FormControl {
+		// Create a form control for each user's action select
+		// This ensures each select has its own control
+		return new FormControl('View');
 	}
 
 	getStatusBadgeText(status: string): string {
@@ -161,13 +191,13 @@ export class UsersListComponent implements OnInit {
 	getStatusBadgeColor(status: string): string {
 		switch (status) {
 			case 'approved':
-				return 'var(--tui-success-fill)';
+				return '#10b981'; // Green color
 			case 'pending':
-				return 'var(--tui-warning-fill)';
+				return '#f59e0b'; // Amber/Orange color
 			case 'disapproved':
-				return 'var(--tui-error-fill)';
+				return '#ef4444'; // Red color
 			default:
-				return 'var(--tui-base-04)';
+				return '#6b7280'; // Gray color
 		}
 	}
 } 

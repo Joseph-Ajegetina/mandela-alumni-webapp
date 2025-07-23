@@ -95,6 +95,36 @@ tui-badge {
 	}
 }
 
+// Action select styling
+.action-select {
+	min-width: 100px;
+	font-size: 12px;
+
+	::ng-deep {
+		.t-textfield {
+			padding: 0.25rem 0.5rem;
+			font-size: 12px;
+		}
+	}
+}
+
+// Status filter select styling
+.status-filter-select {
+	min-width: 200px;
+	font-size: 14px;
+
+	::ng-deep {
+		.t-textfield {
+			padding: 0.5rem 0.75rem;
+			font-size: 14px;
+		}
+	}
+}
+
+.filter-container {
+	margin-bottom: 1rem;
+}
+
 // Responsive design
 @media @tui-mobile-interval, @tui-mobile {
 	.filter-buttons {
