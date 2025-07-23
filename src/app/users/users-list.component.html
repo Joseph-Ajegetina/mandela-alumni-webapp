@@ -1,0 +1,129 @@
+<div tuiHeader="h2">
+	<h2 class="heading">Users</h2>
+	<div class="header-actions">
+		<button 
+			iconStart="@tui.user-plus" 
+			tuiButton 
+			type="button" 
+			routerLink="/users/create"
+			[size]="'m'"
+		>
+			Create New User
+		</button>
+	</div>
+</div>
+
+@if (loading()){
+<tui-loader [inheritColor]="true"></tui-loader>
+} @else{
+<div tuiCell>
+	<search tuiSearch>
+		<form [formGroup]="form">
+			<fieldset tuiTextfieldSize="s">
+				<tui-textfield iconStart="@tui.search">
+					<input placeholder="Search users" tuiTextfield formControlName="search" />
+				</tui-textfield>
+			</fieldset>
+		</form>
+	</search>
+
+	<hr />
+	
+	<!-- Status Filter Selector -->
+	<div class="filter-container">
+		<tui-select
+			[formControl]="statusFilterControl"
+			(ngModelChange)="onStatusFilterChange($event)"
+			class="status-filter-select"
+		>
+			Filter by Status
+			<input placeholder="" tuiTextfieldLegacy />
+			<tui-data-list-wrapper *tuiDataList [items]="statusOptions" />
+		</tui-select>
+	</div>
+</div>
+
+<table tuiTable [size]="'l'">
+	<thead>
+		<tr>
+			<th tuiTh>
+				<div [tuiCell]="'l'">
+					<input
+						tuiCheckbox
+						type="checkbox"
+						[ngModel]="checked"
+						[size]="'m'"
+						(ngModelChange)="onCheck($event)"
+					/>
+					<span tuiTitle>Name</span>
+				</div>
+			</th>
+			<th tuiTh>Email</th>
+			<th tuiTh>Phone</th>
+			<th tuiTh>Status</th>
+			<th tuiTh>Location</th>
+			<th tuiTh>Joined Date</th>
+			<th tuiTh>Actions</th>
+		</tr>
+	</thead>
+	<tbody tuiTbody>
+		<ng-container *ngIf="filteredUsers.length === 0">
+			<tr>
+				<td tuiTd colspan="7">
+					<div [tuiCell]="'l'">
+						<span tuiTitle>No users found</span>
+					</div>
+				</td>
+			</tr>
+		</ng-container>
+
+		<ng-container *ngIf="filteredUsers.length > 0">
+			<tr *ngFor="let user of filteredUsers">
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<input tuiCheckbox type="checkbox" [size]="'m'" [(ngModel)]="user.selected" />
+						<span tuiTitle>{{ user.firstname }} {{ user.lastname }}</span>
+					</div>
+				</td>
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<span tuiTitle>{{ user.email }}</span>
+					</div>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ user.phone }}</span>
+				</td>
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<tui-badge 
+							[style.background]="getStatusBadgeColor(user.status)"
+							[style.color]="'white'"
+						>
+							{{ getStatusBadgeText(user.status) }}
+						</tui-badge>
+					</div>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ user.city }}, {{ user.country }}</span>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ user.createdAt | date : 'medium' }}</span>
+				</td>
+				<td tuiTd>
+					<span tuiStatus>
+						<tui-select
+							[formControl]="getActionControl(user)"
+							(ngModelChange)="onActionSelect($event, user)"
+							class="action-select"
+						>
+							Actions
+							<input placeholder="" tuiTextfieldLegacy />
+							<tui-data-list-wrapper *tuiDataList [items]="['View', 'Edit', 'Delete']" />
+						</tui-select>
+					</span>
+				</td>
+			</tr>
+		</ng-container>
+	</tbody>
+</table>
+} 
