@@ -30,9 +30,14 @@
 
 		<!-- Action Buttons -->
 		<div class="action-buttons">
-			<button class="btn-register" type="button">
+			<button
+				class="btn-register"
+				type="button"
+				[routerLink]="userStore.isAdmin() ? ['/events/edit', event()?.id] : null"
+				(click)="!userStore.isAdmin() && onRegister()"
+			>
 				<tui-icon icon="@tui.square-pen" class="btn-icon" />
-				<span class="btn-text">Register</span>
+				<span class="btn-text">{{ userStore.isAdmin() ? 'Edit' : 'Register' }}</span>
 			</button>
 			<button class="btn-details" type="button" [routerLink]="['/events', event()?.id]">
 				<tui-icon icon="@tui.eye" class="btn-icon" />

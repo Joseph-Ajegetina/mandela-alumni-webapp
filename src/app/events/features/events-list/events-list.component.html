@@ -18,14 +18,14 @@
 		<tui-loader></tui-loader>
 	</div>
 	}@else{
-	
+
 	<!-- Featured Events Slideshow Section -->
 	<div class="featured-events-section">
 		<div class="slideshow-container">
 			<app-events-slideshow [events]="eventStore.latestEvents()"></app-events-slideshow>
 		</div>
 		<div class="scroll-button-container" [class.hide-button]="showEventsList">
-			<button 
+			<button
 				class="scroll-button"
 				(click)="scrollToEventsList()"
 				(keydown.enter)="scrollToEventsList()"
@@ -38,7 +38,6 @@
 			</button>
 		</div>
 	</div>
-
 
 	<!-- All Events List Section -->
 	<div class="events-list-section" id="events-list" [class.show-events-list]="showEventsList">

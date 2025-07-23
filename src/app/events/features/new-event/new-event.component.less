@@ -156,3 +156,96 @@
 	color: #254568;
 	border: 1px solid #254568;
 }
+
+// Image Preview Section
+.image-preview-section {
+	margin-bottom: 2rem;
+	padding: 1.5rem;
+	background: #f8f9fa;
+	border-radius: 8px;
+	border: 1px solid #e9ecef;
+
+	h4 {
+		margin: 0 0 1rem 0;
+		color: #495057;
+		font-size: 16px;
+		font-weight: 600;
+	}
+
+	.current-image-container {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 1rem;
+	}
+
+	.current-image {
+		max-width: 300px;
+		max-height: 200px;
+		object-fit: cover;
+		border-radius: 8px;
+		box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+	}
+
+	.image-note {
+		margin: 0;
+		color: #6c757d;
+		font-size: 14px;
+		text-align: center;
+		font-style: italic;
+	}
+
+	.image-actions {
+		display: flex;
+		justify-content: center;
+		margin-bottom: 1rem;
+	}
+
+	.btn-replace-image {
+		display: flex;
+		align-items: center;
+		gap: 8px;
+		padding: 8px 16px;
+		background: #007bff;
+		color: #ffffff;
+		border: none;
+		border-radius: 6px;
+		font-size: 14px;
+		font-weight: 500;
+		cursor: pointer;
+		transition: all 0.2s ease;
+
+		&:hover {
+			background: #0056b3;
+			transform: translateY(-1px);
+		}
+
+		&:active {
+			transform: translateY(0);
+		}
+
+		.btn-icon {
+			font-size: 16px;
+		}
+	}
+}
+
+// Responsive design for image preview
+@media @tui-mobile-interval, @tui-mobile {
+	.image-preview-section {
+		padding: 1rem;
+		margin-bottom: 1.5rem;
+
+		h4 {
+			font-size: 14px;
+		}
+
+		.current-image {
+			max-width: 250px;
+			max-height: 150px;
+		}
+
+		.image-note {
+			font-size: 13px;
+		}
+	}
+}

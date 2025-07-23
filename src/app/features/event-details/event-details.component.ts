@@ -27,8 +27,9 @@ export class EventDetailsComponent implements OnInit {
 		if (eventId) {
 			this.isLoading.set(true);
 			this.eventsService.find(eventId).subscribe({
-				next: (event) => {
-					this.currentEvent = event;
+				next: (result) => {
+					this.currentEvent = result?.dataValues;
+					console.log('currentEvent', this.currentEvent);
 				},
 				error: (error) => {
 					console.error('Error fetching event:', error);

@@ -21,7 +21,7 @@ export class EventsService {
 	}
 
 	find(id: string) {
-		return this.http.get<Event>(this.getUrlWithId(id));
+		return this.http.get<any>(this.getUrlWithId(id));
 	}
 
 	create(event: FormData) {
@@ -29,7 +29,7 @@ export class EventsService {
 	}
 
 	update(event: Event) {
-		return this.http.put(this.getUrlWithId(event.id!), event);
+		return this.http.patch<Event>(this.getUrlWithId(event.id!), event);
 	}
 
 	delete(event: Event) {
