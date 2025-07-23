@@ -1,37 +1,48 @@
 <div class="card-container">
-	<div class="image">
-		<div class="cardshow" [ngStyle]="{ 'background-image': 'url(' + event()?.image + ')' }">
-			<div class="text-overlay">
-				<span class="event-type">{{ event()?.type }}</span>
+	<!-- Event Image with Type Tag -->
+	<div class="event-image">
+		<div class="image-background" [ngStyle]="{ 'background-image': 'url(' + event()?.image + ')' }">
+			<div class="event-type-tag">
+				<span class="type-text">{{ event()?.type }}</span>
+			</div>
+		</div>
+	</div>
+
+	<!-- Event Details -->
+	<div class="event-details">
+		<!-- Date and Time -->
+		<div class="datetime-info">
+			<div class="date-item" *ngIf="event()?.date">
+				<tui-icon icon="@tui.calendar-check" class="datetime-icon" />
+				<span class="datetime-text">{{ event()?.date | date : 'fullDate' }}</span>
+			</div>
+			<div class="time-item">
+				<tui-icon icon="@tui.alarm-clock" class="datetime-icon" />
+				<span class="datetime-text">{{ event()?.date | date : 'shortTime' }}</span>
 			</div>
 		</div>
 
-		<div class="details">
-			<div class="datetime">
-				<p *ngIf="event()?.date">
-					<tui-icon icon="@tui.calendar-check" [style.color]="'#26ABE4'" />
-					{{ event()?.date | date : 'fullDate' }}
-				</p>
+		<!-- Event Title and Description -->
+		<div class="event-content">
+			<h3 class="event-title">{{ event()?.name }}</h3>
+			<p class="event-description">{{ event()?.description }}</p>
+		</div>
 
-				<p>
-					<tui-icon icon="@tui.alarm-clock" [style.color]="'#26ABE4'" />
-					{{ event()?.date | date : 'shortTime' }}
-				</p>
-			</div>
-			<div class="text1">
-				<h2>{{ event()?.name }}</h2>
-				<p class="description">{{ event()?.description }}</p>
-				<div class="buttons">
-					<button class="details-btn">
-						<tui-icon icon="@tui.pencil-line" [style.color]="'#FFFFFF'"></tui-icon>
-						register
-					</button>
-					<button class="details-btn" [routerLink]="['/events', event()?.id]">
-						<tui-icon icon="@tui.check" [style.color]="'#FFFFFF'"></tui-icon>
-						View details
-					</button>
-				</div>
-			</div>
+		<!-- Action Buttons -->
+		<div class="action-buttons">
+			<button
+				class="btn-register"
+				type="button"
+				[routerLink]="userStore.isAdmin() ? ['/events/edit', event()?.id] : null"
+				(click)="!userStore.isAdmin() && onRegister()"
+			>
+				<tui-icon icon="@tui.square-pen" class="btn-icon" />
+				<span class="btn-text">{{ userStore.isAdmin() ? 'Edit' : 'Register' }}</span>
+			</button>
+			<button class="btn-details" type="button" [routerLink]="['/events', event()?.id]">
+				<tui-icon icon="@tui.eye" class="btn-icon" />
+				<span class="btn-text">View full details</span>
+			</button>
 		</div>
 	</div>
 </div>

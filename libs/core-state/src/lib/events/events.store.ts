@@ -47,6 +47,7 @@ export const EventStore = signalStore(
 						return filteredEvents;
 					}),
 					catchError((error) => {
+						console.log('falling back to local storage')
 						console.error('Error fetching events:', error);
 						const fallback = JSON.parse(localStorage.getItem('events') || '[]') as Event[];
 						return of(fallback);
@@ -88,6 +89,16 @@ export const EventStore = signalStore(
 			}));
 		},
 
+		getEventById(id: string): Observable<Event> {
+			return eventsService.find(id).pipe(
+				map((event) => event.dataValues),
+				catchError((error) => {
+					console.error('Error fetching event by ID:', error);
+					return throwError(() => error);
+				}),
+			);
+		},
+
 		addEvent(event: FormData): Observable<any> {
 			patchState(store, (state) => ({
 				...state,
@@ -113,11 +124,56 @@ export const EventStore = signalStore(
 				}),
 			);
 		},
+
+		updateEvent(id: string, event: FormData): Observable<any> {
+			patchState(store, (state) => ({
+				...state,
+				isCreatingEvent: true,
+			}));
+			
+			// Convert FormData to Event object for the update
+			const eventData = {
+				id: id,
+				title: event.get('name') as string,
+				name: event.get('name') as string,
+				description: event.get('description') as string,
+				location: event.get('location') as string,
+				type: event.get('type') as 'online' | 'physical' | 'hybrid',
+				date: new Date(event.get('date') as string),
+				image: event.get('file') as string,
+			} as Event;
+
+			return eventsService.update(eventData).pipe(
+				catchError((error) => {
+					patchState(store, (state) => ({
+						...state,
+						error: error,
+					}));
+					console.log('error  ', error)
+					return throwError(() => error);
+				}),
+				tap((updatedEvent) => {
+					console.log('updatedEvent', updatedEvent)
+					console.log('id', id)
+					store._eventsResource.update((events) => 
+						events?.map(event => event.id === id ? updatedEvent : event) ?? []
+					);
+				}),
+				finalize(() => {
+					patchState(store, (state) => ({
+						...state,
+						isCreatingEvent: false,
+					}));
+					console.log(store._eventsResource.value())
+				}),
+			);
+		},
 	})),
 	withHooks({
 		onInit(store) {
 			effect(() => {
 				const state = getState(store);
+				console.log('storring');
 				if (state.initialized) {
 					localStorage.setItem('events', JSON.stringify(store.events()));
 				}

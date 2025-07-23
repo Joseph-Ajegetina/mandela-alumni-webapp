@@ -219,4 +219,21 @@ export class AdminDashboardUiComponent {
 			parseInt(dateParts[2]), // day
 		);
 	}
+
+	// TrackBy functions for better performance
+	trackByMetric(index: number, metric: DashboardMetric): string {
+		return metric.id;
+	}
+
+	trackByUser(index: number, user: any): string {
+		return user.email;
+	}
+
+	trackByEvent(index: number, event: DashboardEvent): string {
+		return event.id;
+	}
+
+	trackByReminder(index: number, reminder: DashboardReminder): string {
+		return reminder.id;
+	}
 }

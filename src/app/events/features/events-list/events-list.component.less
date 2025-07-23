@@ -1,99 +1,93 @@
 @import '@taiga-ui/core/styles/taiga-ui-local.less';
-.container {
-	// background-color: #f5fcfffa;
-	display: flex;
-	flex-direction: column;
-	justify-content: space-between;
-	gap: 30px;
-}
-.header h3 {
-	font-weight: 600;
-	font-size: 28px;
-	line-height: 55px;
-	color: rgba(37, 69, 104, 1);
-}
-.main-content {
-	display: flex;
-	flex-direction: column;
-	gap: 5px;
-}
-.top {
-	display: flex;
-	justify-content: space-between;
-	align-items: center;
-	padding: 0 17px;
-	margin-bottom: 10px;
 
-	@media @tui-mobile-interval, @tui-mobile {
-		display: flex;
-		flex-direction: column;
-		gap: 1em;
-		width: 90%;
-		padding: 0;
-		margin: 0;
-		margin-left: 2em;
-	}
+.container {
+	display: flex;
+	flex-direction: column;
+	gap: 1rem;
+	background: #f8f9fa;
+	min-height: 100vh;
+	height: 100vh; // Fixed height to ensure proper layout
+	overflow-y: auto; // Allow scrolling if needed
+	background: transparent;
 }
+
+// Header Section
 .top-container {
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
 	width: 100%;
-	padding-left: 20px;
+	padding: 0;
 
 	@media @tui-mobile-interval, @tui-mobile {
-		display: flex;
 		flex-direction: column;
-		justify-content: space-around;
-		width: 100%;
-		padding: 0;
-		margin: 0;
+		gap: 1rem;
+		align-items: flex-start;
 	}
 }
-.filter {
+
+.header h3 {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 1.2;
+	color: rgba(37, 69, 104, 1);
+	margin: 0;
+}
+
+// Search and Filter Section (now inside events list)
+.search-filter-section {
 	display: flex;
-	gap: 3em;
-	align-items: center;
 	justify-content: space-between;
+	align-items: center;
+	gap: 2rem;
+	padding: 1rem 0;
+	border-bottom: 1px solid #e5e7eb;
 
 	@media @tui-mobile-interval, @tui-mobile {
-		display: flex;
 		flex-direction: column;
-		gap: 10px;
-		width: 100%;
-		justify-content: space-between;
+		gap: 1rem;
+		align-items: stretch;
 	}
 
 	@media @tui-tablet-interval {
-		gap: 1em;
+		gap: 1rem;
 	}
 }
-.srch {
-	width: 30%;
+
+.search-container {
+	width: 40%;
+	min-width: 300px;
 
 	@media @tui-mobile-interval, @tui-mobile {
 		width: 100%;
+		min-width: unset;
 	}
 
 	@media @tui-tablet-interval {
-		min-width: 205px;
+		width: 50%;
+		min-width: 250px;
 	}
 }
-.srch tui-textfield,
-.srch input[tuiTextfield] {
+
+.search-container tui-textfield,
+.search-container input[tuiTextfield] {
 	width: 100% !important;
 	min-width: unset !important;
+}
+
+.filter-container {
+	width: 30%;
+	min-width: 250px;
 
 	@media @tui-mobile-interval, @tui-mobile {
-		min-width: unset;
 		width: 100%;
-		max-width: 100%;
+		min-width: unset;
 	}
-}
-.all {
-	width: 100%;
-	max-width: 100%;
-	min-width: 250px;
+
+	@media @tui-tablet-interval {
+		width: 40%;
+		min-width: 200px;
+	}
 
 	tui-select {
 		width: 100%;
@@ -105,89 +99,220 @@
 
 		input {
 			width: 100% !important;
-			min-width: 300px;
+			min-width: unset;
 			max-width: 100%;
 		}
 	}
-
-	@media @tui-mobile-interval, @tui-mobile {
-		min-width: unset;
-		width: 100%;
-		max-width: 100%;
-	}
-
-	@media @tui-tablet-interval {
-		min-width: 205px;
-	}
 }
 
-@media @tui-tablet-interval {
-	.all {
-		width: 100%;
-		max-width: 500px;
-	}
-}
-.icons {
+// Featured Events Slideshow Section
+.featured-events-section {
+	margin-bottom: 2rem; // Reduced from 3rem
+	flex: 1; // Allow it to take available space
 	display: flex;
-	gap: 1.5em;
-	align-items: center;
+	flex-direction: column;
+	justify-content: center; // Center the slideshow
+}
 
-	@media @tui-mobile-interval, @tui-mobile {
-		display: flex;
-		gap: 5px;
-	}
+.slideshow-container {
+	width: 100%;
+	overflow: hidden;
+}
 
-	@media @tui-tablet-interval {
-		display: flex;
-		gap: 5px;
+// Scroll Button
+.scroll-button-container {
+	display: flex;
+	justify-content: center;
+	min-height: 60px; // Reduced from 100px to 60px
+	transition: all 0.3s ease;
+
+	&.hide-button {
+		display: none;
+		transform: translateY(-20px);
+		pointer-events: none;
+		height: 0; // Collapse the height when hidden
+		margin: 0; // Remove margin when hidden
+		padding: 0; // Remove padding when hidden
+		overflow: hidden; // Hide any remaining content
 	}
 }
-.icon {
-	position: fixed;
-	bottom: 0;
-	right: 40em;
+
+.scroll-button {
+	width: 60px;
+	height: 60px;
 	background: #00b4d8;
 	color: white;
 	border: none;
-	padding: 12px;
 	border-radius: 50%;
 	cursor: pointer;
-	box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
-	transition: background 0.3s ease-in-out;
-	@media @tui-mobile-interval, @tui-mobile {
-		display: none;
-	}
-	@media @tui-tablet-interval {
-		display: none;
-	}
-}
-.icon:hover {
-	background: #0077b6;
-}
-.footer {
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+	transition: all 0.3s ease;
 	display: flex;
-	flex-wrap: wrap;
-	gap: 20px;
-	justify-content: flex-start;
-	padding: 20px;
+	align-items: center;
+	justify-content: center;
+	font-size: 1.5rem;
+	position: relative; // Ensure proper positioning
+	z-index: 10; // Ensure it's above other content
+
+	&:hover {
+		background: #0077b6;
+		transform: translateY(-2px);
+		box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+	}
+
+	&:focus {
+		outline: 2px solid #00b4d8;
+		outline-offset: 2px;
+	}
+
+	&:active {
+		transform: translateY(0);
+	}
+
+	@media @tui-mobile-interval, @tui-mobile {
+		width: 50px;
+		height: 50px;
+		font-size: 1.2rem;
+	}
 }
-.footer app-event-card {
-	flex: 0 0 calc(33.33% - 20px);
-	margin-bottom: 20px;
-	max-width: calc(33.33% - 20px);
-	display: block;
+
+// Events List Section
+.events-list-section {
+	padding: 2rem 0;
+	border-top: 1px solid #e5e7eb;
+	display: none; // Completely hidden initially
+	opacity: 0;
+	transform: translateY(20px);
+	transition: all 0.5s ease;
+
+	&.show-events-list {
+		display: block; // Show the element
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+.section-header {
+	margin-bottom: 2rem;
+	text-align: center;
+
+	h4 {
+		font-size: 24px;
+		font-weight: 600;
+		color: #254568;
+		margin: 0 0 0.5rem 0;
+	}
+
+	p {
+		font-size: 16px;
+		color: #6b7280;
+		margin: 0;
+	}
+}
+
+.events-grid {
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+	gap: 2rem;
+	padding: 0;
+
+	@media @tui-tablet-interval {
+		grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+		gap: 1.5rem;
+	}
+
+	@media @tui-mobile-interval, @tui-mobile {
+		grid-template-columns: 1fr;
+		gap: 1rem;
+	}
+}
+
+.event-card-item {
+	width: 100%;
+	height: auto;
+}
+
+// Loading State
+.loading {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	min-height: 400px;
+}
+
+// Responsive Design
+@media @tui-mobile-interval, @tui-mobile {
+	.container {
+		padding: 1rem;
+		gap: 1.5rem;
+		height: 100vh; // Maintain fixed height
+	}
+
+	.featured-events-section {
+		margin-bottom: 1rem; // Reduced from 1.5rem to 1rem
+		flex: 1;
+	}
+
+	.scroll-button-container {
+		margin: 1rem 0; // Reduced from 2rem to 1rem
+		padding: 0.25rem 0; // Reduced padding
+		min-height: 50px; // Smaller minimum height for mobile
+	}
+
+	.events-list-section {
+		padding: 1.5rem 0;
+
+		.search-filter-section {
+			flex-direction: column;
+			gap: 1rem;
+			align-items: stretch;
+			padding: 0.75rem 0;
+			margin-bottom: 1.5rem;
+		}
+	}
+
+	.section-header {
+		margin-bottom: 1.5rem;
+
+		h4 {
+			font-size: 20px;
+		}
+
+		p {
+			font-size: 14px;
+		}
+	}
+
+	.events-grid {
+		gap: 1rem;
+	}
 }
 
 @media @tui-tablet-interval {
-	.footer app-event-card {
-		flex: 0 0 calc(50% - 20px);
-		max-width: calc(50% - 20px);
+	.container {
+		padding: 1.5rem;
+		gap: 1.75rem;
+		height: 100vh; // Maintain fixed height
 	}
-}
 
-@media (max-width: 992px) {
-	.footer app-event-card {
-		flex: 0 0 calc(100% - 20px);
-		max-width: calc(100% - 20px);
+	.featured-events-section {
+		margin-bottom: 1.5rem; // Reduced from 2rem to 1.5rem
+		flex: 1;
+	}
+
+	.scroll-button-container {
+		margin: 1.25rem 0; // Reduced from 2.5rem to 1.25rem
+		padding: 0.375rem 0; // Reduced padding
+		min-height: 55px; // Medium minimum height for tablet
+	}
+
+	.events-list-section {
+		padding: 1.75rem 0;
+
+		.search-filter-section {
+			gap: 1rem;
+			padding: 0.875rem 0;
+			margin-bottom: 1.75rem;
+		}
 	}
 }

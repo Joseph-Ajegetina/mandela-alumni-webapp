@@ -1,4 +1,5 @@
 <div class="container">
+	<!-- Header Section -->
 	<div class="top-container">
 		<div class="header">
 			<h3>Events</h3>
@@ -17,9 +18,32 @@
 		<tui-loader></tui-loader>
 	</div>
 	}@else{
-	<div class="main-content">
-		<div class="top">
-			<div class="srch">
+
+	<!-- Featured Events Slideshow Section -->
+	<div class="featured-events-section">
+		<div class="slideshow-container">
+			<app-events-slideshow [events]="eventStore.latestEvents()"></app-events-slideshow>
+		</div>
+		<div class="scroll-button-container" [class.hide-button]="showEventsList">
+			<button
+				class="scroll-button"
+				(click)="scrollToEventsList()"
+				(keydown.enter)="scrollToEventsList()"
+				(keydown.space)="scrollToEventsList()"
+				tabindex="0"
+				role="button"
+				aria-label="Scroll to view all events"
+			>
+				<tui-icon icon="@tui.arrow-down" [style.color]="'#FFFFFF'"></tui-icon>
+			</button>
+		</div>
+	</div>
+
+	<!-- All Events List Section -->
+	<div class="events-list-section" id="events-list" [class.show-events-list]="showEventsList">
+		<!-- Search and Filter Section -->
+		<div class="search-filter-section">
+			<div class="search-container">
 				<search tuiSearch>
 					<form [formGroup]="form">
 						<fieldset tuiTextfieldSize="m">
@@ -31,44 +55,25 @@
 				</search>
 			</div>
 
-			<div class="filter">
-				<div class="all">
-					<tui-select
-						[(ngModel)]="type"
-						(ngModelChange)="eventStore.updateType($event)"
-						tuiTextfieldSize="m"
-						[tuiTextfieldCleaner]="true"
-					>
-						Event Type
-						<input placeholder="" tuiTextfieldLegacy />
-						<tui-data-list-wrapper *tuiDataList [items]="eventModes | tuiFilterByInput" />
-					</tui-select>
-				</div>
+			<div class="filter-container">
+				<tui-select
+					[(ngModel)]="type"
+					(ngModelChange)="eventStore.updateType($event)"
+					tuiTextfieldSize="m"
+					[tuiTextfieldCleaner]="true"
+				>
+					Event Type
+					<input placeholder="" tuiTextfieldLegacy />
+					<tui-data-list-wrapper *tuiDataList [items]="eventModes | tuiFilterByInput" />
+				</tui-select>
 			</div>
 		</div>
-		<div class="main">
-			<app-events-slideshow [events]="eventStore.latestEvents()"></app-events-slideshow>
+
+		<div class="events-grid">
+			@for( event of eventStore.filteredEvents(); track event.id){
+			<app-event-card [event]="event" class="event-card-item"></app-event-card>
+			}
 		</div>
-	</div>
-	<div
-		class="icon arrow"
-		(click)="toggleScroll()"
-		(keydown.enter)="toggleScroll()"
-		(keydown.space)="toggleScroll()"
-		tabindex="0"
-		role="button"
-		aria-label="Scroll up or down"
-	>
-		<tui-icon
-			[icon]="isAtTop ? '@tui.arrow-down-to-line' : '@tui.arrow-up-to-line'"
-			[style.color]="'#FFFFFF'"
-		>
-		</tui-icon>
-	</div>
-	<div class="footer">
-		@for( event of eventStore.filteredEvents(); track event.id){
-		<app-event-card [event]="event" class="card-item"></app-event-card>
-		}
 	</div>
 	}
 </div>

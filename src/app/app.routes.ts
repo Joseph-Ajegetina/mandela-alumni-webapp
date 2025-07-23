@@ -69,6 +69,13 @@ export const appRoutes: Route[] = [
 					),
 			},
 			{
+				path: 'events/edit/:id',
+				loadComponent: () =>
+					import('./events/features/new-event/new-event.component').then(
+						(m) => m.NewEventComponent,
+					),
+			},
+			{
 				path: 'payment',
 				loadComponent: () =>
 					import('./features/payment-page/payment-page.component').then(

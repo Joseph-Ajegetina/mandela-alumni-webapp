@@ -1,10 +1,37 @@
 <!-- eslint-disable @angular-eslint/template/label-has-associated-control -->
 <div class="container">
 	<div class="header">
-		<h3>Create an Event</h3>
+		<h3>{{ isEditMode ? 'Edit Event' : 'Create an Event' }}</h3>
 	</div>
 	<div class="main-content">
-		<div class="upload-section" (dragover)="onDragOver($event)" (drop)="onDrop($event)">
+		<!-- Image Preview Section (Edit Mode Only) -->
+		<div class="image-preview-section" *ngIf="isEditMode && currentEventImage">
+			<h4>Current Event Image</h4>
+			<div class="image-actions">
+				<button
+					type="button"
+					class="btn-replace-image"
+					(click)="showUploadSection = !showUploadSection"
+				>
+					<tui-icon icon="@tui.upload" class="btn-icon"></tui-icon>
+					{{ showUploadSection ? 'Hide Upload' : 'Replace Image' }}
+				</button>
+			</div>
+			<div class="current-image-container">
+				<img [src]="currentEventImage" alt="Current event image" class="current-image" />
+			</div>
+			<p class="image-note" *ngIf="!showUploadSection">
+				Click "Replace Image" to upload a new image
+			</p>
+		</div>
+
+		<!-- Upload Section (Hidden by default in edit mode) -->
+		<div
+			class="upload-section"
+			(dragover)="onDragOver($event)"
+			(drop)="onDrop($event)"
+			*ngIf="!isEditMode || showUploadSection"
+		>
 			<label tuiInputFiles>
 				<input tuiInputFiles [formControl]="fileControl" (change)="onFileSelect($event)" />
 				<ng-template let-dragged>
@@ -113,7 +140,7 @@
 						[disabled]="form.invalid"
 						[loading]="creating()"
 					>
-						Create
+						{{ isEditMode ? 'Update' : 'Create' }}
 					</button>
 				</div>
 			</form>
