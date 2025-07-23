@@ -1,0 +1,154 @@
+<div tuiHeader="h2">
+	<h2 class="heading">Users</h2>
+</div>
+
+@if (loading()){
+<tui-loader [inheritColor]="true"></tui-loader>
+} @else{
+<div tuiCell>
+	<search tuiSearch>
+		<form [formGroup]="form">
+			<fieldset tuiTextfieldSize="s">
+				<tui-textfield iconStart="@tui.search">
+					<input placeholder="Search users" tuiTextfield formControlName="search" />
+				</tui-textfield>
+			</fieldset>
+		</form>
+	</search>
+
+	<hr />
+	
+	<!-- Status Filter Buttons -->
+	<div class="filter-buttons">
+		<button 
+			appearance="flat-grayscale" 
+			iconStart="@tui.users" 
+			tuiIconButton 
+			type="button"
+			[class.active]="selectedStatus() === 'all'"
+			(click)="onStatusFilterChange('all')"
+		>
+			All Users
+		</button>
+		<button 
+			appearance="flat-grayscale" 
+			iconStart="@tui.check-circle" 
+			tuiIconButton 
+			type="button"
+			[class.active]="selectedStatus() === 'approved'"
+			(click)="onStatusFilterChange('approved')"
+		>
+			Approved
+		</button>
+		<button 
+			appearance="flat-grayscale" 
+			iconStart="@tui.clock" 
+			tuiIconButton 
+			type="button"
+			[class.active]="selectedStatus() === 'pending'"
+			(click)="onStatusFilterChange('pending')"
+		>
+			Pending
+		</button>
+		<button 
+			appearance="flat-grayscale" 
+			iconStart="@tui.x-circle" 
+			tuiIconButton 
+			type="button"
+			[class.active]="selectedStatus() === 'disapproved'"
+			(click)="onStatusFilterChange('disapproved')"
+		>
+			Disapproved
+		</button>
+	</div>
+</div>
+
+<table tuiTable [size]="'l'">
+	<thead>
+		<tr>
+			<th tuiTh>
+				<div [tuiCell]="'l'">
+					<input
+						tuiCheckbox
+						type="checkbox"
+						[ngModel]="checked"
+						[size]="'m'"
+						(ngModelChange)="onCheck($event)"
+					/>
+					<span tuiTitle>Name</span>
+				</div>
+			</th>
+			<th tuiTh>Email</th>
+			<th tuiTh>Phone</th>
+			<th tuiTh>Status</th>
+			<th tuiTh>Location</th>
+			<th tuiTh>Joined Date</th>
+			<th tuiTh>Actions</th>
+		</tr>
+	</thead>
+	<tbody tuiTbody>
+		<ng-container *ngIf="filteredUsers.length === 0">
+			<tr>
+				<td tuiTd colspan="7">
+					<div [tuiCell]="'l'">
+						<span tuiTitle>No users found</span>
+					</div>
+				</td>
+			</tr>
+		</ng-container>
+
+		<ng-container *ngIf="filteredUsers.length > 0">
+			<tr *ngFor="let user of filteredUsers">
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<input tuiCheckbox type="checkbox" [size]="'m'" [(ngModel)]="user.selected" />
+						<span tuiTitle>{{ user.firstname }} {{ user.lastname }}</span>
+					</div>
+				</td>
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<span tuiTitle>{{ user.email }}</span>
+					</div>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ user.phone }}</span>
+				</td>
+				<td tuiTd>
+					<div [tuiCell]="'l'">
+						<tui-badge 
+							[style.background]="getStatusBadgeColor(user.status)"
+							[style.color]="'white'"
+						>
+							{{ getStatusBadgeText(user.status) }}
+						</tui-badge>
+					</div>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ user.city }}, {{ user.country }}</span>
+				</td>
+				<td tuiTd>
+					<span tuiTitle>{{ user.createdAt | date : 'medium' }}</span>
+				</td>
+				<td tuiTd>
+					<span tuiStatus>
+						<button
+							appearance="primary"
+							iconStart="@tui.eye"
+							size="xs"
+							tuiButton
+							type="button"
+							[tuiHint]="'View user details'"
+							tuiHintDirection="left"
+							tuiHintAppearance="dark"
+							(click)="viewUser(user)"
+							class="view-button"
+						>
+							View
+						</button>
+					</span>
+				</td>
+			</tr>
+		</ng-container>
+	</tbody>
+</table>
+} 

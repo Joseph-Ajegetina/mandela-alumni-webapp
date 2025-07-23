@@ -1,0 +1,128 @@
+@import '@taiga-ui/core/styles/taiga-ui-local.less';
+
+:host {
+	--tui-background-base: #fff !important;
+	--tui-theme-color: #fff !important;
+}
+
+[tuiTh],
+[tuiTd] {
+	border-inline-start: none;
+	border-inline-end: none;
+}
+
+[tuiTable][data-size='s'] [tuiTitle] {
+	flex-direction: row;
+	gap: 0.375rem;
+}
+
+table {
+	width: 100%;
+
+	th {
+		border-top: 1px solid #eaeaea;
+	}
+}
+
+tui-loader {
+	margin: 0 auto;
+}
+
+.heading {
+	font-weight: 600;
+	font-size: 28px;
+	line-height: 55px;
+	color: rgba(37, 69, 104, 1);
+}
+
+.filter-buttons {
+	display: flex;
+	gap: 0.5rem;
+	margin-bottom: 1rem;
+	flex-wrap: wrap;
+
+	button {
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		padding: 0.5rem 1rem;
+		border-radius: 6px;
+		font-size: 14px;
+		font-weight: 500;
+		transition: all 0.2s ease;
+
+
+		&:hover {
+			background: var(--tui-base-02);
+			border-color: var(--tui-base-05);
+		}
+
+		&.active {
+			background: var(--tui-primary);
+			color: white;
+			border-color: var(--tui-primary);
+		}
+	}
+}
+
+// Status badge styling
+tui-badge {
+	font-size: 12px;
+	font-weight: 500;
+	padding: 0.25rem 0.75rem;
+	border-radius: 12px;
+}
+
+// View button styling
+.view-button {
+	background: var(--tui-primary) !important;
+	color: white !important;
+	border: none !important;
+	padding: 0.25rem 0.5rem !important;
+	border-radius: 4px !important;
+	font-size: 12px !important;
+	font-weight: 500 !important;
+	cursor: pointer !important;
+	transition: all 0.2s ease !important;
+
+	&:hover {
+		background: var(--tui-primary-hover) !important;
+		transform: translateY(-1px) !important;
+	}
+
+	&:active {
+		transform: translateY(0) !important;
+	}
+}
+
+// Responsive design
+@media @tui-mobile-interval, @tui-mobile {
+	.filter-buttons {
+		flex-direction: column;
+		gap: 0.25rem;
+
+		button {
+			justify-content: center;
+			padding: 0.75rem 1rem;
+		}
+	}
+
+	table {
+		font-size: 14px;
+
+		th, td {
+			padding: 0.75rem 0.5rem;
+		}
+	}
+}
+
+@media @tui-tablet-interval {
+	.filter-buttons {
+		gap: 0.375rem;
+
+		button {
+			padding: 0.625rem 0.875rem;
+			font-size: 13px;
+		}
+	}
+} 
